@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "memoryweaver"
+version = "0.1.0"
+description = "Feedback-Calibrated Memory Harness for Long-Lived AI Agents"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Invovel"},
+]
+keywords = [
+    "agent-memory",
+    "rag",
+    "feedback-loop",
+    "ai-agent",
+    "coding-agent",
+    "long-term-memory",
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-cov>=4.0"]
+chroma = ["chromadb>=0.4.0"]
+
+[project.scripts]
+mw = "memoryweaver.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["memoryweaver*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

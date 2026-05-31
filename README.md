@@ -1,8 +1,10 @@
 # MemoryWeaver
 
+[中文版 (Chinese Version)](README_ZH.md) | [GitHub](https://github.com/Invovel/weaver-memory)
+
 **Feedback-Calibrated Memory Harness for Long-Lived AI Agents**
 
-MemoryWeaver is an experimental memory harness for AI agents that turns conversations, terminal outputs, tool results, user corrections, and task outcomes into reusable long-term memory.
+MemoryWeaver is an experimental memory harness for AI agents that turns conversations, terminal outputs, tool results, user corrections, and task outcomes into reusable long-term memory. Unlike traditional RAG systems, MemoryWeaver uses **source-gated polarity** and **contradiction detection** to prevent LLM fabrications from polluting the memory store.
 
 Unlike traditional RAG systems that only retrieve documents, MemoryWeaver focuses on **feedback-aware memory evolution**:
 
@@ -336,46 +338,83 @@ Codex CLI authentication/subscription diagnostic pattern
 
 ---
 
-## Planned Components
+## Source-Gated Anti-Pollution
+
+MemoryWeaver uses three layers of defense to prevent LLM fabrications from contaminating memory:
+
+### 1. Source-Gated Polarity
+
+Every memory has a `source` field. Assistant-generated content is **always** classified as `ambiguous` and never automatically trusted:
+
+| Source | Allowed Polarity | Rationale |
+|--------|-----------------|-----------|
+| `user` | positive, negative, neutral, ambiguous | Direct human feedback |
+| `terminal` | positive, negative, neutral | Objective command results |
+| `tool` | positive, negative, neutral | Tool outputs are verifiable |
+| `assistant` | **ambiguous only** | LLM output is unverified by default |
+| `composer` | neutral, ambiguous | Pattern composition is inferred |
+
+An ambiguous memory can only be upgraded to `positive` or `negative` through external verification (user confirmation or terminal validation).
+
+### 2. Contradiction Detection
+
+When a new memory conflicts with existing verified knowledge, a three-tier severity system determines the response:
+
+```
+L1 (SILENT) — both claims are unverified → record, don't interrupt
+L2 (WARN)   — unverified vs possibly-stale verified → note, proceed cautiously
+L3 (BLOCK)  — verified fact or user preference contradicted → stop, ask user
+```
+
+The `ContradictionResolver` (`memoryweaver/contradiction.py`) implements this with a priority rule chain that treats user preferences and terminal-verified facts as the highest authority.
+
+### 3. Verified Retrieval
+
+The `VerifiedRetriever` (`memoryweaver/retriever.py`) filters memories by source credibility during retrieval:
+
+- User and terminal sources always pass through
+- Web and composer sources pass with confidence check
+- **Assistant-sourced memories with zero heat are excluded entirely**
+- Assistant memories with heat > 0 can be included only when explicitly requested
+
+This prevents the self-pollution loop: `LLM fabricates → stored as memory → retrieved next time → reinforces fabrication`.
+
+### Architecture Diagram
+
+```text
+Every Agent Response:
+  Before → VerifiedRetriever.search(query)
+           → Only clean, verified memories enter context
+  After  → EventDetector.detect(response_text)
+           → assistant content → forced ambiguous, confidence ≤ 0.3
+         → ContradictionResolver.resolve(new, existing)
+           → SILENT / WARN / BLOCK based on severity
+           → BLOCK → agent must ask user before proceeding
+```
+
+---
+
+## Current Structure
 
 ```text
 memoryweaver/
-├── harness/
-│   ├── event_detector.py
-│   ├── feedback_classifier.py
-│   ├── mode_router.py
-│   └── memory_router.py
-│
-├── memory/
-│   ├── schema.py
-│   ├── store.py
-│   ├── scorer.py
-│   ├── promoter.py
-│   └── decay.py
-│
-├── graph/
-│   ├── linker.py
-│   ├── composer.py
-│   └── conflict_resolver.py
-│
-├── rag/
-│   ├── embedder.py
-│   ├── retriever.py
-│   └── reranker.py
-│
-├── adapters/
-│   ├── terminal.py
-│   ├── mcp.py
-│   ├── langgraph.py
-│   ├── letta.py
-│   └── mem0.py
+├── memoryweaver/
+│   ├── __init__.py
+│   ├── schema.py          # MemoryItem, Pattern, enums
+│   ├── store.py           # JSON-backed MemoryStore
+│   ├── scorer.py          # Heat, confidence, promotion
+│   ├── extractor.py       # EventDetector + FeedbackClassifier (zh/en)
+│   ├── router.py          # Fast / Thinking / Fast-Verify mode router
+│   ├── retriever.py       # VerifiedRetriever with source-aware weighting
+│   └── contradiction.py   # ContradictionResolver (SILENT/WARN/BLOCK)
 │
 ├── examples/
-│   ├── coding_agent_memory/
-│   ├── terminal_feedback_loop/
-│   └── fast_thinking_router/
+│   └── basic_memory_loop.py
 │
 └── tests/
+    ├── test_schema.py
+    ├── test_contradiction.py
+    └── test_retriever.py
 ```
 
 ---
@@ -473,9 +512,17 @@ Provide shared, structured memory across different LLMs and tools.
 
 ## Status
 
-MemoryWeaver is currently a concept-stage project.
+**Sprint 0 Complete.** Core modules implemented with 68 passing tests:
 
-The initial goal is to build a minimal local prototype for coding-agent workflows.
+- `schema.py` — MemoryItem dataclass (4 polarities, 3 layers, 5 statuses)
+- `store.py` — Atomic JSON-backed CRUD with tag/polarity/layer queries
+- `scorer.py` — Heat/confidence scoring and layer promotion rules
+- `extractor.py` — Bilingual feedback classifier (zh/en) + event detector
+- `router.py` — Fast / Thinking / Fast-Verify mode routing
+- `retriever.py` — Source-aware verified retrieval with anti-pollution filtering
+- `contradiction.py` — Three-tier contradiction resolver (SILENT / WARN / BLOCK)
+
+Next: Sprint 1 — Feedback Classifier expansion, time-based decay, automated pattern composer.
 
 ---
 

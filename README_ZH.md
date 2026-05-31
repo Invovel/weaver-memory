@@ -1,8 +1,10 @@
 # MemoryWeaver
 
+[English Version (英文版)](README.md) | [GitHub](https://github.com/Invovel/weaver-memory)
+
 **面向长期 AI Agent 的反馈校准型记忆 Harness**
 
-MemoryWeaver 是一个实验性的 Agent 记忆调度框架，用于把对话、终端输出、工具结果、用户纠正、任务结果转化为可复用的长期记忆。
+MemoryWeaver 是一个实验性的 Agent 记忆调度框架，用于把对话、终端输出、工具结果、用户纠正、任务结果转化为可复用的长期记忆。与传统 RAG 不同，MemoryWeaver 使用**来源门控极性**和**矛盾检测**来防止 LLM 编造的内容污染记忆库。
 
 它不是普通 RAG。
 
@@ -350,46 +352,83 @@ Codex CLI 认证 / 订阅诊断 Pattern
 
 ---
 
-## 计划模块
+## 来源门控防污染
+
+MemoryWeaver 使用三层防护来防止 LLM 编造的内容污染记忆库：
+
+### 1. 来源门控极性
+
+每条记忆都有 `source` 字段。Assistant 生成的内容**永远**归类为 `ambiguous`，从不自动信任：
+
+| 来源 | 允许的极性 | 原因 |
+|------|-----------|------|
+| `user` | positive, negative, neutral, ambiguous | 直接人类反馈 |
+| `terminal` | positive, negative, neutral | 客观命令结果 |
+| `tool` | positive, negative, neutral | 工具输出可验证 |
+| `assistant` | **仅 ambiguous** | LLM 输出默认不可信 |
+| `composer` | neutral, ambiguous | Pattern 组合是推断性的 |
+
+Ambiguous 记忆只能通过外部验证（用户确认或终端验证）升级为 `positive` 或 `negative`。
+
+### 2. 矛盾检测
+
+当新记忆与现有已验证知识冲突时，三级严重度决定响应方式：
+
+```
+L1 (SILENT) — 两个都未验证 → 记录，不打断
+L2 (WARN)   — 未验证 vs 可能过期的已验证 → 标注，谨慎继续
+L3 (BLOCK)  — 已验证事实或用户偏好被推翻 → 停止，必须询问用户
+```
+
+`ContradictionResolver`（`memoryweaver/contradiction.py`）用优先级规则链实现，用户偏好和终端验证事实拥有最高权威。
+
+### 3. 已验证检索
+
+`VerifiedRetriever`（`memoryweaver/retriever.py`）在检索时按来源可信度过滤：
+
+- User 和 terminal 来源始终通过
+- Web 和 composer 来源通过置信度检查后放行
+- **Assistant 来源且 heat=0 的记忆完全排除**
+- Assistant 来源但 heat>0 的记忆仅在显式请求时才包含
+
+这防止了自噬循环：`LLM 编造 → 存为记忆 → 下次检索到 → 强化编造`。
+
+### 架构图
+
+```text
+每次 Agent 回答：
+  回答前 → VerifiedRetriever.search(query)
+          → 只有干净、已验证的记忆进入上下文
+  回答后 → EventDetector.detect(response_text)
+          → assistant 内容 → 强制 ambiguous, confidence ≤ 0.3
+         → ContradictionResolver.resolve(new, existing)
+          → 根据严重度：SILENT / WARN / BLOCK
+          → BLOCK → Agent 必须先询问用户才能继续
+```
+
+---
+
+## 当前模块结构
 
 ```text
 memoryweaver/
-├── harness/
-│   ├── event_detector.py
-│   ├── feedback_classifier.py
-│   ├── mode_router.py
-│   └── memory_router.py
-│
-├── memory/
-│   ├── schema.py
-│   ├── store.py
-│   ├── scorer.py
-│   ├── promoter.py
-│   └── decay.py
-│
-├── graph/
-│   ├── linker.py
-│   ├── composer.py
-│   └── conflict_resolver.py
-│
-├── rag/
-│   ├── embedder.py
-│   ├── retriever.py
-│   └── reranker.py
-│
-├── adapters/
-│   ├── terminal.py
-│   ├── mcp.py
-│   ├── langgraph.py
-│   ├── letta.py
-│   └── mem0.py
+├── memoryweaver/
+│   ├── __init__.py
+│   ├── schema.py          # MemoryItem, Pattern, 枚举类型
+│   ├── store.py           # JSON 本地存储
+│   ├── scorer.py          # 热度、置信度、晋升逻辑
+│   ├── extractor.py       # EventDetector + 中英文 FeedbackClassifier
+│   ├── router.py          # Fast / Thinking / Fast-Verify 模式路由
+│   ├── retriever.py       # VerifiedRetriever 来源感知检索
+│   └── contradiction.py   # ContradictionResolver (SILENT/WARN/BLOCK)
 │
 ├── examples/
-│   ├── coding_agent_memory/
-│   ├── terminal_feedback_loop/
-│   └── fast_thinking_router/
+│   └── basic_memory_loop.py
 │
 └── tests/
+    ├── test_schema.py
+    ├── test_contradiction.py
+    └── test_retriever.py
 ```
 
 ---
@@ -487,9 +526,17 @@ memoryweaver/
 
 ## 当前状态
 
-MemoryWeaver 目前处于概念阶段。
+**Sprint 0 已完成。** 核心模块已实现，68 个测试全部通过：
 
-第一个目标是构建一个面向 coding-agent 工作流的本地最小原型。
+- `schema.py` — MemoryItem dataclass（4 种极性、3 层、5 种状态）
+- `store.py` — 原子写入 JSON 存储，支持 tag/polarity/layer 查询
+- `scorer.py` — 热度/置信度评分和层级晋升规则
+- `extractor.py` — 中英文反馈分类器 + 事件检测器
+- `router.py` — Fast / Thinking / Fast-Verify 模式路由
+- `retriever.py` — 来源感知的验证检索，带防污染过滤
+- `contradiction.py` — 三级矛盾解决器（SILENT / WARN / BLOCK）
+
+下一步：Sprint 1 — 反馈分类器扩充、时间衰减、自动化 Pattern Composer。
 
 ---
 

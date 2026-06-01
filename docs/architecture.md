@@ -1,0 +1,150 @@
+# MemoryWeaver Architecture
+
+## 文档状态
+
+本文描述当前实现与后续目标架构。标记为“目标”的组件尚未落地，不应被
+README 或调用方当作已有能力。
+
+## 核心原则
+
+**LLM proposes, Harness judges.**
+
+- LLM 只能提出候选记忆、候选 Pattern、检索扩展词和行动建议。
+- LLM 输出不能直接写入 verified memory。
+- `assistant` 来源默认只能进入 `ambiguous`。
+- HyDE 输出属于 `synthetic` 检索辅助文本，不是事实证据。
+- negative memory 是 avoidance memory，不是应被丢弃的垃圾。
+- Layer 3 存 Pattern，不直接存 raw chunk。
+- RAG 负责证据检索，GBrain 负责关系图谱。
+- MemoryWeaver Harness 负责判断、调度、晋升、降权和防污染。
+
+## 总体流程
+
+```mermaid
+flowchart LR
+    U["User / Application"] --> H["MemoryWeaver Harness"]
+    H --> RT["Router"]
+    RT --> L["LLM"]
+    RT --> M["Memory Store"]
+    RT --> G["GBrain"]
+    RT --> R["RAG Evidence Layer"]
+    RT --> T["Tools"]
+    T --> F["Tool Feedback"]
+    F --> H
+    L --> P["Candidate proposals"]
+    P --> H
+    R --> E["Evidence with provenance"]
+    E --> H
+    G --> X["Related entities and patterns"]
+    X --> H
+    H --> J["Judge: accept / reject / quarantine / promote / demote"]
+    J --> M
+    J --> G
+```
+
+## 组件职责
+
+| 组件 | 负责 | 不负责 |
+| --- | --- | --- |
+| Harness | 校验、调度、晋升、降权、防污染、冲突处置 | 因为 LLM 输出流畅就直接信任 |
+| LLM | 推理、候选记忆、候选 Pattern、查询扩展 | 直接写 verified memory |
+| Memory Store | 保存记忆、生命周期、来源、效用信号 | 把编辑次数当成成功使用次数 |
+| GBrain | 实体、记忆、Pattern、证据之间的关系 | 替代 RAG 证据检索 |
+| RAG Evidence Layer | 清洗、分块、索引、召回、重排、引用 | 把 synthetic 文本晋升为事实 |
+| Router | 在策略约束下选择 fast / thinking / fast+verify | 绕过 Harness 或 RetrievalPolicy |
+| Tool Feedback | 提供结构化、可验证的执行结果 | 未经 Harness 判断直接成为 verified memory |
+
+## 当前实现
+
+当前仓库已实现 Sprint 0 原型：
+
+| 文件 | 当前能力 |
+| --- | --- |
+| `memoryweaver/schema.py` | `MemoryItem`、`Pattern` 与基础枚举 |
+| `memoryweaver/store.py` | JSON 持久化、CRUD、tag / polarity / layer / status 查询、简单文本相似度 |
+| `memoryweaver/scorer.py` | heat、success、correction、confidence 与基础晋升 |
+| `memoryweaver/extractor.py` | 中英文规则式 feedback 分类与事件检测 |
+| `memoryweaver/router.py` | fast / thinking / fast+verify 路由 |
+| `memoryweaver/retriever.py` | `VerifiedRetriever` 与 source-aware 文本检索 |
+| `memoryweaver/contradiction.py` | 已知冲突对的 SILENT / WARN / BLOCK 处置 |
+
+## 当前缺口
+
+以下能力尚未落地：
+
+- Harness 主入口与端到端判断链。
+- `Source` enum，以及 assistant 默认 `ambiguous` 的写入约束。
+- `MemoryPolicy` 与 `RetrievalPolicy`。
+- 所有检索路径统一经过 `VerifiedRetriever`。
+- `PatternComposer`。
+- 自动发现冲突候选的 `ConflictDetector`。
+- GBrain 图谱存储与关系查询。
+- RAG 证据层、向量数据库、Hybrid Retrieval 与 rerank。
+
+ReAct 在线循环、CLI job queue、会话 checkpoint、缓存治理和容量规划见
+[react_agent_runtime.md](./react_agent_runtime.md)。
+
+GBrain 图谱节点、Layer 2 tag 投影、短中长期 memory 映射和快速回退阶梯见
+[gbrain_graph_memory.md](./gbrain_graph_memory.md)。
+
+## 记忆层
+
+| 层级 | 用途 | 内容 |
+| --- | --- | --- |
+| Layer 1 | 候选记忆 | 用户、工具、终端、assistant 提出的待判断信息 |
+| Layer 2 | 激活 / 验证记忆 | 经过外部证据或任务结果支持的可复用记忆 |
+| Layer 3 | Pattern | 从多条记忆与证据组合出的可复用规则 |
+
+raw chunk 属于 RAG Evidence Layer。Layer 3 只保存 Pattern，并通过 provenance
+链接回 supporting memories 与证据。
+
+## 来源模型
+
+目标实现应使用 `Source` enum，而不是裸字符串：
+
+| Source | 默认处理 |
+| --- | --- |
+| `USER` | 候选输入，按策略判断是否可晋升 |
+| `ASSISTANT` | 强制 `ambiguous`，不得自动 verified |
+| `TERMINAL` | 可验证观察，保留执行上下文 |
+| `TOOL` | 可验证观察，校验工具与参数 |
+| `FILE` | 带路径、版本或 hash 的证据 |
+| `WEB` | 带 URL、时间戳与版本的外部证据 |
+| `COMPOSER` | 推断出的候选 Pattern |
+| `SYNTHETIC` | HyDE 等合成文本，只用于检索 |
+
+## 检索边界
+
+所有公开检索入口都应进入统一的策略门：
+
+```mermaid
+flowchart LR
+    Q["Query"] --> RP["RetrievalPolicy"]
+    RP --> VR["VerifiedRetriever"]
+    VR --> TS["Text similarity"]
+    VR --> TG["Tag search"]
+    VR --> GS["Graph expansion"]
+    TS --> MG["Merge and deduplicate"]
+    TG --> MG
+    GS --> MG
+    MG --> RR["Rerank"]
+    RR --> C["Policy-filtered context"]
+```
+
+当前 `MemoryStore` 的原始查询可保留为内部能力，但 Router、示例和未来 Agent
+adapter 不应直接调用它们。
+
+## 生命周期信号
+
+目标模型应拆分：
+
+- `updated_at`：内容或元数据发生变化。
+- `last_accessed_at`：记忆被检索。
+- `last_used_at`：记忆参与了行动。
+- `last_validated_at`：结果被用户、工具或终端证据确认。
+- `heat`：按策略统计检索或有效使用，不因普通编辑自动上升。
+- `positive_utility`：使用后帮助成功的证据。
+- `avoidance_utility`：阻止已知失败路径的价值。
+
+`confidence` 表示可信度，不应把 positive utility 与 negative avoidance
+压缩成一个互相抵消的比例。

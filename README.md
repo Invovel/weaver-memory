@@ -381,16 +381,12 @@ This prevents the self-pollution loop: `LLM fabricates → stored as memory → 
 
 ### Architecture Diagram
 
-```text
-Every Agent Response:
-  Before → VerifiedRetriever.search(query)
-           → Only clean, verified memories enter context
-  After  → EventDetector.detect(response_text)
-           → assistant content → forced ambiguous, confidence ≤ 0.3
-         → ContradictionResolver.resolve(new, existing)
-           → SILENT / WARN / BLOCK based on severity
-           → BLOCK → agent must ask user before proceeding
-```
+![MemoryWeaver runtime architecture](docs/assets/memoryweaver-architecture.png)
+
+This is the target runtime architecture. The current Sprint 0 prototype
+implements the local memory core and the first anti-pollution primitives.
+RAG, GBrain, checkpoint recovery, CLI job isolation, and the bad-case loop are
+planned boundaries documented under [`docs/`](docs/).
 
 ---
 
@@ -411,11 +407,61 @@ memoryweaver/
 ├── examples/
 │   └── basic_memory_loop.py
 │
+├── benchmarks/
+│   └── prototype_baseline.py
+│
+├── scripts/
+│   └── generate_architecture_diagram.py
+│
+├── docs/
+│   ├── architecture.md
+│   ├── development_plan.md
+│   ├── rag_evidence_layer.md
+│   ├── gbrain_graph_memory.md
+│   ├── react_agent_runtime.md
+│   ├── bad_case_learning_loop.md
+│   ├── agent_test_catalog.md
+│   ├── testing_resilience_strategy.md
+│   └── risk_assessment_and_benchmark.md
+│
 └── tests/
     ├── test_schema.py
     ├── test_contradiction.py
     └── test_retriever.py
 ```
+
+---
+
+## Design Documents
+
+- [`docs/architecture.md`](docs/architecture.md) — system boundaries and design principles
+- [`docs/rag_evidence_layer.md`](docs/rag_evidence_layer.md) — high-performance evidence retrieval
+- [`docs/gbrain_graph_memory.md`](docs/gbrain_graph_memory.md) — graph memory, tags, and memory lifecycle
+- [`docs/react_agent_runtime.md`](docs/react_agent_runtime.md) — ReAct runtime, session continuity, cache governance, and capacity planning
+- [`docs/bad_case_learning_loop.md`](docs/bad_case_learning_loop.md) — bad-case collection and progressive optimization
+- [`docs/testing_resilience_strategy.md`](docs/testing_resilience_strategy.md) — regression, crash, avalanche, stress, security, and A/B testing
+- [`docs/risk_assessment_and_benchmark.md`](docs/risk_assessment_and_benchmark.md) — current risks and measured prototype baseline
+
+---
+
+## Prototype Benchmark
+
+Run the reproducible local baseline:
+
+```powershell
+python .\benchmarks\prototype_baseline.py
+```
+
+Measured on Windows 11 with Python 3.14.0:
+
+| Memory items | JSON size | Write throughput | Verified text search p95 |
+| ---: | ---: | ---: | ---: |
+| 100 | 75 KB | 266.08 items/s | 0.27 ms |
+| 500 | 378 KB | 81.57 items/s | 1.46 ms |
+| 1,000 | 756 KB | 44.96 items/s | 2.91 ms |
+
+The JSON prototype is suitable for semantics and regression work, not
+production-scale ingestion. Each write rewrites the JSON file.
 
 ---
 
@@ -512,7 +558,8 @@ Provide shared, structured memory across different LLMs and tools.
 
 ## Status
 
-**Sprint 0 Complete.** Core modules implemented with 68 passing tests:
+**Sprint 0 prototype complete.** Core modules are implemented with 68 passing
+tests:
 
 - `schema.py` — MemoryItem dataclass (4 polarities, 3 layers, 5 statuses)
 - `store.py` — Atomic JSON-backed CRUD with tag/polarity/layer queries
@@ -522,7 +569,19 @@ Provide shared, structured memory across different LLMs and tools.
 - `retriever.py` — Source-aware verified retrieval with anti-pollution filtering
 - `contradiction.py` — Three-tier contradiction resolver (SILENT / WARN / BLOCK)
 
-Next: Sprint 1 — Feedback Classifier expansion, time-based decay, automated pattern composer.
+The next milestone is **Sprint 0.1 hardening**. The benchmark currently records
+six known gaps:
+
+1. The declared `mw = memoryweaver.cli:main` entry point has no `cli.py`.
+2. Plain updates incorrectly increase heat.
+3. Tag retrieval can bypass the assistant source gate.
+4. Assistant memories can be constructed directly as positive and high-confidence.
+5. `ModeRouter` can use an unverified assistant Pattern for the fast path.
+6. Whitespace tokenization misses reordered Chinese queries.
+
+Next: close the trust boundary, add regression fixtures for these bad cases,
+then implement checkpoint recovery, minimal GBrain projection, bounded ReAct,
+and the RAG evidence layer incrementally.
 
 ---
 

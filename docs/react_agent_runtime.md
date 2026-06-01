@@ -98,6 +98,9 @@ LOAD_CHECKPOINT
   -> STOP or NEXT_STEP
 ```
 
+生命周期 gate 的设计依据和权限等级见
+[life_harness_notes.md](./life_harness_notes.md)。
+
 默认预算建议：
 
 | 场景 | ReAct 最大步数 | CLI 调用上限 | 备注 |

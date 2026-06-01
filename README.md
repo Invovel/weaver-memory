@@ -4,6 +4,8 @@
 
 **Feedback-Calibrated Memory Harness for Long-Lived AI Agents**
 
+**LLM proposes. Harness judges.**
+
 MemoryWeaver is an experimental memory harness for AI agents that turns conversations, terminal outputs, tool results, user corrections, and task outcomes into reusable long-term memory. Unlike traditional RAG systems, MemoryWeaver uses **source-gated polarity** and **contradiction detection** to prevent LLM fabrications from polluting the memory store.
 
 Unlike traditional RAG systems that only retrieve documents, MemoryWeaver focuses on **feedback-aware memory evolution**:
@@ -237,6 +239,13 @@ The tools act.
 The memory stores.
 The harness coordinates.
 
+MemoryWeaver is evolving from a memory harness into a lifecycle-aware runtime
+harness: calibrate environment contracts before interaction, retrieve
+procedural skills during task conditioning, validate actions before execution,
+and regulate degraded trajectories after feedback. This direction is inspired
+by [LIFE-HARNESS](https://arxiv.org/abs/2605.22166); see
+[`docs/life_harness_notes.md`](docs/life_harness_notes.md).
+
 ---
 
 ## Fast Mode vs Thinking Mode
@@ -415,6 +424,7 @@ memoryweaver/
 │
 ├── docs/
 │   ├── architecture.md
+│   ├── life_harness_notes.md
 │   ├── development_plan.md
 │   ├── rag_evidence_layer.md
 │   ├── gbrain_graph_memory.md
@@ -435,6 +445,7 @@ memoryweaver/
 ## Design Documents
 
 - [`docs/architecture.md`](docs/architecture.md) — system boundaries and design principles
+- [`docs/life_harness_notes.md`](docs/life_harness_notes.md) — lifecycle gates inspired by LIFE-HARNESS
 - [`docs/rag_evidence_layer.md`](docs/rag_evidence_layer.md) — high-performance evidence retrieval
 - [`docs/gbrain_graph_memory.md`](docs/gbrain_graph_memory.md) — graph memory, tags, and memory lifecycle
 - [`docs/react_agent_runtime.md`](docs/react_agent_runtime.md) — ReAct runtime, session continuity, cache governance, and capacity planning

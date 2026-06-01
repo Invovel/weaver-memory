@@ -4,6 +4,8 @@
 
 **面向长期 AI Agent 的反馈校准型记忆 Harness**
 
+**LLM proposes. Harness judges.**
+
 MemoryWeaver 是一个实验性的 Agent 记忆调度框架，用于把对话、终端输出、工具结果、用户纠正、任务结果转化为可复用的长期记忆。与传统 RAG 不同，MemoryWeaver 使用**来源门控极性**和**矛盾检测**来防止 LLM 编造的内容污染记忆库。
 
 它不是普通 RAG。
@@ -244,6 +246,11 @@ Memory 负责存储
 Harness 负责监听、评价、调度和归档
 ```
 
+MemoryWeaver 正在从记忆 Harness 扩展为生命周期感知的运行时 Harness：交互前校准
+环境合同，任务阶段检索过程性技能，执行前校验动作，执行后调节退化轨迹。这个方向
+参考了 [LIFE-HARNESS](https://arxiv.org/abs/2605.22166)，详细映射见
+[`docs/life_harness_notes.md`](docs/life_harness_notes.md)。
+
 ---
 
 ## Fast Mode 与 Thinking Mode
@@ -428,6 +435,7 @@ memoryweaver/
 │
 ├── docs/
 │   ├── architecture.md
+│   ├── life_harness_notes.md
 │   ├── development_plan.md
 │   ├── rag_evidence_layer.md
 │   ├── gbrain_graph_memory.md
@@ -448,6 +456,7 @@ memoryweaver/
 ## 设计文档
 
 - [`docs/architecture.md`](docs/architecture.md) — 系统边界与设计原则
+- [`docs/life_harness_notes.md`](docs/life_harness_notes.md) — LIFE-HARNESS 启发的生命周期 gate
 - [`docs/rag_evidence_layer.md`](docs/rag_evidence_layer.md) — 高性能证据检索
 - [`docs/gbrain_graph_memory.md`](docs/gbrain_graph_memory.md) — 图谱记忆、tag 与 memory lifecycle
 - [`docs/react_agent_runtime.md`](docs/react_agent_runtime.md) — ReAct、会话衔接、缓存治理与容量规划

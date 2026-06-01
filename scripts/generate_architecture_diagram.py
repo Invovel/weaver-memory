@@ -95,13 +95,23 @@ def main() -> None:
     draw.text((85, 55), "MemoryWeaver Runtime Architecture", font=TITLE, fill=INK)
     draw.text(
         (88, 125),
-        "LLM proposes. Harness judges. Evidence, graph context, tools, and bad cases stay separated.",
+        "LLM proposes. Harness judges. Deterministic lifecycle gates surround model actions.",
         font=SUBTITLE,
         fill=MUTED,
     )
 
-    user = (90, 230, 390, 360)
-    harness = (585, 205, 1215, 390)
+    lifecycle = [
+        ((105, 170, 470, 218), "1  Environment Contract", "#E9F2FF", "#4D8FD8"),
+        ((500, 170, 865, 218), "2  Procedural Skills", "#F0EBFF", "#8067C8"),
+        ((895, 170, 1260, 218), "3  Action Realization", "#FDEDDD", "#C87837"),
+        ((1290, 170, 1685, 218), "4  Trajectory Regulation", "#E7F7F1", "#3C9B79"),
+    ]
+    for rect, label, fill, border in lifecycle:
+        draw.rounded_rectangle(rect, radius=18, fill=fill, outline=border, width=3)
+        center_text(draw, rect, label, SMALL, fill=INK)
+
+    user = (90, 230, 390, 405)
+    harness = (585, 205, 1215, 420)
     rag = (95, 500, 475, 695)
     graph = (545, 500, 925, 695)
     pattern = (995, 500, 1375, 695)
@@ -112,27 +122,27 @@ def main() -> None:
     checkpoint = (95, 795, 475, 980)
 
     box(draw, user, "User / Agent Client", ["query", "confirmation", "correction"], "#E9F2FF", "#4D8FD8")
-    box(draw, harness, "MemoryWeaver Harness", ["policy gate + router", "context fusion", "promotion / demotion", "anti-pollution judge"], "#FFF0D8", "#D58A28")
+    box(draw, harness, "MemoryWeaver Harness", ["contract + policy gates", "context fusion + router", "promotion / demotion", "anti-pollution judge"], "#FFF0D8", "#D58A28")
     box(draw, rag, "RAG Evidence Layer", ["documents + chunks", "hybrid retrieval", "citations + versions"], "#E7F7F1", "#3C9B79")
     box(draw, graph, "GBrain Graph", ["entities + tags", "relationships", "temporal context"], "#F0EBFF", "#8067C8")
-    box(draw, pattern, "Layer 3 Patterns", ["reusable rules", "avoidance memory", "fast-path context"], "#FFEAF1", "#C65D83")
+    box(draw, pattern, "Procedural Skills", ["Layer 3 patterns", "avoidance memory", "fast-path context"], "#FFEAF1", "#C65D83")
     box(draw, llm, "LLM", ["reason", "propose", "never self-verify"], "#EAF0FF", "#647FD0")
-    box(draw, cli, "CLI / Tools", ["sandboxed jobs", "timeouts", "idempotency"], "#FDEDDD", "#C87837")
-    box(draw, feedback, "Tool Feedback", ["observations", "task outcomes", "external evidence"], "#E7F7F1", "#3C9B79")
+    box(draw, cli, "ActionGate / Tools", ["schema + permission", "sandboxed jobs", "idempotency"], "#FDEDDD", "#C87837")
+    box(draw, feedback, "Trajectory Regulation", ["tool feedback", "loop + stagnation", "recovery signal"], "#E7F7F1", "#3C9B79")
     box(draw, badcase, "Bad-Case Loop", ["triage + cluster", "regression fixtures", "progressive tuning"], "#FFE9E9", "#C95D5D")
     box(draw, checkpoint, "Checkpoint Store", ["session continuity", "event journal", "crash recovery"], "#E9F2FF", "#4D8FD8")
 
     arrow(draw, (390, 295), (585, 295), "request")
-    arrow(draw, (720, 390), (290, 500), "evidence plan")
-    arrow(draw, (835, 390), (735, 500), "graph plan")
-    arrow(draw, (970, 390), (1185, 500), "pattern plan")
+    arrow(draw, (720, 420), (290, 500), "evidence plan")
+    arrow(draw, (835, 420), (735, 500), "graph plan")
+    arrow(draw, (970, 420), (1185, 500), "pattern plan")
     arrow(draw, (1215, 295), (1575, 500), "bounded context")
-    arrow(draw, (1575, 695), (1575, 795), "action proposal")
+    arrow(draw, (1575, 695), (1575, 795), "ActionProposal")
     arrow(draw, (1445, 885), (1375, 885), "result")
-    arrow(draw, (1185, 795), (1185, 695), "validated feedback")
+    arrow(draw, (1185, 795), (1185, 695), "skill feedback")
     arrow(draw, (995, 885), (925, 885), "failure signal")
     arrow(draw, (545, 885), (475, 885), "checkpoint")
-    arrow(draw, (285, 795), (690, 390), "resume")
+    arrow(draw, (285, 795), (690, 420), "resume")
 
     center_text(
         draw,

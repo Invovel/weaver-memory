@@ -208,6 +208,76 @@ tests/test_conflict_detector.py
 当前 `ContradictionResolver` 只能处置一对已经知道互相冲突的记忆。`ConflictDetector`
 负责发现冲突候选，再交给 resolver。
 
+## Sprint 1.5：生命周期 Harness
+
+参考 [life_harness_notes.md](./life_harness_notes.md)，先实现确定性 gate，不引入
+单体式 LLM supervisor。
+
+### Step 11：环境与工具合同
+
+新增文件：
+
+```text
+memoryweaver/contract.py
+tests/test_contract.py
+```
+
+包含：
+
+- `EnvironmentContract`
+- `ToolContract`
+- `SourceAuthority`
+
+预期测试：
+
+- 非法工具、缺失参数和越权 scope 被拒绝。
+- 合同版本可追溯。
+- assistant 提议不能直接修改合同。
+
+### Step 12：执行前 ActionGate
+
+新增文件：
+
+```text
+memoryweaver/action_gate.py
+tests/test_action_gate.py
+```
+
+包含：
+
+- 结构化 `ActionProposal`
+- `ActionPolicy`
+- 危险动作确认
+- 幂等键要求
+
+预期测试：
+
+- 高风险动作在未确认时 block。
+- 已完成副作用不会重复执行。
+- LLM 输出不能直接作为 Shell 命令运行。
+
+### Step 13：执行后 TrajectoryRegulator
+
+新增文件：
+
+```text
+memoryweaver/trajectory.py
+tests/test_trajectory.py
+```
+
+包含：
+
+- 重复失败检测
+- stagnation 检测
+- step / token / wall-clock 预算
+- recovery 建议与 safe-path 路由
+
+预期测试：
+
+- 相同失败动作达到阈值后停止循环。
+- 超出预算时 checkpoint 并显式终止或转后台。
+- recovery 可审计，不偷偷执行高风险动作。
+
 ## Sprint 2：GBrain 与 RAG
 
 1. 按 [gbrain_graph_memory.md](./gbrain_graph_memory.md) 引入 GBrain adapter，
@@ -244,3 +314,6 @@ tests/test_conflict_detector.py
 
 失败样本归纳、回归固化和递进优化闭环见
 [bad_case_learning_loop.md](./bad_case_learning_loop.md)。
+
+生命周期 gate、权限等级和 LIFE-HARNESS 借鉴说明见
+[life_harness_notes.md](./life_harness_notes.md)。

@@ -4,7 +4,7 @@
 
 当前最大的工程问题不是缺少完整图谱，也不是缺少更快的 ReAct。最大问题是：
 
-> **Harness 的信任边界尚未闭合，且缺少可持续观测与恢复边界。**
+> **Harness 的信任边界尚未闭合，动作生命周期边界也尚未落地。**
 
 如果现在直接扩大图谱写入、加入自动 ReAct 或摄入大量 RAG 文档，已有的错误信号
 会被放大：未验证 assistant 记忆可能进入 tag 检索和 fast path，普通编辑会错误增加
@@ -18,7 +18,9 @@ heat，中文检索会漏召回，Pattern 也缺少统一策略。
 | P0 | Router 与 tag 检索绕过门控 | 未验证内容可触发 fast path | 所有检索经过 `VerifiedRetriever` |
 | P0 | heat 语义错误 | 编辑、归档、晋升被误算为使用 | 拆分 updated、accessed、used、validated |
 | P0 | 缺少 baseline 与回归门禁 | 修复后无法证明没有回退 | correctness probes、pytest、benchmark |
-| P1 | 缺少 checkpoint、Event Journal 和幂等恢复 | ReAct 与 CLI 崩溃后可能重复副作用 | 先建设 durable runtime |
+| P1 | 缺少 Environment Contract 与 ActionGate | 工具执行前没有统一 schema、权限、风险和确认边界 | `ToolContract`、`ActionProposal`、`ActionPolicy` |
+| P1 | 缺少 TrajectoryRegulator | 重复失败、停滞和预算耗尽缺少确定性恢复 | loop、stagnation、budget、recovery |
+| P1 | 缺少 checkpoint、Event Journal 和幂等恢复 | ReAct 与 CLI 崩溃后可能重复副作用 | 建设 durable runtime |
 | P1 | 缺少实时监测与预警 | 不能及时发现污染、雪崩、成本飙升 | metrics、trace、alerts、runbook |
 | P1 | 中文与混合语言召回薄弱 | 真实中文场景会漏召回 | tokenizer baseline，再进入 dense retrieval |
 | P2 | 缺少最小 GBrain | tag、关系、版本和 Pattern lineage 难组织 | `GraphProjector`、point get、1-hop expansion |
@@ -34,6 +36,7 @@ heat，中文检索会漏召回，Pattern 也缺少统一策略。
 ```text
 信任边界
   -> 回归与 benchmark
+  -> contract、ActionGate、TrajectoryRegulator
   -> checkpoint、监测、预警
   -> 最小图谱点取
   -> bounded ReAct

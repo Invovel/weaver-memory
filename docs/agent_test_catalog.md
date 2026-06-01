@@ -29,6 +29,9 @@
 | Clarification | 合理追问、不过度追问、说明假设 |
 | Instruction following | 格式、语言、长度、禁止事项、指令优先级 |
 | Fast-path correctness | point get、Pattern、Fast + Verify、ReAct 升级路径 |
+| Environment contract | 工具 schema、source authority、policy version、环境约束 |
+| Action realization | `ActionProposal`、执行前参数、权限、风险和确认 |
+| Trajectory regulation | 重复失败、停滞、预算、恢复和审计 |
 
 ## 3. RAG、图谱与事实性
 
@@ -60,6 +63,7 @@
 | Side-effect | 删除、写库、提交、发送、发布、付款前确认 |
 | Idempotency | checkpoint 恢复后不重复执行副作用 |
 | Sandbox | allowlist、工作目录、资源预算、超时和取消 |
+| Action gate | 非法 schema、危险命令、未确认副作用、重复幂等键 |
 
 ## 5. 安全与对抗
 

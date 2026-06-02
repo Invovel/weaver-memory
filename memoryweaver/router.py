@@ -12,6 +12,7 @@ from typing import Optional
 
 from memoryweaver.schema import MemoryItem, Layer, Freshness
 from memoryweaver.store import MemoryStore
+from memoryweaver.retriever import VerifiedRetriever
 
 
 class InferenceMode(str, Enum):
@@ -50,12 +51,21 @@ class ModeRouter:
     VERIFY_THRESHOLD = 0.5
     AMBIGUOUS_LIMIT = 3
 
-    def __init__(self, store: MemoryStore):
+    def __init__(
+        self,
+        store: MemoryStore,
+        retriever: Optional[VerifiedRetriever] = None,
+    ):
         self._store = store
+        self._retriever = retriever or VerifiedRetriever(store)
 
     def route(self, query: str) -> RouteDecision:
         """Analyze query against stored memory and return a mode decision."""
-        similar = self._store.find_similar(query, threshold=self.VERIFY_THRESHOLD)
+        similar = self._retriever.search(
+            query,
+            limit=max(self._store.count(), 10),
+            threshold=self.VERIFY_THRESHOLD,
+        )
 
         if not similar:
             return RouteDecision(

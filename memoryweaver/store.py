@@ -48,7 +48,7 @@ class MemoryStore:
         """Update an existing memory item (matched by id)."""
         if item.id not in self._items:
             raise KeyError(f"MemoryItem '{item.id}' not found")
-        item.touch()
+        item.mark_updated()
         self._items[item.id] = item
         self._save()
 

@@ -18,7 +18,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
 
-from memoryweaver.schema import MemoryItem, Polarity, MemoryType, Freshness
+from memoryweaver.schema import MemoryItem, Polarity, MemoryType, Freshness, Source
 
 
 class Severity(str, Enum):
@@ -214,14 +214,20 @@ class ContradictionResolver:
     def _both_unverified(new_item: MemoryItem, existing: MemoryItem) -> bool:
         """True if both memories lack external verification."""
         # assistant vs assistant
-        if new_item.source == "assistant" and existing.source == "assistant":
+        if (
+            new_item.source == Source.ASSISTANT
+            and existing.source == Source.ASSISTANT
+        ):
             return True
         # Both are ambiguous hypotheses
         if (new_item.polarity == Polarity.AMBIGUOUS
                 and existing.polarity == Polarity.AMBIGUOUS):
             return True
         # New is assistant, existing is composer (both unverified)
-        if new_item.source == "assistant" and existing.source == "composer":
+        if (
+            new_item.source == Source.ASSISTANT
+            and existing.source == Source.COMPOSER
+        ):
             return True
         return False
 
@@ -229,7 +235,7 @@ class ContradictionResolver:
     def _is_user_preference(item: MemoryItem) -> bool:
         """True if item is a user-stated preference that hasn't expired."""
         return (
-            item.source == "user"
+            item.source == Source.USER
             and item.memory_type == MemoryType.PREFERENCE
             and item.freshness != Freshness.EXPIRED
         )
@@ -237,7 +243,7 @@ class ContradictionResolver:
     def _is_strong_verified(self, item: MemoryItem) -> bool:
         """True if item is externally verified, high confidence, and stable."""
         return (
-            item.source in ("terminal", "user", "tool")
+            item.source in (Source.TERMINAL, Source.USER, Source.TOOL)
             and item.confidence >= self.STRONG_CONFIDENCE
             and item.freshness == Freshness.STABLE
         )
@@ -245,14 +251,14 @@ class ContradictionResolver:
     def _is_verified_but_stale(self, item: MemoryItem) -> bool:
         """True if item was verified but may be outdated."""
         return (
-            item.source in ("terminal", "user", "tool")
+            item.source in (Source.TERMINAL, Source.USER, Source.TOOL)
             and item.freshness in (Freshness.VOLATILE, Freshness.UNKNOWN)
         )
 
     def _is_verified_moderate(self, item: MemoryItem) -> bool:
         """True if item is verified but confidence is below the BLOCK threshold."""
         return (
-            item.source in ("terminal", "user", "tool")
+            item.source in (Source.TERMINAL, Source.USER, Source.TOOL)
             and item.confidence < self.STRONG_CONFIDENCE
             and item.freshness != Freshness.EXPIRED
         )

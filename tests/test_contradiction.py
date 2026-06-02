@@ -22,8 +22,16 @@ class TestContradictionResolver:
     # ── Rule 1: Both unverified → SILENT ─────────────────────────
 
     def test_both_assistant_sources_silent(self):
-        new = MemoryItem(source="assistant", content="Use Node 22")
-        existing = MemoryItem(source="assistant", content="Use Node 20")
+        new = MemoryItem(
+            source="assistant",
+            polarity=Polarity.AMBIGUOUS,
+            content="Use Node 22",
+        )
+        existing = MemoryItem(
+            source="assistant",
+            polarity=Polarity.AMBIGUOUS,
+            content="Use Node 20",
+        )
         result = self.resolver.resolve(new, existing)
         assert result.severity == Severity.SILENT
         assert result.relation == Relation.MUTUALLY_AMBIGUOUS
@@ -43,7 +51,11 @@ class TestContradictionResolver:
         assert result.severity == Severity.SILENT
 
     def test_assistant_vs_composer_silent(self):
-        new = MemoryItem(source="assistant", content="New claim")
+        new = MemoryItem(
+            source="assistant",
+            polarity=Polarity.AMBIGUOUS,
+            content="New claim",
+        )
         existing = MemoryItem(source="composer", content="Old claim")
         result = self.resolver.resolve(new, existing)
         assert result.severity == Severity.SILENT
@@ -51,7 +63,11 @@ class TestContradictionResolver:
     # ── Rule 2: User preference → BLOCK ──────────────────────────
 
     def test_user_preference_block(self):
-        new = MemoryItem(source="assistant", content="Suggest pnpm")
+        new = MemoryItem(
+            source="assistant",
+            polarity=Polarity.AMBIGUOUS,
+            content="Suggest pnpm",
+        )
         existing = MemoryItem(
             source="user",
             memory_type=MemoryType.PREFERENCE,
@@ -66,7 +82,11 @@ class TestContradictionResolver:
 
     def test_expired_preference_no_block(self):
         """Expired preferences should NOT block."""
-        new = MemoryItem(source="assistant", content="Suggest pnpm")
+        new = MemoryItem(
+            source="assistant",
+            polarity=Polarity.AMBIGUOUS,
+            content="Suggest pnpm",
+        )
         existing = MemoryItem(
             source="user",
             memory_type=MemoryType.PREFERENCE,
@@ -80,7 +100,11 @@ class TestContradictionResolver:
     # ── Rule 3: Strong terminal-verified → BLOCK ─────────────────
 
     def test_strong_terminal_verified_block(self):
-        new = MemoryItem(source="assistant", content="Codex needs Node 22")
+        new = MemoryItem(
+            source="assistant",
+            polarity=Polarity.AMBIGUOUS,
+            content="Codex needs Node 22",
+        )
         existing = MemoryItem(
             source="terminal",
             content="Codex works with Node 20.11.0",
@@ -92,7 +116,11 @@ class TestContradictionResolver:
 
     def test_terminal_verified_not_strong_enough(self):
         """Confidence below STRONG_CONFIDENCE should fall through."""
-        new = MemoryItem(source="assistant", content="Codex needs Node 22")
+        new = MemoryItem(
+            source="assistant",
+            polarity=Polarity.AMBIGUOUS,
+            content="Codex needs Node 22",
+        )
         existing = MemoryItem(
             source="terminal",
             content="Codex works with Node 20",
@@ -106,7 +134,11 @@ class TestContradictionResolver:
     # ── Rule 4: Verified but stale → WARN ────────────────────────
 
     def test_stale_terminal_warn(self):
-        new = MemoryItem(source="assistant", content="Codex needs Node 22")
+        new = MemoryItem(
+            source="assistant",
+            polarity=Polarity.AMBIGUOUS,
+            content="Codex needs Node 22",
+        )
         existing = MemoryItem(
             source="terminal",
             content="Codex works with Node 20",
@@ -120,7 +152,11 @@ class TestContradictionResolver:
     # ── Rule 5: Moderate confidence verified → WARN ──────────────
 
     def test_moderate_user_verified_warn(self):
-        new = MemoryItem(source="assistant", content="WSL2 not needed")
+        new = MemoryItem(
+            source="assistant",
+            polarity=Polarity.AMBIGUOUS,
+            content="WSL2 not needed",
+        )
         existing = MemoryItem(
             source="user",
             content="User confirmed WSL2 is required",
@@ -133,7 +169,11 @@ class TestContradictionResolver:
     # ── Convenience methods ──────────────────────────────────────
 
     def test_should_warn(self):
-        new = MemoryItem(source="assistant", content="claim")
+        new = MemoryItem(
+            source="assistant",
+            polarity=Polarity.AMBIGUOUS,
+            content="claim",
+        )
         existing = MemoryItem(
             source="user",
             content="old claim",
@@ -144,8 +184,16 @@ class TestContradictionResolver:
         assert self.resolver.should_warn(result) is True
 
     def test_silent_should_not_warn(self):
-        new = MemoryItem(source="assistant", content="claim")
-        existing = MemoryItem(source="assistant", content="old claim")
+        new = MemoryItem(
+            source="assistant",
+            polarity=Polarity.AMBIGUOUS,
+            content="claim",
+        )
+        existing = MemoryItem(
+            source="assistant",
+            polarity=Polarity.AMBIGUOUS,
+            content="old claim",
+        )
         result = self.resolver.resolve(new, existing)
         assert self.resolver.should_warn(result) is False
         assert self.resolver.needs_user_input(result) is False

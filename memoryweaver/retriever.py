@@ -9,7 +9,7 @@ retrievable "knowledge."
 
 from __future__ import annotations
 
-from memoryweaver.schema import MemoryItem, Polarity, Layer
+from memoryweaver.schema import MemoryItem, Layer, Source, Status
 from memoryweaver.store import MemoryStore
 
 
@@ -31,14 +31,16 @@ class VerifiedRetriever:
         # Only verified or externally-grounded memories returned.
     """
 
-    SOURCE_WEIGHT: dict[str, float] = {
-        "user":      1.0,
-        "terminal":  1.0,
-        "tool":      0.9,
-        "web":       0.6,
-        "composer":  0.5,
-        "assistant": 0.0,
-        "unknown":   0.2,
+    SOURCE_WEIGHT: dict[Source, float] = {
+        Source.USER:      1.0,
+        Source.TERMINAL:  1.0,
+        Source.TOOL:      0.9,
+        Source.WEB:       0.6,
+        Source.COMPOSER:  0.5,
+        Source.ASSISTANT: 0.0,
+        Source.FILE:      0.6,
+        Source.SYNTHETIC: 0.0,
+        Source.UNKNOWN:   0.2,
     }
 
     # Minimum combined score (source_weight * confidence) to include.
@@ -56,6 +58,7 @@ class VerifiedRetriever:
         query: str,
         limit: int = 10,
         include_unverified: bool = False,
+        threshold: float = 0.25,
     ) -> list[MemoryItem]:
         """Search for memories relevant to *query*, filtered by credibility.
 
@@ -70,7 +73,7 @@ class VerifiedRetriever:
         Returns:
             Sorted list of MemoryItems, best (most credible) first.
         """
-        candidates = self._store.find_similar(query, threshold=0.25)
+        candidates = self._store.find_similar(query, threshold=threshold)
 
         scored: list[tuple[float, MemoryItem]] = []
         for item in candidates:
@@ -86,8 +89,12 @@ class VerifiedRetriever:
             # (e.g. heated assistant memories) bypass the minimum score gate.
             passed_gate = (
                 combined >= self.MIN_SCORE
-                or item.source in ("user", "terminal")
-                or (include_unverified and item.source == "assistant" and item.heat > 0)
+                or item.source in (Source.USER, Source.TERMINAL)
+                or (
+                    include_unverified
+                    and item.source == Source.ASSISTANT
+                    and item.heat > 0
+                )
             )
             if passed_gate:
                 scored.append((combined, item))
@@ -99,10 +106,16 @@ class VerifiedRetriever:
         self,
         tags: list[str],
         match_all: bool = False,
+        include_unverified: bool = False,
     ) -> list[MemoryItem]:
         """Tag-based search with the same source filtering as search()."""
         candidates = self._store.find_by_tags(tags, match_all=match_all)
-        return self._sort_by_credibility(candidates)
+        verified = [
+            item
+            for item in candidates
+            if self._should_include(item, include_unverified)
+        ]
+        return self._sort_by_credibility(verified)
 
     def get_verified_context(self, query: str) -> str:
         """Return a single formatted context string of the top verified memories.
@@ -115,7 +128,11 @@ class VerifiedRetriever:
 
         lines = []
         for i, item in enumerate(results, 1):
-            src_label = f"[{item.source}]" if item.source != "assistant" else "[unverified]"
+            src_label = (
+                f"[{item.source.value}]"
+                if item.source != Source.ASSISTANT
+                else "[unverified]"
+            )
             lines.append(
                 f"{i}. {src_label} {item.content} "
                 f"(confidence={item.confidence}, heat={item.heat})"
@@ -129,24 +146,32 @@ class VerifiedRetriever:
     @staticmethod
     def _should_include(item: MemoryItem, include_unverified: bool) -> bool:
         """Decide whether a memory item should appear in retrieval results."""
+        if item.status in (Status.ARCHIVED, Status.DEPRECATED):
+            return False
+
         # Always include user and terminal sources
-        if item.source in ("user", "terminal", "tool"):
+        if item.source in (Source.USER, Source.TERMINAL, Source.TOOL):
             return True
 
         # Always include composer-generated patterns with confidence > 0
-        if item.source == "composer" and item.confidence > 0:
+        if item.source == Source.COMPOSER and item.confidence > 0:
             return True
 
         # Web sources: include if they have any confidence
-        if item.source == "web" and item.confidence > 0:
+        if item.source in (Source.WEB, Source.FILE) and item.confidence > 0:
             return True
 
         # Assistant sources: excluded by default
-        if item.source == "assistant":
+        if item.source == Source.ASSISTANT:
             if include_unverified and item.heat > 0:
                 # Was retrieved and used at least once — might have implicit
                 # verification through continued task success
                 return True
+            return False
+
+        # HyDE and other generated evidence may help query expansion, but
+        # synthetic text must not be retrieved as factual memory.
+        if item.source == Source.SYNTHETIC:
             return False
 
         # Unknown sources: include only with confidence

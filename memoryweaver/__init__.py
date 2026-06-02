@@ -2,7 +2,7 @@
 
 __version__ = "0.1.0"
 
-from memoryweaver.schema import MemoryItem, Polarity, Layer, Status, MemoryType, Freshness, Pattern
+from memoryweaver.schema import MemoryItem, Polarity, Layer, Status, MemoryType, Freshness, Source, Pattern
 from memoryweaver.store import MemoryStore
 from memoryweaver.scorer import MemoryScorer
 from memoryweaver.extractor import EventDetector, Event, EventType, FeedbackClassifier
@@ -24,6 +24,7 @@ __all__ = [
     "Status",
     "MemoryType",
     "Freshness",
+    "Source",
     # store & scoring
     "MemoryStore",
     "MemoryScorer",

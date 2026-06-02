@@ -70,6 +70,20 @@ class Freshness(str, Enum):
     UNKNOWN = "unknown"
 
 
+class Source(str, Enum):
+    """Origin of a memory item and its initial trust boundary."""
+
+    USER = "user"
+    TERMINAL = "terminal"
+    TOOL = "tool"
+    WEB = "web"
+    COMPOSER = "composer"
+    ASSISTANT = "assistant"
+    FILE = "file"
+    SYNTHETIC = "synthetic"
+    UNKNOWN = "unknown"
+
+
 @dataclass
 class MemoryItem:
     """A single memory entry in the MemoryWeaver system.
@@ -88,6 +102,8 @@ class MemoryItem:
         model_fit: Which model types this memory is suited for.
         confidence: 0.0–1.0 confidence score.
         heat: How many times this memory has been accessed.
+        use_count: How many times this memory contributed to an action.
+        validation_count: How many outcome confirmations or corrections it received.
         success_score: Cumulative usefulness rating.
         correction_score: Cumulative correction/avoidance rating.
         freshness: Volatility classification.
@@ -103,12 +119,14 @@ class MemoryItem:
     content: str = ""
     tags: list[str] = field(default_factory=list)
     linked_tags: list[str] = field(default_factory=list)
-    source: str = "unknown"
+    source: Source = Source.UNKNOWN
     evidence: str = ""
     scope: str = "project"
     model_fit: list[str] = field(default_factory=list)
     confidence: float = 0.0
     heat: int = 0
+    use_count: int = 0
+    validation_count: int = 0
     success_score: float = 0.0
     correction_score: float = 0.0
     freshness: Freshness = Freshness.UNKNOWN
@@ -119,11 +137,40 @@ class MemoryItem:
     updated_at: str = field(
         default_factory=lambda: datetime.now(timezone.utc).isoformat()
     )
+    accessed_at: str = ""
+    used_at: str = ""
+    validated_at: str = ""
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.source, Source):
+            self.source = Source(self.source)
+
+        if self.source in (Source.ASSISTANT, Source.SYNTHETIC):
+            self.polarity = Polarity.AMBIGUOUS
+            self.confidence = min(self.confidence, 0.3)
 
     def touch(self) -> None:
-        """Update the timestamp and increment heat."""
+        """Backward-compatible alias for recording a real access."""
+        self.record_access()
+
+    def mark_updated(self) -> None:
+        """Record a mutation without fabricating a usage signal."""
         self.updated_at = datetime.now(timezone.utc).isoformat()
+
+    def record_access(self) -> None:
+        """Record retrieval or inspection of this memory."""
+        self.accessed_at = datetime.now(timezone.utc).isoformat()
         self.heat += 1
+
+    def record_use(self) -> None:
+        """Record that this memory contributed to an action."""
+        self.used_at = datetime.now(timezone.utc).isoformat()
+        self.use_count += 1
+
+    def record_validation(self) -> None:
+        """Record an outcome confirmation or correction."""
+        self.validated_at = datetime.now(timezone.utc).isoformat()
+        self.validation_count += 1
 
     def promote(self, target_layer: Layer | None = None) -> None:
         """Promote to the next layer (or a specific one)."""
@@ -132,24 +179,24 @@ class MemoryItem:
         elif self.layer < Layer.PATTERN:
             self.layer = Layer(self.layer.value + 1)
         self.status = Status.PROMOTED
-        self.touch()
+        self.mark_updated()
 
     def deprecate(self) -> None:
         """Mark this memory as deprecated."""
         self.status = Status.DEPRECATED
-        self.touch()
+        self.mark_updated()
 
     def archive(self) -> None:
         """Archive this memory (soft delete)."""
         self.status = Status.ARCHIVED
-        self.touch()
+        self.mark_updated()
 
     def activate(self) -> None:
         """Move from candidate to activated."""
         if self.layer == Layer.CANDIDATE:
             self.layer = Layer.ACTIVATED
         self.status = Status.ACTIVATED
-        self.touch()
+        self.mark_updated()
 
     def to_dict(self) -> dict[str, Any]:
         d = asdict(self)
@@ -158,16 +205,24 @@ class MemoryItem:
         d["memory_type"] = self.memory_type.value
         d["freshness"] = self.freshness.value
         d["status"] = self.status.value
+        d["source"] = self.source.value
         return d
 
     @classmethod
     def from_dict(cls, d: dict[str, Any]) -> MemoryItem:
         d = dict(d)  # shallow copy to avoid mutating the input
+        if d.get("source", Source.UNKNOWN.value) in (
+            Source.ASSISTANT.value,
+            Source.SYNTHETIC.value,
+        ):
+            d["polarity"] = Polarity.AMBIGUOUS.value
+            d["confidence"] = min(float(d.get("confidence", 0.0)), 0.3)
         d["layer"] = Layer(d["layer"])
         d["polarity"] = Polarity(d["polarity"])
         d["memory_type"] = MemoryType(d.get("memory_type", "fact"))
         d["freshness"] = Freshness(d.get("freshness", "unknown"))
         d["status"] = Status(d["status"])
+        d["source"] = Source(d.get("source", Source.UNKNOWN.value))
         return cls(**d)
 
     def to_json(self) -> str:

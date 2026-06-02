@@ -15,6 +15,7 @@ from memoryweaver.schema import (
     Status,
     MemoryType,
     Freshness,
+    Source,
 )
 from memoryweaver.store import MemoryStore
 
@@ -41,19 +42,25 @@ class TestMemoryItem:
         assert item.memory_type == MemoryType.FAILED_ATTEMPT
         assert "codex" in item.tags
 
-    def test_touch_increments_heat(self):
+    def test_record_access_increments_heat(self):
         item = MemoryItem()
         assert item.heat == 0
-        item.touch()
+        item.record_access()
         assert item.heat == 1
-        item.touch()
+        item.record_access()
         assert item.heat == 2
+
+    def test_mark_updated_does_not_increment_heat(self):
+        item = MemoryItem()
+        item.mark_updated()
+        assert item.heat == 0
 
     def test_promote_to_next_layer(self):
         item = MemoryItem(layer=Layer.CANDIDATE)
         item.promote()
         assert item.layer == Layer.ACTIVATED
         assert item.status == Status.PROMOTED
+        assert item.heat == 0
 
     def test_promote_to_specific_layer(self):
         item = MemoryItem()
@@ -69,17 +76,20 @@ class TestMemoryItem:
         item = MemoryItem()
         item.deprecate()
         assert item.status == Status.DEPRECATED
+        assert item.heat == 0
 
     def test_archive(self):
         item = MemoryItem()
         item.archive()
         assert item.status == Status.ARCHIVED
+        assert item.heat == 0
 
     def test_activate(self):
         item = MemoryItem(layer=Layer.CANDIDATE)
         item.activate()
         assert item.layer == Layer.ACTIVATED
         assert item.status == Status.ACTIVATED
+        assert item.heat == 0
 
     def test_serialize_roundtrip(self):
         item = MemoryItem(
@@ -110,6 +120,48 @@ class TestMemoryItem:
         item = MemoryItem()
         assert item.created_at
         assert "T" in item.created_at  # ISO format
+
+    def test_source_string_is_normalized_to_enum(self):
+        item = MemoryItem(source="terminal")
+        assert item.source == Source.TERMINAL
+
+    def test_invalid_source_is_rejected(self):
+        with pytest.raises(ValueError):
+            MemoryItem(source="not-a-source")
+
+    def test_assistant_source_is_downgraded(self):
+        item = MemoryItem(
+            source="assistant",
+            polarity=Polarity.POSITIVE,
+            confidence=1.0,
+        )
+        assert item.source == Source.ASSISTANT
+        assert item.polarity == Polarity.AMBIGUOUS
+        assert item.confidence == 0.3
+
+    def test_synthetic_source_is_downgraded(self):
+        item = MemoryItem(
+            source="synthetic",
+            polarity=Polarity.POSITIVE,
+            confidence=1.0,
+        )
+        assert item.source == Source.SYNTHETIC
+        assert item.polarity == Polarity.AMBIGUOUS
+        assert item.confidence == 0.3
+
+    def test_legacy_assistant_memory_is_downgraded_when_loaded(self):
+        raw = MemoryItem().to_dict()
+        raw.update({
+            "source": "assistant",
+            "polarity": "positive",
+            "confidence": 0.95,
+        })
+
+        restored = MemoryItem.from_dict(raw)
+
+        assert restored.source == Source.ASSISTANT
+        assert restored.polarity == Polarity.AMBIGUOUS
+        assert restored.confidence == 0.3
 
 
 class TestPattern:
@@ -166,6 +218,7 @@ class TestMemoryStore:
         item.content = "updated"
         store.update(item)
         assert store.get(item.id).content == "updated"
+        assert item.heat == 0
 
     def test_update_missing_raises(self, store):
         item = MemoryItem(id="nonexistent", content="x")
@@ -270,6 +323,9 @@ class TestScorer:
         scorer.record_success(item)
         assert item.success_score == 1.0
         assert item.confidence == 1.0  # 1 success / 0 corrections
+        assert item.heat == 0
+        assert item.use_count == 1
+        assert item.validation_count == 1
 
     def test_record_correction(self):
         from memoryweaver.scorer import MemoryScorer
@@ -278,6 +334,9 @@ class TestScorer:
         scorer.record_correction(item)
         assert item.correction_score == 1.0
         assert item.confidence == 0.0  # 0 successes / 1 correction
+        assert item.heat == 0
+        assert item.use_count == 1
+        assert item.validation_count == 1
 
     def test_evaluate_promotes_on_heat_and_success(self):
         from memoryweaver.scorer import MemoryScorer
@@ -405,5 +464,53 @@ class TestModeRouter:
         # Should at least find the similar memory
         assert decision.mode in (InferenceMode.FAST_VERIFY, InferenceMode.THINKING)
         assert len(decision.matched_items) > 0
+
+        Path(path).unlink(missing_ok=True)
+
+    def test_excludes_unverified_assistant_memory_from_routing(self):
+        from memoryweaver.router import ModeRouter, InferenceMode
+        fd, path = tempfile.mkstemp(suffix=".json")
+        os.close(fd)
+        os.unlink(path)
+
+        store = MemoryStore(path)
+        store.add(MemoryItem(
+            content="Codex CLI subscription load failed in WSL",
+            source="assistant",
+            polarity=Polarity.AMBIGUOUS,
+            layer=Layer.PATTERN,
+            confidence=0.3,
+            freshness=Freshness.STABLE,
+        ))
+
+        decision = ModeRouter(store).route(
+            "Codex CLI subscription load failed in WSL"
+        )
+
+        assert decision.mode == InferenceMode.THINKING
+        assert decision.matched_items == []
+
+        Path(path).unlink(missing_ok=True)
+
+    def test_verified_pattern_can_still_route_fast(self):
+        from memoryweaver.router import ModeRouter, InferenceMode
+        fd, path = tempfile.mkstemp(suffix=".json")
+        os.close(fd)
+        os.unlink(path)
+
+        store = MemoryStore(path)
+        store.add(MemoryItem(
+            content="Codex CLI subscription load failed in WSL",
+            source="terminal",
+            layer=Layer.PATTERN,
+            confidence=0.9,
+            freshness=Freshness.STABLE,
+        ))
+
+        decision = ModeRouter(store).route(
+            "Codex CLI subscription load failed in WSL"
+        )
+
+        assert decision.mode == InferenceMode.FAST
 
         Path(path).unlink(missing_ok=True)

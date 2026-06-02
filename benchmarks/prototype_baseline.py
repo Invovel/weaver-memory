@@ -24,6 +24,7 @@ from memoryweaver import (
     Freshness,
     Layer,
     MemoryItem,
+    MemoryScorer,
     MemoryStore,
     ModeRouter,
     Polarity,
@@ -137,8 +138,17 @@ def correctness_probes() -> dict[str, object]:
         )
         store.add(assistant_tag)
         tag_sources = [
-            item.source for item in VerifiedRetriever(store).search_by_tags(["shared"])
+            item.source.value
+            for item in VerifiedRetriever(store).search_by_tags(["shared"])
         ]
+
+        lifecycle = MemoryItem(content="lifecycle")
+        lifecycle.promote()
+        lifecycle.deprecate()
+        lifecycle.archive()
+
+        accessed = MemoryItem(content="accessed")
+        MemoryScorer().record_access(accessed)
 
         chinese_store = MemoryStore(Path(temp_dir) / "chinese.json")
         chinese_store.add(MemoryItem(content="检查组织选择解决订阅问题"))
@@ -147,17 +157,27 @@ def correctness_probes() -> dict[str, object]:
         )
 
         router_store = MemoryStore(Path(temp_dir) / "router.json")
-        router_store.add(
-            MemoryItem(
-                content="Codex CLI subscription load failed WSL",
-                source="assistant",
-                polarity=Polarity.AMBIGUOUS,
-                layer=Layer.PATTERN,
-                confidence=1.0,
-                freshness=Freshness.STABLE,
-            )
-        )
+        router_store.add(MemoryItem(
+            content="Codex CLI subscription load failed WSL",
+            source="assistant",
+            polarity=Polarity.AMBIGUOUS,
+            layer=Layer.PATTERN,
+            confidence=0.3,
+            freshness=Freshness.STABLE,
+        ))
         route = ModeRouter(router_store).route(
+            "Codex CLI subscription load failed WSL"
+        )
+
+        verified_router_store = MemoryStore(Path(temp_dir) / "verified-router.json")
+        verified_router_store.add(MemoryItem(
+            content="Codex CLI subscription load failed WSL",
+            source="terminal",
+            layer=Layer.PATTERN,
+            confidence=0.9,
+            freshness=Freshness.STABLE,
+        ))
+        verified_route = ModeRouter(verified_router_store).route(
             "Codex CLI subscription load failed WSL"
         )
 
@@ -171,12 +191,19 @@ def correctness_probes() -> dict[str, object]:
             "cli_module_exists": importlib.util.find_spec("memoryweaver.cli")
             is not None,
             "plain_update_heat": editable.heat,
+            "lifecycle_transition_heat": lifecycle.heat,
+            "explicit_access_heat": accessed.heat,
             "tag_search_returns_unverified_assistant": "assistant" in tag_sources,
             "assistant_positive_is_accepted": (
                 assistant_positive.polarity == Polarity.POSITIVE
                 and assistant_positive.confidence == 1.0
             ),
+            "assistant_positive_after_write": {
+                "polarity": assistant_positive.polarity.value,
+                "confidence": assistant_positive.confidence,
+            },
             "router_route_from_unverified_assistant_pattern": route.mode.value,
+            "router_route_from_verified_terminal_pattern": verified_route.mode.value,
             "chinese_reordered_query_match_count": len(chinese_matches),
         }
 

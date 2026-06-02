@@ -1,0 +1,969 @@
+{
+  "schema_version": "1.0",
+  "experiment": "memoryweaver-p0-trust-boundary-validation",
+  "collected_at_utc": "2026-06-02T05:47:15.427244+00:00",
+  "environment": {
+    "python": "3.14.0",
+    "python_executable": "C:\\PythonProject\\python.exe",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+    "cpu_count": 16,
+    "git_head": "f8daf43f382740398c64089ac3902dc1ad3d744d",
+    "git_status_short": "M benchmarks/prototype_baseline.py\n M docs/risk_assessment_and_benchmark.md\n M memoryweaver/__init__.py\n M memoryweaver/contradiction.py\n M memoryweaver/retriever.py\n M memoryweaver/router.py\n M memoryweaver/schema.py\n M memoryweaver/scorer.py\n M memoryweaver/store.py\n M tests/test_contradiction.py\n M tests/test_retriever.py\n M tests/test_schema.py\n?? .claude/\n?? docs/open_source_strategy_options.md\n?? docs/validation/\n?? scripts/collect_p0_validation.py"
+  },
+  "procedure": {
+    "pytest": [
+      "C:\\PythonProject\\python.exe",
+      "-m",
+      "pytest",
+      "-q"
+    ],
+    "benchmark": {
+      "trials": 5,
+      "items": [
+        100,
+        500,
+        1000
+      ],
+      "query_iterations": 200
+    }
+  },
+  "pytest": {
+    "command": [
+      "C:\\PythonProject\\python.exe",
+      "-m",
+      "pytest",
+      "-q"
+    ],
+    "returncode": 0,
+    "stdout": "........................................................................ [ 91%]\n.......                                                                  [100%]\n79 passed in 0.26s\n",
+    "stderr": ""
+  },
+  "trials": [
+    {
+      "trial": 1,
+      "correctness_probes": {
+        "cli_module_exists": false,
+        "plain_update_heat": 0,
+        "lifecycle_transition_heat": 0,
+        "explicit_access_heat": 1,
+        "tag_search_returns_unverified_assistant": false,
+        "assistant_positive_is_accepted": false,
+        "assistant_positive_after_write": {
+          "polarity": "ambiguous",
+          "confidence": 0.3
+        },
+        "router_route_from_unverified_assistant_pattern": "thinking",
+        "router_route_from_verified_terminal_pattern": "fast",
+        "chinese_reordered_query_match_count": 0
+      },
+      "performance": [
+        {
+          "items": 100,
+          "json_bytes": 88265,
+          "write": {
+            "seconds": 0.3339,
+            "items_per_second": 299.51
+          },
+          "reload_ms": 11.3005,
+          "reloaded_items": 100,
+          "find_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.0801,
+            "p95_ms": 0.1686,
+            "p99_ms": 0.2267,
+            "ops_per_second": 10097.85
+          },
+          "verified_search_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.0841,
+            "p95_ms": 0.0949,
+            "p99_ms": 0.1936,
+            "ops_per_second": 11286.87
+          },
+          "find_similar": {
+            "iterations": 200,
+            "p50_ms": 0.1872,
+            "p95_ms": 0.2566,
+            "p99_ms": 0.3017,
+            "ops_per_second": 5020.09
+          },
+          "verified_search": {
+            "iterations": 200,
+            "p50_ms": 0.2593,
+            "p95_ms": 0.5042,
+            "p99_ms": 0.5321,
+            "ops_per_second": 3338.42
+          }
+        },
+        {
+          "items": 500,
+          "json_bytes": 442025,
+          "write": {
+            "seconds": 6.6563,
+            "items_per_second": 75.12
+          },
+          "reload_ms": 15.4828,
+          "reloaded_items": 500,
+          "find_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.4021,
+            "p95_ms": 0.5221,
+            "p99_ms": 0.729,
+            "ops_per_second": 2363.55
+          },
+          "verified_search_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.4477,
+            "p95_ms": 0.7189,
+            "p99_ms": 0.8731,
+            "ops_per_second": 1990.2
+          },
+          "find_similar": {
+            "iterations": 200,
+            "p50_ms": 0.9599,
+            "p95_ms": 1.3147,
+            "p99_ms": 1.6817,
+            "ops_per_second": 983.19
+          },
+          "verified_search": {
+            "iterations": 200,
+            "p50_ms": 1.3548,
+            "p95_ms": 1.6045,
+            "p99_ms": 1.7491,
+            "ops_per_second": 726.35
+          }
+        },
+        {
+          "items": 1000,
+          "json_bytes": 884225,
+          "write": {
+            "seconds": 24.9508,
+            "items_per_second": 40.08
+          },
+          "reload_ms": 24.6558,
+          "reloaded_items": 1000,
+          "find_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.7961,
+            "p95_ms": 1.0113,
+            "p99_ms": 1.3251,
+            "ops_per_second": 1214.91
+          },
+          "verified_search_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.8172,
+            "p95_ms": 1.319,
+            "p99_ms": 1.5809,
+            "ops_per_second": 1104.91
+          },
+          "find_similar": {
+            "iterations": 200,
+            "p50_ms": 1.9102,
+            "p95_ms": 2.2957,
+            "p99_ms": 2.7808,
+            "ops_per_second": 504.04
+          },
+          "verified_search": {
+            "iterations": 200,
+            "p50_ms": 2.643,
+            "p95_ms": 3.2245,
+            "p99_ms": 3.6696,
+            "ops_per_second": 368.07
+          }
+        }
+      ]
+    },
+    {
+      "trial": 2,
+      "correctness_probes": {
+        "cli_module_exists": false,
+        "plain_update_heat": 0,
+        "lifecycle_transition_heat": 0,
+        "explicit_access_heat": 1,
+        "tag_search_returns_unverified_assistant": false,
+        "assistant_positive_is_accepted": false,
+        "assistant_positive_after_write": {
+          "polarity": "ambiguous",
+          "confidence": 0.3
+        },
+        "router_route_from_unverified_assistant_pattern": "thinking",
+        "router_route_from_verified_terminal_pattern": "fast",
+        "chinese_reordered_query_match_count": 0
+      },
+      "performance": [
+        {
+          "items": 100,
+          "json_bytes": 88265,
+          "write": {
+            "seconds": 0.3477,
+            "items_per_second": 287.6
+          },
+          "reload_ms": 9.0027,
+          "reloaded_items": 100,
+          "find_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.0794,
+            "p95_ms": 0.0849,
+            "p99_ms": 0.0907,
+            "ops_per_second": 12336.85
+          },
+          "verified_search_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.0842,
+            "p95_ms": 0.1409,
+            "p99_ms": 0.1833,
+            "ops_per_second": 10668.54
+          },
+          "find_similar": {
+            "iterations": 200,
+            "p50_ms": 0.1825,
+            "p95_ms": 0.1922,
+            "p99_ms": 0.2936,
+            "ops_per_second": 5335.01
+          },
+          "verified_search": {
+            "iterations": 200,
+            "p50_ms": 0.2529,
+            "p95_ms": 0.2634,
+            "p99_ms": 0.4067,
+            "ops_per_second": 3862.71
+          }
+        },
+        {
+          "items": 500,
+          "json_bytes": 442025,
+          "write": {
+            "seconds": 6.2728,
+            "items_per_second": 79.71
+          },
+          "reload_ms": 14.9134,
+          "reloaded_items": 500,
+          "find_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.3959,
+            "p95_ms": 0.5426,
+            "p99_ms": 0.7075,
+            "ops_per_second": 2422.98
+          },
+          "verified_search_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.4138,
+            "p95_ms": 0.5916,
+            "p99_ms": 0.8104,
+            "ops_per_second": 2276.24
+          },
+          "find_similar": {
+            "iterations": 200,
+            "p50_ms": 0.9549,
+            "p95_ms": 1.1321,
+            "p99_ms": 1.2329,
+            "ops_per_second": 1039.98
+          },
+          "verified_search": {
+            "iterations": 200,
+            "p50_ms": 1.3108,
+            "p95_ms": 1.8043,
+            "p99_ms": 2.428,
+            "ops_per_second": 720.43
+          }
+        },
+        {
+          "items": 1000,
+          "json_bytes": 884225,
+          "write": {
+            "seconds": 24.7798,
+            "items_per_second": 40.36
+          },
+          "reload_ms": 23.4275,
+          "reloaded_items": 1000,
+          "find_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.8357,
+            "p95_ms": 1.0308,
+            "p99_ms": 1.2219,
+            "ops_per_second": 1158.89
+          },
+          "verified_search_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.8969,
+            "p95_ms": 1.0787,
+            "p99_ms": 1.2464,
+            "ops_per_second": 1078.43
+          },
+          "find_similar": {
+            "iterations": 200,
+            "p50_ms": 2.0874,
+            "p95_ms": 2.5599,
+            "p99_ms": 2.9059,
+            "ops_per_second": 465.08
+          },
+          "verified_search": {
+            "iterations": 200,
+            "p50_ms": 2.8403,
+            "p95_ms": 3.3009,
+            "p99_ms": 3.8153,
+            "ops_per_second": 342.66
+          }
+        }
+      ]
+    },
+    {
+      "trial": 3,
+      "correctness_probes": {
+        "cli_module_exists": false,
+        "plain_update_heat": 0,
+        "lifecycle_transition_heat": 0,
+        "explicit_access_heat": 1,
+        "tag_search_returns_unverified_assistant": false,
+        "assistant_positive_is_accepted": false,
+        "assistant_positive_after_write": {
+          "polarity": "ambiguous",
+          "confidence": 0.3
+        },
+        "router_route_from_unverified_assistant_pattern": "thinking",
+        "router_route_from_verified_terminal_pattern": "fast",
+        "chinese_reordered_query_match_count": 0
+      },
+      "performance": [
+        {
+          "items": 100,
+          "json_bytes": 88265,
+          "write": {
+            "seconds": 0.3557,
+            "items_per_second": 281.15
+          },
+          "reload_ms": 9.4262,
+          "reloaded_items": 100,
+          "find_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.0827,
+            "p95_ms": 0.1217,
+            "p99_ms": 0.1495,
+            "ops_per_second": 11196.2
+          },
+          "verified_search_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.0874,
+            "p95_ms": 0.0923,
+            "p99_ms": 0.1304,
+            "ops_per_second": 11164.89
+          },
+          "find_similar": {
+            "iterations": 200,
+            "p50_ms": 0.195,
+            "p95_ms": 0.2066,
+            "p99_ms": 0.3332,
+            "ops_per_second": 5014.1
+          },
+          "verified_search": {
+            "iterations": 200,
+            "p50_ms": 0.2706,
+            "p95_ms": 0.3389,
+            "p99_ms": 0.5353,
+            "ops_per_second": 3481.81
+          }
+        },
+        {
+          "items": 500,
+          "json_bytes": 442025,
+          "write": {
+            "seconds": 6.6481,
+            "items_per_second": 75.21
+          },
+          "reload_ms": 16.3195,
+          "reloaded_items": 500,
+          "find_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.3944,
+            "p95_ms": 0.5776,
+            "p99_ms": 0.9513,
+            "ops_per_second": 2332.37
+          },
+          "verified_search_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.4218,
+            "p95_ms": 0.5505,
+            "p99_ms": 0.7464,
+            "ops_per_second": 2270.58
+          },
+          "find_similar": {
+            "iterations": 200,
+            "p50_ms": 0.9665,
+            "p95_ms": 1.1354,
+            "p99_ms": 1.4757,
+            "ops_per_second": 1009.55
+          },
+          "verified_search": {
+            "iterations": 200,
+            "p50_ms": 1.285,
+            "p95_ms": 1.5608,
+            "p99_ms": 1.6901,
+            "ops_per_second": 753.08
+          }
+        },
+        {
+          "items": 1000,
+          "json_bytes": 884225,
+          "write": {
+            "seconds": 24.119,
+            "items_per_second": 41.46
+          },
+          "reload_ms": 24.7751,
+          "reloaded_items": 1000,
+          "find_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.7848,
+            "p95_ms": 1.0088,
+            "p99_ms": 1.3724,
+            "ops_per_second": 1210.38
+          },
+          "verified_search_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.8877,
+            "p95_ms": 1.7176,
+            "p99_ms": 1.7536,
+            "ops_per_second": 1014.68
+          },
+          "find_similar": {
+            "iterations": 200,
+            "p50_ms": 1.9292,
+            "p95_ms": 2.5485,
+            "p99_ms": 2.9506,
+            "ops_per_second": 497.09
+          },
+          "verified_search": {
+            "iterations": 200,
+            "p50_ms": 2.6774,
+            "p95_ms": 4.096,
+            "p99_ms": 5.0784,
+            "ops_per_second": 347.2
+          }
+        }
+      ]
+    },
+    {
+      "trial": 4,
+      "correctness_probes": {
+        "cli_module_exists": false,
+        "plain_update_heat": 0,
+        "lifecycle_transition_heat": 0,
+        "explicit_access_heat": 1,
+        "tag_search_returns_unverified_assistant": false,
+        "assistant_positive_is_accepted": false,
+        "assistant_positive_after_write": {
+          "polarity": "ambiguous",
+          "confidence": 0.3
+        },
+        "router_route_from_unverified_assistant_pattern": "thinking",
+        "router_route_from_verified_terminal_pattern": "fast",
+        "chinese_reordered_query_match_count": 0
+      },
+      "performance": [
+        {
+          "items": 100,
+          "json_bytes": 88265,
+          "write": {
+            "seconds": 0.3259,
+            "items_per_second": 306.84
+          },
+          "reload_ms": 11.4927,
+          "reloaded_items": 100,
+          "find_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.0786,
+            "p95_ms": 0.085,
+            "p99_ms": 0.1143,
+            "ops_per_second": 12473.49
+          },
+          "verified_search_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.0836,
+            "p95_ms": 0.0889,
+            "p99_ms": 0.1321,
+            "ops_per_second": 11680.47
+          },
+          "find_similar": {
+            "iterations": 200,
+            "p50_ms": 0.1822,
+            "p95_ms": 0.2283,
+            "p99_ms": 0.3161,
+            "ops_per_second": 5274.9
+          },
+          "verified_search": {
+            "iterations": 200,
+            "p50_ms": 0.2737,
+            "p95_ms": 0.3991,
+            "p99_ms": 0.5183,
+            "ops_per_second": 3371.91
+          }
+        },
+        {
+          "items": 500,
+          "json_bytes": 442025,
+          "write": {
+            "seconds": 6.2278,
+            "items_per_second": 80.29
+          },
+          "reload_ms": 14.8435,
+          "reloaded_items": 500,
+          "find_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.3915,
+            "p95_ms": 0.6779,
+            "p99_ms": 0.8804,
+            "ops_per_second": 2326.94
+          },
+          "verified_search_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.4278,
+            "p95_ms": 0.5394,
+            "p99_ms": 0.6686,
+            "ops_per_second": 2206.38
+          },
+          "find_similar": {
+            "iterations": 200,
+            "p50_ms": 0.973,
+            "p95_ms": 1.1211,
+            "p99_ms": 1.5644,
+            "ops_per_second": 962.09
+          },
+          "verified_search": {
+            "iterations": 200,
+            "p50_ms": 1.2954,
+            "p95_ms": 1.5624,
+            "p99_ms": 2.1048,
+            "ops_per_second": 747.03
+          }
+        },
+        {
+          "items": 1000,
+          "json_bytes": 884225,
+          "write": {
+            "seconds": 24.2876,
+            "items_per_second": 41.17
+          },
+          "reload_ms": 64.3952,
+          "reloaded_items": 1000,
+          "find_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.7986,
+            "p95_ms": 1.0939,
+            "p99_ms": 1.4314,
+            "ops_per_second": 1202.22
+          },
+          "verified_search_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.828,
+            "p95_ms": 1.0665,
+            "p99_ms": 1.2485,
+            "ops_per_second": 1160.82
+          },
+          "find_similar": {
+            "iterations": 200,
+            "p50_ms": 1.9342,
+            "p95_ms": 2.3911,
+            "p99_ms": 3.3669,
+            "ops_per_second": 498.2
+          },
+          "verified_search": {
+            "iterations": 200,
+            "p50_ms": 2.6109,
+            "p95_ms": 3.1347,
+            "p99_ms": 3.8347,
+            "ops_per_second": 371.72
+          }
+        }
+      ]
+    },
+    {
+      "trial": 5,
+      "correctness_probes": {
+        "cli_module_exists": false,
+        "plain_update_heat": 0,
+        "lifecycle_transition_heat": 0,
+        "explicit_access_heat": 1,
+        "tag_search_returns_unverified_assistant": false,
+        "assistant_positive_is_accepted": false,
+        "assistant_positive_after_write": {
+          "polarity": "ambiguous",
+          "confidence": 0.3
+        },
+        "router_route_from_unverified_assistant_pattern": "thinking",
+        "router_route_from_verified_terminal_pattern": "fast",
+        "chinese_reordered_query_match_count": 0
+      },
+      "performance": [
+        {
+          "items": 100,
+          "json_bytes": 88265,
+          "write": {
+            "seconds": 0.3266,
+            "items_per_second": 306.22
+          },
+          "reload_ms": 9.4834,
+          "reloaded_items": 100,
+          "find_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.079,
+            "p95_ms": 0.0853,
+            "p99_ms": 0.1553,
+            "ops_per_second": 12207.85
+          },
+          "verified_search_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.0839,
+            "p95_ms": 0.0994,
+            "p99_ms": 0.1362,
+            "ops_per_second": 11521.67
+          },
+          "find_similar": {
+            "iterations": 200,
+            "p50_ms": 0.1839,
+            "p95_ms": 0.196,
+            "p99_ms": 0.333,
+            "ops_per_second": 5283.67
+          },
+          "verified_search": {
+            "iterations": 200,
+            "p50_ms": 0.2662,
+            "p95_ms": 0.3856,
+            "p99_ms": 0.4819,
+            "ops_per_second": 3466.94
+          }
+        },
+        {
+          "items": 500,
+          "json_bytes": 442025,
+          "write": {
+            "seconds": 6.1991,
+            "items_per_second": 80.66
+          },
+          "reload_ms": 56.1853,
+          "reloaded_items": 500,
+          "find_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.3852,
+            "p95_ms": 0.5124,
+            "p99_ms": 0.7484,
+            "ops_per_second": 2470.14
+          },
+          "verified_search_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.4405,
+            "p95_ms": 0.6453,
+            "p99_ms": 0.7629,
+            "ops_per_second": 2133.3
+          },
+          "find_similar": {
+            "iterations": 200,
+            "p50_ms": 0.9571,
+            "p95_ms": 1.1813,
+            "p99_ms": 1.3736,
+            "ops_per_second": 1017.76
+          },
+          "verified_search": {
+            "iterations": 200,
+            "p50_ms": 1.2689,
+            "p95_ms": 1.6886,
+            "p99_ms": 2.0503,
+            "ops_per_second": 736.08
+          }
+        },
+        {
+          "items": 1000,
+          "json_bytes": 884225,
+          "write": {
+            "seconds": 24.0511,
+            "items_per_second": 41.58
+          },
+          "reload_ms": 34.0212,
+          "reloaded_items": 1000,
+          "find_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.8066,
+            "p95_ms": 1.1382,
+            "p99_ms": 1.3496,
+            "ops_per_second": 1180.99
+          },
+          "verified_search_by_tags": {
+            "iterations": 200,
+            "p50_ms": 0.8291,
+            "p95_ms": 1.0621,
+            "p99_ms": 1.2476,
+            "ops_per_second": 1158.58
+          },
+          "find_similar": {
+            "iterations": 200,
+            "p50_ms": 1.9591,
+            "p95_ms": 2.7068,
+            "p99_ms": 3.2444,
+            "ops_per_second": 479.92
+          },
+          "verified_search": {
+            "iterations": 200,
+            "p50_ms": 2.668,
+            "p95_ms": 3.2248,
+            "p99_ms": 4.1802,
+            "ops_per_second": 363.74
+          }
+        }
+      ]
+    }
+  ],
+  "aggregate": [
+    {
+      "items": 100,
+      "json_bytes": 88265,
+      "metrics": {
+        "write_items_per_second": {
+          "mean": 296.264,
+          "stdev": 11.456528,
+          "min": 281.15,
+          "max": 306.84,
+          "samples": [
+            299.51,
+            287.6,
+            281.15,
+            306.84,
+            306.22
+          ]
+        },
+        "reload_ms": {
+          "mean": 10.1411,
+          "stdev": 1.163039,
+          "min": 9.0027,
+          "max": 11.4927,
+          "samples": [
+            11.3005,
+            9.0027,
+            9.4262,
+            11.4927,
+            9.4834
+          ]
+        },
+        "find_by_tags_p95_ms": {
+          "mean": 0.1091,
+          "stdev": 0.036851,
+          "min": 0.0849,
+          "max": 0.1686,
+          "samples": [
+            0.1686,
+            0.0849,
+            0.1217,
+            0.085,
+            0.0853
+          ]
+        },
+        "verified_search_by_tags_p95_ms": {
+          "mean": 0.10328,
+          "stdev": 0.021377,
+          "min": 0.0889,
+          "max": 0.1409,
+          "samples": [
+            0.0949,
+            0.1409,
+            0.0923,
+            0.0889,
+            0.0994
+          ]
+        },
+        "find_similar_p95_ms": {
+          "mean": 0.21594,
+          "stdev": 0.026713,
+          "min": 0.1922,
+          "max": 0.2566,
+          "samples": [
+            0.2566,
+            0.1922,
+            0.2066,
+            0.2283,
+            0.196
+          ]
+        },
+        "verified_search_p95_ms": {
+          "mean": 0.37824,
+          "stdev": 0.088163,
+          "min": 0.2634,
+          "max": 0.5042,
+          "samples": [
+            0.5042,
+            0.2634,
+            0.3389,
+            0.3991,
+            0.3856
+          ]
+        }
+      }
+    },
+    {
+      "items": 500,
+      "json_bytes": 442025,
+      "metrics": {
+        "write_items_per_second": {
+          "mean": 78.198,
+          "stdev": 2.789547,
+          "min": 75.12,
+          "max": 80.66,
+          "samples": [
+            75.12,
+            79.71,
+            75.21,
+            80.29,
+            80.66
+          ]
+        },
+        "reload_ms": {
+          "mean": 23.5489,
+          "stdev": 18.253881,
+          "min": 14.8435,
+          "max": 56.1853,
+          "samples": [
+            15.4828,
+            14.9134,
+            16.3195,
+            14.8435,
+            56.1853
+          ]
+        },
+        "find_by_tags_p95_ms": {
+          "mean": 0.56652,
+          "stdev": 0.067087,
+          "min": 0.5124,
+          "max": 0.6779,
+          "samples": [
+            0.5221,
+            0.5426,
+            0.5776,
+            0.6779,
+            0.5124
+          ]
+        },
+        "verified_search_by_tags_p95_ms": {
+          "mean": 0.60914,
+          "stdev": 0.074103,
+          "min": 0.5394,
+          "max": 0.7189,
+          "samples": [
+            0.7189,
+            0.5916,
+            0.5505,
+            0.5394,
+            0.6453
+          ]
+        },
+        "find_similar_p95_ms": {
+          "mean": 1.17692,
+          "stdev": 0.080391,
+          "min": 1.1211,
+          "max": 1.3147,
+          "samples": [
+            1.3147,
+            1.1321,
+            1.1354,
+            1.1211,
+            1.1813
+          ]
+        },
+        "verified_search_p95_ms": {
+          "mean": 1.64412,
+          "stdev": 0.103472,
+          "min": 1.5608,
+          "max": 1.8043,
+          "samples": [
+            1.6045,
+            1.8043,
+            1.5608,
+            1.5624,
+            1.6886
+          ]
+        }
+      }
+    },
+    {
+      "items": 1000,
+      "json_bytes": 884225,
+      "metrics": {
+        "write_items_per_second": {
+          "mean": 40.93,
+          "stdev": 0.672384,
+          "min": 40.08,
+          "max": 41.58,
+          "samples": [
+            40.08,
+            40.36,
+            41.46,
+            41.17,
+            41.58
+          ]
+        },
+        "reload_ms": {
+          "mean": 34.25496,
+          "stdev": 17.376235,
+          "min": 23.4275,
+          "max": 64.3952,
+          "samples": [
+            24.6558,
+            23.4275,
+            24.7751,
+            64.3952,
+            34.0212
+          ]
+        },
+        "find_by_tags_p95_ms": {
+          "mean": 1.0566,
+          "stdev": 0.057124,
+          "min": 1.0088,
+          "max": 1.1382,
+          "samples": [
+            1.0113,
+            1.0308,
+            1.0088,
+            1.0939,
+            1.1382
+          ]
+        },
+        "verified_search_by_tags_p95_ms": {
+          "mean": 1.24878,
+          "stdev": 0.283604,
+          "min": 1.0621,
+          "max": 1.7176,
+          "samples": [
+            1.319,
+            1.0787,
+            1.7176,
+            1.0665,
+            1.0621
+          ]
+        },
+        "find_similar_p95_ms": {
+          "mean": 2.5004,
+          "stdev": 0.159925,
+          "min": 2.2957,
+          "max": 2.7068,
+          "samples": [
+            2.2957,
+            2.5599,
+            2.5485,
+            2.3911,
+            2.7068
+          ]
+        },
+        "verified_search_p95_ms": {
+          "mean": 3.39618,
+          "stdev": 0.395614,
+          "min": 3.1347,
+          "max": 4.096,
+          "samples": [
+            3.2245,
+            3.3009,
+            4.096,
+            3.1347,
+            3.2248
+          ]
+        }
+      }
+    }
+  ]
+}

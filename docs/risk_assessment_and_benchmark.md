@@ -10,6 +10,22 @@
 会被放大：未验证 assistant 记忆可能进入 tag 检索和 fast path，普通编辑会错误增加
 heat，中文检索会漏召回，Pattern 也缺少统一策略。
 
+## 2026-06-02 P0 修复验证
+
+P0 source gate、Router gate 与 heat 生命周期修复已经进入独立验证批次。完整方法、
+原始数据、五次重复实验和限制说明见：
+
+- [P0 Trust-Boundary Validation Report](./validation/p0-trust-boundary-2026-06-02/README.md)
+- [Raw Results](./validation/p0-trust-boundary-2026-06-02/raw_results.json)
+- [Control Plus N Models Protocol](./validation/llm-memory-experiment-protocol.md)
+- [Hugging Face Dataset Catalog](./validation/huggingface_dataset_catalog.md)
+
+仍保留为后续工作的风险：
+
+- `memoryweaver.cli` 尚未落地。
+- 中文重排短句召回仍为 `0`。
+- CLI、checkpoint、图谱、RAG 与长稳测试需要对应模块落地后再执行。
+
 ## 风险优先级
 
 | 优先级 | 问题 | 为什么优先 | 先做什么 |

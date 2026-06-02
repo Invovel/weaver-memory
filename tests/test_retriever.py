@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from memoryweaver.schema import MemoryItem, Polarity, Layer, MemoryType
+from memoryweaver.schema import MemoryItem, Polarity, Layer, MemoryType, Status
 from memoryweaver.store import MemoryStore
 from memoryweaver.retriever import VerifiedRetriever
 
@@ -116,11 +116,58 @@ class TestVerifiedRetriever:
         assert any("subscription load failed" in c for c in contents)
         # Composer pattern should be included
         assert any("check auth first" in c for c in contents)
-        # Assistant claim (tagged "codex"+"node", not "subscription") should
-        # only appear if it got matched by tags. Our assistant item has tags
-        # ["codex", "node"], not "subscription", so it won't be in tag results.
-        # Let's just verify the first two are present.
-        pass
+        # Assistant claim matches "codex" but remains excluded by source gate.
+        assert not any("might need Node" in c for c in contents)
+
+    def test_search_by_tags_can_explicitly_include_heated_assistant(self, store):
+        for item in store.list_all():
+            if item.source == "assistant":
+                item.heat = 3
+                store.update(item)
+
+        retriever = VerifiedRetriever(store)
+        results = retriever.search_by_tags(
+            ["node"],
+            include_unverified=True,
+        )
+
+        assert any("might need Node" in r.content for r in results)
+
+    def test_search_by_tags_excludes_inactive_memories(self, store):
+        store.add(MemoryItem(
+            content="Archived terminal memory",
+            source="terminal",
+            confidence=1.0,
+            status=Status.ARCHIVED,
+            tags=["inactive"],
+        ))
+        store.add(MemoryItem(
+            content="Deprecated terminal memory",
+            source="terminal",
+            confidence=1.0,
+            status=Status.DEPRECATED,
+            tags=["inactive"],
+        ))
+
+        results = VerifiedRetriever(store).search_by_tags(["inactive"])
+
+        assert results == []
+
+    def test_synthetic_memory_never_enters_verified_results(self, store):
+        store.add(MemoryItem(
+            content="Synthetic HyDE answer",
+            source="synthetic",
+            confidence=1.0,
+            heat=3,
+            tags=["hyde"],
+        ))
+
+        results = VerifiedRetriever(store).search_by_tags(
+            ["hyde"],
+            include_unverified=True,
+        )
+
+        assert results == []
 
     # ── get_verified_context ─────────────────────────────────────
 

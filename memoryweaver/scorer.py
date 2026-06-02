@@ -38,20 +38,22 @@ class MemoryScorer:
     # ------------------------------------------------------------------
 
     def record_access(self, item: MemoryItem) -> None:
-        """Called every time a memory is retrieved or used."""
-        item.touch()  # increments heat + updates timestamp
+        """Called every time a memory is retrieved."""
+        item.record_access()
 
     def record_success(self, item: MemoryItem) -> None:
         """Called when a memory contributed to a successful outcome."""
         item.success_score += 1.0
         self._recalc_confidence(item)
-        item.touch()
+        item.record_use()
+        item.record_validation()
 
     def record_correction(self, item: MemoryItem) -> None:
         """Called when a memory led to a wrong outcome or user corrected it."""
         item.correction_score += 1.0
         self._recalc_confidence(item)
-        item.touch()
+        item.record_use()
+        item.record_validation()
 
     def evaluate(self, item: MemoryItem) -> Status:
         """Evaluate a memory and return its recommended status.

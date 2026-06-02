@@ -2,9 +2,9 @@
 
 ## Decision Boundary
 
-This document collects implementation strategies for discussion. It does not
-authorize adding graph memory, autonomous ReAct, or production RAG before the
-current P0 and lifecycle gates are verified.
+This document collects implementation strategies for discussion. The initial
+P0 memory trust boundary is verified, but it does not authorize adding graph
+memory, autonomous ReAct, or production RAG before lifecycle gates land.
 
 ## Recommended Learning Path
 
@@ -23,6 +23,7 @@ current P0 and lifecycle gates are verified.
 | Memory extraction | [Mem0](https://github.com/mem0ai/mem0) | Memory extraction, update, delete, and graph memory options | Compare provenance and deduplication behavior |
 | Graph pipeline | [Cognee](https://github.com/topoteretes/cognee) | Graph-oriented memory pipelines | Compare ingestion and compaction workflows |
 | CLI graph memory | [GBrain](https://github.com/garrytan/gbrain) | Scoped retrieval, source-tier boosts, graph signals, synthesis separation | Strong candidate for the smallest graph adapter |
+| Collaborative specialist routing | [GSCo / MedDr](https://github.com/sunanhe/MedDr) | Inject similar-case and specialist signals into a generalist decision | Reuse staged collaboration, but keep Harness as final judge |
 
 ## Multiple Solution Options
 
@@ -78,6 +79,23 @@ Option A foundation
 
 Study LangGraph, SWE-agent, OpenHands, smolagents, and LiteLLM. Do not let an
 LLM bypass the Harness.
+
+### Option E: Collaborative Specialist Routing
+
+```text
+L0 deterministic specialists
+-> EvidencePacket
+-> policy-based escalation
+-> L1 retrieval and graph specialists
+-> optional L2 reasoning specialist
+-> LLM proposes
+-> Harness judges
+```
+
+Study GSCo's staged collaboration without copying its trust model. Specialist
+outputs stay synthetic or ambiguous until policy, evidence, and outcomes
+justify promotion. See
+[collaborative_specialist_routing.md](./collaborative_specialist_routing.md).
 
 ## Suggested Discussion Order
 

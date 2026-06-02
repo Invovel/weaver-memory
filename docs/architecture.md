@@ -67,12 +67,12 @@ flowchart LR
 
 | 文件 | 当前能力 |
 | --- | --- |
-| `memoryweaver/schema.py` | `MemoryItem`、`Pattern` 与基础枚举 |
+| `memoryweaver/schema.py` | `MemoryItem`、`Pattern`、`Source` enum 与生命周期信号 |
 | `memoryweaver/store.py` | JSON 持久化、CRUD、tag / polarity / layer / status 查询、简单文本相似度 |
-| `memoryweaver/scorer.py` | heat、success、correction、confidence 与基础晋升 |
+| `memoryweaver/scorer.py` | access、use、validation、success、correction、confidence 与基础晋升 |
 | `memoryweaver/extractor.py` | 中英文规则式 feedback 分类与事件检测 |
-| `memoryweaver/router.py` | fast / thinking / fast+verify 路由 |
-| `memoryweaver/retriever.py` | `VerifiedRetriever` 与 source-aware 文本检索 |
+| `memoryweaver/router.py` | 只消费 verified candidate 的 fast / thinking / fast+verify 路由 |
+| `memoryweaver/retriever.py` | source-aware 文本与 tag 检索、status gate、synthetic 隔离 |
 | `memoryweaver/contradiction.py` | 已知冲突对的 SILENT / WARN / BLOCK 处置 |
 
 ## 当前缺口
@@ -80,9 +80,8 @@ flowchart LR
 以下能力尚未落地：
 
 - Harness 主入口与端到端判断链。
-- `Source` enum，以及 assistant 默认 `ambiguous` 的写入约束。
 - `MemoryPolicy` 与 `RetrievalPolicy`。
-- 所有检索路径统一经过 `VerifiedRetriever`。
+- 面向未来 Adapter 的统一公开检索策略入口。
 - `PatternComposer`。
 - 自动发现冲突候选的 `ConflictDetector`。
 - `EnvironmentContract`、`ToolContract` 与 source authority。
@@ -90,6 +89,9 @@ flowchart LR
 - `TrajectoryRegulator`：重复、停滞、预算与恢复策略。
 - GBrain 图谱存储与关系查询。
 - RAG 证据层、向量数据库、Hybrid Retrieval 与 rerank。
+
+P0 source gate、tag gate、Router gate 与 heat 生命周期拆分已通过五轮验证，详见
+[P0 trust-boundary report](./validation/p0-trust-boundary-2026-06-02/README.md)。
 
 ReAct 在线循环、CLI job queue、会话 checkpoint、缓存治理和容量规划见
 [react_agent_runtime.md](./react_agent_runtime.md)。
@@ -163,15 +165,43 @@ adapter 不应直接调用它们。
 
 ## 生命周期信号
 
-目标模型应拆分：
+当前原型已经拆分：
 
 - `updated_at`：内容或元数据发生变化。
-- `last_accessed_at`：记忆被检索。
-- `last_used_at`：记忆参与了行动。
-- `last_validated_at`：结果被用户、工具或终端证据确认。
+- `accessed_at`：记忆被检索。
+- `used_at`：记忆参与了行动。
+- `validated_at`：结果被用户、工具或终端证据确认。
 - `heat`：按策略统计检索或有效使用，不因普通编辑自动上升。
+
+后续 Policy 层还应加入：
+
 - `positive_utility`：使用后帮助成功的证据。
 - `avoidance_utility`：阻止已知失败路径的价值。
 
 `confidence` 表示可信度，不应把 positive utility 与 negative avoidance
 压缩成一个互相抵消的比例。
+
+## Collaborative Specialist Routing
+
+后续 Router 应逐级调用 specialist，而不是一次拉起所有昂贵能力：
+
+```mermaid
+flowchart LR
+    Q["Query"] --> L0["L0: tag / source / scope / freshness"]
+    L0 --> EP["EvidencePacket"]
+    EP --> R{"Need escalation?"}
+    R -- "No" --> F["Fast or Fast + Verify"]
+    R -- "Recall weak or conflict" --> L1["L1: RAG / GBrain / ConflictDetector"]
+    L1 --> EP
+    R -- "High risk or unresolved" --> L2["L2: high-end model maintenance"]
+    L2 --> EP
+    EP --> L["LLM proposes"]
+    L --> H["Harness judges"]
+```
+
+该设计参考 [GSCo / MedDr](https://github.com/sunanhe/MedDr) 的
+generalist-specialist collaboration，但 MemoryWeaver 的 specialist 输出只能进入
+结构化 `EvidencePacket`。LLM 和 specialist 都不能直接写 verified memory。
+
+完整设计、开源项目组合与 benchmark 指标见
+[collaborative_specialist_routing.md](./collaborative_specialist_routing.md)。

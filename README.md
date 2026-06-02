@@ -308,12 +308,14 @@ Codex CLI authentication/subscription diagnostic pattern
   "content": "...",
   "tags": ["..."],
   "linked_tags": ["..."],
-  "source": "user | assistant | terminal | tool | file | web",
+  "source": "user | assistant | terminal | tool | file | web | composer | synthetic",
   "evidence": "...",
   "scope": "global | user | project | session | model",
   "model_fit": ["fast-chat", "reasoning-model", "coding-agent"],
   "confidence": 0.0,
   "heat": 0,
+  "use_count": 0,
+  "validation_count": 0,
   "success_score": 0.0,
   "correction_score": 0.0,
   "freshness": "stable | volatile | expired | unknown",
@@ -429,6 +431,8 @@ memoryweaver/
 │   ├── rag_evidence_layer.md
 │   ├── gbrain_graph_memory.md
 │   ├── react_agent_runtime.md
+│   ├── collaborative_specialist_routing.md
+│   ├── open_source_strategy_options.md
 │   ├── bad_case_learning_loop.md
 │   ├── agent_test_catalog.md
 │   ├── testing_resilience_strategy.md
@@ -449,6 +453,8 @@ memoryweaver/
 - [`docs/rag_evidence_layer.md`](docs/rag_evidence_layer.md) — high-performance evidence retrieval
 - [`docs/gbrain_graph_memory.md`](docs/gbrain_graph_memory.md) — graph memory, tags, and memory lifecycle
 - [`docs/react_agent_runtime.md`](docs/react_agent_runtime.md) — ReAct runtime, session continuity, cache governance, and capacity planning
+- [`docs/collaborative_specialist_routing.md`](docs/collaborative_specialist_routing.md) — GSCo-inspired staged specialist routing and EvidencePacket boundary
+- [`docs/open_source_strategy_options.md`](docs/open_source_strategy_options.md) — implementation strategies to discuss before adding larger subsystems
 - [`docs/bad_case_learning_loop.md`](docs/bad_case_learning_loop.md) — bad-case collection and progressive optimization
 - [`docs/testing_resilience_strategy.md`](docs/testing_resilience_strategy.md) — regression, crash, avalanche, stress, security, and A/B testing
 - [`docs/risk_assessment_and_benchmark.md`](docs/risk_assessment_and_benchmark.md) — current risks and measured prototype baseline
@@ -473,6 +479,9 @@ Measured on Windows 11 with Python 3.14.0:
 
 The JSON prototype is suitable for semantics and regression work, not
 production-scale ingestion. Each write rewrites the JSON file.
+
+The P0 trust-boundary fixes were validated across five independent trials.
+See [`docs/validation/p0-trust-boundary-2026-06-02/README.md`](docs/validation/p0-trust-boundary-2026-06-02/README.md).
 
 ---
 
@@ -569,8 +578,8 @@ Provide shared, structured memory across different LLMs and tools.
 
 ## Status
 
-**Sprint 0 prototype complete.** Core modules are implemented with 68 passing
-tests:
+**Sprint 0 prototype and P0 trust-boundary hardening complete.** Core modules
+are implemented with 79 passing tests:
 
 - `schema.py` — MemoryItem dataclass (4 polarities, 3 layers, 5 statuses)
 - `store.py` — Atomic JSON-backed CRUD with tag/polarity/layer queries
@@ -580,19 +589,19 @@ tests:
 - `retriever.py` — Source-aware verified retrieval with anti-pollution filtering
 - `contradiction.py` — Three-tier contradiction resolver (SILENT / WARN / BLOCK)
 
-The next milestone is **Sprint 0.1 hardening**. The benchmark currently records
-six known gaps:
+The P0 batch closed four trust-boundary risks: false heat from edits, tag-gate
+bypass, assistant-positive writes, and Router fast-path bypass. Five validation
+trials produced identical correctness results.
 
-1. The declared `mw = memoryweaver.cli:main` entry point has no `cli.py`.
-2. Plain updates incorrectly increase heat.
-3. Tag retrieval can bypass the assistant source gate.
-4. Assistant memories can be constructed directly as positive and high-confidence.
-5. `ModeRouter` can use an unverified assistant Pattern for the fast path.
-6. Whitespace tokenization misses reordered Chinese queries.
+The next milestone is the remaining **Sprint 0.1 hardening**:
 
-Next: close the trust boundary, add regression fixtures for these bad cases,
-then implement checkpoint recovery, minimal GBrain projection, bounded ReAct,
-and the RAG evidence layer incrementally.
+1. Add the declared `mw = memoryweaver.cli:main` CLI skeleton.
+2. Replace whitespace-only tokenization with a Chinese retrieval baseline.
+3. Add `MemoryPolicy`, `RetrievalPolicy`, and a structured `EvidencePacket`.
+
+After those gates, implement minimal GBrain projection, staged specialist
+routing, checkpoint recovery, bounded ReAct, and the RAG evidence layer
+incrementally.
 
 ---
 

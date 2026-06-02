@@ -32,6 +32,7 @@
 | Environment contract | 工具 schema、source authority、policy version、环境约束 |
 | Action realization | `ActionProposal`、执行前参数、权限、风险和确认 |
 | Trajectory regulation | 重复失败、停滞、预算、恢复和审计 |
+| Specialist routing | L0 / L1 / L2 升级、降级、超时、冲突和 EvidencePacket |
 
 ## 3. RAG、图谱与事实性
 
@@ -108,6 +109,7 @@
 | Throughput | RPS、任务数、文档 ingest、工具并发、队列速度 |
 | Cost | token、工具、失败、重试、RAG、模型路由 |
 | Token usage | 历史、证据、工具结果、压缩和预算 |
+| Specialist cost | specialist 数量、升级率、每级 latency、fallback 与模型成本 |
 
 ## 8. 发布与效果
 
@@ -156,3 +158,4 @@
 8. 新会话 `ContextPack` 接续与旧 checkpoint 迁移。
 9. memory pollution rate、fast-path false-positive rate。
 10. 离线维护面生成的 Retrieval Plan DSL 发布门禁。
+11. Collaborative specialist routing 的升级率、冲突率和错误晋升率。

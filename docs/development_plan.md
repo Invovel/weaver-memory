@@ -2,15 +2,17 @@
 
 ## 当前判断
 
-截至 2026-06-01，仓库已有 Sprint 0 原型和 anti-pollution 增量：
+截至 2026-06-02，仓库已有 Sprint 0 原型和经过验证的 P0 anti-pollution 增量：
 
 - 基础 schema、JSON store、scorer、extractor、router。
 - `VerifiedRetriever`。
 - `ContradictionResolver`。
-- 68 个 pytest 测试通过。
+- 79 个 pytest 测试通过。
+- P0 source gate、tag gate、Router gate 与 heat 生命周期拆分已经完成五轮验证。
 
-但 anti-pollution 还没有形成完整边界。下一步应先修正核心语义与绕行路径，再扩展
-Pattern、Graph 和 RAG。
+完整实验记录见
+[P0 trust-boundary report](./validation/p0-trust-boundary-2026-06-02/README.md)。
+下一步先补 CLI 与中文 baseline，再进入 Policy、Pattern、Graph 和 RAG。
 
 ## 开发规则
 
@@ -41,7 +43,7 @@ tests/test_cli.py
 - `memoryweaver.cli:main` 可导入。
 - `mw --help` 成功退出。
 
-### Step 2：拆分 update 与 heat
+### Step 2：拆分 update 与 heat（已完成）
 
 涉及文件：
 
@@ -63,7 +65,7 @@ tests/test_schema.py
 - `record_access()` 增加 heat。
 - promote / deprecate / archive 不伪造使用次数。
 
-### Step 3：修复 tag 检索门控
+### Step 3：修复 tag 检索门控（已完成）
 
 涉及文件：
 
@@ -83,7 +85,7 @@ tests/test_retriever.py
 - 显式 `include_unverified=True` 时仍只放行满足策略的候选。
 - archived / deprecated 状态有明确策略。
 
-### Step 4：让 Router 经过 verified retrieval
+### Step 4：让 Router 经过 verified retrieval（已完成）
 
 涉及文件：
 
@@ -96,15 +98,15 @@ tests/test_retriever.py
 
 原因：
 
-当前 `ModeRouter` 直接调用 `MemoryStore.find_similar()`，未验证 assistant Pattern
-可以触发 fast route。Router 必须使用策略过滤后的候选。
+修复前 `ModeRouter` 直接调用 `MemoryStore.find_similar()`，未验证 assistant Pattern
+可以触发 fast route。当前 Router 已改为使用策略过滤后的候选。
 
 预期测试：
 
 - 未验证 assistant 记忆不能触发 fast。
 - verified Pattern 仍可触发 fast。
 
-### Step 5：增加 Source enum 与写入约束
+### Step 5：增加 Source enum 与写入约束（已完成）
 
 涉及文件：
 
@@ -120,8 +122,8 @@ tests/test_contradiction.py
 
 原因：
 
-当前 `source` 是裸字符串，且允许直接构造 `source="assistant"`、
-`polarity=positive`、`confidence=1.0`。先增加 enum，再增加 assistant 默认
+修复前 `source` 是裸字符串，且允许直接构造 `source="assistant"`、
+`polarity=positive`、`confidence=1.0`。当前已增加 enum、assistant 默认
 `ambiguous` 和 confidence 上限约束。
 
 预期测试：
@@ -286,6 +288,11 @@ tests/test_trajectory.py
 3. 接入 sparse + multilingual dense retrieval。
 4. 数据规模需要时加入 HNSW。
 5. 加入 Hybrid Retrieval、rerank 与严格标记为 `SYNTHETIC` 的 HyDE。
+
+协作式 specialist 路由按
+[collaborative_specialist_routing.md](./collaborative_specialist_routing.md)
+逐级落地：先 L0 deterministic specialist，再 L1 RAG / GBrain，最后才允许 L2
+高端模型参与离线维护。所有 specialist 输出先进入结构化 `EvidencePacket`。
 
 ## Sprint 3：ReAct 运行时
 

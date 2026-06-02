@@ -132,6 +132,7 @@ flowchart LR
 | Contradiction | SILENT、WARN、BLOCK 与用户确认 |
 | RAG citations | 引用 chunk、文档版本、时间戳、官方来源优先级 |
 | Checkpoint | 崩溃恢复、不重复 CLI 副作用、新会话 handoff |
+| Specialist routing | L0 / L1 / L2 升级、降级、超时、冲突、EvidencePacket |
 
 ## 安全测试
 
@@ -174,6 +175,8 @@ A/B 主要比较：
 - CLI success rate
 - fallback rate
 - memory pollution rate
+- specialist count and L0 / L1 / L2 escalation rate
+- specialist conflict rate and degraded fallback rate
 
 不要只比较回答点赞率。新策略可能更讨喜，但污染长期 memory。
 
@@ -273,8 +276,8 @@ test-registry/
 
 ## 最小实施顺序
 
-1. 把现有 68 个 pytest 归档为 baseline regression。
-2. 为已确认风险增加 source gate、tag gate、Router、heat 和中文检索回归测试。
+1. 把现有 79 个 pytest 和 P0 五轮验证归档为 baseline regression。
+2. 保持 source gate、tag gate、Router、heat 回归，并补中文检索测试。
 3. 增加 CLI、checkpoint 和幂等恢复测试。
 4. 增加最小 smoke、average-load 和 soak 脚本。
 5. 增加依赖降级与雪崩测试。

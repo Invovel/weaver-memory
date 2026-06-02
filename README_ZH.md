@@ -320,12 +320,14 @@ Codex CLI 认证 / 订阅诊断 Pattern
   "content": "...",
   "tags": ["..."],
   "linked_tags": ["..."],
-  "source": "user | assistant | terminal | tool | file | web",
+  "source": "user | assistant | terminal | tool | file | web | composer | synthetic",
   "evidence": "...",
   "scope": "global | user | project | session | model",
   "model_fit": ["fast-chat", "reasoning-model", "coding-agent"],
   "confidence": 0.0,
   "heat": 0,
+  "use_count": 0,
+  "validation_count": 0,
   "success_score": 0.0,
   "correction_score": 0.0,
   "freshness": "stable | volatile | expired | unknown",
@@ -440,6 +442,8 @@ memoryweaver/
 │   ├── rag_evidence_layer.md
 │   ├── gbrain_graph_memory.md
 │   ├── react_agent_runtime.md
+│   ├── collaborative_specialist_routing.md
+│   ├── open_source_strategy_options.md
 │   ├── bad_case_learning_loop.md
 │   ├── agent_test_catalog.md
 │   ├── testing_resilience_strategy.md
@@ -460,6 +464,8 @@ memoryweaver/
 - [`docs/rag_evidence_layer.md`](docs/rag_evidence_layer.md) — 高性能证据检索
 - [`docs/gbrain_graph_memory.md`](docs/gbrain_graph_memory.md) — 图谱记忆、tag 与 memory lifecycle
 - [`docs/react_agent_runtime.md`](docs/react_agent_runtime.md) — ReAct、会话衔接、缓存治理与容量规划
+- [`docs/collaborative_specialist_routing.md`](docs/collaborative_specialist_routing.md) — GSCo 启发的分层 specialist 路由与 EvidencePacket 边界
+- [`docs/open_source_strategy_options.md`](docs/open_source_strategy_options.md) — 扩展大型子系统前需要讨论的实现策略
 - [`docs/bad_case_learning_loop.md`](docs/bad_case_learning_loop.md) — bad-case 收集与递进优化
 - [`docs/testing_resilience_strategy.md`](docs/testing_resilience_strategy.md) — 回归、崩溃、雪崩、压力、安全与 A/B 测试
 - [`docs/risk_assessment_and_benchmark.md`](docs/risk_assessment_and_benchmark.md) — 当前风险与实测 baseline
@@ -484,6 +490,9 @@ Windows 11、Python 3.14.0 下的实测结果：
 
 JSON 原型适合验证语义与回归，不适合生产级持续摄入。当前每次写入都会整体重写
 JSON 文件。
+
+P0 信任边界修复已经完成五轮独立验证。详见
+[`docs/validation/p0-trust-boundary-2026-06-02/README.md`](docs/validation/p0-trust-boundary-2026-06-02/README.md)。
 
 ---
 
@@ -580,7 +589,7 @@ JSON 文件。
 
 ## 当前状态
 
-**Sprint 0 原型已完成。** 核心模块已实现，68 个测试全部通过：
+**Sprint 0 原型与 P0 信任边界加固已完成。** 核心模块已实现，79 个测试全部通过：
 
 - `schema.py` — MemoryItem dataclass（4 种极性、3 层、5 种状态）
 - `store.py` — 原子写入 JSON 存储，支持 tag/polarity/layer 查询
@@ -590,17 +599,17 @@ JSON 文件。
 - `retriever.py` — 来源感知的验证检索，带防污染过滤
 - `contradiction.py` — 三级矛盾解决器（SILENT / WARN / BLOCK）
 
-下一里程碑是 **Sprint 0.1 收口**。benchmark 当前记录了 6 个已知缺口：
+P0 批次已经关闭四项信任边界风险：编辑伪增 heat、tag gate 绕行、assistant
+positive 写入和 Router fast-path 绕行。五轮验证得到一致的正确性结果。
 
-1. `mw = memoryweaver.cli:main` 声明的 `cli.py` 不存在。
-2. 普通 update 会错误增加 heat。
-3. tag 检索可以绕过 assistant 来源门控。
-4. assistant 记忆可以直接构造为 positive 和高 confidence。
-5. `ModeRouter` 可以用未验证 assistant Pattern 触发 fast path。
-6. whitespace tokenizer 无法召回重排后的中文短句。
+下一里程碑是剩余的 **Sprint 0.1 收口**：
 
-下一步：先闭合信任边界，为这些 bad case 增加回归 fixture，再逐步实现 checkpoint
-恢复、最小 GBrain 投影、bounded ReAct 和 RAG 证据层。
+1. 补齐 `mw = memoryweaver.cli:main` 声明的 CLI 骨架。
+2. 用中文检索 baseline 替换 whitespace-only tokenizer。
+3. 增加 `MemoryPolicy`、`RetrievalPolicy` 和结构化 `EvidencePacket`。
+
+这些 gate 完成后，再逐步实现最小 GBrain 投影、分层 specialist 路由、checkpoint
+恢复、bounded ReAct 和 RAG 证据层。
 
 ---
 

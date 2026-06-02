@@ -2,13 +2,13 @@
 
 ## 结论
 
-当前最大的工程问题不是缺少完整图谱，也不是缺少更快的 ReAct。最大问题是：
+当前最大的工程问题不是缺少完整图谱，也不是缺少更快的 ReAct。P0 信任边界已经
+闭合并进入回归门禁。当前最大的开放问题是：
 
-> **Harness 的信任边界尚未闭合，动作生命周期边界也尚未落地。**
+> **Harness 的策略层、动作生命周期边界和可恢复运行链尚未落地。**
 
-如果现在直接扩大图谱写入、加入自动 ReAct 或摄入大量 RAG 文档，已有的错误信号
-会被放大：未验证 assistant 记忆可能进入 tag 检索和 fast path，普通编辑会错误增加
-heat，中文检索会漏召回，Pattern 也缺少统一策略。
+如果现在直接扩大图谱写入、加入自动 ReAct 或摄入大量 RAG 文档，Pattern、图谱
+投影、工具动作和恢复路径仍缺少统一策略。中文检索也仍会漏召回。
 
 ## 2026-06-02 P0 修复验证
 
@@ -30,10 +30,7 @@ P0 source gate、Router gate 与 heat 生命周期修复已经进入独立验证
 
 | 优先级 | 问题 | 为什么优先 | 先做什么 |
 | --- | --- | --- | --- |
-| P0 | 信任边界未闭合 | 错误记忆会被复用和放大 | `Source` enum、写入策略、统一 RetrievalPolicy |
-| P0 | Router 与 tag 检索绕过门控 | 未验证内容可触发 fast path | 所有检索经过 `VerifiedRetriever` |
-| P0 | heat 语义错误 | 编辑、归档、晋升被误算为使用 | 拆分 updated、accessed、used、validated |
-| P0 | 缺少 baseline 与回归门禁 | 修复后无法证明没有回退 | correctness probes、pytest、benchmark |
+| Closed | P0 信任边界 | source、tag、Router、heat 已完成五轮验证 | 保持 regression gate |
 | P1 | 缺少 Environment Contract 与 ActionGate | 工具执行前没有统一 schema、权限、风险和确认边界 | `ToolContract`、`ActionProposal`、`ActionPolicy` |
 | P1 | 缺少 TrajectoryRegulator | 重复失败、停滞和预算耗尽缺少确定性恢复 | loop、stagnation、budget、recovery |
 | P1 | 缺少 checkpoint、Event Journal 和幂等恢复 | ReAct 与 CLI 崩溃后可能重复副作用 | 建设 durable runtime |
@@ -43,6 +40,9 @@ P0 source gate、Router gate 与 heat 生命周期修复已经进入独立验证
 | P2 | 缺少快速 ReAct | 复杂任务不能稳定自动执行 | bounded loop、ToolGateway、job queue |
 | P2 | 缺少 RAG Evidence Layer | 外部证据检索仍停留在设计 | cleaning、chunk、metadata、hybrid retrieval |
 | P3 | 缺少离线维护面 | 无法大规模演进图谱和检索链 | DSL、offline eval、shadow、canary |
+
+Collaborative Specialist Routing 的分层升级、降级和 benchmark 方案见
+[collaborative_specialist_routing.md](./collaborative_specialist_routing.md)。
 
 ## 为什么图谱不是第一步
 

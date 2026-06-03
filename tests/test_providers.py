@@ -1,8 +1,11 @@
 """Optional LLM provider and GraphProposal review tests."""
 
 from memoryweaver.config import MemoryWeaverConfig, load_env_file
+from memoryweaver.evidence import EvidenceStore
+from memoryweaver.graph.budget import ProposalBudgetGate
 from memoryweaver.graph.proposal import LLMGraphProposalService
 from memoryweaver.graph.evidence_binder import GraphEvidenceBinder
+from memoryweaver.graph.evidence_support import EvidenceSupport, EvidenceSupportCheck
 from memoryweaver.evidence import EvidenceNode
 from memoryweaver.graph.reviewer import GraphProposalReviewPolicy
 from memoryweaver.graph.linker import ReviewedGraphLinker
@@ -88,7 +91,7 @@ def test_deepseek_provider_parses_graph_proposals_without_writing_edges():
     assert proposal.to_node == "selected_organization"
     assert proposal.confidence == 0.6
     assert proposal.requires_review is True
-    assert proposal.metadata["prompt_version"] == "graph_proposal_deepseek_v0.4"
+    assert proposal.metadata["prompt_version"] == "graph_proposal_deepseek_v0.4.1"
 
 
 def test_deepseek_provider_preserves_evidence_grounded_confidence():
@@ -141,8 +144,6 @@ def test_reviewer_keeps_missing_evidence_pending(tmp_path):
 
 
 def test_evidence_binder_marks_auto_bound_evidence_candidate(tmp_path):
-    from memoryweaver.evidence import EvidenceStore
-
     evidence = EvidenceStore(tmp_path / "nodes.json", tmp_path / "links.json")
     evidence.add_node(EvidenceNode(
         id="ev_org",
@@ -161,9 +162,62 @@ def test_evidence_binder_marks_auto_bound_evidence_candidate(tmp_path):
     bindings = GraphEvidenceBinder(evidence).bind(proposal)
     assert bindings[0].evidence_id == "ev_org"
     assert proposal.metadata["evidence_link_states"]["ev_org"] == "candidate_evidence_link"
-    review = GraphProposalReviewPolicy(GraphStore(tmp_path / "graph.json")).review(proposal)
+    review = GraphProposalReviewPolicy(
+        GraphStore(tmp_path / "graph.json"),
+        evidence_check=EvidenceSupportCheck(evidence),
+    ).review(proposal)
     assert review.decision == "pending"
     assert "candidate evidence requires review" in review.reasons
+
+
+def test_evidence_support_distinguishes_exact_partial_and_unsupported(tmp_path):
+    evidence = EvidenceStore(tmp_path / "nodes.json", tmp_path / "links.json")
+    evidence.add_node(EvidenceNode(
+        id="ev_exact",
+        text="User confirmation: selected organization fixed codex subscription failed",
+        source="terminal",
+        source_uri="fixture://exact",
+    ))
+    evidence.add_node(EvidenceNode(
+        id="ev_partial",
+        text="subscription and organization appeared in troubleshooting notes",
+        source="terminal",
+        source_uri="fixture://partial",
+    ))
+    evidence.add_node(EvidenceNode(
+        id="ev_noise",
+        text="weather API key was valid",
+        source="terminal",
+        source_uri="fixture://noise",
+    ))
+    checker = EvidenceSupportCheck(evidence)
+    exact = GraphProposal(
+        proposal_type="link_tags",
+        source="llm",
+        from_node="codex_subscription_failed",
+        to_node="selected_organization",
+        relation=GraphRelation.RELATED_TO,
+        evidence_links=["ev_exact"],
+    )
+    partial = GraphProposal(
+        proposal_type="link_tags",
+        source="llm",
+        from_node="codex_subscription_failed",
+        to_node="selected_organization",
+        relation=GraphRelation.RELATED_TO,
+        evidence_links=["ev_partial"],
+    )
+    unsupported = GraphProposal(
+        proposal_type="link_tags",
+        source="llm",
+        from_node="codex_subscription_failed",
+        to_node="selected_organization",
+        relation=GraphRelation.RELATED_TO,
+        evidence_links=["ev_noise"],
+    )
+    assert checker.check(exact).status == EvidenceSupport.SUPPORTS_EXACT
+    assert checker.check(partial).status == EvidenceSupport.SUPPORTS_PARTIAL
+    assert checker.check(unsupported).status == EvidenceSupport.DOES_NOT_SUPPORT
 
 
 def test_reviewed_linker_writes_edge_only_after_accept(tmp_path):
@@ -178,7 +232,18 @@ def test_reviewed_linker_writes_edge_only_after_accept(tmp_path):
         confidence=0.54,
         evidence_links=["link_1"],
     )
-    review, edge_id = ReviewedGraphLinker(graph).review_and_apply(proposal)
+    evidence = EvidenceStore(tmp_path / "nodes.json", tmp_path / "links.json")
+    evidence.add_node(EvidenceNode(
+        id="link_1",
+        text="selected organization fixed codex subscription failed",
+        source="terminal",
+        source_uri="fixture://link_1",
+    ))
+    policy = GraphProposalReviewPolicy(
+        graph,
+        evidence_check=EvidenceSupportCheck(evidence),
+    )
+    review, edge_id = ReviewedGraphLinker(graph, policy).review_and_apply(proposal)
     assert review.decision == "accept"
     assert edge_id
     edge = graph.get_edge(edge_id)
@@ -186,6 +251,7 @@ def test_reviewed_linker_writes_edge_only_after_accept(tmp_path):
     assert edge.source_id == tag_node_id("codex_subscription_failed")
     assert edge.target_id == tag_node_id("selected_organization")
     assert edge.evidence_links == ["link_1"]
+    assert edge.status.value == "accepted"
 
 
 def test_reviewer_quarantines_high_risk_relation_even_with_evidence(tmp_path):
@@ -225,18 +291,17 @@ def test_reviewer_rejects_conflicting_relation(tmp_path):
 
 def test_reviewer_quarantines_high_fanout(tmp_path):
     graph = GraphStore(tmp_path / "graph.json")
+    from memoryweaver.graph_linker import GraphLinker
+
+    linker = GraphLinker(graph)
     for index in range(8):
-        proposal = GraphProposal(
-            proposal_type="link_tags",
-            source="manual",
-            from_node="codex_subscription_failed",
-            to_node=f"neighbor_{index}",
+        linker.link_tags(
+            "codex_subscription_failed",
+            f"neighbor_{index}",
             relation=GraphRelation.RELATED_TO,
-            reason="fixture",
-            confidence=0.5,
-            evidence_links=["link_1"],
+            confidence=0.8,
+            source="rule",
         )
-        ReviewedGraphLinker(graph).review_and_apply(proposal)
 
     high_fanout = GraphProposal(
         proposal_type="link_tags",
@@ -258,3 +323,9 @@ def test_load_env_file_does_not_mutate_environment(tmp_path):
     env_file.write_text("MEMORYWEAVER_ENABLE_LLM_GRAPH_PROPOSAL=true\n", encoding="utf-8")
     values = load_env_file(env_file)
     assert values["MEMORYWEAVER_ENABLE_LLM_GRAPH_PROPOSAL"] == "true"
+
+
+def test_budget_gate_denies_online_llm_proposals():
+    decision = ProposalBudgetGate().allow_llm_proposal(path="online")
+    assert decision.allowed is False
+    assert "online path never calls LLM GraphProposal" in decision.reasons

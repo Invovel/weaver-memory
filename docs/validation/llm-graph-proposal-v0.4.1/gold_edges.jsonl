@@ -1,0 +1,5 @@
+{"from_tag": "codex_subscription_failed", "to_tag": "selected_organization", "relation": "related_to", "evidence_ids": ["ev_org_selection"]}
+{"from_tag": "codex_subscription_failed", "to_tag": "login_refresh_helped", "relation": "related_to", "evidence_ids": ["ev_login_refresh"]}
+{"from_tag": "codex_subscription_failed", "to_tag": "wsl", "relation": "same_topic_as", "evidence_ids": ["ev_wsl_terminal"]}
+{"from_tag": "api_key_exists", "to_tag": "openai_api_billing", "relation": "same_topic_as", "evidence_ids": ["ev_api_key_scope"]}
+{"from_tag": "npm_reinstall_failed", "to_tag": "npm_install_success", "relation": "related_to", "evidence_ids": ["ev_npm_reinstall"]}

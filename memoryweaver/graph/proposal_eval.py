@@ -50,6 +50,11 @@ class ProposalEvalResult:
     reject_rate: float
     human_review_needed_rate: float
     evidence_coverage: float
+    exact_support_rate: float
+    partial_support_rate: float
+    unsupported_rate: float
+    accepted_wrong_link_rate: float
+    review_cost_per_accepted_edge: float
     matched_ids: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
@@ -70,6 +75,11 @@ class ProposalEvalResult:
             "reject_rate": round(self.reject_rate, 4),
             "human_review_needed_rate": round(self.human_review_needed_rate, 4),
             "evidence_coverage": round(self.evidence_coverage, 4),
+            "exact_support_rate": round(self.exact_support_rate, 4),
+            "partial_support_rate": round(self.partial_support_rate, 4),
+            "unsupported_rate": round(self.unsupported_rate, 4),
+            "accepted_wrong_link_rate": round(self.accepted_wrong_link_rate, 4),
+            "review_cost_per_accepted_edge": round(self.review_cost_per_accepted_edge, 4),
             "matched_ids": self.matched_ids,
         }
 
@@ -96,6 +106,17 @@ def evaluate_proposals(
         1 for record in proposal_records
         if record.get("evidence_links") or record.get("evidence_ids")
     )
+    support_statuses = [
+        str(record.get("review", {}).get("evidence_support", "insufficient_evidence"))
+        for record in predictions
+    ]
+    accepted_wrong = 0
+    accepted_count = 0
+    for decision, key in zip(decisions, predicted):
+        if decision in {"accept", "accepted"}:
+            accepted_count += 1
+            if key not in gold:
+                accepted_wrong += 1
     review_needed = sum(
         1 for record in predictions
         if bool(record.get("review", {}).get("requires_review", record.get("requires_review", True)))
@@ -117,6 +138,15 @@ def evaluate_proposals(
         reject_rate=(decisions.count("reject") + decisions.count("rejected")) / proposal_count if proposal_count else 0.0,
         human_review_needed_rate=review_needed / proposal_count if proposal_count else 0.0,
         evidence_coverage=evidence_count / proposal_count if proposal_count else 0.0,
+        exact_support_rate=support_statuses.count("supports_exact") / proposal_count if proposal_count else 0.0,
+        partial_support_rate=support_statuses.count("supports_partial") / proposal_count if proposal_count else 0.0,
+        unsupported_rate=(
+            support_statuses.count("does_not_support")
+            + support_statuses.count("contradicts")
+            + support_statuses.count("insufficient_evidence")
+        ) / proposal_count if proposal_count else 0.0,
+        accepted_wrong_link_rate=accepted_wrong / accepted_count if accepted_count else 0.0,
+        review_cost_per_accepted_edge=review_needed / accepted_count if accepted_count else 0.0,
         matched_ids=[
             str(proposal_records[index].get("id", proposal_records[index].get("proposal_id", "")))
             for index in matched_indices

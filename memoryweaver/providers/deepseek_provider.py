@@ -15,7 +15,7 @@ class DeepSeekGraphProposalProvider(BaseHTTPGraphProposalProvider):
     provider_name = "deepseek"
     api_key_attr = "deepseek_api_key"
     endpoint = "https://api.deepseek.com/chat/completions"
-    prompt_version = "graph_proposal_deepseek_v0.4"
+    prompt_version = "graph_proposal_deepseek_v0.4.1"
 
     def propose_graph_links(self, request: ProviderRequest) -> list[GraphProposal]:
         if not self.available():
@@ -42,9 +42,14 @@ class DeepSeekGraphProposalProvider(BaseHTTPGraphProposalProvider):
                         "relation": "related_to",
                         "confidence": 0.58,
                         "reason": "short evidence-grounded reason",
+                        "why_link": "why the relation might hold",
+                        "why_not_link": "why the relation might not hold",
+                        "required_evidence": "what would prove the relation",
+                        "relation_strength": "weak",
                         "evidence_ids": ["evidence_001"],
                         "risk": "medium",
                         "requires_review": True,
+                        "should_accept": False,
                     }
                 ]
             },
@@ -121,9 +126,14 @@ class DeepSeekGraphProposalProvider(BaseHTTPGraphProposalProvider):
                     to_tag=to_tag,
                     relation=relation,
                     reason=item.get("reason", ""),
+                    why_link=item.get("why_link", ""),
+                    why_not_link=item.get("why_not_link", ""),
+                    required_evidence=item.get("required_evidence", ""),
+                    relation_strength=item.get("relation_strength", "weak"),
                     confidence=confidence,
                     status="pending",
                     requires_review=True,
+                    should_accept=False,
                     risk=item.get("risk", "medium"),
                     evidence_links=evidence_links,
                     evidence_ids=evidence_ids,

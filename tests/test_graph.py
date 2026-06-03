@@ -5,6 +5,7 @@ import pytest
 from memoryweaver.composer import PatternComposer
 from memoryweaver.evidence import EvidenceLink, EvidenceNode
 from memoryweaver.graph_linker import GraphLinker, tag_node_id
+from memoryweaver.graph.expansion_policy import GraphExpansionPolicy
 from memoryweaver.graph_retriever import GraphRetriever
 from memoryweaver.graph_schema import (
     GraphEdge,
@@ -12,6 +13,7 @@ from memoryweaver.graph_schema import (
     GraphNodeType,
     GraphProposal,
     GraphRelation,
+    GraphStatus,
 )
 from memoryweaver.graph_store import GraphStore
 from memoryweaver.retriever import VerifiedRetriever
@@ -155,6 +157,56 @@ def test_graph_tag_expansion_and_candidate_search(graph_workspace):
     assert assistant.id in result.candidate_memory_ids
     assert assistant.id not in result_ids
     assert result.candidate_reduction_ratio > 0
+
+
+def test_online_expansion_policy_uses_only_accepted_tag_edges(graph_workspace):
+    workspace, memories, _ = graph_workspace
+    graph_retriever = GraphRetriever(
+        workspace.graph,
+        VerifiedRetriever(workspace.memories),
+        workspace.memories.count(),
+    )
+    policy = GraphExpansionPolicy(min_text_results_before_skip=99)
+    result = graph_retriever.search_with_graph_candidates(
+        "codex org problem",
+        ["codex_subscription_failed"],
+        threshold=0.0,
+        expansion_policy=policy,
+    )
+    assert "selected_organization" not in result.expanded_tags
+
+    GraphLinker(workspace.graph).link_tags(
+        "codex_subscription_failed",
+        "selected_organization",
+        GraphRelation.SAME_ISSUE_AS,
+        confidence=0.8,
+        source="reviewed_graph_proposal",
+        status=GraphStatus.ACCEPTED,
+    )
+    accepted_result = graph_retriever.search_with_graph_candidates(
+        "codex org problem",
+        ["codex_subscription_failed"],
+        threshold=0.0,
+        expansion_policy=policy,
+    )
+    assert "selected_organization" in accepted_result.expanded_tags
+    assert memories[1].id in accepted_result.candidate_memory_ids
+
+
+def test_online_expansion_policy_skips_when_text_search_sufficient(graph_workspace):
+    workspace, _, _ = graph_workspace
+    graph_retriever = GraphRetriever(
+        workspace.graph,
+        VerifiedRetriever(workspace.memories),
+        workspace.memories.count(),
+    )
+    result = graph_retriever.search_with_graph_candidates(
+        "Codex CLI subscription load failed in WSL",
+        ["codex_subscription_failed"],
+        expansion_policy=GraphExpansionPolicy(min_text_results_before_skip=1),
+    )
+    assert result.expansion_skipped is True
+    assert result.graph_expansion_candidate_delta == 0
 
 
 def test_evidence_and_pattern_lineage_are_graph_addressable(graph_workspace):

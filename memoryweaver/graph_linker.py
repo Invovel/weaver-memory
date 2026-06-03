@@ -96,6 +96,7 @@ class GraphLinker:
         relation: GraphRelation = GraphRelation.RELATED_TO,
         confidence: float = 0.7,
         source: str = "graph_proposal",
+        status: GraphStatus = GraphStatus.CANDIDATE,
     ) -> str:
         return self.add_candidate_edge(
             source_id=self.ensure_tag(left_tag),
@@ -103,6 +104,7 @@ class GraphLinker:
             relation=relation,
             confidence=confidence,
             source=source,
+            status=status,
         )
 
     def link_evidence(
@@ -150,6 +152,7 @@ class GraphLinker:
         relation: GraphRelation,
         confidence: float,
         source: str = "graph_proposal",
+        status: GraphStatus = GraphStatus.CANDIDATE,
         evidence_links: list[str] | None = None,
         metadata: dict | None = None,
     ) -> str:
@@ -161,7 +164,7 @@ class GraphLinker:
             relation=relation,
             confidence=confidence,
             source=source,
-            status=GraphStatus.CANDIDATE,
+            status=status,
             evidence_links=evidence_links or [],
             metadata=metadata or {},
         )
@@ -169,6 +172,8 @@ class GraphLinker:
         if existing is None:
             return self._graph.add_edge(edge)
         existing.confidence = max(existing.confidence, edge.confidence)
+        if existing.status == GraphStatus.CANDIDATE and edge.status != GraphStatus.CANDIDATE:
+            existing.status = edge.status
         existing.evidence_links = sorted(set(existing.evidence_links + edge.evidence_links))
         existing.metadata.update(edge.metadata)
         self._graph.update_edge(existing)

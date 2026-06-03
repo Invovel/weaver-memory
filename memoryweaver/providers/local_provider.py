@@ -20,6 +20,10 @@ class LocalGraphProposalProvider:
         if not self.available():
             return []
         tags = [tag for tag in request.tags if tag]
+        for memory in request.memories:
+            for tag in memory.get("tags", []):
+                if tag not in tags:
+                    tags.append(tag)
         if len(tags) >= 2:
             confidence = min(0.52, self.config.llm_proposal_confidence_cap)
             return [
@@ -30,9 +34,14 @@ class LocalGraphProposalProvider:
                     to_node=tags[1],
                     relation=GraphRelation.RELATED_TO,
                     reason="Local provider linked the first two supplied tags.",
+                    why_link="The first two supplied tags were co-selected for review.",
+                    why_not_link="The local provider has no semantic proof.",
+                    required_evidence="External evidence that both tags describe the same issue.",
+                    relation_strength="weak",
                     confidence=confidence,
                     status="pending",
                     requires_review=True,
+                    should_accept=False,
                 )
             ]
         return []

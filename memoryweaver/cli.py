@@ -127,6 +127,7 @@ def build_parser() -> argparse.ArgumentParser:
     graph_propose.add_argument("--env-file", default=".env")
     graph_propose.add_argument("--input", required=True)
     graph_propose.add_argument("--output", required=True)
+    graph_propose.add_argument("--path", choices=["offline", "online"], default="offline")
     graph_review = _leaf(
         graph_commands,
         "review",
@@ -303,8 +304,12 @@ def dispatch(args: argparse.Namespace) -> int:
     if args.command == "graph":
         if args.graph_command == "propose":
             from memoryweaver.config import MemoryWeaverConfig
+            from memoryweaver.graph.budget import ProposalBudgetGate
             from memoryweaver.graph.proposal_generator import BatchGraphProposalGenerator
 
+            budget_decision = ProposalBudgetGate().allow_llm_proposal(path=args.path)
+            if not budget_decision.allowed:
+                raise ValueError("; ".join(budget_decision.reasons))
             env = dict(os.environ)
             env.update({
                 "MEMORYWEAVER_ENABLE_LLM_GRAPH_PROPOSAL": "true",
@@ -326,11 +331,19 @@ def dispatch(args: argparse.Namespace) -> int:
             }, json_output)
         elif args.graph_command == "review":
             from memoryweaver.graph.evidence_binder import GraphEvidenceBinder
+            from memoryweaver.graph.evidence_support import EvidenceSupportCheck
             from memoryweaver.graph.linker import ReviewedGraphLinker
+            from memoryweaver.graph.reviewer import GraphProposalReviewPolicy
             from memoryweaver.graph_schema import GraphProposal
 
             binder = GraphEvidenceBinder(workspace.evidence)
-            linker = ReviewedGraphLinker(workspace.graph)
+            linker = ReviewedGraphLinker(
+                workspace.graph,
+                GraphProposalReviewPolicy(
+                    workspace.graph,
+                    evidence_check=EvidenceSupportCheck(workspace.evidence),
+                ),
+            )
             reviewed: list[dict[str, Any]] = []
             for record in _read_jsonl(args.input):
                 proposal_data = record.get("proposal", record)
@@ -346,6 +359,7 @@ def dispatch(args: argparse.Namespace) -> int:
                         "reasons": review.reasons,
                         "confidence": review.confidence,
                         "requires_review": review.requires_review,
+                        "evidence_support": review.evidence_support,
                     },
                     "edge_id": edge_id,
                 })

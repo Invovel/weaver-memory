@@ -1,4 +1,4 @@
-"""Run v0.4 LLM GraphProposal batch validation.
+"""Run v0.4.1 LLM GraphProposal batch validation.
 
 This benchmark evaluates whether LLM-generated GraphProposal objects improve
 graph-assisted retrieval without changing the Layer-3 lifecycle. Providers may
@@ -22,21 +22,25 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from memoryweaver.config import MemoryWeaverConfig
 from memoryweaver.evidence import EvidenceNode
+from memoryweaver.graph.budget import ProposalBudgetGate
 from memoryweaver.graph.evidence_binder import GraphEvidenceBinder
+from memoryweaver.graph.evidence_support import EvidenceSupportCheck
+from memoryweaver.graph.expansion_policy import GraphExpansionPolicy
 from memoryweaver.graph.linker import ReviewedGraphLinker
 from memoryweaver.graph.proposal import LLMGraphProposalService
 from memoryweaver.graph.proposal_eval import evaluate_proposals
+from memoryweaver.graph.reviewer import GraphProposalReviewPolicy
 from memoryweaver.graph_linker import GraphLinker
 from memoryweaver.graph_retriever import GraphRetriever
-from memoryweaver.graph_schema import GraphProposal, GraphRelation
+from memoryweaver.graph_schema import GraphProposal, GraphRelation, GraphStatus
 from memoryweaver.retriever import VerifiedRetriever
 from memoryweaver.schema import MemoryItem, MemoryType, Polarity
 from memoryweaver.store import MemoryWorkspace
 
 
-VALIDATION_NAME = "llm-graph-proposal-v0.4"
-PROMPT_VERSION = "graph_proposal_deepseek_v0.4"
-POLICY_VERSION = "graph-proposal-review-v0.4"
+VALIDATION_NAME = "llm-graph-proposal-v0.4.1"
+PROMPT_VERSION = "graph_proposal_deepseek_v0.4.1"
+POLICY_VERSION = "graph-proposal-review-v0.4.1"
 
 QUERY_CASES = [
     {
@@ -267,16 +271,17 @@ def add_manual_graph(workspace: MemoryWorkspace) -> None:
             relation=GraphRelation(edge["relation"]),
             confidence=0.85,
             source="manual",
+            status=GraphStatus.ACCEPTED,
         )
 
 
 def add_rule_graph(workspace: MemoryWorkspace) -> None:
     linker = GraphLinker(workspace.graph)
-    linker.link_tags("codex_subscription_failed", "selected_organization", relation=GraphRelation.RELATED_TO, confidence=0.75, source="rule")
-    linker.link_tags("codex_subscription_failed", "wsl", relation=GraphRelation.SAME_TOPIC_AS, confidence=0.75, source="rule")
-    linker.link_tags("api_key_exists", "openai_api_billing", relation=GraphRelation.SAME_TOPIC_AS, confidence=0.7, source="rule")
-    linker.link_tags("npm_reinstall_failed", "npm_install_success", relation=GraphRelation.RELATED_TO, confidence=0.65, source="rule")
-    linker.link_tags("api_key_exists", "weather_api_key", relation=GraphRelation.RELATED_TO, confidence=0.4, source="rule")
+    linker.link_tags("codex_subscription_failed", "selected_organization", relation=GraphRelation.RELATED_TO, confidence=0.75, source="rule", status=GraphStatus.ACCEPTED)
+    linker.link_tags("codex_subscription_failed", "wsl", relation=GraphRelation.SAME_TOPIC_AS, confidence=0.75, source="rule", status=GraphStatus.ACCEPTED)
+    linker.link_tags("api_key_exists", "openai_api_billing", relation=GraphRelation.SAME_TOPIC_AS, confidence=0.7, source="rule", status=GraphStatus.ACCEPTED)
+    linker.link_tags("npm_reinstall_failed", "npm_install_success", relation=GraphRelation.RELATED_TO, confidence=0.65, source="rule", status=GraphStatus.ACCEPTED)
+    linker.link_tags("api_key_exists", "weather_api_key", relation=GraphRelation.RELATED_TO, confidence=0.4, source="rule", status=GraphStatus.ACCEPTED)
 
 
 def generate_llm_proposals(
@@ -285,14 +290,21 @@ def generate_llm_proposals(
     output_path: Path,
 ) -> list[dict[str, Any]]:
     service = LLMGraphProposalService(config)
+    budget_gate = ProposalBudgetGate()
     records: list[dict[str, Any]] = []
     for batch in make_batch_records(workspace):
+        decision = budget_gate.allow_llm_proposal(
+            path="offline",
+            current_batch_proposals=len(records),
+        )
+        if not decision.allowed:
+            break
         proposals = service.propose(
             query=batch["query"],
             tags=batch["tags"],
             memories=batch["memories"],
             evidence=batch["evidence"],
-        )
+        )[:budget_gate.max_proposals_per_query]
         for proposal in proposals:
             records.append({
                 "input_id": batch["id"],
@@ -309,7 +321,13 @@ def review_proposals(
     output_path: Path,
 ) -> list[dict[str, Any]]:
     binder = GraphEvidenceBinder(workspace.evidence)
-    linker = ReviewedGraphLinker(workspace.graph)
+    linker = ReviewedGraphLinker(
+        workspace.graph,
+        GraphProposalReviewPolicy(
+            workspace.graph,
+            evidence_check=EvidenceSupportCheck(workspace.evidence),
+        ),
+    )
     reviewed: list[dict[str, Any]] = []
     for record in proposal_records:
         proposal = GraphProposal.from_dict(record["proposal"])
@@ -324,6 +342,7 @@ def review_proposals(
                 "reasons": review.reasons,
                 "confidence": review.confidence,
                 "requires_review": review.requires_review,
+                "evidence_support": review.evidence_support,
             },
             "edge_id": edge_id,
         })
@@ -342,6 +361,10 @@ def evaluate_retrieval_arm(
         VerifiedRetriever(workspace.memories),
         workspace.memories.count(),
     )
+    expansion_policy = GraphExpansionPolicy(
+        min_text_results_before_skip=3,
+        max_candidates=20,
+    )
     case_metrics: list[dict[str, Any]] = []
     for case in QUERY_CASES:
         expected = {memories[label].id for label in case["expected_labels"]}
@@ -351,6 +374,7 @@ def evaluate_retrieval_arm(
                 case["tags"],
                 limit=10,
                 threshold=0.0,
+                expansion_policy=expansion_policy,
             ),
             iterations,
         )
@@ -367,6 +391,8 @@ def evaluate_retrieval_arm(
             "graph_expansion_precision": round(len(expanded_relevant) / len(result.expanded_tags), 4) if result.expanded_tags else 0.0,
             "candidate_count": len(result.candidate_memory_ids),
             "candidate_reduction_ratio": result.candidate_reduction_ratio,
+            "graph_expansion_candidate_delta": result.graph_expansion_candidate_delta,
+            "expansion_skipped": result.expansion_skipped,
             "verified_text_p95_ms": measurement["p95_ms"],
             "verified_text_p50_ms": measurement["p50_ms"],
             "expanded_tags": result.expanded_tags,
@@ -378,8 +404,10 @@ def evaluate_retrieval_arm(
         "memory_recall_at_10": round(statistics.mean(case["memory_recall_at_10"] for case in case_metrics), 4),
         "graph_expansion_precision": round(statistics.mean(case["graph_expansion_precision"] for case in case_metrics), 4),
         "candidate_reduction_ratio": round(statistics.mean(case["candidate_reduction_ratio"] for case in case_metrics), 4),
+        "graph_expansion_candidate_delta": round(statistics.mean(case["graph_expansion_candidate_delta"] for case in case_metrics), 4),
         "verified_text_p95_ms": round(max(case["verified_text_p95_ms"] for case in case_metrics), 4),
         "verified_text_p50_ms": round(statistics.mean(case["verified_text_p50_ms"] for case in case_metrics), 4),
+        "online_llm_call_count": 0,
         "cases": case_metrics,
     }
 
@@ -414,9 +442,9 @@ def write_readme(
     metrics = raw_results["proposal_metrics"]
     arms = raw_results["retrieval_arms"]
     lines = [
-        "# LLM GraphProposal v0.4 Validation",
+        "# LLM GraphProposal v0.4.1 Validation",
         "",
-        "This validation treats DeepSeek strictly as an **LLM GraphProposal Provider**. It does not write verified memory, stable Patterns, RelationEdge records without Harness review, or routing decisions.",
+        "This validation treats every LLM-compatible backend strictly as an offline **LLM GraphProposal Provider**. It does not run on the online query path, write verified memory, stable Patterns, RelationEdge records without Harness review, or routing decisions.",
         "",
         "## Configuration",
         "",
@@ -426,26 +454,31 @@ def write_readme(
         f"- Review policy version: `{POLICY_VERSION}`",
         f"- Dataset size: `{raw_results['dataset']['memory_count']}` memories, `{raw_results['dataset']['evidence_count']}` evidence nodes, `{raw_results['dataset']['query_count']}` queries",
         f"- Proposal count: `{metrics['proposal_count']}`",
+        f"- Offline proposal count: `{raw_results['offline_proposal_count']}`",
+        f"- Online LLM call count: `{raw_results['online_llm_call_count']}`",
         f"- Accepted / pending / rejected / quarantined: `{metrics['accepted']}` / `{metrics['pending']}` / `{metrics['rejected']}` / `{metrics['quarantined']}`",
         f"- Pending / reject / human-review rates: `{metrics['pending_rate']}` / `{metrics['reject_rate']}` / `{metrics['human_review_needed_rate']}`",
         f"- Wrong link rate: `{metrics['wrong_link_rate']}`",
         f"- Evidence coverage: `{metrics['evidence_coverage']}`",
+        f"- Exact / partial / unsupported evidence support rates: `{metrics['exact_support_rate']}` / `{metrics['partial_support_rate']}` / `{metrics['unsupported_rate']}`",
+        f"- Accepted wrong link rate: `{metrics['accepted_wrong_link_rate']}`",
+        f"- Review cost per accepted edge: `{metrics['review_cost_per_accepted_edge']}`",
         f"- Human review needed: `{metrics['human_review_needed']}`",
         "",
         "## Retrieval Comparison",
         "",
-        "| Arm | Tag Recall@k | Memory Recall@10 | Graph Expansion Precision | Candidate Reduction | Verified Text p95 ms |",
-        "| --- | ---: | ---: | ---: | ---: | ---: |",
+        "| Arm | Tag Recall@k | Memory Recall@10 | Graph Expansion Precision | Candidate Reduction | Candidate Delta | Verified Text p95 ms | Online LLM Calls |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
     for arm in arms:
         lines.append(
-            f"| {arm['arm']} | {arm['tag_recall_at_k']} | {arm['memory_recall_at_10']} | {arm['graph_expansion_precision']} | {arm['candidate_reduction_ratio']} | {arm['verified_text_p95_ms']} |"
+            f"| {arm['arm']} | {arm['tag_recall_at_k']} | {arm['memory_recall_at_10']} | {arm['graph_expansion_precision']} | {arm['candidate_reduction_ratio']} | {arm['graph_expansion_candidate_delta']} | {arm['verified_text_p95_ms']} | {arm['online_llm_call_count']} |"
         )
     lines.extend([
         "",
         "## Interpretation",
         "",
-        "This is a retrieval/linking validation, not a task-success experiment. A positive result means graph proposals can shrink or improve retrieval candidates under Harness review; it does not prove that MemoryWeaver improves end-to-end Agent success rate.",
+        "This is a retrieval/linking validation, not a task-success experiment. v0.4.1 explicitly separates offline LLM proposal generation from online accepted-edge retrieval.",
         "",
         "Layer 3 remains unchanged: provisional Patterns are limited to `fast_verify`, stable Patterns alone can route to `fast`, and evidence links do not auto-promote memory.",
     ])
@@ -458,7 +491,7 @@ def main() -> None:
     parser.add_argument("--provider", default="local")
     parser.add_argument("--model", default="local-graph-proposer")
     parser.add_argument("--env-file", default=".env")
-    parser.add_argument("--output-dir", type=Path, default=Path("docs/validation/llm-graph-proposal-v0.4"))
+    parser.add_argument("--output-dir", type=Path, default=Path("docs/validation/llm-graph-proposal-v0.4.1"))
     args = parser.parse_args()
 
     config = build_config(args)
@@ -478,8 +511,8 @@ def main() -> None:
             args.output_dir / "reviewed_proposals.jsonl",
         )
         proposal_metrics = evaluate_proposals(GOLD_EDGES, reviewed).to_dict()
-        deepseek_arm = evaluate_retrieval_arm(
-            "deepseek_proposal_graph",
+        llm_offline_arm = evaluate_retrieval_arm(
+            "llm_offline_proposal_graph",
             workspace,
             memories,
             args.iterations,
@@ -494,7 +527,7 @@ def main() -> None:
         evaluate_arm("no_graph", args.iterations, lambda workspace: None),
         evaluate_arm("manual_graph", args.iterations, add_manual_graph),
         evaluate_arm("rule_graph", args.iterations, add_rule_graph),
-        deepseek_arm,
+        llm_offline_arm,
     ]
 
     raw_results = {
@@ -505,6 +538,10 @@ def main() -> None:
         "review_policy_version": POLICY_VERSION,
         "iterations": args.iterations,
         "dataset": dataset,
+        "offline_proposal_count": len(proposal_records),
+        "online_llm_call_count": sum(
+            arm["online_llm_call_count"] for arm in retrieval_arms
+        ),
         "proposal_metrics": proposal_metrics,
         "retrieval_arms": retrieval_arms,
     }

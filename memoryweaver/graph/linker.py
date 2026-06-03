@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from memoryweaver.graph_linker import GraphLinker
-from memoryweaver.graph_schema import GraphProposal
+from memoryweaver.graph_schema import GraphProposal, GraphStatus
 from memoryweaver.graph_store import GraphStore
 from memoryweaver.graph.reviewer import GraphProposalReviewPolicy
 
@@ -32,6 +32,7 @@ class ReviewedGraphLinker:
             relation=proposal.relation,
             confidence=proposal.confidence,
             source="reviewed_graph_proposal",
+            status=GraphStatus.ACCEPTED,
         )
         edge = self.graph.get_edge(edge_id)
         if edge is not None:

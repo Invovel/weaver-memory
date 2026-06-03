@@ -35,6 +35,7 @@ class GraphRelation(str, Enum):
 
 class GraphStatus(str, Enum):
     CANDIDATE = "candidate"
+    ACCEPTED = "accepted"
     VERIFIED = "verified"
     REJECTED = "rejected"
     STALE = "stale"
@@ -117,10 +118,15 @@ class GraphProposal:
     from_tag: str = ""
     to_tag: str = ""
     reason: str = ""
+    why_link: str = ""
+    why_not_link: str = ""
+    required_evidence: str = ""
+    relation_strength: str = "weak"
     id: str = field(default_factory=lambda: f"gp_{uuid.uuid4().hex[:12]}")
     confidence: float = 0.0
     status: str = "pending"
     requires_review: bool = True
+    should_accept: bool = False
     risk: str = "medium"
     from_text: str = ""
     to_text: str = ""

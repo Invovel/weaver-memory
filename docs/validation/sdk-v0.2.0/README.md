@@ -14,6 +14,38 @@ This batch validates the standalone JSON-backed SDK v0.2.0 foundation:
 
 Raw data is stored in [`raw_results.json`](raw_results.json).
 
+This is a **system correctness validation** and **trust-boundary validation**.
+It is not the main task-performance experiment.
+
+## What This Proves
+
+- The implementation follows the source-gated design principles.
+- Basic write, retrieval, routing, and validation paths do not bypass policy gates.
+- Assistant and synthetic sources do not become trusted positive memory by default.
+- Evidence links can support memory and Pattern records without automatically promoting them.
+- Provisional and stable Layer-3 routing behaves as intended.
+- Chinese and mixed-language lexical retrieval has a working baseline.
+- CLI and workspace validation can run as smoke checks.
+
+## What This Does Not Prove
+
+- That an Agent solves real tasks faster.
+- That repeated errors decrease in realistic task loops.
+- That MemoryWeaver is better than RAG over logs.
+- That memory can be reused across different LLMs.
+- That the system is stable over long-running real projects.
+
+Those claims require the next task-level experiment:
+
+```text
+No memory
+vs RAG over logs
+vs MemoryWeaver v0.2.0
+```
+
+with task metrics such as steps-to-success, repeated error count, path reuse
+rate, tool error rate, and memory activation accuracy.
+
 ## Procedure
 
 ```powershell
@@ -66,3 +98,7 @@ The SDK v0.2.0 gates close the Sprint 0.1 surface:
 This remains a local JSON prototype. The benchmark does not certify production
 capacity, concurrency, crash recovery, GBrain graph expansion, vector search, or
 full RAG runtime behavior.
+
+SDK v0.2.0 is therefore sufficient for small-scale semantic validation and for
+starting controlled task-level experiments, but it is not evidence of improved
+task success rate yet.

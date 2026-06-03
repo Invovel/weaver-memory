@@ -604,6 +604,8 @@ P0 信任边界修复已经完成五轮独立验证。详见
 - `policy.py` - `MemoryPolicy` 与 `RetrievalPolicy`
 - `evidence.py` - `EvidenceNode`、`EvidenceLink`、`EvidencePacket`、`EvidenceStore`
 - `composer.py` - `PatternStore` 与显式 provisional `PatternComposer`
+- `graph_schema.py`、`graph_store.py`、`graph_linker.py`、`graph_retriever.py` -
+  最小候选图谱 / tag-linking，用于召回扩展和候选缩小
 - `cli.py` - `mw` CLI：validate、memory、evidence、pattern、route
 - `scorer.py` - heat / confidence / freshness 信号，不再自动创建 Layer 3
 - `retriever.py` - 策略过滤的 verified retrieval
@@ -615,9 +617,28 @@ P0 批次已经关闭四项信任边界风险：编辑伪增 heat、tag gate 绕
 positive 写入和 Router fast-path 绕行。SDK v0.2.0 继续加入 policy gate、
 EvidenceLink 校验、中文召回探针、CLI smoke 和 provisional/stable Pattern 生命周期测试。
 
-本阶段明确暂不实现：GBrain 数据库、图谱 expansion、完整 RAG pipeline、embedding、
-向量数据库、HarnessRuntime、ActionGate、checkpoint、真实 LLM provider 和自动
-PatternComposer 推理。
+验证范围：
+
+- 已证明：policy gate 不被基础路径绕过，provisional Pattern 不会过早 `fast`，
+  evidence link 不会自动晋升 memory，中文 lexical retrieval 有基本命中，
+  CLI/workspace smoke check 可通过。
+- 尚未证明：真实任务解决更快、重复错误减少、优于 RAG over logs、跨模型经验复用、
+  长期真实项目稳定性。
+
+下一组论文主实验应比较 No Memory、RAG over logs 和 MemoryWeaver v0.2.0，并记录
+steps-to-success、repeated error count、path reuse rate、tool error rate 和
+memory activation accuracy。
+
+未来可以引入 LLM 维护 GBrain、思维导图和分支存储，但必须保留硬边界：LLM 可以维护
+候选图谱、候选摘要、候选分支；不能直接维护 verified memory 或 stable Pattern。
+
+Graph tag-linking 验证记录见
+[`docs/validation/graph-tag-linking-v0.3/README.md`](docs/validation/graph-tag-linking-v0.3/README.md)。
+它说明一跳候选图谱可以改善 tag recall 并缩小候选扫描范围，但不证明任务成功率提升。
+
+本阶段明确暂不实现：完整 GBrain 数据库、候选层之外的多跳图谱 expansion、完整 RAG
+pipeline、embedding、向量数据库、HarnessRuntime、ActionGate、checkpoint、真实 LLM
+provider 和自动 PatternComposer 推理。
 
 ---
 

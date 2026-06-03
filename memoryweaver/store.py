@@ -190,6 +190,7 @@ class MemoryWorkspace:
     def __init__(self, root: str | Path = ".memoryweaver"):
         from memoryweaver.composer import PatternStore
         from memoryweaver.evidence import EvidenceStore
+        from memoryweaver.graph_store import GraphStore
 
         self.root = Path(root)
         self.memory_policy = MemoryPolicy()
@@ -206,6 +207,7 @@ class MemoryWorkspace:
             self.root / "evidence_nodes.json",
             self.root / "evidence_links.json",
         )
+        self.graph = GraphStore(self.root / "graph.json")
 
     def validate(self) -> dict[str, Any]:
         """Return structural errors and compatibility warnings."""
@@ -216,6 +218,7 @@ class MemoryWorkspace:
             self.root / "patterns.json",
             self.root / "evidence_nodes.json",
             self.root / "evidence_links.json",
+            self.root / "graph.json",
         ]
         for path in paths:
             if not path.exists():
@@ -241,6 +244,11 @@ class MemoryWorkspace:
         for pattern in self.patterns.list_all():
             if pattern.policy_version != self.memory_policy.version:
                 warnings.append(f"stale pattern policy version: {pattern.id}")
+        errors.extend(self.graph.validate_refs(
+            memory_ids={item.id for item in self.memories.list_all()},
+            evidence_ids={node.id for node in self.evidence.list_nodes()},
+            pattern_ids={pattern.id for pattern in self.patterns.list_all()},
+        ))
 
         if token_jaccard("检查组织选择解决订阅问题", "订阅问题检查组织选择") <= 0:
             errors.append("Chinese lexical retrieval probe failed")

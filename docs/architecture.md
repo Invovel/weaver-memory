@@ -18,6 +18,8 @@ README 或调用方当作已有能力。
 - RAG 负责证据检索，GBrain 负责关系图谱。
 - MemoryWeaver Harness 负责判断、调度、晋升、降权和防污染。
 - Harness 还负责执行前动作校验和执行后轨迹调节。
+- LLM 可以维护候选图谱、候选摘要和候选分支，但不能直接维护 verified memory
+  或 stable Pattern。
 
 ## 总体流程
 
@@ -72,6 +74,10 @@ flowchart LR
 | `memoryweaver/policy.py` | `MemoryPolicy`、`RetrievalPolicy` 与来源/状态/scope gate |
 | `memoryweaver/evidence.py` | `EvidenceNode`、`EvidenceLink`、`EvidencePacket` 与证据持久化 |
 | `memoryweaver/composer.py` | `PatternStore` 与显式 provisional `PatternComposer` |
+| `memoryweaver/graph_schema.py` | 最小 Graph node、edge、proposal schema |
+| `memoryweaver/graph_store.py` | JSON-backed candidate graph store |
+| `memoryweaver/graph_linker.py` | 手动 / 规则式 tag-memory-evidence-pattern 边建立 |
+| `memoryweaver/graph_retriever.py` | 一跳 tag expansion 与 graph candidate narrowing |
 | `memoryweaver/cli.py` | `mw validate`、memory、evidence、pattern、route |
 | `memoryweaver/scorer.py` | access、use、validation、success、correction、confidence；不自动创建 Layer 3 |
 | `memoryweaver/extractor.py` | 中英文规则式 feedback 分类与事件检测 |
@@ -89,6 +95,7 @@ flowchart LR
 - 结构化 `ActionProposal`、`ActionGate` 与 `ActionPolicy`。
 - `TrajectoryRegulator`：重复、停滞、预算与恢复策略。
 - GBrain 图谱存储与关系查询。
+- 多跳图谱 expansion、alias merge、temporal graph 和 graph maintenance。
 - RAG 证据层、向量数据库、Hybrid Retrieval 与 rerank。
 
 P0 source gate、tag gate、Router gate 与 heat 生命周期拆分已通过五轮验证，详见
@@ -135,6 +142,8 @@ raw chunk 属于 RAG Evidence Layer。Layer 3 只保存 Pattern，并通过 prov
 - `PatternComposer` 是创建 Layer-3 Pattern 的唯一入口。
 - Layer 3 is provisional by default.
 - `stable` Pattern 必须显式验证，不后台晋升、不自动泛化。
+- LLM 维护的 GBrain、思维导图或分支存储只能作为 candidate structure，由 Harness
+  和 policy gate 判断后才能影响 verified memory 或 stable Pattern。
 
 ## 来源模型
 

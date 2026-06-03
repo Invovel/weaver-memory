@@ -11,6 +11,7 @@
 - `MemoryPolicy`、`RetrievalPolicy`、`EvidenceNode`、`EvidenceLink`、`EvidencePacket`。
 - `MemoryWorkspace`、`PatternStore`、`PatternComposer`、`memoryweaver.cli:main`。
 - 中文与中英混合 lexical baseline。
+- 最小 candidate graph / tag-linking：Graph node、edge、proposal、tag expansion、candidate narrowing。
 - 113 个 pytest 测试通过。
 - P0 source gate、tag gate、Router gate 与 heat 生命周期拆分已经完成五轮验证。
 
@@ -18,12 +19,77 @@
 [P0 trust-boundary report](./validation/p0-trust-boundary-2026-06-02/README.md)。
 下一步先保持 SDK v0.2.0 回归门禁，再进入 ConflictDetector、Graph 和 RAG。
 
+当前结论边界：
+
+- v0.2.0 证明系统 correctness 和 trust boundary。
+- v0.2.0 尚未证明 Agent 任务成功率提升。
+- 下一篇主实验必须进入任务级对比：No Memory vs RAG over logs vs MemoryWeaver。
+- LLM 可以维护候选图谱、候选摘要和候选分支；不能直接维护 verified memory 或
+  stable Pattern。
+- 当前 graph 只影响候选召回，不影响 Layer 3 生命周期。
+
 ## 开发规则
 
 - 保留 **LLM proposes, Harness judges**。
+- LLM 维护 GBrain、思维导图或分支存储时，只能产出 candidate structure。
+- verified memory 和 stable Pattern 只能由 Harness policy 与验证结果显式产生。
 - 每个步骤保持现有测试通过，并增加针对性回归测试。
 - 优先小改，不在同一个提交中同时引入 enum、策略层、图谱和向量库。
 - README 只声明已经落地且被测试覆盖的能力。
+
+## 版本规划
+
+### v0.2.1：稳定 SDK 与文档边界
+
+目标是不扩展大系统，只稳定当前 SDK：
+
+1. 把 validation 结果写进 README / docs。
+2. 保留 `raw_results.json`。
+3. 增加 changelog：v0.2.0 validated。
+4. 明确 benchmark 是 correctness + local prototype benchmark，不是 production benchmark。
+5. 把 Layer 3 provisional policy 写成硬规则。
+
+### v0.3.0：任务级对比实验
+
+目标是证明 provisional procedural pattern 是否真的减少重复试错。
+
+新增数据资产：
+
+```text
+task_runs.jsonl
+evaluation_metrics.json
+case_studies.md
+raw_events.jsonl
+memory_items.jsonl
+pattern_items.jsonl
+evidence_links.jsonl
+```
+
+实验对照：
+
+```text
+No memory
+RAG over logs
+MemoryWeaver v0.2.0
+```
+
+核心指标：
+
+- steps-to-success
+- repeated error reduction
+- path reuse rate
+- tool error rate
+- memory activation accuracy
+
+### v0.4.0：索引、冲突与最小图谱
+
+再进入：
+
+- `ConflictDetector`
+- 更完整的 `EvidencePacket`
+- SQLite / indexed backend
+- simple vector backend
+- minimal GBrain projection beyond the current candidate tag-linking layer
 
 ## Sprint 0.1：修正原型边界
 

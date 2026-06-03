@@ -21,6 +21,17 @@ from memoryweaver.retriever import VerifiedRetriever
 from memoryweaver.policy import MemoryPolicy, RetrievalPolicy
 from memoryweaver.evidence import EvidenceNode, EvidenceLink, EvidencePacket, EvidenceRelation, EvidenceStore
 from memoryweaver.composer import PatternStore, PatternComposer
+from memoryweaver.graph_schema import (
+    GraphEdge,
+    GraphNode,
+    GraphNodeType,
+    GraphProposal,
+    GraphRelation,
+    GraphStatus,
+)
+from memoryweaver.graph_store import GraphStore
+from memoryweaver.graph_linker import GraphLinker
+from memoryweaver.graph_retriever import GraphCandidateResult, GraphRetriever
 from memoryweaver.contradiction import (
     ContradictionResolver,
     ConflictResult,
@@ -65,6 +76,16 @@ __all__ = [
     "EvidenceStore",
     "PatternStore",
     "PatternComposer",
+    "GraphNode",
+    "GraphEdge",
+    "GraphProposal",
+    "GraphNodeType",
+    "GraphRelation",
+    "GraphStatus",
+    "GraphStore",
+    "GraphLinker",
+    "GraphRetriever",
+    "GraphCandidateResult",
     # contradiction
     "ContradictionResolver",
     "ConflictResult",

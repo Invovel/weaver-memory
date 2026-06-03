@@ -9,9 +9,11 @@ retrievable "knowledge."
 
 from __future__ import annotations
 
+from collections.abc import Iterable
+
 from memoryweaver.policy import RetrievalPolicy
 from memoryweaver.schema import MemoryItem, Source
-from memoryweaver.store import MemoryStore
+from memoryweaver.store import MemoryStore, token_jaccard
 
 
 class VerifiedRetriever:
@@ -56,6 +58,7 @@ class VerifiedRetriever:
         include_unverified: bool = False,
         threshold: float = 0.25,
         scope: str = "project",
+        graph_candidates: Iterable[str] | None = None,
     ) -> list[MemoryItem]:
         """Search for memories relevant to *query*, filtered by credibility.
 
@@ -70,7 +73,16 @@ class VerifiedRetriever:
         Returns:
             Sorted list of MemoryItems, best (most credible) first.
         """
-        candidates = self._store.find_similar(query, threshold=threshold)
+        if graph_candidates is None:
+            candidates = self._store.find_similar(query, threshold=threshold)
+        else:
+            candidates = []
+            for memory_id in graph_candidates:
+                item = self._store.get(memory_id)
+                if item is None:
+                    continue
+                if threshold <= 0 or token_jaccard(query, item.content) >= threshold:
+                    candidates.append(item)
 
         scored: list[tuple[float, MemoryItem]] = []
         for item in candidates:

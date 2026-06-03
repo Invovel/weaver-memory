@@ -593,6 +593,8 @@ usable Python SDK and CLI with 113 passing tests:
 - `policy.py` - `MemoryPolicy` and `RetrievalPolicy`.
 - `evidence.py` - `EvidenceNode`, `EvidenceLink`, `EvidencePacket`, `EvidenceStore`.
 - `composer.py` - `PatternStore` and explicit provisional `PatternComposer`.
+- `graph_schema.py`, `graph_store.py`, `graph_linker.py`, `graph_retriever.py` -
+  minimal candidate graph/tag-linking for recall expansion and candidate narrowing.
 - `cli.py` - `mw` CLI for validate, memory, evidence, pattern, and route.
 - `scorer.py` - heat/confidence/freshness signals without automatic Layer 3 promotion.
 - `retriever.py` - policy-filtered verified retrieval.
@@ -605,9 +607,32 @@ bypass, assistant-positive writes, and Router fast-path bypass. SDK v0.2.0 adds
 policy gates, EvidenceLink validation, Chinese retrieval probes, CLI smoke
 coverage, and provisional/stable Pattern lifecycle tests.
 
-Deferred by design: GBrain database, graph expansion, full RAG pipeline,
-embedding, vector DB, HarnessRuntime, ActionGate, checkpointing, real LLM
-providers, and automatic PatternComposer inference.
+Validation scope:
+
+- Proven: policy gates hold, provisional Patterns do not route `fast`, evidence
+  links do not auto-promote memory, Chinese lexical retrieval has a baseline,
+  and CLI/workspace smoke checks pass.
+- Not proven yet: faster real task completion, repeated error reduction,
+  superiority over RAG over logs, cross-model memory reuse, or long-term project
+  stability.
+
+The next publishable experiment should compare No Memory vs RAG over logs vs
+MemoryWeaver v0.2.0 using steps-to-success, repeated error count, path reuse
+rate, tool error rate, and memory activation accuracy.
+
+Future LLM-assisted maintenance must keep this hard boundary: LLMs may maintain
+candidate graph nodes, candidate summaries, and candidate branches, but they
+must not directly maintain verified memory or stable Patterns.
+
+Graph tag-linking validation is recorded in
+[`docs/validation/graph-tag-linking-v0.3/README.md`](docs/validation/graph-tag-linking-v0.3/README.md).
+It shows that a one-hop graph can improve tag recall and reduce candidate scan
+size in a controlled fixture, but it does not prove task success improvement.
+
+Deferred by design: full GBrain database, multi-hop graph expansion beyond the
+candidate layer, full RAG pipeline, embedding, vector DB, HarnessRuntime,
+ActionGate, checkpointing, real LLM providers, and automatic PatternComposer
+inference.
 
 ---
 

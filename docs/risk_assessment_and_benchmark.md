@@ -29,6 +29,11 @@ SDK v0.2.0 新增验证覆盖：
 - `EvidenceLink` dangling 与双 target 检查。
 - provisional Pattern 最大只路由到 `fast_verify`。
 - stable Pattern 才允许 `fast`。
+- graph tag-linking 只影响候选召回，不影响最终裁决或 Layer 3 生命周期。
+
+这批结果适合作为论文中的 **System Correctness Validation** 或
+**Trust-Boundary Validation**。它不适合作为主实验，因为它尚未证明任务成功率、
+解决速度、重复错误率或跨模型复用能力的改善。
 
 仍保留为后续工作的风险：
 
@@ -171,6 +176,8 @@ query iterations: 100
 | 阶段 | Benchmark |
 | --- | --- |
 | SDK v0.2.0 后 | 对比 source gate、Router、heat、Policy、EvidenceLink、Pattern 与中文召回前后结果 |
+| v0.3.0 任务实验 | No Memory vs RAG over logs vs MemoryWeaver v0.2.0，比较 steps-to-success、repeated errors、path reuse、tool errors、memory activation accuracy |
+| Graph tag-linking | tag expansion、graph candidate narrowing、Evidence/Pattern lineage、wrong/stale link rate |
 | 最小 GBrain 后 | point get、tag lookup、1-hop expansion、projection throughput |
 | RAG MVP 后 | ingest throughput、Recall@k、p95、HNSW、hybrid、rerank |
 | ReAct MVP 后 | step latency、CLI queue、checkpoint、crash recovery、duplicate side effect |

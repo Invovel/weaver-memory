@@ -1,8 +1,8 @@
 """MemoryItem schema and supporting types.
 
-This is the foundational data model for MemoryWeaver. Every memory
-enters the system as a MemoryItem and travels through Layer 1 → 2 → 3
-based on feedback, scoring, and promotion rules.
+This is the foundational data model for MemoryWeaver. Every MemoryItem
+enters the system in Layer 1 and can be explicitly promoted to Layer 2.
+Canonical Layer-3 records are separate Pattern objects.
 """
 
 from __future__ import annotations
@@ -52,6 +52,13 @@ class Status(str, Enum):
     ARCHIVED = "archived"
 
 
+class PatternStatus(str, Enum):
+    PROVISIONAL = "provisional"
+    STABLE = "stable"
+    ROLLED_BACK = "rolled_back"
+    ARCHIVED = "archived"
+
+
 class MemoryType(str, Enum):
     FACT = "fact"
     CORRECTION = "correction"
@@ -90,7 +97,7 @@ class MemoryItem:
 
     Attributes:
         id: Unique identifier, auto-generated if not provided.
-        layer: Current memory layer (1, 2, or 3).
+        layer: Current memory layer (1 or 2). Layer 3 is legacy-read-only.
         polarity: Feedback polarity classification.
         memory_type: The kind of memory (fact, correction, pattern, etc.).
         content: The actual memory text.
@@ -140,10 +147,14 @@ class MemoryItem:
     accessed_at: str = ""
     used_at: str = ""
     validated_at: str = ""
+    legacy_pattern: bool = False
 
     def __post_init__(self) -> None:
         if not isinstance(self.source, Source):
             self.source = Source(self.source)
+
+        if self.layer == Layer.PATTERN and not self.legacy_pattern:
+            raise ValueError("Layer 3 records must be created through PatternComposer")
 
         if self.source in (Source.ASSISTANT, Source.SYNTHETIC):
             self.polarity = Polarity.AMBIGUOUS
@@ -173,11 +184,15 @@ class MemoryItem:
         self.validation_count += 1
 
     def promote(self, target_layer: Layer | None = None) -> None:
-        """Promote to the next layer (or a specific one)."""
+        """Promote a MemoryItem within its Layer-1/Layer-2 lifecycle."""
+        if target_layer == Layer.PATTERN:
+            raise ValueError("Layer 3 records must be created through PatternComposer")
+        if self.layer == Layer.PATTERN:
+            raise ValueError("legacy Layer-3 MemoryItem records are read-only")
         if target_layer is not None:
             self.layer = target_layer
-        elif self.layer < Layer.PATTERN:
-            self.layer = Layer(self.layer.value + 1)
+        elif self.layer == Layer.CANDIDATE:
+            self.layer = Layer.ACTIVATED
         self.status = Status.PROMOTED
         self.mark_updated()
 
@@ -211,6 +226,8 @@ class MemoryItem:
     @classmethod
     def from_dict(cls, d: dict[str, Any]) -> MemoryItem:
         d = dict(d)  # shallow copy to avoid mutating the input
+        if d.get("layer") == Layer.PATTERN.value:
+            d["legacy_pattern"] = True
         if d.get("source", Source.UNKNOWN.value) in (
             Source.ASSISTANT.value,
             Source.SYNTHETIC.value,
@@ -244,20 +261,43 @@ class Pattern:
 
     id: str = field(default_factory=lambda: f"pat_{uuid.uuid4().hex[:12]}")
     pattern_type: str = "diagnostic_rule"
+    status: PatternStatus = PatternStatus.PROVISIONAL
     composed_from: list[str] = field(default_factory=list)
     rule: str = ""
     applies_when: list[str] = field(default_factory=list)
     avoid_when: list[str] = field(default_factory=list)
+    success_path: list[str] = field(default_factory=list)
+    failed_path: list[str] = field(default_factory=list)
+    evidence_links: list[str] = field(default_factory=list)
+    rollback_to: list[str] = field(default_factory=list)
+    scope: str = "project"
+    policy_version: str = "memory-policy-v1"
+    freshness: Freshness = Freshness.UNKNOWN
     confidence: float = 0.0
     model_fit: list[str] = field(default_factory=list)
     promotion_reason: str = ""
+    validation_task_runs: list[str] = field(default_factory=list)
+    conflict_refs: list[str] = field(default_factory=list)
+    rollback_reason: str = ""
     created_at: str = field(
+        default_factory=lambda: datetime.now(timezone.utc).isoformat()
+    )
+    updated_at: str = field(
         default_factory=lambda: datetime.now(timezone.utc).isoformat()
     )
 
     def to_dict(self) -> dict[str, Any]:
-        return asdict(self)
+        d = asdict(self)
+        d["status"] = self.status.value
+        d["freshness"] = self.freshness.value
+        return d
 
     @classmethod
     def from_dict(cls, d: dict[str, Any]) -> Pattern:
+        d = dict(d)
+        d["status"] = PatternStatus(d.get("status", "provisional"))
+        d["freshness"] = Freshness(d.get("freshness", "unknown"))
         return cls(**d)
+
+    def mark_updated(self) -> None:
+        self.updated_at = datetime.now(timezone.utc).isoformat()

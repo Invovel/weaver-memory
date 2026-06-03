@@ -9,7 +9,8 @@ retrievable "knowledge."
 
 from __future__ import annotations
 
-from memoryweaver.schema import MemoryItem, Layer, Source, Status
+from memoryweaver.policy import RetrievalPolicy
+from memoryweaver.schema import MemoryItem, Source
 from memoryweaver.store import MemoryStore
 
 
@@ -31,23 +32,18 @@ class VerifiedRetriever:
         # Only verified or externally-grounded memories returned.
     """
 
-    SOURCE_WEIGHT: dict[Source, float] = {
-        Source.USER:      1.0,
-        Source.TERMINAL:  1.0,
-        Source.TOOL:      0.9,
-        Source.WEB:       0.6,
-        Source.COMPOSER:  0.5,
-        Source.ASSISTANT: 0.0,
-        Source.FILE:      0.6,
-        Source.SYNTHETIC: 0.0,
-        Source.UNKNOWN:   0.2,
-    }
+    SOURCE_WEIGHT = RetrievalPolicy.SOURCE_WEIGHT
 
     # Minimum combined score (source_weight * confidence) to include.
     MIN_SCORE = 0.05
 
-    def __init__(self, store: MemoryStore):
+    def __init__(
+        self,
+        store: MemoryStore,
+        policy: RetrievalPolicy | None = None,
+    ):
         self._store = store
+        self._policy = policy or RetrievalPolicy()
 
     # ------------------------------------------------------------------
     # Public API
@@ -59,6 +55,7 @@ class VerifiedRetriever:
         limit: int = 10,
         include_unverified: bool = False,
         threshold: float = 0.25,
+        scope: str = "project",
     ) -> list[MemoryItem]:
         """Search for memories relevant to *query*, filtered by credibility.
 
@@ -77,13 +74,10 @@ class VerifiedRetriever:
 
         scored: list[tuple[float, MemoryItem]] = []
         for item in candidates:
-            if not self._should_include(item, include_unverified):
+            if not self._policy.should_include(item, scope, include_unverified):
                 continue
 
-            weight = self.SOURCE_WEIGHT.get(item.source, 0.2)
-            # Layer bonus: Layer-3 patterns get a small boost
-            layer_bonus = 1.1 if item.layer == Layer.PATTERN else 1.0
-            combined = weight * item.confidence * layer_bonus
+            combined = self._policy.score(item)
 
             # Items that passed _should_include with explicit user request
             # (e.g. heated assistant memories) bypass the minimum score gate.
@@ -107,13 +101,14 @@ class VerifiedRetriever:
         tags: list[str],
         match_all: bool = False,
         include_unverified: bool = False,
+        scope: str = "project",
     ) -> list[MemoryItem]:
         """Tag-based search with the same source filtering as search()."""
         candidates = self._store.find_by_tags(tags, match_all=match_all)
         verified = [
             item
             for item in candidates
-            if self._should_include(item, include_unverified)
+            if self._policy.should_include(item, scope, include_unverified)
         ]
         return self._sort_by_credibility(verified)
 
@@ -139,48 +134,10 @@ class VerifiedRetriever:
             )
         return "\n".join(lines)
 
-    # ------------------------------------------------------------------
-    # Internal
-    # ------------------------------------------------------------------
-
-    @staticmethod
-    def _should_include(item: MemoryItem, include_unverified: bool) -> bool:
-        """Decide whether a memory item should appear in retrieval results."""
-        if item.status in (Status.ARCHIVED, Status.DEPRECATED):
-            return False
-
-        # Always include user and terminal sources
-        if item.source in (Source.USER, Source.TERMINAL, Source.TOOL):
-            return True
-
-        # Always include composer-generated patterns with confidence > 0
-        if item.source == Source.COMPOSER and item.confidence > 0:
-            return True
-
-        # Web sources: include if they have any confidence
-        if item.source in (Source.WEB, Source.FILE) and item.confidence > 0:
-            return True
-
-        # Assistant sources: excluded by default
-        if item.source == Source.ASSISTANT:
-            if include_unverified and item.heat > 0:
-                # Was retrieved and used at least once — might have implicit
-                # verification through continued task success
-                return True
-            return False
-
-        # HyDE and other generated evidence may help query expansion, but
-        # synthetic text must not be retrieved as factual memory.
-        if item.source == Source.SYNTHETIC:
-            return False
-
-        # Unknown sources: include only with confidence
-        return item.confidence > 0
-
     def _sort_by_credibility(self, items: list[MemoryItem]) -> list[MemoryItem]:
         """Sort items by source_weight * confidence, descending."""
         scored = [
-            (self.SOURCE_WEIGHT.get(item.source, 0.2) * item.confidence, item)
+            (self._policy.score(item), item)
             for item in items
         ]
         scored.sort(key=lambda x: x[0], reverse=True)

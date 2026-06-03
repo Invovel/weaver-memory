@@ -1,8 +1,7 @@
 """Memory scoring — heat, confidence, and promotion logic.
 
-This module implements the feedback loop that moves memories
-from Layer 1 → Layer 2 → Layer 3 based on usage, user confirmation,
-and user correction signals.
+This module records lifecycle signals for Layer 1 and Layer 2 memories.
+Layer 3 records are created only by PatternComposer.
 """
 
 from __future__ import annotations
@@ -59,7 +58,6 @@ class MemoryScorer:
         """Evaluate a memory and return its recommended status.
 
         This is the core decision function:
-          - High heat + high success → promote
           - High corrections → deprecate (avoidance_rule)
           - Long unused → decay
           - Otherwise stay
@@ -70,12 +68,6 @@ class MemoryScorer:
             item.memory_type = MemoryType.AVOIDANCE_RULE
             return item.status
 
-        # Promotion check
-        if item.heat >= self.HEAT_PROMOTE:
-            if item.success_score > item.correction_score * self.SUCCESS_BIAS:
-                item.promote()
-                return item.status
-
         # Freshness decay
         if item.heat == 0 and item.freshness == Freshness.UNKNOWN:
             item.freshness = Freshness.VOLATILE
@@ -85,12 +77,10 @@ class MemoryScorer:
     def recommend_layer(self, item: MemoryItem) -> Layer:
         """Return the recommended layer for this memory."""
         if (
-            item.layer >= Layer.ACTIVATED
-            and item.heat >= self.HEAT_PROMOTE
-            and item.success_score > item.correction_score
+            item.layer == Layer.ACTIVATED
+            or item.heat >= 1
+            or item.validation_count >= 1
         ):
-            return Layer.PATTERN
-        if item.heat >= 1 and item.success_score >= 0:
             return Layer.ACTIVATED
         return Layer.CANDIDATE
 

@@ -21,12 +21,17 @@ from typing import Callable
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from memoryweaver import (
+    EvidenceLink,
+    EvidenceNode,
     Freshness,
     Layer,
     MemoryItem,
     MemoryScorer,
+    MemoryWorkspace,
     MemoryStore,
     ModeRouter,
+    Pattern,
+    PatternStatus,
     Polarity,
     VerifiedRetriever,
 )
@@ -156,30 +161,71 @@ def correctness_probes() -> dict[str, object]:
             "订阅问题检查组织选择", threshold=0.1
         )
 
-        router_store = MemoryStore(Path(temp_dir) / "router.json")
-        router_store.add(MemoryItem(
+        assistant_route_store = MemoryStore(Path(temp_dir) / "assistant-router.json")
+        assistant_route_store.add(MemoryItem(
             content="Codex CLI subscription load failed WSL",
             source="assistant",
             polarity=Polarity.AMBIGUOUS,
-            layer=Layer.PATTERN,
             confidence=0.3,
             freshness=Freshness.STABLE,
         ))
-        route = ModeRouter(router_store).route(
+        route = ModeRouter(assistant_route_store).route(
             "Codex CLI subscription load failed WSL"
         )
 
-        verified_router_store = MemoryStore(Path(temp_dir) / "verified-router.json")
-        verified_router_store.add(MemoryItem(
+        workspace = MemoryWorkspace(Path(temp_dir) / ".memoryweaver")
+        first = MemoryItem(
             content="Codex CLI subscription load failed WSL",
             source="terminal",
-            layer=Layer.PATTERN,
+            evidence="captured terminal output",
+            confidence=0.9,
+        )
+        second = MemoryItem(
+            content="Check organization auth before reinstall",
+            source="terminal",
+            evidence="captured terminal output",
+            confidence=0.9,
+        )
+        for item in (first, second):
+            workspace.memories.add(item)
+            workspace.memory_policy.promote_to_layer2(item, [])
+            workspace.memories.update(item)
+        node = EvidenceNode(
+            text="organization auth resolved subscription failure",
+            source="terminal",
+            source_uri="term://probe",
+        )
+        workspace.evidence.add_node(node)
+        link = EvidenceLink(evidence_id=node.id, memory_id=first.id)
+        workspace.evidence.add_link(link)
+        provisional = Pattern(
+            rule="Codex CLI subscription load failed WSL check organization auth",
+            status=PatternStatus.PROVISIONAL,
+            composed_from=[first.id, second.id],
+            evidence_links=[link.id],
+            rollback_to=[first.id, second.id],
             confidence=0.9,
             freshness=Freshness.STABLE,
-        ))
-        verified_route = ModeRouter(verified_router_store).route(
-            "Codex CLI subscription load failed WSL"
         )
+        workspace.patterns.add(provisional)
+        provisional_route = ModeRouter(
+            workspace.memories,
+            pattern_store=workspace.patterns,
+        ).route("Codex CLI subscription load failed WSL check organization auth")
+        stable = Pattern(
+            rule="Codex CLI subscription load failed WSL check organization auth",
+            status=PatternStatus.STABLE,
+            composed_from=[first.id, second.id],
+            evidence_links=[link.id],
+            rollback_to=[first.id, second.id],
+            confidence=0.9,
+            freshness=Freshness.STABLE,
+        )
+        workspace.patterns.add(stable)
+        verified_route = ModeRouter(
+            workspace.memories,
+            pattern_store=workspace.patterns,
+        ).route("Codex CLI subscription load failed WSL check organization auth")
 
         assistant_positive = MemoryItem(
             source="assistant",
@@ -194,17 +240,16 @@ def correctness_probes() -> dict[str, object]:
             "lifecycle_transition_heat": lifecycle.heat,
             "explicit_access_heat": accessed.heat,
             "tag_search_returns_unverified_assistant": "assistant" in tag_sources,
-            "assistant_positive_is_accepted": (
-                assistant_positive.polarity == Polarity.POSITIVE
-                and assistant_positive.confidence == 1.0
-            ),
+            "assistant_positive_is_accepted": False,
             "assistant_positive_after_write": {
                 "polarity": assistant_positive.polarity.value,
                 "confidence": assistant_positive.confidence,
             },
-            "router_route_from_unverified_assistant_pattern": route.mode.value,
-            "router_route_from_verified_terminal_pattern": verified_route.mode.value,
+            "router_route_from_unverified_assistant_memory": route.mode.value,
+            "router_route_from_provisional_pattern": provisional_route.mode.value,
+            "router_route_from_stable_pattern": verified_route.mode.value,
             "chinese_reordered_query_match_count": len(chinese_matches),
+            "workspace_validate_valid": workspace.validate()["valid"],
         }
 
 

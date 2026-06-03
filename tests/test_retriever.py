@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from memoryweaver.schema import MemoryItem, Polarity, Layer, MemoryType, Status
+from memoryweaver.schema import MemoryItem, Polarity, MemoryType, Status
 from memoryweaver.store import MemoryStore
 from memoryweaver.retriever import VerifiedRetriever
 
@@ -49,7 +49,6 @@ class TestVerifiedRetriever:
             content="If Codex installs but subscription fails, check auth first",
             source="composer",
             confidence=0.82,
-            layer=Layer.PATTERN,
             tags=["codex", "subscription", "pattern"],
         ))
         yield store
@@ -91,11 +90,11 @@ class TestVerifiedRetriever:
         contents = [r.content for r in results]
         assert any("prefers npm" in c for c in contents)
 
-    def test_composer_patterns_included(self, store):
+    def test_composer_memory_is_not_returned_as_fact(self, store):
         retriever = VerifiedRetriever(store)
         results = retriever.search("Codex subscription auth check install fails")
         contents = [r.content for r in results]
-        assert any("check auth first" in c for c in contents)
+        assert not any("check auth first" in c for c in contents)
 
     # ── Result ordering ──────────────────────────────────────────
 
@@ -114,8 +113,8 @@ class TestVerifiedRetriever:
         contents = [r.content for r in results]
         # Terminal-verified fact should be included
         assert any("subscription load failed" in c for c in contents)
-        # Composer pattern should be included
-        assert any("check auth first" in c for c in contents)
+        # Composer output is only returned through canonical PatternStore routing.
+        assert not any("check auth first" in c for c in contents)
         # Assistant claim matches "codex" but remains excluded by source gate.
         assert not any("might need Node" in c for c in contents)
 
@@ -184,7 +183,7 @@ class TestVerifiedRetriever:
 
     # ── Edge cases ───────────────────────────────────────────────
 
-    def test_unknown_source_included_only_with_confidence(self, store):
+    def test_unknown_source_is_never_returned_as_fact(self, store):
         store.add(MemoryItem(
             content="Something from unknown source with no evidence",
             source="unknown",
@@ -200,7 +199,5 @@ class TestVerifiedRetriever:
         retriever = VerifiedRetriever(store)
         results = retriever.search("unknown source with evidence confidence")
         contents = [r.content for r in results]
-        # Zero-confidence unknown should be excluded
         assert not any("with no evidence" in c for c in contents)
-        # Non-zero confidence unknown should appear
-        assert any("with some evidence" in c for c in contents)
+        assert not any("with some evidence" in c for c in contents)

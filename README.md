@@ -77,7 +77,7 @@ Layer 2: Activated / Validated Memory
         ↓
 Graph Linking / Pattern Composition
         ↓
-Layer 3: Shared Pattern Memory
+Layer 3: Provisional Pattern
         ↓
 Harness Policy Update
 ```
@@ -132,9 +132,13 @@ ambiguous  → unverified hypotheses
 
 ---
 
-### Layer 3: Shared Pattern Memory
+### Layer 3: Provisional Pattern
 
-Layer 3 stores reusable patterns, not just raw tags.
+Layer 3 stores canonical `Pattern` records, not Layer-3 `MemoryItem`
+copies and not raw RAG chunks.
+
+Layer 3 is provisional by default. A new Pattern must remain
+`provisional` until explicit validation promotes it to `stable`.
 
 A pattern may combine multiple memory signals:
 
@@ -151,7 +155,9 @@ do not prioritize npm reinstall.
 Check authentication, selected organization, or subscription state first.
 ```
 
-Layer 3 is shared by the harness and retrieval system.
+Layer 3 is shared by the harness and retrieval system, but it cannot be
+created by the scorer and it cannot be created automatically from RAG
+retrieval. Pattern creation goes through `PatternComposer`.
 
 It helps the agent decide:
 
@@ -517,7 +523,7 @@ See [`docs/validation/p0-trust-boundary-2026-06-02/README.md`](docs/validation/p
 * Add graph linking
 * Compose `positive + negative + neutral + ambiguous` into patterns
 * Add stale node detection
-* Add pattern promotion into Layer 3
+* Add explicit Pattern validation and stable promotion
 
 ### Phase 4: Agent Integration
 
@@ -578,30 +584,30 @@ Provide shared, structured memory across different LLMs and tools.
 
 ## Status
 
-**Sprint 0 prototype and P0 trust-boundary hardening complete.** Core modules
-are implemented with 79 passing tests:
+**SDK v0.2.0 provisional-pattern foundation is implemented.** The package is
+still a zero-dependency JSON prototype, but Sprint 0.1 is now represented as a
+usable Python SDK and CLI with 113 passing tests:
 
-- `schema.py` — MemoryItem dataclass (4 polarities, 3 layers, 5 statuses)
-- `store.py` — Atomic JSON-backed CRUD with tag/polarity/layer queries
-- `scorer.py` — Heat/confidence scoring and layer promotion rules
-- `extractor.py` — Bilingual feedback classifier (zh/en) + event detector
-- `router.py` — Fast / Thinking / Fast-Verify mode routing
-- `retriever.py` — Source-aware verified retrieval with anti-pollution filtering
-- `contradiction.py` — Three-tier contradiction resolver (SILENT / WARN / BLOCK)
+- `schema.py` - `MemoryItem` for Layer 1/2 and canonical `Pattern` for Layer 3.
+- `store.py` - atomic JSON stores, `MemoryWorkspace`, Chinese/mixed lexical baseline.
+- `policy.py` - `MemoryPolicy` and `RetrievalPolicy`.
+- `evidence.py` - `EvidenceNode`, `EvidenceLink`, `EvidencePacket`, `EvidenceStore`.
+- `composer.py` - `PatternStore` and explicit provisional `PatternComposer`.
+- `cli.py` - `mw` CLI for validate, memory, evidence, pattern, and route.
+- `scorer.py` - heat/confidence/freshness signals without automatic Layer 3 promotion.
+- `retriever.py` - policy-filtered verified retrieval.
+- `router.py` - Pattern-aware fast / thinking / fast-verify routing.
+- `extractor.py` - bilingual feedback classifier and event detector.
+- `contradiction.py` - three-tier contradiction resolver.
 
 The P0 batch closed four trust-boundary risks: false heat from edits, tag-gate
-bypass, assistant-positive writes, and Router fast-path bypass. Five validation
-trials produced identical correctness results.
+bypass, assistant-positive writes, and Router fast-path bypass. SDK v0.2.0 adds
+policy gates, EvidenceLink validation, Chinese retrieval probes, CLI smoke
+coverage, and provisional/stable Pattern lifecycle tests.
 
-The next milestone is the remaining **Sprint 0.1 hardening**:
-
-1. Add the declared `mw = memoryweaver.cli:main` CLI skeleton.
-2. Replace whitespace-only tokenization with a Chinese retrieval baseline.
-3. Add `MemoryPolicy`, `RetrievalPolicy`, and a structured `EvidencePacket`.
-
-After those gates, implement minimal GBrain projection, staged specialist
-routing, checkpoint recovery, bounded ReAct, and the RAG evidence layer
-incrementally.
+Deferred by design: GBrain database, graph expansion, full RAG pipeline,
+embedding, vector DB, HarnessRuntime, ActionGate, checkpointing, real LLM
+providers, and automatic PatternComposer inference.
 
 ---
 

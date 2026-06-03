@@ -133,7 +133,7 @@ def main() -> None:
 
     artifact = {
         "schema_version": "1.0",
-        "experiment": "memoryweaver-p0-trust-boundary-validation",
+        "experiment": "memoryweaver-sdk-v0.2.0-provisional-pattern-validation",
         "collected_at_utc": datetime.now(timezone.utc).isoformat(),
         "environment": {
             "python": platform.python_version(),
@@ -151,6 +151,15 @@ def main() -> None:
                 "trials": args.trials,
                 "items": args.items,
                 "query_iterations": args.query_iterations,
+                "probes": [
+                    "cli_import",
+                    "source_gate",
+                    "policy_gate",
+                    "evidence_link",
+                    "provisional_pattern",
+                    "stable_pattern",
+                    "chinese_lexical_recall",
+                ],
             },
         },
         "pytest": pytest_result,

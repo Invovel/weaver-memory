@@ -1,13 +1,26 @@
 """MemoryWeaver - Feedback-Calibrated Memory Harness for Long-Lived AI Agents."""
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
-from memoryweaver.schema import MemoryItem, Polarity, Layer, Status, MemoryType, Freshness, Source, Pattern
-from memoryweaver.store import MemoryStore
+from memoryweaver.schema import (
+    MemoryItem,
+    Polarity,
+    Layer,
+    Status,
+    PatternStatus,
+    MemoryType,
+    Freshness,
+    Source,
+    Pattern,
+)
+from memoryweaver.store import MemoryStore, MemoryWorkspace, tokenize_text, token_jaccard
 from memoryweaver.scorer import MemoryScorer
 from memoryweaver.extractor import EventDetector, Event, EventType, FeedbackClassifier
 from memoryweaver.router import ModeRouter, InferenceMode, RouteDecision
 from memoryweaver.retriever import VerifiedRetriever
+from memoryweaver.policy import MemoryPolicy, RetrievalPolicy
+from memoryweaver.evidence import EvidenceNode, EvidenceLink, EvidencePacket, EvidenceRelation, EvidenceStore
+from memoryweaver.composer import PatternStore, PatternComposer
 from memoryweaver.contradiction import (
     ContradictionResolver,
     ConflictResult,
@@ -22,12 +35,16 @@ __all__ = [
     "Polarity",
     "Layer",
     "Status",
+    "PatternStatus",
     "MemoryType",
     "Freshness",
     "Source",
     # store & scoring
     "MemoryStore",
+    "MemoryWorkspace",
     "MemoryScorer",
+    "tokenize_text",
+    "token_jaccard",
     # extraction
     "EventDetector",
     "Event",
@@ -39,6 +56,15 @@ __all__ = [
     "RouteDecision",
     # retrieval
     "VerifiedRetriever",
+    "MemoryPolicy",
+    "RetrievalPolicy",
+    "EvidenceNode",
+    "EvidenceLink",
+    "EvidencePacket",
+    "EvidenceRelation",
+    "EvidenceStore",
+    "PatternStore",
+    "PatternComposer",
     # contradiction
     "ContradictionResolver",
     "ConflictResult",

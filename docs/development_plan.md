@@ -2,17 +2,21 @@
 
 ## 当前判断
 
-截至 2026-06-02，仓库已有 Sprint 0 原型和经过验证的 P0 anti-pollution 增量：
+截至 2026-06-03，仓库已有 Sprint 0 原型、经过验证的 P0 anti-pollution 增量，
+以及 SDK v0.2.0 provisional-pattern foundation：
 
 - 基础 schema、JSON store、scorer、extractor、router。
 - `VerifiedRetriever`。
 - `ContradictionResolver`。
-- 79 个 pytest 测试通过。
+- `MemoryPolicy`、`RetrievalPolicy`、`EvidenceNode`、`EvidenceLink`、`EvidencePacket`。
+- `MemoryWorkspace`、`PatternStore`、`PatternComposer`、`memoryweaver.cli:main`。
+- 中文与中英混合 lexical baseline。
+- 113 个 pytest 测试通过。
 - P0 source gate、tag gate、Router gate 与 heat 生命周期拆分已经完成五轮验证。
 
 完整实验记录见
 [P0 trust-boundary report](./validation/p0-trust-boundary-2026-06-02/README.md)。
-下一步先补 CLI 与中文 baseline，再进入 Policy、Pattern、Graph 和 RAG。
+下一步先保持 SDK v0.2.0 回归门禁，再进入 ConflictDetector、Graph 和 RAG。
 
 ## 开发规则
 
@@ -23,7 +27,7 @@
 
 ## Sprint 0.1：修正原型边界
 
-### Step 1：补齐 CLI 或移除入口声明
+### Step 1：补齐 CLI 或移除入口声明（已完成）
 
 涉及文件：
 
@@ -36,7 +40,7 @@ tests/test_cli.py
 原因：
 
 `pyproject.toml` 当前声明 `mw = "memoryweaver.cli:main"`，但 `memoryweaver/cli.py`
-不存在。最小方案是补一个可运行的 CLI 骨架。
+不存在。SDK v0.2.0 已补齐可运行 CLI。
 
 预期测试：
 
@@ -133,7 +137,7 @@ tests/test_contradiction.py
 - assistant 不可直接成为 verified memory。
 - 为旧 JSON 数据提供清晰迁移行为。
 
-### Step 6：改善中文相似度 baseline
+### Step 6：改善中文相似度 baseline（已完成）
 
 涉及文件：
 
@@ -151,11 +155,12 @@ tests/test_schema.py
 预期测试：
 
 - 同义域中文短句可召回相关记忆。
+- 中英混合 package、version、error code token 不回退。
 - 英文 baseline 不回退。
 
 ## Sprint 1：策略、Pattern 与冲突
 
-### Step 7：引入 Policy
+### Step 7：引入 Policy（已完成）
 
 新增文件：
 
@@ -186,7 +191,7 @@ tests/test_schema.py
 - `avoidance_utility` 表示避坑价值。
 - negative memory 不因 correction 多而自动成为低价值垃圾。
 
-### Step 9：统一 Pattern 存储
+### Step 9：统一 Pattern 存储（已完成）
 
 新增文件：
 
@@ -195,8 +200,8 @@ memoryweaver/composer.py
 tests/test_composer.py
 ```
 
-当前示例同时创建 `Pattern` 和 Layer-3 `MemoryItem`。应确定一个持久化模型，并由
-`PatternComposer` 负责 provenance、supporting memory 和晋升条件。
+当前示例已改为只创建 canonical `Pattern`。`PatternComposer` 负责 provenance、
+supporting memory、EvidenceLink 和显式 stable 晋升条件。Layer 3 is provisional by default.
 
 ### Step 10：补 ConflictDetector
 

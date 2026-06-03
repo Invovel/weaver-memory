@@ -3,12 +3,13 @@
 ## 结论
 
 当前最大的工程问题不是缺少完整图谱，也不是缺少更快的 ReAct。P0 信任边界已经
-闭合并进入回归门禁。当前最大的开放问题是：
+闭合并进入回归门禁，SDK v0.2.0 已补齐 CLI、Policy、Evidence 和 provisional
+Pattern 基础。当前最大的开放问题是：
 
-> **Harness 的策略层、动作生命周期边界和可恢复运行链尚未落地。**
+> **动作生命周期边界、可恢复运行链、GBrain 投影和完整 RAG pipeline 尚未落地。**
 
 如果现在直接扩大图谱写入、加入自动 ReAct 或摄入大量 RAG 文档，Pattern、图谱
-投影、工具动作和恢复路径仍缺少统一策略。中文检索也仍会漏召回。
+投影、工具动作和恢复路径仍缺少统一运行时策略。
 
 ## 2026-06-02 P0 修复验证
 
@@ -20,11 +21,18 @@ P0 source gate、Router gate 与 heat 生命周期修复已经进入独立验证
 - [Control Plus N Models Protocol](./validation/llm-memory-experiment-protocol.md)
 - [Hugging Face Dataset Catalog](./validation/huggingface_dataset_catalog.md)
 
+SDK v0.2.0 新增验证覆盖：
+
+- `memoryweaver.cli` 可导入并通过完整 smoke chain。
+- 中文重排短句召回探针 `>= 1`。
+- `assistant` / `synthetic` 写入降级和检索隔离。
+- `EvidenceLink` dangling 与双 target 检查。
+- provisional Pattern 最大只路由到 `fast_verify`。
+- stable Pattern 才允许 `fast`。
+
 仍保留为后续工作的风险：
 
-- `memoryweaver.cli` 尚未落地。
-- 中文重排短句召回仍为 `0`。
-- CLI、checkpoint、图谱、RAG 与长稳测试需要对应模块落地后再执行。
+- checkpoint、图谱、RAG、ActionGate 与长稳测试需要对应模块落地后再执行。
 
 ## 风险优先级
 
@@ -35,7 +43,7 @@ P0 source gate、Router gate 与 heat 生命周期修复已经进入独立验证
 | P1 | 缺少 TrajectoryRegulator | 重复失败、停滞和预算耗尽缺少确定性恢复 | loop、stagnation、budget、recovery |
 | P1 | 缺少 checkpoint、Event Journal 和幂等恢复 | ReAct 与 CLI 崩溃后可能重复副作用 | 建设 durable runtime |
 | P1 | 缺少实时监测与预警 | 不能及时发现污染、雪崩、成本飙升 | metrics、trace、alerts、runbook |
-| P1 | 中文与混合语言召回薄弱 | 真实中文场景会漏召回 | tokenizer baseline，再进入 dense retrieval |
+| Closed | 中文与混合语言 lexical baseline | whitespace-only 已替换，短中文重排与 package/error token 有回归 | 后续进入 dense retrieval |
 | P2 | 缺少最小 GBrain | tag、关系、版本和 Pattern lineage 难组织 | `GraphProjector`、point get、1-hop expansion |
 | P2 | 缺少快速 ReAct | 复杂任务不能稳定自动执行 | bounded loop、ToolGateway、job queue |
 | P2 | 缺少 RAG Evidence Layer | 外部证据检索仍停留在设计 | cleaning、chunk、metadata、hybrid retrieval |
@@ -113,7 +121,7 @@ python .\benchmarks\prototype_baseline.py
 - `VerifiedRetriever.search_by_tags()`。
 - `find_similar()`。
 - `VerifiedRetriever.search()`。
-- CLI、heat、tag gate、assistant polarity、Router 绕行和中文召回探针。
+- CLI、heat、tag gate、assistant polarity、EvidenceLink、Policy、provisional/stable Pattern、Router 绕行和中文召回探针。
 
 注意：
 
@@ -162,7 +170,7 @@ query iterations: 100
 
 | 阶段 | Benchmark |
 | --- | --- |
-| 修复 P0 后 | 对比 source gate、Router、heat 与中文召回前后结果 |
+| SDK v0.2.0 后 | 对比 source gate、Router、heat、Policy、EvidenceLink、Pattern 与中文召回前后结果 |
 | 最小 GBrain 后 | point get、tag lookup、1-hop expansion、projection throughput |
 | RAG MVP 后 | ingest throughput、Recall@k、p95、HNSW、hybrid、rerank |
 | ReAct MVP 后 | step latency、CLI queue、checkpoint、crash recovery、duplicate side effect |

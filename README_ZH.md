@@ -81,7 +81,7 @@ Harness 预标记
         ↓
 图谱串联 / Pattern 组合
         ↓
-第三层：公共 Pattern 记忆
+第三层：provisional Pattern
         ↓
 Harness 策略更新
 ```
@@ -130,9 +130,13 @@ ambiguous  → 未验证假设、待确认信息
 
 ---
 
-### 第三层：公共 Pattern 记忆
+### 第三层：provisional Pattern
 
-第三层不只是存 tag，而是存可复用的经验模式。
+第三层保存 canonical `Pattern` 记录，不再复制成 Layer-3 `MemoryItem`，也不保存
+RAG raw chunk。
+
+Layer 3 is provisional by default. 新 Pattern 默认必须是 `provisional`，只有经过
+显式验证后才能晋升为 `stable`。
 
 一个 Pattern 可以由多个分区组合而来：
 
@@ -150,7 +154,10 @@ positive + negative + neutral + ambiguous
 应该优先检查登录状态、组织选择或订阅权限。
 ```
 
-第三层会被 harness 和 RAG 系统共同使用，用于决定：
+第三层会被 harness 和检索系统共同使用，但不能由 Scorer 自动创建，也不能因为 RAG
+召回就自动晋升。Pattern 创建必须经过 `PatternComposer`。
+
+它用于决定：
 
 * 是否走 fast mode
 * 是否走 thinking mode
@@ -589,27 +596,28 @@ P0 信任边界修复已经完成五轮独立验证。详见
 
 ## 当前状态
 
-**Sprint 0 原型与 P0 信任边界加固已完成。** 核心模块已实现，79 个测试全部通过：
+**SDK v0.2.0 provisional-pattern foundation 已实现。** 当前仍是零外部依赖的 JSON
+原型，但 Sprint 0.1 已经收口成可调用 Python SDK 和 CLI，113 个测试通过：
 
-- `schema.py` — MemoryItem dataclass（4 种极性、3 层、5 种状态）
-- `store.py` — 原子写入 JSON 存储，支持 tag/polarity/layer 查询
-- `scorer.py` — 热度/置信度评分和层级晋升规则
-- `extractor.py` — 中英文反馈分类器 + 事件检测器
-- `router.py` — Fast / Thinking / Fast-Verify 模式路由
-- `retriever.py` — 来源感知的验证检索，带防污染过滤
-- `contradiction.py` — 三级矛盾解决器（SILENT / WARN / BLOCK）
+- `schema.py` - Layer 1/2 `MemoryItem` 与 canonical Layer 3 `Pattern`
+- `store.py` - 原子 JSON store、`MemoryWorkspace`、中文/中英混合 lexical baseline
+- `policy.py` - `MemoryPolicy` 与 `RetrievalPolicy`
+- `evidence.py` - `EvidenceNode`、`EvidenceLink`、`EvidencePacket`、`EvidenceStore`
+- `composer.py` - `PatternStore` 与显式 provisional `PatternComposer`
+- `cli.py` - `mw` CLI：validate、memory、evidence、pattern、route
+- `scorer.py` - heat / confidence / freshness 信号，不再自动创建 Layer 3
+- `retriever.py` - 策略过滤的 verified retrieval
+- `router.py` - 支持 Pattern 的 Fast / Thinking / Fast-Verify 路由
+- `extractor.py` - 中英文反馈分类器 + 事件检测器
+- `contradiction.py` - 三级矛盾解决器（SILENT / WARN / BLOCK）
 
 P0 批次已经关闭四项信任边界风险：编辑伪增 heat、tag gate 绕行、assistant
-positive 写入和 Router fast-path 绕行。五轮验证得到一致的正确性结果。
+positive 写入和 Router fast-path 绕行。SDK v0.2.0 继续加入 policy gate、
+EvidenceLink 校验、中文召回探针、CLI smoke 和 provisional/stable Pattern 生命周期测试。
 
-下一里程碑是剩余的 **Sprint 0.1 收口**：
-
-1. 补齐 `mw = memoryweaver.cli:main` 声明的 CLI 骨架。
-2. 用中文检索 baseline 替换 whitespace-only tokenizer。
-3. 增加 `MemoryPolicy`、`RetrievalPolicy` 和结构化 `EvidencePacket`。
-
-这些 gate 完成后，再逐步实现最小 GBrain 投影、分层 specialist 路由、checkpoint
-恢复、bounded ReAct 和 RAG 证据层。
+本阶段明确暂不实现：GBrain 数据库、图谱 expansion、完整 RAG pipeline、embedding、
+向量数据库、HarnessRuntime、ActionGate、checkpoint、真实 LLM provider 和自动
+PatternComposer 推理。
 
 ---
 

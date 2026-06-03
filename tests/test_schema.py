@@ -10,6 +10,7 @@ import pytest
 from memoryweaver.schema import (
     MemoryItem,
     Pattern,
+    PatternStatus,
     Polarity,
     Layer,
     Status,
@@ -64,13 +65,25 @@ class TestMemoryItem:
 
     def test_promote_to_specific_layer(self):
         item = MemoryItem()
-        item.promote(Layer.PATTERN)
-        assert item.layer == Layer.PATTERN
+        item.promote(Layer.ACTIVATED)
+        assert item.layer == Layer.ACTIVATED
 
-    def test_promote_does_not_exceed_layer_3(self):
-        item = MemoryItem(layer=Layer.PATTERN)
-        item.promote()
-        assert item.layer == Layer.PATTERN  # no Layer 4
+    def test_new_layer_3_memory_is_rejected(self):
+        with pytest.raises(ValueError, match="PatternComposer"):
+            MemoryItem(layer=Layer.PATTERN)
+
+    def test_promote_to_layer_3_is_rejected(self):
+        item = MemoryItem(layer=Layer.ACTIVATED)
+        with pytest.raises(ValueError, match="PatternComposer"):
+            item.promote(Layer.PATTERN)
+
+    def test_legacy_layer_3_memory_is_read_only(self):
+        raw = MemoryItem().to_dict()
+        raw["layer"] = Layer.PATTERN.value
+        item = MemoryItem.from_dict(raw)
+        assert item.legacy_pattern is True
+        with pytest.raises(ValueError, match="read-only"):
+            item.promote()
 
     def test_deprecate(self):
         item = MemoryItem()
@@ -269,7 +282,10 @@ class TestMemoryStore:
 
     def test_find_by_layer(self, store):
         store.add(MemoryItem(layer=Layer.CANDIDATE))
-        store.add(MemoryItem(layer=Layer.ACTIVATED))
+        activated = MemoryItem()
+        store.add(activated)
+        activated.activate()
+        store.update(activated)
         store.add(MemoryItem(layer=Layer.CANDIDATE))
 
         assert len(store.find_by_layer(Layer.CANDIDATE)) == 2
@@ -338,15 +354,14 @@ class TestScorer:
         assert item.use_count == 1
         assert item.validation_count == 1
 
-    def test_evaluate_promotes_on_heat_and_success(self):
+    def test_evaluate_does_not_create_layer_3_patterns(self):
         from memoryweaver.scorer import MemoryScorer
         scorer = MemoryScorer(heat_promote=3)
         item = MemoryItem(layer=Layer.ACTIVATED)
         item.heat = 3
         item.success_score = 3.0
         scorer.evaluate(item)
-        assert item.status == Status.PROMOTED
-        assert item.layer == Layer.PATTERN
+        assert item.layer == Layer.ACTIVATED
 
     def test_evaluate_deprecates_on_correction(self):
         from memoryweaver.scorer import MemoryScorer
@@ -452,13 +467,17 @@ class TestModeRouter:
         os.unlink(path)
 
         store = MemoryStore(path)
-        store.add(MemoryItem(
+        item = MemoryItem(
             content="Codex CLI subscription load failed in WSL",
-            layer=Layer.ACTIVATED,
+            source="terminal",
+            evidence="captured terminal output",
             tags=["codex", "wsl"],
             confidence=0.7,
             heat=2,
-        ))
+        )
+        store.add(item)
+        item.activate()
+        store.update(item)
         router = ModeRouter(store)
         decision = router.route("Codex CLI subscription error in WSL")
         # Should at least find the similar memory
@@ -478,7 +497,6 @@ class TestModeRouter:
             content="Codex CLI subscription load failed in WSL",
             source="assistant",
             polarity=Polarity.AMBIGUOUS,
-            layer=Layer.PATTERN,
             confidence=0.3,
             freshness=Freshness.STABLE,
         ))
@@ -494,23 +512,28 @@ class TestModeRouter:
 
     def test_verified_pattern_can_still_route_fast(self):
         from memoryweaver.router import ModeRouter, InferenceMode
+        from memoryweaver.composer import PatternStore
         fd, path = tempfile.mkstemp(suffix=".json")
         os.close(fd)
         os.unlink(path)
+        fd, pattern_path = tempfile.mkstemp(suffix=".json")
+        os.close(fd)
+        os.unlink(pattern_path)
 
         store = MemoryStore(path)
-        store.add(MemoryItem(
-            content="Codex CLI subscription load failed in WSL",
-            source="terminal",
-            layer=Layer.PATTERN,
+        patterns = PatternStore(pattern_path)
+        patterns.add(Pattern(
+            rule="Codex CLI subscription load failed in WSL",
+            status=PatternStatus.STABLE,
             confidence=0.9,
             freshness=Freshness.STABLE,
         ))
 
-        decision = ModeRouter(store).route(
+        decision = ModeRouter(store, pattern_store=patterns).route(
             "Codex CLI subscription load failed in WSL"
         )
 
         assert decision.mode == InferenceMode.FAST
 
         Path(path).unlink(missing_ok=True)
+        Path(pattern_path).unlink(missing_ok=True)

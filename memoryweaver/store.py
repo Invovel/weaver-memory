@@ -9,10 +9,36 @@ from __future__ import annotations
 
 import json
 import os
+import re
+import unicodedata
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 from memoryweaver.schema import MemoryItem, Layer, Polarity, Status
+from memoryweaver.policy import MemoryPolicy, RetrievalPolicy
+
+SCHEMA_VERSION = "0.2.0"
+
+
+def tokenize_text(text: str) -> set[str]:
+    """Tokenize English identifiers and Chinese text without external deps."""
+    normalized = unicodedata.normalize("NFKC", text).lower()
+    tokens = set(re.findall(r"@?[a-z0-9][a-z0-9._/@+-]*", normalized))
+    for segment in re.findall(r"[\u3400-\u4dbf\u4e00-\u9fff]+", normalized):
+        if len(segment) == 1:
+            tokens.add(segment)
+        else:
+            tokens.update(segment[index:index + 2] for index in range(len(segment) - 1))
+    return tokens
+
+
+def token_jaccard(left: str, right: str) -> float:
+    """Return token Jaccard similarity for English, Chinese, or mixed text."""
+    left_tokens = tokenize_text(left)
+    right_tokens = tokenize_text(right)
+    if not left_tokens or not right_tokens:
+        return 0.0
+    return len(left_tokens & right_tokens) / len(left_tokens | right_tokens)
 
 
 class MemoryStore:
@@ -24,9 +50,14 @@ class MemoryStore:
         results = store.find_by_tags(["wsl", "codex"])
     """
 
-    def __init__(self, path: str | Path = "memory.json"):
+    def __init__(
+        self,
+        path: str | Path = "memory.json",
+        policy: Optional[MemoryPolicy] = None,
+    ):
         self._path = Path(path)
         self._items: dict[str, MemoryItem] = {}
+        self._policy = policy or MemoryPolicy()
         if self._path.exists():
             self._load()
 
@@ -36,6 +67,7 @@ class MemoryStore:
 
     def add(self, item: MemoryItem) -> str:
         """Insert a memory item. Returns its id."""
+        self._policy.validate_write(item)
         self._items[item.id] = item
         self._save()
         return item.id
@@ -48,6 +80,7 @@ class MemoryStore:
         """Update an existing memory item (matched by id)."""
         if item.id not in self._items:
             raise KeyError(f"MemoryItem '{item.id}' not found")
+        self._policy.validate_write(item, is_update=True)
         item.mark_updated()
         self._items[item.id] = item
         self._save()
@@ -106,16 +139,12 @@ class MemoryStore:
 
         This is a placeholder for Phase 2 embedding-based retrieval.
         """
-        query_words = set(content.lower().split())
-        if not query_words:
+        if not tokenize_text(content):
             return []
 
         scored: list[tuple[float, MemoryItem]] = []
         for item in self._items.values():
-            item_words = set(item.content.lower().split())
-            if not item_words:
-                continue
-            overlap = len(query_words & item_words) / len(query_words | item_words)
+            overlap = token_jaccard(content, item.content)
             if overlap >= threshold:
                 scored.append((overlap, item))
 
@@ -132,7 +161,7 @@ class MemoryStore:
 
     def _save(self) -> None:
         data = {
-            "version": "0.1.0",
+            "version": SCHEMA_VERSION,
             "items": [item.to_dict() for item in self._items.values()],
         }
         self._path.parent.mkdir(parents=True, exist_ok=True)
@@ -153,3 +182,74 @@ class MemoryStore:
         for raw in data.get("items", []):
             item = MemoryItem.from_dict(raw)
             self._items[item.id] = item
+
+
+class MemoryWorkspace:
+    """Directory-backed coordination point for the standalone SDK."""
+
+    def __init__(self, root: str | Path = ".memoryweaver"):
+        from memoryweaver.composer import PatternStore
+        from memoryweaver.evidence import EvidenceStore
+
+        self.root = Path(root)
+        self.memory_policy = MemoryPolicy()
+        self.retrieval_policy = RetrievalPolicy()
+        self.memories = MemoryStore(
+            self.root / "memories.json",
+            policy=self.memory_policy,
+        )
+        self.patterns = PatternStore(
+            self.root / "patterns.json",
+            policy=self.retrieval_policy,
+        )
+        self.evidence = EvidenceStore(
+            self.root / "evidence_nodes.json",
+            self.root / "evidence_links.json",
+        )
+
+    def validate(self) -> dict[str, Any]:
+        """Return structural errors and compatibility warnings."""
+        errors: list[str] = []
+        warnings: list[str] = []
+        paths = [
+            self.root / "memories.json",
+            self.root / "patterns.json",
+            self.root / "evidence_nodes.json",
+            self.root / "evidence_links.json",
+        ]
+        for path in paths:
+            if not path.exists():
+                warnings.append(f"missing optional empty store: {path.name}")
+                continue
+            try:
+                json.loads(path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError as exc:
+                errors.append(f"invalid JSON in {path.name}: {exc}")
+
+        for item in self.memories.list_all():
+            if item.legacy_pattern:
+                warnings.append(f"legacy Layer-3 MemoryItem: {item.id}")
+            if item.source.value in ("assistant", "synthetic") and (
+                item.polarity.value != "ambiguous" or item.confidence > 0.3
+            ):
+                errors.append(f"polluting unverified memory: {item.id}")
+
+        errors.extend(self.evidence.validate_links(
+            {item.id for item in self.memories.list_all()},
+            {pattern.id for pattern in self.patterns.list_all()},
+        ))
+        for pattern in self.patterns.list_all():
+            if pattern.policy_version != self.memory_policy.version:
+                warnings.append(f"stale pattern policy version: {pattern.id}")
+
+        if token_jaccard("检查组织选择解决订阅问题", "订阅问题检查组织选择") <= 0:
+            errors.append("Chinese lexical retrieval probe failed")
+
+        return {
+            "valid": not errors,
+            "schema_version": SCHEMA_VERSION,
+            "memory_policy_version": self.memory_policy.version,
+            "retrieval_policy_version": self.retrieval_policy.version,
+            "errors": errors,
+            "warnings": warnings,
+        }

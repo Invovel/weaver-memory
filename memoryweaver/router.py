@@ -13,6 +13,10 @@ from typing import Optional
 from memoryweaver.schema import MemoryItem, Layer, Freshness
 from memoryweaver.store import MemoryStore
 from memoryweaver.retriever import VerifiedRetriever
+from memoryweaver.composer import PatternStore
+from memoryweaver.policy import RetrievalPolicy
+from memoryweaver.schema import Pattern, PatternStatus
+from memoryweaver.store import token_jaccard
 
 
 class InferenceMode(str, Enum):
@@ -30,6 +34,8 @@ class RouteDecision:
     mode: InferenceMode
     reason: str
     matched_items: list[MemoryItem] = field(default_factory=list)
+    matched_patterns: list[Pattern] = field(default_factory=list)
+    warnings: list[str] = field(default_factory=list)
     confidence: float = 0.0
 
 
@@ -55,54 +61,77 @@ class ModeRouter:
         self,
         store: MemoryStore,
         retriever: Optional[VerifiedRetriever] = None,
+        pattern_store: Optional[PatternStore] = None,
+        retrieval_policy: Optional[RetrievalPolicy] = None,
     ):
         self._store = store
-        self._retriever = retriever or VerifiedRetriever(store)
+        self._policy = retrieval_policy or RetrievalPolicy()
+        self._retriever = retriever or VerifiedRetriever(store, self._policy)
+        self._patterns = pattern_store
 
-    def route(self, query: str) -> RouteDecision:
+    def route(self, query: str, scope: str = "project") -> RouteDecision:
         """Analyze query against stored memory and return a mode decision."""
         similar = self._retriever.search(
             query,
             limit=max(self._store.count(), 10),
             threshold=self.VERIFY_THRESHOLD,
+            scope=scope,
+        )
+        patterns = (
+            self._patterns.search(
+                query,
+                scope=scope,
+                limit=10,
+                threshold=self.VERIFY_THRESHOLD,
+            )
+            if self._patterns
+            else []
         )
 
-        if not similar:
+        if not similar and not patterns:
             return RouteDecision(
                 mode=InferenceMode.THINKING,
-                reason="No similar prior memory found — first encounter.",
+                reason="No similar prior memory found - first encounter.",
                 matched_items=[],
+                matched_patterns=[],
                 confidence=0.9,
             )
 
-        # Check for high-confidence Layer-3 pattern match
-        high_match = [
-            m for m in similar
-            if m.layer == Layer.PATTERN
-            and m.freshness != Freshness.EXPIRED
-            and m.confidence >= 0.7
+        stable_patterns = [
+            pattern for pattern in patterns
+            if pattern.status == PatternStatus.STABLE
+            and pattern.freshness != Freshness.EXPIRED
+            and pattern.confidence >= 0.7
         ]
 
-        # Compute best similarity (Jaccard from find_similar)
-        query_words = set(query.lower().split())
-        best_sim = 0.0
-        for m in similar:
-            item_words = set(m.content.lower().split())
-            if item_words:
-                sim = len(query_words & item_words) / len(query_words | item_words)
-                best_sim = max(best_sim, sim)
+        memory_sim = max(
+            (token_jaccard(query, item.content) for item in similar),
+            default=0.0,
+        )
+        pattern_sim = max(
+            (token_jaccard(query, pattern.rule) for pattern in patterns),
+            default=0.0,
+        )
+        best_sim = max(memory_sim, pattern_sim)
+        warnings = [
+            f"legacy Layer-3 MemoryItem ignored for fast routing: {item.id}"
+            for item in similar
+            if item.layer == Layer.PATTERN or item.legacy_pattern
+        ]
 
         # Fast route
-        if best_sim >= self.FAST_THRESHOLD and high_match:
+        if pattern_sim >= self.FAST_THRESHOLD and stable_patterns:
             return RouteDecision(
                 mode=InferenceMode.FAST,
                 reason=f"High-confidence Layer-3 pattern matched (sim={best_sim:.2f}).",
-                matched_items=high_match[:5],
-                confidence=min(best_sim, 0.95),
+                matched_items=similar[:5],
+                matched_patterns=stable_patterns[:5],
+                warnings=warnings,
+                confidence=min(pattern_sim, 0.95),
             )
 
         # Fast + Verify route
-        if best_sim >= self.VERIFY_THRESHOLD:
+        if best_sim >= self.VERIFY_THRESHOLD or patterns:
             ambiguous_count = sum(
                 1 for m in similar if m.polarity.value == "ambiguous"
             )
@@ -111,18 +140,22 @@ class ModeRouter:
                     mode=InferenceMode.FAST_VERIFY,
                     reason=(
                         f"Similar memories found (sim={best_sim:.2f}) "
-                        f"but {ambiguous_count} ambiguous signals — verify recommended."
+                        f"but {ambiguous_count} ambiguous signals - verify recommended."
                     ),
                     matched_items=similar[:5],
+                    matched_patterns=patterns[:5],
+                    warnings=warnings,
                     confidence=0.6,
                 )
             return RouteDecision(
                 mode=InferenceMode.FAST_VERIFY,
                 reason=(
                     f"Similar memories found (sim={best_sim:.2f}) "
-                    "but no high-confidence Layer-3 pattern — verify recommended."
+                    "but no high-confidence Layer-3 pattern - verify recommended."
                 ),
                 matched_items=similar[:5],
+                matched_patterns=patterns[:5],
+                warnings=warnings,
                 confidence=0.7,
             )
 
@@ -131,5 +164,7 @@ class ModeRouter:
             mode=InferenceMode.THINKING,
             reason=f"Similarity too low for fast path (best sim={best_sim:.2f}).",
             matched_items=similar[:5],
+            matched_patterns=patterns[:5],
+            warnings=warnings,
             confidence=0.8,
         )

@@ -8,6 +8,7 @@ from memoryweaver.graph_linker import tag_node_id
 from memoryweaver.graph_schema import GraphProposal, GraphRelation
 from memoryweaver.graph_store import GraphStore
 from memoryweaver.providers.base import ProviderRequest, provider_from_config
+from memoryweaver.providers.deepseek_provider import DeepSeekGraphProposalProvider
 
 
 def test_env_example_defaults_keep_llm_graph_proposals_disabled():
@@ -46,6 +47,46 @@ def test_local_provider_outputs_only_graph_proposal():
     assert proposal.status == "pending"
     assert proposal.requires_review is True
     assert proposal.confidence <= 0.6
+
+
+def test_deepseek_provider_parses_graph_proposals_without_writing_edges():
+    config = MemoryWeaverConfig.from_env(env={
+        "MEMORYWEAVER_ENABLE_LLM_GRAPH_PROPOSAL": "true",
+        "MEMORYWEAVER_LLM_PROVIDER": "deepseek",
+        "MEMORYWEAVER_LLM_MODEL": "deepseek-v4-pro",
+        "DEEPSEEK_API_KEY": "test-key",
+        "MEMORYWEAVER_LLM_PROPOSAL_CONFIDENCE_CAP": "0.6",
+    })
+    provider = DeepSeekGraphProposalProvider(config)
+
+    def fake_post(payload):
+        assert payload["model"] == "deepseek-v4-pro"
+        return {
+            "choices": [{
+                "message": {
+                    "content": (
+                        '{"proposals":[{"source":"llm","proposal_type":"link_tags",'
+                        '"from_node":"codex_subscription_failed",'
+                        '"to_node":"selected_organization",'
+                        '"relation":"related_to","reason":"same issue",'
+                        '"confidence":0.91,"status":"pending",'
+                        '"requires_review":true}]}'
+                    )
+                }
+            }]
+        }
+
+    provider._post_json = fake_post
+    proposals = provider.propose_graph_links(ProviderRequest(
+        query="codex org problem",
+        tags=["codex_subscription_failed", "selected_organization"],
+    ))
+    assert len(proposals) == 1
+    proposal = proposals[0]
+    assert proposal.from_node == "codex_subscription_failed"
+    assert proposal.to_node == "selected_organization"
+    assert proposal.confidence == 0.6
+    assert proposal.requires_review is True
 
 
 def test_reviewer_keeps_missing_evidence_pending(tmp_path):

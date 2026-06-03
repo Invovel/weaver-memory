@@ -8,6 +8,7 @@
 - Added graph retrieval benchmark comparing baseline search, tag expansion, and graph candidate search.
 - Added validation report under `docs/validation/graph-tag-linking-v0.3/`.
 - Added `.env.example`, `config.py`, provider skeletons, local provider, and Harness-reviewed LLM GraphProposal flow.
+- Implemented the DeepSeek provider's OpenAI-compatible chat completions path for GraphProposal generation.
 - Added `docs/validation/llm-graph-proposal-v0.4/`.
 - Preserved Layer 3 lifecycle rules: provisional Patterns stay capped at `fast_verify`; only stable Patterns can route `fast`.
 

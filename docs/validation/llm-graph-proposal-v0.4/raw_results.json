@@ -8,8 +8,8 @@
       "recall_at_10": 1.0,
       "candidate_count": 2,
       "candidate_reduction_ratio": 0.96,
-      "p95_ms": 0.0863,
-      "p50_ms": 0.0385
+      "p95_ms": 0.0585,
+      "p50_ms": 0.0407
     },
     {
       "arm": "rule_graph",
@@ -17,8 +17,8 @@
       "recall_at_10": 1.0,
       "candidate_count": 2,
       "candidate_reduction_ratio": 0.96,
-      "p95_ms": 0.0647,
-      "p50_ms": 0.0412
+      "p95_ms": 0.0793,
+      "p50_ms": 0.0432
     },
     {
       "arm": "llm_proposal_graph",
@@ -26,8 +26,8 @@
       "recall_at_10": 1.0,
       "candidate_count": 2,
       "candidate_reduction_ratio": 0.96,
-      "p95_ms": 0.1019,
-      "p50_ms": 0.0399,
+      "p95_ms": 0.0479,
+      "p50_ms": 0.041,
       "proposal_count": 1,
       "accepted": 1,
       "proposal_precision": 1.0,

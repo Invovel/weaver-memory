@@ -47,9 +47,9 @@ required.
 
 | Arm | Recall@10 | Candidate Reduction | p95 ms | Proposal Precision | Wrong Link Rate |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| manual graph | 1.00 | 0.96 | 0.086 | n/a | n/a |
-| rule graph | 1.00 | 0.96 | 0.065 | n/a | n/a |
-| llm proposal graph | 1.00 | 0.96 | 0.102 | 1.00 | 0.00 |
+| manual graph | 1.00 | 0.96 | 0.059 | n/a | n/a |
+| rule graph | 1.00 | 0.96 | 0.079 | n/a | n/a |
+| llm proposal graph | 1.00 | 0.96 | 0.048 | 1.00 | 0.00 |
 
 ## Review Policy
 

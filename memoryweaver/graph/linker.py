@@ -33,4 +33,12 @@ class ReviewedGraphLinker:
             confidence=proposal.confidence,
             source="reviewed_graph_proposal",
         )
+        edge = self.graph.get_edge(edge_id)
+        if edge is not None:
+            edge.evidence_links = sorted(set(edge.evidence_links + proposal.evidence_links))
+            edge.metadata.update({
+                "proposal_id": proposal.id,
+                "review_decision": review.decision,
+            })
+            self.graph.update_edge(edge)
         return review, edge_id

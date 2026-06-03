@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
+from pathlib import Path
 from typing import Any
 
 from memoryweaver import __version__
@@ -112,6 +114,35 @@ def build_parser() -> argparse.ArgumentParser:
     route = _leaf(commands, "route", "Route a query using memories and Patterns.")
     route.add_argument("--query", required=True)
     route.add_argument("--scope", default="project")
+
+    graph = commands.add_parser("graph", help="Manage low-privilege graph proposals.")
+    graph_commands = graph.add_subparsers(dest="graph_command", required=True)
+    graph_propose = _leaf(
+        graph_commands,
+        "propose",
+        "Generate GraphProposal JSONL from a batch file.",
+    )
+    graph_propose.add_argument("--provider", default="local")
+    graph_propose.add_argument("--model", default="")
+    graph_propose.add_argument("--env-file", default=".env")
+    graph_propose.add_argument("--input", required=True)
+    graph_propose.add_argument("--output", required=True)
+    graph_review = _leaf(
+        graph_commands,
+        "review",
+        "Harness-review GraphProposal JSONL and write reviewed JSONL.",
+    )
+    graph_review.add_argument("--input", required=True)
+    graph_review.add_argument("--output", required=True)
+    graph_review.add_argument("--query", default="")
+    graph_eval = _leaf(
+        graph_commands,
+        "eval",
+        "Evaluate reviewed GraphProposal JSONL against gold edges.",
+    )
+    graph_eval.add_argument("--gold", required=True)
+    graph_eval.add_argument("--pred", required=True)
+    graph_eval.add_argument("--output", default="")
     return parser
 
 
@@ -128,6 +159,23 @@ def _composer(workspace: MemoryWorkspace) -> PatternComposer:
         workspace.patterns,
         workspace.evidence,
         workspace.memory_policy,
+    )
+
+
+def _read_jsonl(path: str | Path) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    for line in Path(path).read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            records.append(json.loads(line))
+    return records
+
+
+def _write_jsonl(path: str | Path, records: list[dict[str, Any]]) -> None:
+    target = Path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(
+        "".join(json.dumps(record, ensure_ascii=False) + "\n" for record in records),
+        encoding="utf-8",
     )
 
 
@@ -250,6 +298,76 @@ def dispatch(args: argparse.Namespace) -> int:
             "matched_patterns": [p.id for p in decision.matched_patterns],
             "warnings": decision.warnings,
         }, json_output)
+        return 0
+
+    if args.command == "graph":
+        if args.graph_command == "propose":
+            from memoryweaver.config import MemoryWeaverConfig
+            from memoryweaver.graph.proposal_generator import BatchGraphProposalGenerator
+
+            env = dict(os.environ)
+            env.update({
+                "MEMORYWEAVER_ENABLE_LLM_GRAPH_PROPOSAL": "true",
+                "MEMORYWEAVER_LLM_PROVIDER": args.provider,
+            })
+            if args.model:
+                env["MEMORYWEAVER_LLM_MODEL"] = args.model
+            config = MemoryWeaverConfig.from_env(env=env, env_file=args.env_file)
+            generator = BatchGraphProposalGenerator(config)
+            output_records: list[dict[str, Any]] = []
+            for result in generator.generate(_read_jsonl(args.input)):
+                output_records.extend(result.to_records())
+            _write_jsonl(args.output, output_records)
+            _emit({
+                "provider": config.llm_provider,
+                "model": config.llm_model,
+                "proposal_count": len(output_records),
+                "output": args.output,
+            }, json_output)
+        elif args.graph_command == "review":
+            from memoryweaver.graph.evidence_binder import GraphEvidenceBinder
+            from memoryweaver.graph.linker import ReviewedGraphLinker
+            from memoryweaver.graph_schema import GraphProposal
+
+            binder = GraphEvidenceBinder(workspace.evidence)
+            linker = ReviewedGraphLinker(workspace.graph)
+            reviewed: list[dict[str, Any]] = []
+            for record in _read_jsonl(args.input):
+                proposal_data = record.get("proposal", record)
+                proposal = GraphProposal.from_dict(proposal_data)
+                binder.bind(proposal, query=args.query or str(record.get("query", "")))
+                review, edge_id = linker.review_and_apply(proposal)
+                reviewed.append({
+                    "input_id": record.get("input_id", ""),
+                    "query": record.get("query", args.query),
+                    "proposal": proposal.to_dict(),
+                    "review": {
+                        "decision": review.decision,
+                        "reasons": review.reasons,
+                        "confidence": review.confidence,
+                        "requires_review": review.requires_review,
+                    },
+                    "edge_id": edge_id,
+                })
+            _write_jsonl(args.output, reviewed)
+            _emit({
+                "reviewed_count": len(reviewed),
+                "output": args.output,
+            }, json_output)
+        elif args.graph_command == "eval":
+            from memoryweaver.graph.proposal_eval import evaluate_proposals
+
+            metrics = evaluate_proposals(
+                _read_jsonl(args.gold),
+                _read_jsonl(args.pred),
+            ).to_dict()
+            if args.output:
+                Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+                Path(args.output).write_text(
+                    json.dumps(metrics, ensure_ascii=False, indent=2) + "\n",
+                    encoding="utf-8",
+                )
+            _emit(metrics, json_output)
         return 0
 
     raise ValueError(f"unsupported command: {args.command}")

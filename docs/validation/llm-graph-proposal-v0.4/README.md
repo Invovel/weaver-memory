@@ -1,76 +1,32 @@
 # LLM GraphProposal v0.4 Validation
 
-## Summary
+This validation treats DeepSeek strictly as an **LLM GraphProposal Provider**. It does not write verified memory, stable Patterns, RelationEdge records without Harness review, or routing decisions.
 
-This validation checks the optional API/provider framework for low-privilege
-GraphProposal generation.
+## Configuration
 
-The API does not make verified decisions. It only adds a candidate relation
-generator:
+- Provider: `deepseek`
+- Model: `deepseek-v4-pro`
+- Prompt version: `graph_proposal_deepseek_v0.4`
+- Review policy version: `graph-proposal-review-v0.4`
+- Dataset size: `40` memories, `5` evidence nodes, `4` queries
+- Proposal count: `22`
+- Accepted / pending / rejected / quarantined: `7` / `3` / `0` / `12`
+- Pending / reject / human-review rates: `0.1364` / `0.0` / `0.6818`
+- Wrong link rate: `0.9091`
+- Evidence coverage: `1.0`
+- Human review needed: `15`
 
-```text
-Memory / Evidence / Query
-  -> LLM Provider
-  -> GraphProposal
-  -> Harness Review
-  -> accept / reject / quarantine
-  -> candidate Graph Edge
-```
+## Retrieval Comparison
 
-Raw data is stored in [`raw_results.json`](raw_results.json).
-
-## Configuration Gate
-
-Default behavior is disabled:
-
-```text
-MEMORYWEAVER_ENABLE_LLM_GRAPH_PROPOSAL=false
-```
-
-With no API key, the SDK and tests still run. With an API key and the flag
-enabled, providers may generate `GraphProposal` objects only. They must not
-write graph edges, verified memory, or stable Patterns directly.
-
-## Procedure
-
-```powershell
-python benchmarks\llm_graph_proposal_validation.py `
-  --iterations 100 `
-  --output docs\validation\llm-graph-proposal-v0.4\raw_results.json
-python -m pytest -q
-```
-
-The benchmark uses the offline local provider, so no network or real API key is
-required.
-
-## Results
-
-| Arm | Recall@10 | Candidate Reduction | p95 ms | Proposal Precision | Wrong Link Rate |
+| Arm | Tag Recall@k | Memory Recall@10 | Graph Expansion Precision | Candidate Reduction | Verified Text p95 ms |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| manual graph | 1.00 | 0.96 | 0.059 | n/a | n/a |
-| rule graph | 1.00 | 0.96 | 0.079 | n/a | n/a |
-| llm proposal graph | 1.00 | 0.96 | 0.048 | 1.00 | 0.00 |
-
-## Review Policy
-
-The `GraphProposalReviewPolicy` enforces:
-
-- assistant / LLM proposal confidence is capped at `0.6`
-- missing evidence link remains `pending`
-- conflicting relation is rejected
-- low-risk tag/alias proposal with evidence can be accepted
-- high fan-out proposal requires review / quarantine
+| no_graph | 1.0 | 0.5417 | 1.0 | 0.9125 | 0.0585 |
+| manual_graph | 1.0 | 0.8334 | 1.0 | 0.8187 | 0.0993 |
+| rule_graph | 1.0 | 0.8334 | 0.9167 | 0.8 | 0.1078 |
+| deepseek_proposal_graph | 1.0 | 0.9167 | 0.9167 | 0.7812 | 0.1385 |
 
 ## Interpretation
 
-The provider framework is safe by default:
+This is a retrieval/linking validation, not a task-success experiment. A positive result means graph proposals can shrink or improve retrieval candidates under Harness review; it does not prove that MemoryWeaver improves end-to-end Agent success rate.
 
-- no API key is required
-- LLM proposal generation is disabled unless explicitly enabled
-- provider output is limited to `GraphProposal`
-- `ReviewedGraphLinker` is the only path from accepted proposal to candidate edge
-- Layer 3 lifecycle remains unchanged
-
-This benchmark does not prove real LLM proposal quality. It proves the SDK
-boundary: API integration adds a candidate relation generator, not a final
-memory or routing authority.
+Layer 3 remains unchanged: provisional Patterns are limited to `fast_verify`, stable Patterns alone can route to `fast`, and evidence links do not auto-promote memory.

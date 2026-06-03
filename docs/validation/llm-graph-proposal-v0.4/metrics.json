@@ -1,0 +1,22 @@
+{
+  "gold_count": 5,
+  "proposal_count": 22,
+  "matched_count": 2,
+  "wrong_count": 20,
+  "precision": 0.0909,
+  "recall": 0.4,
+  "wrong_link_rate": 0.9091,
+  "accepted": 7,
+  "pending": 3,
+  "rejected": 0,
+  "quarantined": 12,
+  "human_review_needed": 15,
+  "pending_rate": 0.1364,
+  "reject_rate": 0.0,
+  "human_review_needed_rate": 0.6818,
+  "evidence_coverage": 1.0,
+  "matched_ids": [
+    "gp_f8cd01bd921d",
+    "gp_7d5c5dbf05cc"
+  ]
+}

@@ -24,9 +24,13 @@ class GraphRelation(str, Enum):
     SUPPORTS = "supports"
     CONTRADICTS = "contradicts"
     RELATED_TO = "related_to"
+    ALIAS_OF = "alias_of"
+    SAME_TOPIC_AS = "same_topic_as"
     SAME_ISSUE_AS = "same_issue_as"
     CAUSED_BY = "caused_by"
+    LIMITS = "limits"
     SUPERSEDES = "supersedes"
+    RESOLVES = "resolves"
 
 
 class GraphStatus(str, Enum):
@@ -110,15 +114,19 @@ class GraphProposal:
     relation: GraphRelation = GraphRelation.RELATED_TO
     from_node: str = ""
     to_node: str = ""
+    from_tag: str = ""
+    to_tag: str = ""
     reason: str = ""
     id: str = field(default_factory=lambda: f"gp_{uuid.uuid4().hex[:12]}")
     confidence: float = 0.0
     status: str = "pending"
     requires_review: bool = True
+    risk: str = "medium"
     from_text: str = ""
     to_text: str = ""
     decision: str = ""
     evidence_links: list[str] = field(default_factory=list)
+    evidence_ids: list[str] = field(default_factory=list)
     created_at: str = field(default_factory=_utc_now)
     metadata: dict[str, Any] = field(default_factory=dict)
 
@@ -126,6 +134,14 @@ class GraphProposal:
         if not isinstance(self.relation, GraphRelation):
             self.relation = GraphRelation(self.relation)
         self.confidence = max(0.0, min(float(self.confidence), 1.0))
+        if not self.from_node:
+            self.from_node = self.from_tag
+        if not self.to_node:
+            self.to_node = self.to_tag
+        if not self.from_tag:
+            self.from_tag = self.from_node
+        if not self.to_tag:
+            self.to_tag = self.to_node
         if not self.from_node:
             self.from_node = self.from_text
         if not self.to_node:
@@ -138,6 +154,7 @@ class GraphProposal:
             self.decision = self.status
         if not self.status:
             self.status = self.decision or "pending"
+        self.risk = (self.risk or "medium").lower()
 
     def to_dict(self) -> dict[str, Any]:
         data = asdict(self)
@@ -154,5 +171,9 @@ class GraphProposal:
             data.pop("proposal_id", None)
         if "decision" in data and "status" not in data:
             data["status"] = data["decision"]
+        if "evidence_id" in data and "evidence_ids" not in data:
+            data["evidence_ids"] = [data.pop("evidence_id")]
+        if "evidence_ids" in data and "evidence_links" not in data:
+            data["evidence_links"] = list(data["evidence_ids"])
         data["relation"] = GraphRelation(data["relation"])
         return cls(**data)

@@ -2,6 +2,8 @@
 
 from memoryweaver.config import MemoryWeaverConfig, load_env_file
 from memoryweaver.graph.proposal import LLMGraphProposalService
+from memoryweaver.graph.evidence_binder import GraphEvidenceBinder
+from memoryweaver.evidence import EvidenceNode
 from memoryweaver.graph.reviewer import GraphProposalReviewPolicy
 from memoryweaver.graph.linker import ReviewedGraphLinker
 from memoryweaver.graph_linker import tag_node_id
@@ -65,9 +67,8 @@ def test_deepseek_provider_parses_graph_proposals_without_writing_edges():
             "choices": [{
                 "message": {
                     "content": (
-                        '{"proposals":[{"source":"llm","proposal_type":"link_tags",'
-                        '"from_node":"codex_subscription_failed",'
-                        '"to_node":"selected_organization",'
+                        '{"proposals":[{"from_tag":"codex_subscription_failed",'
+                        '"to_tag":"selected_organization",'
                         '"relation":"related_to","reason":"same issue",'
                         '"confidence":0.91,"status":"pending",'
                         '"requires_review":true}]}'
@@ -87,6 +88,38 @@ def test_deepseek_provider_parses_graph_proposals_without_writing_edges():
     assert proposal.to_node == "selected_organization"
     assert proposal.confidence == 0.6
     assert proposal.requires_review is True
+    assert proposal.metadata["prompt_version"] == "graph_proposal_deepseek_v0.4"
+
+
+def test_deepseek_provider_preserves_evidence_grounded_confidence():
+    config = MemoryWeaverConfig.from_env(env={
+        "MEMORYWEAVER_ENABLE_LLM_GRAPH_PROPOSAL": "true",
+        "MEMORYWEAVER_LLM_PROVIDER": "deepseek",
+        "MEMORYWEAVER_LLM_MODEL": "deepseek-v4-pro",
+        "DEEPSEEK_API_KEY": "test-key",
+        "MEMORYWEAVER_LLM_PROPOSAL_CONFIDENCE_CAP": "0.6",
+    })
+    provider = DeepSeekGraphProposalProvider(config)
+
+    def fake_post(_payload):
+        return {
+            "choices": [{
+                "message": {
+                    "content": (
+                        '{"proposals":[{"from_tag":"codex_subscription_failed",'
+                        '"to_tag":"selected_organization",'
+                        '"relation":"related_to","reason":"evidence grounded",'
+                        '"confidence":0.82,"evidence_ids":["ev_1"],'
+                        '"risk":"low","requires_review":true}]}'
+                    )
+                }
+            }]
+        }
+
+    provider._post_json = fake_post
+    proposals = provider.propose_graph_links(ProviderRequest(tags=["a", "b"]))
+    assert proposals[0].confidence == 0.82
+    assert proposals[0].evidence_ids == ["ev_1"]
 
 
 def test_reviewer_keeps_missing_evidence_pending(tmp_path):
@@ -105,6 +138,32 @@ def test_reviewer_keeps_missing_evidence_pending(tmp_path):
     assert review.confidence == 0.6
     assert "missing evidence link" in review.reasons
     assert graph.list_edges() == []
+
+
+def test_evidence_binder_marks_auto_bound_evidence_candidate(tmp_path):
+    from memoryweaver.evidence import EvidenceStore
+
+    evidence = EvidenceStore(tmp_path / "nodes.json", tmp_path / "links.json")
+    evidence.add_node(EvidenceNode(
+        id="ev_org",
+        text="selected organization fixed codex subscription failed",
+        source="terminal",
+        source_uri="fixture://org",
+    ))
+    proposal = GraphProposal(
+        proposal_type="link_tags",
+        source="llm",
+        from_node="codex_subscription_failed",
+        to_node="selected_organization",
+        relation=GraphRelation.RELATED_TO,
+        confidence=0.55,
+    )
+    bindings = GraphEvidenceBinder(evidence).bind(proposal)
+    assert bindings[0].evidence_id == "ev_org"
+    assert proposal.metadata["evidence_link_states"]["ev_org"] == "candidate_evidence_link"
+    review = GraphProposalReviewPolicy(GraphStore(tmp_path / "graph.json")).review(proposal)
+    assert review.decision == "pending"
+    assert "candidate evidence requires review" in review.reasons
 
 
 def test_reviewed_linker_writes_edge_only_after_accept(tmp_path):
@@ -126,6 +185,24 @@ def test_reviewed_linker_writes_edge_only_after_accept(tmp_path):
     assert edge.source == "reviewed_graph_proposal"
     assert edge.source_id == tag_node_id("codex_subscription_failed")
     assert edge.target_id == tag_node_id("selected_organization")
+    assert edge.evidence_links == ["link_1"]
+
+
+def test_reviewer_quarantines_high_risk_relation_even_with_evidence(tmp_path):
+    graph = GraphStore(tmp_path / "graph.json")
+    proposal = GraphProposal(
+        proposal_type="link_tags",
+        source="llm",
+        from_node="subscription_load_failed",
+        to_node="selected_organization",
+        relation=GraphRelation.CAUSED_BY,
+        reason="Causality claim.",
+        confidence=0.7,
+        evidence_links=["link_1"],
+    )
+    review = GraphProposalReviewPolicy(graph).review(proposal)
+    assert review.decision == "quarantine"
+    assert "high-risk relation cannot be auto accepted" in review.reasons
 
 
 def test_reviewer_rejects_conflicting_relation(tmp_path):

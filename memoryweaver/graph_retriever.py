@@ -53,9 +53,13 @@ class GraphRetriever:
     ):
         allowed = relations or {
             GraphRelation.RELATED_TO,
+            GraphRelation.ALIAS_OF,
+            GraphRelation.SAME_TOPIC_AS,
             GraphRelation.SAME_ISSUE_AS,
             GraphRelation.CAUSED_BY,
+            GraphRelation.LIMITS,
             GraphRelation.SUPERSEDES,
+            GraphRelation.RESOLVES,
         }
         visited: set[str] = set()
         frontier = [tag_node_id(tag) for tag in tags]

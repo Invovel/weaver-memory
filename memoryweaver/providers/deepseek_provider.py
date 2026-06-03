@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import urllib.error
 import urllib.request
+from pathlib import Path
 
 from memoryweaver.graph_schema import GraphProposal, GraphRelation
 from memoryweaver.providers.base import BaseHTTPGraphProposalProvider, ProviderRequest
@@ -14,6 +15,7 @@ class DeepSeekGraphProposalProvider(BaseHTTPGraphProposalProvider):
     provider_name = "deepseek"
     api_key_attr = "deepseek_api_key"
     endpoint = "https://api.deepseek.com/chat/completions"
+    prompt_version = "graph_proposal_deepseek_v0.4"
 
     def propose_graph_links(self, request: ProviderRequest) -> list[GraphProposal]:
         if not self.available():
@@ -28,26 +30,20 @@ class DeepSeekGraphProposalProvider(BaseHTTPGraphProposalProvider):
         return self._parse_proposals(content)
 
     def _build_payload(self, request: ProviderRequest) -> dict:
+        prompt = _load_prompt()
         instruction = {
-            "task": "Generate candidate graph link proposals only.",
-            "hard_rules": [
-                "Return JSON only.",
-                "Do not create graph edges.",
-                "Do not write memory.",
-                "Do not write or promote Pattern records.",
-                "Each proposal must require review.",
-            ],
+            "task": "Generate candidate GraphProposal objects only.",
+            "prompt_version": self.prompt_version,
             "schema": {
                 "proposals": [
                     {
-                        "source": "llm",
-                        "proposal_type": "link_tags",
-                        "from_node": "tag_or_node",
-                        "to_node": "tag_or_node",
+                        "from_tag": "codex_subscription_failed",
+                        "to_tag": "selected_organization",
                         "relation": "related_to",
-                        "reason": "short reason",
-                        "confidence": 0.0,
-                        "status": "pending",
+                        "confidence": 0.58,
+                        "reason": "short evidence-grounded reason",
+                        "evidence_ids": ["evidence_001"],
+                        "risk": "medium",
                         "requires_review": True,
                     }
                 ]
@@ -64,14 +60,12 @@ class DeepSeekGraphProposalProvider(BaseHTTPGraphProposalProvider):
             "messages": [
                 {
                     "role": "system",
-                    "content": (
-                        "You are a low-privilege graph proposal generator. "
-                        "You can only propose candidate tag links as JSON."
-                    ),
+                    "content": prompt,
                 },
                 {"role": "user", "content": json.dumps(instruction, ensure_ascii=False)},
             ],
             "stream": False,
+            "response_format": {"type": "json_object"},
         }
 
     def _post_json(self, payload: dict) -> dict:
@@ -111,21 +105,33 @@ class DeepSeekGraphProposalProvider(BaseHTTPGraphProposalProvider):
         for item in proposals:
             try:
                 relation = GraphRelation(item.get("relation", "related_to"))
+                evidence_ids = list(item.get("evidence_ids", []))
+                evidence_links = list(item.get("evidence_links", [])) or evidence_ids
+                from_tag = item.get("from_tag", item.get("from_node", item.get("from_text", "")))
+                to_tag = item.get("to_tag", item.get("to_node", item.get("to_text", "")))
+                confidence = _coerce_confidence(item.get("confidence", 0.0))
+                if not evidence_ids:
+                    confidence = min(confidence, self.config.llm_proposal_confidence_cap)
                 parsed.append(GraphProposal(
                     proposal_type=item.get("proposal_type", "link_tags"),
                     source="llm",
-                    from_node=item.get("from_node", item.get("from_text", "")),
-                    to_node=item.get("to_node", item.get("to_text", "")),
+                    from_node=from_tag,
+                    to_node=to_tag,
+                    from_tag=from_tag,
+                    to_tag=to_tag,
                     relation=relation,
                     reason=item.get("reason", ""),
-                    confidence=min(
-                        float(item.get("confidence", 0.0)),
-                        self.config.llm_proposal_confidence_cap,
-                    ),
+                    confidence=confidence,
                     status="pending",
                     requires_review=True,
-                    evidence_links=list(item.get("evidence_links", [])),
-                    metadata={"provider": "deepseek", "model": self.config.llm_model},
+                    risk=item.get("risk", "medium"),
+                    evidence_links=evidence_links,
+                    evidence_ids=evidence_ids,
+                    metadata={
+                        "provider": "deepseek",
+                        "model": self.config.llm_model,
+                        "prompt_version": self.prompt_version,
+                    },
                 ))
             except (TypeError, ValueError):
                 continue
@@ -133,3 +139,21 @@ class DeepSeekGraphProposalProvider(BaseHTTPGraphProposalProvider):
             proposal for proposal in parsed
             if proposal.from_node and proposal.to_node
         ]
+
+
+def _load_prompt() -> str:
+    path = Path(__file__).resolve().parents[1] / "prompts" / "graph_proposal_deepseek.md"
+    try:
+        return path.read_text(encoding="utf-8")
+    except OSError:
+        return (
+            "You are a low-privilege LLM GraphProposal Provider. "
+            "Return strict JSON only. Never write edges, memories, or patterns."
+        )
+
+
+def _coerce_confidence(value: object) -> float:
+    try:
+        return max(0.0, min(float(value), 1.0))
+    except (TypeError, ValueError):
+        return 0.0

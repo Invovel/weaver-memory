@@ -81,3 +81,63 @@ def test_complete_memory_evidence_pattern_route_chain(tmp_path, capsys):
     assert route["mode"] == "fast"
     assert pattern["id"] in route["matched_patterns"]
     assert invoke(capsys, "validate", "--root", root, "--json")["valid"] is True
+
+
+def test_graph_propose_review_eval_cli_chain(tmp_path, capsys):
+    root = str(tmp_path / ".memoryweaver")
+    input_path = tmp_path / "batch.jsonl"
+    proposals_path = tmp_path / "proposals.jsonl"
+    reviewed_path = tmp_path / "reviewed.jsonl"
+    gold_path = tmp_path / "gold.jsonl"
+    metrics_path = tmp_path / "metrics.json"
+
+    invoke(
+        capsys,
+        "evidence", "add", "--root", root,
+        "--text", "selected organization fixed codex subscription failed",
+        "--source", "terminal",
+        "--uri", "fixture://org",
+    )
+    input_path.write_text(
+        json.dumps({
+            "id": "q1",
+            "query": "codex org problem",
+            "tags": ["codex_subscription_failed", "selected_organization"],
+        }) + "\n",
+        encoding="utf-8",
+    )
+    gold_path.write_text(
+        json.dumps({
+            "from_tag": "codex_subscription_failed",
+            "to_tag": "selected_organization",
+            "relation": "related_to",
+        }) + "\n",
+        encoding="utf-8",
+    )
+
+    proposed = invoke(
+        capsys,
+        "graph", "propose", "--root", root,
+        "--provider", "local",
+        "--input", str(input_path),
+        "--output", str(proposals_path),
+    )
+    assert proposed["proposal_count"] == 1
+    reviewed = invoke(
+        capsys,
+        "graph", "review", "--root", root,
+        "--input", str(proposals_path),
+        "--output", str(reviewed_path),
+        "--query", "codex org problem",
+    )
+    assert reviewed["reviewed_count"] == 1
+    metrics = invoke(
+        capsys,
+        "graph", "eval", "--root", root,
+        "--gold", str(gold_path),
+        "--pred", str(reviewed_path),
+        "--output", str(metrics_path),
+    )
+    assert metrics["proposal_count"] == 1
+    assert metrics["matched_count"] == 1
+    assert metrics_path.exists()

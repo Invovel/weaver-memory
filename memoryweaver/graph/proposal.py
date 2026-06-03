@@ -36,10 +36,11 @@ class LLMGraphProposalService:
         proposals = self.provider.propose_graph_links(request)
         for proposal in proposals:
             proposal.source = "llm"
-            proposal.confidence = min(
-                proposal.confidence,
-                self.config.llm_proposal_confidence_cap,
-            )
+            if not proposal.evidence_links and not proposal.evidence_ids:
+                proposal.confidence = min(
+                    proposal.confidence,
+                    self.config.llm_proposal_confidence_cap,
+                )
             proposal.requires_review = True
             if proposal.status not in {"pending", "accepted", "rejected", "quarantined"}:
                 proposal.status = "pending"

@@ -12,6 +12,7 @@
 - `MemoryWorkspace`、`PatternStore`、`PatternComposer`、`memoryweaver.cli:main`。
 - 中文与中英混合 lexical baseline。
 - 最小 candidate graph / tag-linking：Graph node、edge、proposal、tag expansion、candidate narrowing。
+- 可选 API/provider 框架：默认关闭，只生成 `GraphProposal`，不直接写 edge / memory / Pattern。
 - 113 个 pytest 测试通过。
 - P0 source gate、tag gate、Router gate 与 heat 生命周期拆分已经完成五轮验证。
 
@@ -27,6 +28,8 @@
 - LLM 可以维护候选图谱、候选摘要和候选分支；不能直接维护 verified memory 或
   stable Pattern。
 - 当前 graph 只影响候选召回，不影响 Layer 3 生命周期。
+- API 的作用是低权限地产生候选图谱操作，真正变化必须通过 proposal acceptance、
+  recall、candidate reduction 和 wrong link rate 体现。
 
 ## 开发规则
 
@@ -90,6 +93,16 @@ MemoryWeaver v0.2.0
 - SQLite / indexed backend
 - simple vector backend
 - minimal GBrain projection beyond the current candidate tag-linking layer
+
+已先落地的 v0.4 前置边界：
+
+- `.env.example`
+- `MemoryWeaverConfig`
+- provider skeletons：OpenAI、Anthropic、DeepSeek、Qwen、Local
+- `LLMGraphProposalService`
+- `GraphProposalReviewPolicy`
+- `ReviewedGraphLinker`
+- validation：manual graph vs rule graph vs llm proposal graph
 
 ## Sprint 0.1：修正原型边界
 

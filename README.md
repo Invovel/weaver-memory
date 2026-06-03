@@ -595,6 +595,8 @@ usable Python SDK and CLI with 113 passing tests:
 - `composer.py` - `PatternStore` and explicit provisional `PatternComposer`.
 - `graph_schema.py`, `graph_store.py`, `graph_linker.py`, `graph_retriever.py` -
   minimal candidate graph/tag-linking for recall expansion and candidate narrowing.
+- `config.py`, `providers/`, `graph/proposal.py`, `graph/reviewer.py` -
+  optional low-privilege LLM GraphProposal generation and Harness review.
 - `cli.py` - `mw` CLI for validate, memory, evidence, pattern, and route.
 - `scorer.py` - heat/confidence/freshness signals without automatic Layer 3 promotion.
 - `retriever.py` - policy-filtered verified retrieval.
@@ -628,6 +630,11 @@ Graph tag-linking validation is recorded in
 [`docs/validation/graph-tag-linking-v0.3/README.md`](docs/validation/graph-tag-linking-v0.3/README.md).
 It shows that a one-hop graph can improve tag recall and reduce candidate scan
 size in a controlled fixture, but it does not prove task success improvement.
+
+LLM GraphProposal validation is recorded in
+[`docs/validation/llm-graph-proposal-v0.4/README.md`](docs/validation/llm-graph-proposal-v0.4/README.md).
+The API framework is disabled by default and only produces `GraphProposal`
+objects. Harness review is required before any candidate edge is written.
 
 Deferred by design: full GBrain database, multi-hop graph expansion beyond the
 candidate layer, full RAG pipeline, embedding, vector DB, HarnessRuntime,

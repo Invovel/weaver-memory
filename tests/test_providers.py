@@ -1,0 +1,142 @@
+"""Optional LLM provider and GraphProposal review tests."""
+
+from memoryweaver.config import MemoryWeaverConfig, load_env_file
+from memoryweaver.graph.proposal import LLMGraphProposalService
+from memoryweaver.graph.reviewer import GraphProposalReviewPolicy
+from memoryweaver.graph.linker import ReviewedGraphLinker
+from memoryweaver.graph_linker import tag_node_id
+from memoryweaver.graph_schema import GraphProposal, GraphRelation
+from memoryweaver.graph_store import GraphStore
+from memoryweaver.providers.base import ProviderRequest, provider_from_config
+
+
+def test_env_example_defaults_keep_llm_graph_proposals_disabled():
+    config = MemoryWeaverConfig.from_env(env={}, env_file=".env.example")
+    assert config.enable_llm_graph_proposal is False
+    assert config.graph_proposals_available() is False
+
+
+def test_no_api_key_means_remote_provider_unavailable():
+    config = MemoryWeaverConfig.from_env(env={
+        "MEMORYWEAVER_ENABLE_LLM_GRAPH_PROPOSAL": "true",
+        "MEMORYWEAVER_LLM_PROVIDER": "openai",
+        "OPENAI_API_KEY": "",
+    })
+    provider = provider_from_config(config)
+    assert provider.available() is False
+    assert provider.propose_graph_links(ProviderRequest(tags=["a", "b"])) == []
+
+
+def test_local_provider_outputs_only_graph_proposal():
+    config = MemoryWeaverConfig.from_env(env={
+        "MEMORYWEAVER_ENABLE_LLM_GRAPH_PROPOSAL": "true",
+        "MEMORYWEAVER_LLM_PROVIDER": "local",
+        "MEMORYWEAVER_LLM_PROPOSAL_CONFIDENCE_CAP": "0.6",
+    })
+    service = LLMGraphProposalService(config)
+    proposals = service.propose(tags=[
+        "codex_subscription_failed",
+        "selected_organization",
+    ])
+    assert len(proposals) == 1
+    proposal = proposals[0]
+    assert proposal.source == "llm"
+    assert proposal.from_node == "codex_subscription_failed"
+    assert proposal.to_node == "selected_organization"
+    assert proposal.status == "pending"
+    assert proposal.requires_review is True
+    assert proposal.confidence <= 0.6
+
+
+def test_reviewer_keeps_missing_evidence_pending(tmp_path):
+    graph = GraphStore(tmp_path / "graph.json")
+    proposal = GraphProposal(
+        proposal_type="link_tags",
+        source="llm",
+        from_node="codex_subscription_failed",
+        to_node="selected_organization",
+        relation=GraphRelation.RELATED_TO,
+        reason="Both appeared together.",
+        confidence=0.9,
+    )
+    review = GraphProposalReviewPolicy(graph).review(proposal)
+    assert review.decision == "pending"
+    assert review.confidence == 0.6
+    assert "missing evidence link" in review.reasons
+    assert graph.list_edges() == []
+
+
+def test_reviewed_linker_writes_edge_only_after_accept(tmp_path):
+    graph = GraphStore(tmp_path / "graph.json")
+    proposal = GraphProposal(
+        proposal_type="link_tags",
+        source="llm",
+        from_node="codex_subscription_failed",
+        to_node="selected_organization",
+        relation=GraphRelation.RELATED_TO,
+        reason="Both appeared together.",
+        confidence=0.54,
+        evidence_links=["link_1"],
+    )
+    review, edge_id = ReviewedGraphLinker(graph).review_and_apply(proposal)
+    assert review.decision == "accept"
+    assert edge_id
+    edge = graph.get_edge(edge_id)
+    assert edge.source == "reviewed_graph_proposal"
+    assert edge.source_id == tag_node_id("codex_subscription_failed")
+    assert edge.target_id == tag_node_id("selected_organization")
+
+
+def test_reviewer_rejects_conflicting_relation(tmp_path):
+    graph = GraphStore(tmp_path / "graph.json")
+    proposal = GraphProposal(
+        proposal_type="link_tags",
+        source="llm",
+        from_node="npm_reinstall_failed",
+        to_node="npm_root_cause",
+        relation=GraphRelation.CONTRADICTS,
+        reason="Conflicting root cause claim.",
+        confidence=0.5,
+        evidence_links=["link_1"],
+    )
+    review, edge_id = ReviewedGraphLinker(graph).review_and_apply(proposal)
+    assert review.decision == "reject"
+    assert edge_id == ""
+    assert graph.list_edges() == []
+
+
+def test_reviewer_quarantines_high_fanout(tmp_path):
+    graph = GraphStore(tmp_path / "graph.json")
+    for index in range(8):
+        proposal = GraphProposal(
+            proposal_type="link_tags",
+            source="manual",
+            from_node="codex_subscription_failed",
+            to_node=f"neighbor_{index}",
+            relation=GraphRelation.RELATED_TO,
+            reason="fixture",
+            confidence=0.5,
+            evidence_links=["link_1"],
+        )
+        ReviewedGraphLinker(graph).review_and_apply(proposal)
+
+    high_fanout = GraphProposal(
+        proposal_type="link_tags",
+        source="llm",
+        from_node="codex_subscription_failed",
+        to_node="too_many_neighbors",
+        relation=GraphRelation.RELATED_TO,
+        reason="fanout test",
+        confidence=0.5,
+        evidence_links=["link_1"],
+    )
+    review = GraphProposalReviewPolicy(graph).review(high_fanout)
+    assert review.decision == "quarantine"
+    assert "high fan-out edge requires review" in review.reasons
+
+
+def test_load_env_file_does_not_mutate_environment(tmp_path):
+    env_file = tmp_path / ".env"
+    env_file.write_text("MEMORYWEAVER_ENABLE_LLM_GRAPH_PROPOSAL=true\n", encoding="utf-8")
+    values = load_env_file(env_file)
+    assert values["MEMORYWEAVER_ENABLE_LLM_GRAPH_PROPOSAL"] == "true"

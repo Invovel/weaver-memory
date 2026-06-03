@@ -107,13 +107,18 @@ class GraphEdge:
 class GraphProposal:
     proposal_type: str
     source: str
-    from_text: str
-    to_text: str
-    relation: GraphRelation
-    reason: str
+    relation: GraphRelation = GraphRelation.RELATED_TO
+    from_node: str = ""
+    to_node: str = ""
+    reason: str = ""
     id: str = field(default_factory=lambda: f"gp_{uuid.uuid4().hex[:12]}")
     confidence: float = 0.0
-    decision: str = "pending"
+    status: str = "pending"
+    requires_review: bool = True
+    from_text: str = ""
+    to_text: str = ""
+    decision: str = ""
+    evidence_links: list[str] = field(default_factory=list)
     created_at: str = field(default_factory=_utc_now)
     metadata: dict[str, Any] = field(default_factory=dict)
 
@@ -121,14 +126,33 @@ class GraphProposal:
         if not isinstance(self.relation, GraphRelation):
             self.relation = GraphRelation(self.relation)
         self.confidence = max(0.0, min(float(self.confidence), 1.0))
+        if not self.from_node:
+            self.from_node = self.from_text
+        if not self.to_node:
+            self.to_node = self.to_text
+        if not self.from_text:
+            self.from_text = self.from_node
+        if not self.to_text:
+            self.to_text = self.to_node
+        if not self.decision:
+            self.decision = self.status
+        if not self.status:
+            self.status = self.decision or "pending"
 
     def to_dict(self) -> dict[str, Any]:
         data = asdict(self)
         data["relation"] = self.relation.value
+        data["proposal_id"] = self.id
         return data
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> GraphProposal:
         data = dict(data)
+        if "proposal_id" in data and "id" not in data:
+            data["id"] = data.pop("proposal_id")
+        else:
+            data.pop("proposal_id", None)
+        if "decision" in data and "status" not in data:
+            data["status"] = data["decision"]
         data["relation"] = GraphRelation(data["relation"])
         return cls(**data)

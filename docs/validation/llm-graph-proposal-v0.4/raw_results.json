@@ -1,0 +1,37 @@
+{
+  "benchmark": "llm-graph-proposal-v0.4",
+  "iterations": 100,
+  "arms": [
+    {
+      "arm": "manual_graph",
+      "workspace_valid": true,
+      "recall_at_10": 1.0,
+      "candidate_count": 2,
+      "candidate_reduction_ratio": 0.96,
+      "p95_ms": 0.0863,
+      "p50_ms": 0.0385
+    },
+    {
+      "arm": "rule_graph",
+      "workspace_valid": true,
+      "recall_at_10": 1.0,
+      "candidate_count": 2,
+      "candidate_reduction_ratio": 0.96,
+      "p95_ms": 0.0647,
+      "p50_ms": 0.0412
+    },
+    {
+      "arm": "llm_proposal_graph",
+      "workspace_valid": true,
+      "recall_at_10": 1.0,
+      "candidate_count": 2,
+      "candidate_reduction_ratio": 0.96,
+      "p95_ms": 0.1019,
+      "p50_ms": 0.0399,
+      "proposal_count": 1,
+      "accepted": 1,
+      "proposal_precision": 1.0,
+      "wrong_link_rate": 0.0
+    }
+  ]
+}

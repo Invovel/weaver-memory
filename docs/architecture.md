@@ -78,6 +78,9 @@ flowchart LR
 | `memoryweaver/graph_store.py` | JSON-backed candidate graph store |
 | `memoryweaver/graph_linker.py` | 手动 / 规则式 tag-memory-evidence-pattern 边建立 |
 | `memoryweaver/graph_retriever.py` | 一跳 tag expansion 与 graph candidate narrowing |
+| `memoryweaver/config.py` | 可选 LLM graph proposal 配置，默认关闭 |
+| `memoryweaver/providers/` | OpenAI / Anthropic / DeepSeek / Qwen / local provider skeletons |
+| `memoryweaver/graph/` | `LLMGraphProposalService`、review policy、reviewed linker |
 | `memoryweaver/cli.py` | `mw validate`、memory、evidence、pattern、route |
 | `memoryweaver/scorer.py` | access、use、validation、success、correction、confidence；不自动创建 Layer 3 |
 | `memoryweaver/extractor.py` | 中英文规则式 feedback 分类与事件检测 |

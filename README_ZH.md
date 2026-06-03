@@ -606,6 +606,8 @@ P0 信任边界修复已经完成五轮独立验证。详见
 - `composer.py` - `PatternStore` 与显式 provisional `PatternComposer`
 - `graph_schema.py`、`graph_store.py`、`graph_linker.py`、`graph_retriever.py` -
   最小候选图谱 / tag-linking，用于召回扩展和候选缩小
+- `config.py`、`providers/`、`graph/proposal.py`、`graph/reviewer.py` -
+  可选低权限 LLM GraphProposal 生成与 Harness review
 - `cli.py` - `mw` CLI：validate、memory、evidence、pattern、route
 - `scorer.py` - heat / confidence / freshness 信号，不再自动创建 Layer 3
 - `retriever.py` - 策略过滤的 verified retrieval
@@ -635,6 +637,11 @@ memory activation accuracy。
 Graph tag-linking 验证记录见
 [`docs/validation/graph-tag-linking-v0.3/README.md`](docs/validation/graph-tag-linking-v0.3/README.md)。
 它说明一跳候选图谱可以改善 tag recall 并缩小候选扫描范围，但不证明任务成功率提升。
+
+LLM GraphProposal 验证记录见
+[`docs/validation/llm-graph-proposal-v0.4/README.md`](docs/validation/llm-graph-proposal-v0.4/README.md)。
+API 框架默认关闭，只能生成 `GraphProposal`。必须经过 Harness review，才可能写入
+candidate edge。
 
 本阶段明确暂不实现：完整 GBrain 数据库、候选层之外的多跳图谱 expansion、完整 RAG
 pipeline、embedding、向量数据库、HarnessRuntime、ActionGate、checkpoint、真实 LLM

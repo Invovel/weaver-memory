@@ -67,6 +67,7 @@ class ProposalEvalResult:
             "recall": round(self.recall, 4),
             "wrong_link_rate": round(self.wrong_link_rate, 4),
             "accepted": self.accepted,
+            "accepted_edge_count": self.accepted,
             "pending": self.pending,
             "rejected": self.rejected,
             "quarantined": self.quarantined,
@@ -91,10 +92,12 @@ def evaluate_proposals(
     gold = {EdgeKey.from_record(record) for record in gold_edges}
     proposal_records = [_proposal_record(record) for record in predictions]
     predicted = [EdgeKey.from_record(record) for record in proposal_records]
-    matched_indices = [
-        index for index, key in enumerate(predicted)
-        if key in gold
-    ]
+    unique_matched_gold: set[EdgeKey] = set()
+    matched_indices: list[int] = []
+    for index, key in enumerate(predicted):
+        if key in gold and key not in unique_matched_gold:
+            unique_matched_gold.add(key)
+            matched_indices.append(index)
     proposal_count = len(predicted)
     matched_count = len(matched_indices)
     wrong_count = proposal_count - matched_count
@@ -104,7 +107,7 @@ def evaluate_proposals(
     ]
     evidence_count = sum(
         1 for record in proposal_records
-        if record.get("evidence_links") or record.get("evidence_ids")
+        if _has_provider_or_verified_evidence(record)
     )
     support_statuses = [
         str(record.get("review", {}).get("evidence_support", "insufficient_evidence"))
@@ -127,7 +130,7 @@ def evaluate_proposals(
         matched_count=matched_count,
         wrong_count=wrong_count,
         precision=matched_count / proposal_count if proposal_count else 0.0,
-        recall=matched_count / len(gold) if gold else 0.0,
+        recall=len(unique_matched_gold) / len(gold) if gold else 0.0,
         wrong_link_rate=wrong_count / proposal_count if proposal_count else 0.0,
         accepted=decisions.count("accept") + decisions.count("accepted"),
         pending=decisions.count("pending"),
@@ -161,3 +164,16 @@ def _proposal_record(record: dict[str, Any]) -> dict[str, Any]:
             merged["review"] = record["review"]
         return merged
     return record
+
+
+def _has_provider_or_verified_evidence(record: dict[str, Any]) -> bool:
+    evidence_refs = record.get("evidence_links") or record.get("evidence_ids") or []
+    if not evidence_refs:
+        return False
+    states = record.get("metadata", {}).get("evidence_link_states", {})
+    if states and all(
+        states.get(evidence_id) == "candidate_evidence_link"
+        for evidence_id in evidence_refs
+    ):
+        return False
+    return True

@@ -131,10 +131,13 @@ class EvidenceSupportCheck:
             node.title.lower(),
             " ".join(str(value).lower() for value in node.metadata.values()),
         ])
-        left_hit = token_jaccard(left, text) > 0 or proposal.from_node in text
-        right_hit = token_jaccard(right, text) > 0 or proposal.to_node in text
-        if not left_hit or not right_hit:
+        left_coverage = self._endpoint_coverage(left, proposal.from_node, text)
+        right_coverage = self._endpoint_coverage(right, proposal.to_node, text)
+        min_coverage = min(left_coverage, right_coverage)
+        if min_coverage <= 0:
             return token_jaccard(f"{left} {right}", text) * 0.5
+        if min_coverage < 0.67:
+            return 0.35
         text_tokens = tokenize_text(text)
         phrase_markers = self.contradiction_markers - {"not"}
         if "not" in text_tokens or any(marker in text for marker in phrase_markers):
@@ -145,3 +148,16 @@ class EvidenceSupportCheck:
         if tokenize_text(proposal.relation.value) & tokenize_text(text):
             endpoint_score += 0.1
         return min(endpoint_score, 1.0)
+
+    @staticmethod
+    def _endpoint_coverage(endpoint_text: str, endpoint_tag: str, text: str) -> float:
+        if endpoint_tag in text:
+            return 1.0
+        endpoint_tokens = {
+            token for token in tokenize_text(endpoint_text)
+            if len(token) > 1
+        }
+        if not endpoint_tokens:
+            return 0.0
+        text_tokens = tokenize_text(text)
+        return len(endpoint_tokens & text_tokens) / len(endpoint_tokens)

@@ -1,0 +1,52 @@
+{
+  "arms": {
+    "no_memory": {
+      "task_count": 12,
+      "success_rate": 0.0,
+      "repeated_failure_rate": 1.0,
+      "invalid_action_rate": 1.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 0.0,
+      "promotion_precision": 0.0
+    },
+    "naive_memory": {
+      "task_count": 12,
+      "success_rate": 0.0,
+      "repeated_failure_rate": 1.0,
+      "invalid_action_rate": 1.0,
+      "memory_induced_regression_rate": 1.0,
+      "rollback_frequency": 0.0,
+      "promotion_precision": 0.0
+    },
+    "memoryweaver_coding_debug_runtime": {
+      "task_count": 12,
+      "success_rate": 1.0,
+      "repeated_failure_rate": 0.0,
+      "invalid_action_rate": 0.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 0.0,
+      "promotion_precision": 1.0
+    },
+    "rollback_probe": {
+      "task_count": 1,
+      "success_rate": 1.0,
+      "repeated_failure_rate": 0.0,
+      "invalid_action_rate": 0.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 1.0,
+      "promotion_precision": 0.0
+    }
+  },
+  "aggregate": {
+    "real_pytest_before_failed": 1.0,
+    "real_pytest_after_passed": 1.0,
+    "real_diff_matches_expected": 1.0,
+    "candidate_registration_promotable": 1.0,
+    "promotion_external_evidence_only": 1.0,
+    "repeated_failure_rate_delta_vs_no_memory": -1.0,
+    "invalid_action_rate_delta_vs_naive_memory": -1.0,
+    "memory_induced_regression_delta_vs_naive_memory": -1.0,
+    "runtime_path_store_roundtrip": 1.0,
+    "rollback_recorded": 1.0
+  }
+}

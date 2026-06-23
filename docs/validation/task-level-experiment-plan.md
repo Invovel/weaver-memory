@@ -30,6 +30,35 @@ Start with 20-50 repeated project tasks before expanding:
 - repeated user preference or style corrections
 - documentation or setup tasks with known wrong paths
 
+### v0.5 Runbook Marker Dialogue Set
+
+Before the full task-level benchmark, v0.5 should use a trace-first dialogue
+fixture:
+
+```text
+docs/validation/v0.5-runbook-marker-dialogue-set.md
+```
+
+This fixture contains 50 multi-turn dialogue cards. Each card represents one
+10-20 turn conversation with exploration, failed paths, user correction,
+evidence checks, expected CoreIssueNode, expected HarnessMarker, and expected
+`fast_verify` trace behavior.
+
+This is not yet an end-to-end task success benchmark. It is the bridge test for
+the minimal runtime loop:
+
+```text
+query
+-> CoreIssueNode match
+-> HarnessMarker activation
+-> known bad path warning
+-> required evidence checks
+-> route = fast_verify
+```
+
+Use it to prove that reviewed experience can influence runtime trace behavior
+without changing Layer 3 lifecycle rules or calling an LLM online.
+
 ## Data Files
 
 ```text
@@ -53,6 +82,16 @@ evidence_links.jsonl
 | memory_activation_accuracy | Whether retrieved memory/Pattern was relevant and safe. |
 | user_correction_count | Number of user corrections needed after agent action. |
 | time_to_success | Wall-clock time, secondary to step count. |
+
+For the v0.5 dialogue trace fixture, add:
+
+| Metric | Meaning |
+| --- | --- |
+| marker_trigger_precision | Whether the expected HarnessMarker fired. |
+| core_issue_match_accuracy | Whether the query matched the expected CoreIssueNode. |
+| known_bad_path_suppression | Whether previously failed actions were warned or suppressed. |
+| evidence_check_order_accuracy | Whether required evidence checks appeared in the expected order. |
+| trace_completeness | Whether trace includes node, marker, reason, evidence, suppressed path, and route. |
 
 ## Analysis
 

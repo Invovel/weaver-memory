@@ -1,0 +1,84 @@
+{
+  "scope": {
+    "brain_id": "workspace",
+    "source_id": "v08-fixture",
+    "workspace_root": "",
+    "owner_scope": "project",
+    "federated": false
+  },
+  "center_query": "Before closing the incident, which evidence should be checked and which action is unsafe?",
+  "candidate_nodes": [
+    {
+      "id": "v08_tag_activity_stream",
+      "label": "activity stream evidence",
+      "ref_id": "activity_stream",
+      "node_type": "tag",
+      "metadata": {
+        "graph_layer": "candidate",
+        "source_refs": [
+          "ev_f69309659854"
+        ],
+        "proposed_by": "llm",
+        "authority_granted": false,
+        "scope": {
+          "brain_id": "workspace",
+          "source_id": "v08-fixture",
+          "workspace_root": "",
+          "owner_scope": "project",
+          "federated": false
+        }
+      }
+    },
+    {
+      "id": "v08_tag_blind_close",
+      "label": "blind close known-bad path",
+      "ref_id": "blind_close",
+      "node_type": "tag",
+      "metadata": {
+        "graph_layer": "candidate",
+        "source_refs": [
+          "ev_7b0f4e6a6f7c"
+        ],
+        "proposed_by": "llm",
+        "authority_granted": false,
+        "scope": {
+          "brain_id": "workspace",
+          "source_id": "v08-fixture",
+          "workspace_root": "",
+          "owner_scope": "project",
+          "federated": false
+        }
+      }
+    }
+  ],
+  "verified_nodes": [],
+  "runtime_nodes": [],
+  "candidate_edges": [
+    {
+      "id": "edge_v08_tag_activity_stream_limits_v08_tag_blind_close",
+      "source_id": "v08_tag_activity_stream",
+      "target_id": "v08_tag_blind_close",
+      "relation": "limits",
+      "status": "candidate",
+      "confidence": 0.72,
+      "metadata": {
+        "graph_layer": "candidate",
+        "source_refs": [
+          "ev_f69309659854",
+          "ev_7b0f4e6a6f7c"
+        ],
+        "proposed_by": "llm",
+        "authority_granted": false,
+        "scope": {
+          "brain_id": "workspace",
+          "source_id": "v08-fixture",
+          "workspace_root": "",
+          "owner_scope": "project",
+          "federated": false
+        }
+      }
+    }
+  ],
+  "verified_edges": [],
+  "runtime_edges": []
+}

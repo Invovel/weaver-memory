@@ -1,0 +1,1379 @@
+{
+  "validation": "pathoflow_core_offline_dataset_replay",
+  "timestamp": "2026-06-14T19:54:03.611063",
+  "pathoflow_root": "D:\\Download\\PathoFlow",
+  "knowledge_base": "D:\\Download\\PathoFlow\\backups\\kb\\knowledge_base_aligned_before_p0_1_2026-05-02.xlsx",
+  "data_root": "D:\\Download\\data",
+  "dataset_paths": [
+    "D:\\Download\\data\\pathoflow_immune_tme_500_20260614\\pathoflow_immune_tme_500.json",
+    "D:\\Download\\data\\pathoflow_immune_tme_p0_500_20260614\\pathoflow_immune_tme_p0_500.json",
+    "D:\\Download\\data\\pathoflow_optimized_20260613\\pathoflow_optimized_500.json",
+    "D:\\Download\\data\\pathoflow_optimized_20260614_repaired\\pathoflow_optimized_500_repaired.json"
+  ],
+  "dataset_case_counts": {
+    "pathoflow_immune_tme_500": 500,
+    "pathoflow_immune_tme_p0_500": 500,
+    "pathoflow_optimized_500": 500,
+    "pathoflow_optimized_500_repaired": 500
+  },
+  "sample_count": 2000,
+  "runtime_probe_metrics": {
+    "case_count": 2000,
+    "any_hit_rate": 0.372,
+    "full_hit_rate": 0.09,
+    "exact_prefix_rate": 0.0,
+    "subsequence_rate": 0.0825,
+    "average_hit_rate": 0.1798,
+    "intent_distribution": {
+      "general": 440,
+      "task_planning": 1490,
+      "tool_intro": 70
+    },
+    "mode_distribution": {
+      "normal": 2000
+    },
+    "top_missed_expected_tools": [
+      {
+        "tool_id": "29-Summarize-slide-info",
+        "count": 1720
+      },
+      {
+        "tool_id": "40-GrandQC",
+        "count": 1336
+      },
+      {
+        "tool_id": "53-hover-next-mp",
+        "count": 1052
+      },
+      {
+        "tool_id": "77-Pathomics-pipeline-from-slides-nucleus",
+        "count": 1032
+      },
+      {
+        "tool_id": "1-foreground-segmentation",
+        "count": 578
+      },
+      {
+        "tool_id": "41-Deepliif",
+        "count": 260
+      },
+      {
+        "tool_id": "48-foreground-segmentation-beta",
+        "count": 240
+      },
+      {
+        "tool_id": "3-tissue-segmentation",
+        "count": 130
+      },
+      {
+        "tool_id": "67-GigaTIME",
+        "count": 60
+      },
+      {
+        "tool_id": "61-hooknet-tls",
+        "count": 38
+      }
+    ]
+  },
+  "canonical_probe_metrics": {
+    "case_count": 2000,
+    "any_hit_rate": 0.5755,
+    "full_hit_rate": 0.083,
+    "exact_prefix_rate": 0.0,
+    "subsequence_rate": 0.02,
+    "average_hit_rate": 0.27,
+    "intent_distribution": {
+      "task_planning": 869,
+      "general": 671,
+      "tool_intro": 460
+    },
+    "mode_distribution": {
+      "normal": 2000
+    },
+    "top_missed_expected_tools": [
+      {
+        "tool_id": "29-Summarize-slide-info",
+        "count": 1567
+      },
+      {
+        "tool_id": "40-GrandQC",
+        "count": 1331
+      },
+      {
+        "tool_id": "53-hover-next-mp",
+        "count": 957
+      },
+      {
+        "tool_id": "77-Pathomics-pipeline-from-slides-nucleus",
+        "count": 937
+      },
+      {
+        "tool_id": "48-foreground-segmentation-beta",
+        "count": 260
+      },
+      {
+        "tool_id": "41-Deepliif",
+        "count": 260
+      },
+      {
+        "tool_id": "1-foreground-segmentation",
+        "count": 193
+      },
+      {
+        "tool_id": "3-tissue-segmentation",
+        "count": 130
+      },
+      {
+        "tool_id": "67-GigaTIME",
+        "count": 70
+      },
+      {
+        "tool_id": "49-slide-embedding-all-methods",
+        "count": 20
+      }
+    ]
+  },
+  "runtime_probe_metrics_by_dataset": {
+    "pathoflow_immune_tme_500": {
+      "case_count": 500,
+      "any_hit_rate": 0.42,
+      "full_hit_rate": 0.0,
+      "exact_prefix_rate": 0.0,
+      "subsequence_rate": 0.0,
+      "average_hit_rate": 0.1058,
+      "intent_distribution": {
+        "general": 110,
+        "task_planning": 360,
+        "tool_intro": 30
+      },
+      "mode_distribution": {
+        "normal": 500
+      },
+      "top_missed_expected_tools": [
+        {
+          "tool_id": "29-Summarize-slide-info",
+          "count": 500
+        },
+        {
+          "tool_id": "40-GrandQC",
+          "count": 335
+        },
+        {
+          "tool_id": "53-hover-next-mp",
+          "count": 320
+        },
+        {
+          "tool_id": "77-Pathomics-pipeline-from-slides-nucleus",
+          "count": 320
+        },
+        {
+          "tool_id": "1-foreground-segmentation",
+          "count": 300
+        },
+        {
+          "tool_id": "48-foreground-segmentation-beta",
+          "count": 120
+        },
+        {
+          "tool_id": "41-Deepliif",
+          "count": 120
+        },
+        {
+          "tool_id": "61-hooknet-tls",
+          "count": 19
+        },
+        {
+          "tool_id": "49-slide-embedding-all-methods",
+          "count": 10
+        },
+        {
+          "tool_id": "73-Infer-MIL-pipeline-for-slides",
+          "count": 10
+        }
+      ]
+    },
+    "pathoflow_immune_tme_p0_500": {
+      "case_count": 500,
+      "any_hit_rate": 0.368,
+      "full_hit_rate": 0.0,
+      "exact_prefix_rate": 0.0,
+      "subsequence_rate": 0.0,
+      "average_hit_rate": 0.1265,
+      "intent_distribution": {
+        "task_planning": 440,
+        "tool_intro": 40,
+        "general": 20
+      },
+      "mode_distribution": {
+        "normal": 500
+      },
+      "top_missed_expected_tools": [
+        {
+          "tool_id": "29-Summarize-slide-info",
+          "count": 500
+        },
+        {
+          "tool_id": "40-GrandQC",
+          "count": 426
+        },
+        {
+          "tool_id": "53-hover-next-mp",
+          "count": 400
+        },
+        {
+          "tool_id": "77-Pathomics-pipeline-from-slides-nucleus",
+          "count": 400
+        },
+        {
+          "tool_id": "1-foreground-segmentation",
+          "count": 276
+        },
+        {
+          "tool_id": "41-Deepliif",
+          "count": 40
+        },
+        {
+          "tool_id": "48-foreground-segmentation-beta",
+          "count": 20
+        },
+        {
+          "tool_id": "67-GigaTIME",
+          "count": 20
+        },
+        {
+          "tool_id": "61-hooknet-tls",
+          "count": 19
+        },
+        {
+          "tool_id": "17-lung-tertiary-lymphoid-structures-segmentation",
+          "count": 1
+        }
+      ]
+    },
+    "pathoflow_optimized_500": {
+      "case_count": 500,
+      "any_hit_rate": 0.46,
+      "full_hit_rate": 0.24,
+      "exact_prefix_rate": 0.0,
+      "subsequence_rate": 0.22,
+      "average_hit_rate": 0.3208,
+      "intent_distribution": {
+        "task_planning": 295,
+        "general": 205
+      },
+      "mode_distribution": {
+        "normal": 500
+      },
+      "top_missed_expected_tools": [
+        {
+          "tool_id": "29-Summarize-slide-info",
+          "count": 335
+        },
+        {
+          "tool_id": "40-GrandQC",
+          "count": 245
+        },
+        {
+          "tool_id": "53-hover-next-mp",
+          "count": 166
+        },
+        {
+          "tool_id": "77-Pathomics-pipeline-from-slides-nucleus",
+          "count": 156
+        },
+        {
+          "tool_id": "3-tissue-segmentation",
+          "count": 65
+        },
+        {
+          "tool_id": "48-foreground-segmentation-beta",
+          "count": 50
+        },
+        {
+          "tool_id": "41-Deepliif",
+          "count": 50
+        },
+        {
+          "tool_id": "67-GigaTIME",
+          "count": 15
+        },
+        {
+          "tool_id": "30-Get-slide-previews",
+          "count": 10
+        },
+        {
+          "tool_id": "34-Generate-classification-patches",
+          "count": 10
+        }
+      ]
+    },
+    "pathoflow_optimized_500_repaired": {
+      "case_count": 500,
+      "any_hit_rate": 0.24,
+      "full_hit_rate": 0.12,
+      "exact_prefix_rate": 0.0,
+      "subsequence_rate": 0.11,
+      "average_hit_rate": 0.1658,
+      "intent_distribution": {
+        "task_planning": 395,
+        "general": 105
+      },
+      "mode_distribution": {
+        "normal": 500
+      },
+      "top_missed_expected_tools": [
+        {
+          "tool_id": "29-Summarize-slide-info",
+          "count": 385
+        },
+        {
+          "tool_id": "40-GrandQC",
+          "count": 330
+        },
+        {
+          "tool_id": "53-hover-next-mp",
+          "count": 166
+        },
+        {
+          "tool_id": "77-Pathomics-pipeline-from-slides-nucleus",
+          "count": 156
+        },
+        {
+          "tool_id": "3-tissue-segmentation",
+          "count": 65
+        },
+        {
+          "tool_id": "48-foreground-segmentation-beta",
+          "count": 50
+        },
+        {
+          "tool_id": "41-Deepliif",
+          "count": 50
+        },
+        {
+          "tool_id": "67-GigaTIME",
+          "count": 15
+        },
+        {
+          "tool_id": "30-Get-slide-previews",
+          "count": 10
+        },
+        {
+          "tool_id": "31-Summarize-asap-xml-info",
+          "count": 10
+        }
+      ]
+    }
+  },
+  "canonical_probe_metrics_by_dataset": {
+    "pathoflow_immune_tme_500": {
+      "case_count": 500,
+      "any_hit_rate": 0.68,
+      "full_hit_rate": 0.0,
+      "exact_prefix_rate": 0.0,
+      "subsequence_rate": 0.0,
+      "average_hit_rate": 0.2633,
+      "intent_distribution": {
+        "task_planning": 320,
+        "general": 140,
+        "tool_intro": 40
+      },
+      "mode_distribution": {
+        "normal": 500
+      },
+      "top_missed_expected_tools": [
+        {
+          "tool_id": "40-GrandQC",
+          "count": 440
+        },
+        {
+          "tool_id": "29-Summarize-slide-info",
+          "count": 313
+        },
+        {
+          "tool_id": "53-hover-next-mp",
+          "count": 305
+        },
+        {
+          "tool_id": "77-Pathomics-pipeline-from-slides-nucleus",
+          "count": 305
+        },
+        {
+          "tool_id": "48-foreground-segmentation-beta",
+          "count": 120
+        },
+        {
+          "tool_id": "41-Deepliif",
+          "count": 120
+        },
+        {
+          "tool_id": "49-slide-embedding-all-methods",
+          "count": 20
+        },
+        {
+          "tool_id": "73-Infer-MIL-pipeline-for-slides",
+          "count": 20
+        },
+        {
+          "tool_id": "1-foreground-segmentation",
+          "count": 20
+        },
+        {
+          "tool_id": "67-GigaTIME",
+          "count": 20
+        }
+      ]
+    },
+    "pathoflow_immune_tme_p0_500": {
+      "case_count": 500,
+      "any_hit_rate": 0.578,
+      "full_hit_rate": 0.0,
+      "exact_prefix_rate": 0.0,
+      "subsequence_rate": 0.0,
+      "average_hit_rate": 0.2419,
+      "intent_distribution": {
+        "task_planning": 149,
+        "general": 211,
+        "tool_intro": 140
+      },
+      "mode_distribution": {
+        "normal": 500
+      },
+      "top_missed_expected_tools": [
+        {
+          "tool_id": "29-Summarize-slide-info",
+          "count": 500
+        },
+        {
+          "tool_id": "40-GrandQC",
+          "count": 411
+        },
+        {
+          "tool_id": "53-hover-next-mp",
+          "count": 320
+        },
+        {
+          "tool_id": "77-Pathomics-pipeline-from-slides-nucleus",
+          "count": 320
+        },
+        {
+          "tool_id": "1-foreground-segmentation",
+          "count": 171
+        },
+        {
+          "tool_id": "48-foreground-segmentation-beta",
+          "count": 40
+        },
+        {
+          "tool_id": "41-Deepliif",
+          "count": 40
+        },
+        {
+          "tool_id": "67-GigaTIME",
+          "count": 20
+        }
+      ]
+    },
+    "pathoflow_optimized_500": {
+      "case_count": 500,
+      "any_hit_rate": 0.522,
+      "full_hit_rate": 0.166,
+      "exact_prefix_rate": 0.0,
+      "subsequence_rate": 0.04,
+      "average_hit_rate": 0.2873,
+      "intent_distribution": {
+        "tool_intro": 140,
+        "task_planning": 200,
+        "general": 160
+      },
+      "mode_distribution": {
+        "normal": 500
+      },
+      "top_missed_expected_tools": [
+        {
+          "tool_id": "29-Summarize-slide-info",
+          "count": 377
+        },
+        {
+          "tool_id": "40-GrandQC",
+          "count": 240
+        },
+        {
+          "tool_id": "53-hover-next-mp",
+          "count": 166
+        },
+        {
+          "tool_id": "77-Pathomics-pipeline-from-slides-nucleus",
+          "count": 156
+        },
+        {
+          "tool_id": "3-tissue-segmentation",
+          "count": 65
+        },
+        {
+          "tool_id": "48-foreground-segmentation-beta",
+          "count": 50
+        },
+        {
+          "tool_id": "41-Deepliif",
+          "count": 50
+        },
+        {
+          "tool_id": "67-GigaTIME",
+          "count": 15
+        },
+        {
+          "tool_id": "30-Get-slide-previews",
+          "count": 10
+        },
+        {
+          "tool_id": "54-kfb2svs",
+          "count": 10
+        }
+      ]
+    },
+    "pathoflow_optimized_500_repaired": {
+      "case_count": 500,
+      "any_hit_rate": 0.522,
+      "full_hit_rate": 0.166,
+      "exact_prefix_rate": 0.0,
+      "subsequence_rate": 0.04,
+      "average_hit_rate": 0.2873,
+      "intent_distribution": {
+        "tool_intro": 140,
+        "task_planning": 200,
+        "general": 160
+      },
+      "mode_distribution": {
+        "normal": 500
+      },
+      "top_missed_expected_tools": [
+        {
+          "tool_id": "29-Summarize-slide-info",
+          "count": 377
+        },
+        {
+          "tool_id": "40-GrandQC",
+          "count": 240
+        },
+        {
+          "tool_id": "53-hover-next-mp",
+          "count": 166
+        },
+        {
+          "tool_id": "77-Pathomics-pipeline-from-slides-nucleus",
+          "count": 156
+        },
+        {
+          "tool_id": "3-tissue-segmentation",
+          "count": 65
+        },
+        {
+          "tool_id": "48-foreground-segmentation-beta",
+          "count": 50
+        },
+        {
+          "tool_id": "41-Deepliif",
+          "count": 50
+        },
+        {
+          "tool_id": "67-GigaTIME",
+          "count": 15
+        },
+        {
+          "tool_id": "30-Get-slide-previews",
+          "count": 10
+        },
+        {
+          "tool_id": "54-kfb2svs",
+          "count": 10
+        }
+      ]
+    }
+  },
+  "runtime_expected_tool_recall": [
+    {
+      "tool_id": "29-Summarize-slide-info",
+      "tool_name": "获取切片信息",
+      "expected_count": 1870,
+      "hit_count": 150,
+      "recall_rate": 0.0802
+    },
+    {
+      "tool_id": "40-GrandQC",
+      "tool_name": "全景病理切片质量控制(GrandQC)",
+      "expected_count": 1850,
+      "hit_count": 514,
+      "recall_rate": 0.2778
+    },
+    {
+      "tool_id": "53-hover-next-mp",
+      "tool_name": "HoverNeXt细胞核分割",
+      "expected_count": 1072,
+      "hit_count": 20,
+      "recall_rate": 0.0187
+    },
+    {
+      "tool_id": "77-Pathomics-pipeline-from-slides-nucleus",
+      "tool_name": "从细胞核掩膜抽取病理组学特征",
+      "expected_count": 1052,
+      "hit_count": 20,
+      "recall_rate": 0.019
+    },
+    {
+      "tool_id": "1-foreground-segmentation",
+      "tool_name": "H&E前景分割",
+      "expected_count": 742,
+      "hit_count": 164,
+      "recall_rate": 0.221
+    },
+    {
+      "tool_id": "41-Deepliif",
+      "tool_name": "免疫组化阳性、阴性细胞检测分割(DeepLIIF)",
+      "expected_count": 260,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "48-foreground-segmentation-beta",
+      "tool_name": "H&E与IHC前景分割",
+      "expected_count": 260,
+      "hit_count": 20,
+      "recall_rate": 0.0769
+    },
+    {
+      "tool_id": "3-tissue-segmentation",
+      "tool_name": "多类组织语义分割(私有)",
+      "expected_count": 130,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "61-hooknet-tls",
+      "tool_name": "三级淋巴结构与生发中心分割",
+      "expected_count": 76,
+      "hit_count": 38,
+      "recall_rate": 0.5
+    },
+    {
+      "tool_id": "67-GigaTIME",
+      "tool_name": "GigaTIME-虚拟免疫荧光",
+      "expected_count": 70,
+      "hit_count": 10,
+      "recall_rate": 0.1429
+    },
+    {
+      "tool_id": "49-slide-embedding-all-methods",
+      "tool_name": "使用病理基础模型对全切片进行嵌入编码",
+      "expected_count": 40,
+      "hit_count": 25,
+      "recall_rate": 0.625
+    },
+    {
+      "tool_id": "31-Summarize-asap-xml-info",
+      "tool_name": "获取标注信息",
+      "expected_count": 30,
+      "hit_count": 15,
+      "recall_rate": 0.5
+    },
+    {
+      "tool_id": "32-Transfer-asap-xml-to-tif",
+      "tool_name": "标注XML转掩膜TIF",
+      "expected_count": 30,
+      "hit_count": 15,
+      "recall_rate": 0.5
+    },
+    {
+      "tool_id": "68-Train-segmentation-pipeline-from-slides-xml",
+      "tool_name": "一键训练语义分割模型(切片+XML标注)",
+      "expected_count": 30,
+      "hit_count": 15,
+      "recall_rate": 0.5
+    },
+    {
+      "tool_id": "74-Infer-MIL-pipeline-for-h5",
+      "tool_name": "应用多示例学习模型至切片(使用预编码的H5)",
+      "expected_count": 30,
+      "hit_count": 15,
+      "recall_rate": 0.5
+    },
+    {
+      "tool_id": "24-SAM2.1-point-annotation",
+      "tool_name": "SAM 2.1用于点标注自动掩膜",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "25-BiomedParse",
+      "tool_name": "基于文本Prompt的分割",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "30-Get-slide-previews",
+      "tool_name": "获取切片略缩图",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "34-Generate-classification-patches",
+      "tool_name": "生成图像分类训练样本",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "38-Text-Encoding",
+      "tool_name": "使用PLIP、CONCH、MUSK对指定文本编码",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "52-Global-Macenko",
+      "tool_name": "全局Macenko染色归一化",
+      "expected_count": 20,
+      "hit_count": 15,
+      "recall_rate": 0.75
+    },
+    {
+      "tool_id": "54-kfb2svs",
+      "tool_name": "KFB转换为SVS格式",
+      "expected_count": 20,
+      "hit_count": 15,
+      "recall_rate": 0.75
+    },
+    {
+      "tool_id": "70-Infer-segmentation-pipeline",
+      "tool_name": "语义分割模型一键推理",
+      "expected_count": 20,
+      "hit_count": 15,
+      "recall_rate": 0.75
+    },
+    {
+      "tool_id": "72-Train-MIL-pipeline-from-h5",
+      "tool_name": "一键训练多示例学习模型(从H5嵌入+csv标签)",
+      "expected_count": 20,
+      "hit_count": 15,
+      "recall_rate": 0.75
+    },
+    {
+      "tool_id": "73-Infer-MIL-pipeline-for-slides",
+      "tool_name": "应用多示例学习模型至切片(使用原始切片)",
+      "expected_count": 20,
+      "hit_count": 10,
+      "recall_rate": 0.5
+    },
+    {
+      "tool_id": "10-ovarian-tumor-detection",
+      "tool_name": "卵巢癌检测",
+      "expected_count": 10,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "14-intrahepatic-cholangiocarcinoma-cancer-detection",
+      "tool_name": "肝内胆管癌检测",
+      "expected_count": 10,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "16-liver-tissue-segmentation",
+      "tool_name": "肝脏组织分割",
+      "expected_count": 10,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "5-pancreas-tumor-detection",
+      "tool_name": "胰腺癌检测",
+      "expected_count": 10,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "6-breast-tumor-detection",
+      "tool_name": "乳腺癌检测",
+      "expected_count": 10,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "7-gastric-tumor-detection",
+      "tool_name": "胃癌检测",
+      "expected_count": 10,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "76-Pathomics-pipeline-from-slides",
+      "tool_name": "从病理切片抽取病理组学特征",
+      "expected_count": 10,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "9-endometrium-tumor-detection",
+      "tool_name": "子宫内膜癌检测",
+      "expected_count": 10,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "2-lung-cancer-segmentation",
+      "tool_name": "肺癌区域精细分割",
+      "expected_count": 8,
+      "hit_count": 2,
+      "recall_rate": 0.25
+    },
+    {
+      "tool_id": "8-colon-tumor-detection",
+      "tool_name": "结肠癌检测",
+      "expected_count": 8,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "17-lung-tertiary-lymphoid-structures-segmentation",
+      "tool_name": "肺癌三级淋巴结构分割",
+      "expected_count": 6,
+      "hit_count": 2,
+      "recall_rate": 0.3333
+    },
+    {
+      "tool_id": "13-intrahepatic-cholangiocarcinoma-tissue-segmentation",
+      "tool_name": "肝内胆管癌组织分割",
+      "expected_count": 4,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "15-Cerberus",
+      "tool_name": "Cerberus结直肠多功能模型",
+      "expected_count": 2,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    }
+  ],
+  "canonical_expected_tool_recall": [
+    {
+      "tool_id": "29-Summarize-slide-info",
+      "tool_name": "获取切片信息",
+      "expected_count": 1870,
+      "hit_count": 303,
+      "recall_rate": 0.162
+    },
+    {
+      "tool_id": "40-GrandQC",
+      "tool_name": "全景病理切片质量控制(GrandQC)",
+      "expected_count": 1850,
+      "hit_count": 519,
+      "recall_rate": 0.2805
+    },
+    {
+      "tool_id": "53-hover-next-mp",
+      "tool_name": "HoverNeXt细胞核分割",
+      "expected_count": 1072,
+      "hit_count": 115,
+      "recall_rate": 0.1073
+    },
+    {
+      "tool_id": "77-Pathomics-pipeline-from-slides-nucleus",
+      "tool_name": "从细胞核掩膜抽取病理组学特征",
+      "expected_count": 1052,
+      "hit_count": 115,
+      "recall_rate": 0.1093
+    },
+    {
+      "tool_id": "1-foreground-segmentation",
+      "tool_name": "H&E前景分割",
+      "expected_count": 742,
+      "hit_count": 549,
+      "recall_rate": 0.7399
+    },
+    {
+      "tool_id": "41-Deepliif",
+      "tool_name": "免疫组化阳性、阴性细胞检测分割(DeepLIIF)",
+      "expected_count": 260,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "48-foreground-segmentation-beta",
+      "tool_name": "H&E与IHC前景分割",
+      "expected_count": 260,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "3-tissue-segmentation",
+      "tool_name": "多类组织语义分割(私有)",
+      "expected_count": 130,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "61-hooknet-tls",
+      "tool_name": "三级淋巴结构与生发中心分割",
+      "expected_count": 76,
+      "hit_count": 76,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "67-GigaTIME",
+      "tool_name": "GigaTIME-虚拟免疫荧光",
+      "expected_count": 70,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "49-slide-embedding-all-methods",
+      "tool_name": "使用病理基础模型对全切片进行嵌入编码",
+      "expected_count": 40,
+      "hit_count": 20,
+      "recall_rate": 0.5
+    },
+    {
+      "tool_id": "31-Summarize-asap-xml-info",
+      "tool_name": "获取标注信息",
+      "expected_count": 30,
+      "hit_count": 10,
+      "recall_rate": 0.3333
+    },
+    {
+      "tool_id": "32-Transfer-asap-xml-to-tif",
+      "tool_name": "标注XML转掩膜TIF",
+      "expected_count": 30,
+      "hit_count": 10,
+      "recall_rate": 0.3333
+    },
+    {
+      "tool_id": "68-Train-segmentation-pipeline-from-slides-xml",
+      "tool_name": "一键训练语义分割模型(切片+XML标注)",
+      "expected_count": 30,
+      "hit_count": 30,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "74-Infer-MIL-pipeline-for-h5",
+      "tool_name": "应用多示例学习模型至切片(使用预编码的H5)",
+      "expected_count": 30,
+      "hit_count": 20,
+      "recall_rate": 0.6667
+    },
+    {
+      "tool_id": "24-SAM2.1-point-annotation",
+      "tool_name": "SAM 2.1用于点标注自动掩膜",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "25-BiomedParse",
+      "tool_name": "基于文本Prompt的分割",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "30-Get-slide-previews",
+      "tool_name": "获取切片略缩图",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "34-Generate-classification-patches",
+      "tool_name": "生成图像分类训练样本",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "38-Text-Encoding",
+      "tool_name": "使用PLIP、CONCH、MUSK对指定文本编码",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "52-Global-Macenko",
+      "tool_name": "全局Macenko染色归一化",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "54-kfb2svs",
+      "tool_name": "KFB转换为SVS格式",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "70-Infer-segmentation-pipeline",
+      "tool_name": "语义分割模型一键推理",
+      "expected_count": 20,
+      "hit_count": 20,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "72-Train-MIL-pipeline-from-h5",
+      "tool_name": "一键训练多示例学习模型(从H5嵌入+csv标签)",
+      "expected_count": 20,
+      "hit_count": 20,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "73-Infer-MIL-pipeline-for-slides",
+      "tool_name": "应用多示例学习模型至切片(使用原始切片)",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "10-ovarian-tumor-detection",
+      "tool_name": "卵巢癌检测",
+      "expected_count": 10,
+      "hit_count": 10,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "14-intrahepatic-cholangiocarcinoma-cancer-detection",
+      "tool_name": "肝内胆管癌检测",
+      "expected_count": 10,
+      "hit_count": 10,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "16-liver-tissue-segmentation",
+      "tool_name": "肝脏组织分割",
+      "expected_count": 10,
+      "hit_count": 10,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "5-pancreas-tumor-detection",
+      "tool_name": "胰腺癌检测",
+      "expected_count": 10,
+      "hit_count": 10,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "6-breast-tumor-detection",
+      "tool_name": "乳腺癌检测",
+      "expected_count": 10,
+      "hit_count": 10,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "7-gastric-tumor-detection",
+      "tool_name": "胃癌检测",
+      "expected_count": 10,
+      "hit_count": 10,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "76-Pathomics-pipeline-from-slides",
+      "tool_name": "从病理切片抽取病理组学特征",
+      "expected_count": 10,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "9-endometrium-tumor-detection",
+      "tool_name": "子宫内膜癌检测",
+      "expected_count": 10,
+      "hit_count": 10,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "2-lung-cancer-segmentation",
+      "tool_name": "肺癌区域精细分割",
+      "expected_count": 8,
+      "hit_count": 8,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "8-colon-tumor-detection",
+      "tool_name": "结肠癌检测",
+      "expected_count": 8,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "17-lung-tertiary-lymphoid-structures-segmentation",
+      "tool_name": "肺癌三级淋巴结构分割",
+      "expected_count": 6,
+      "hit_count": 6,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "13-intrahepatic-cholangiocarcinoma-tissue-segmentation",
+      "tool_name": "肝内胆管癌组织分割",
+      "expected_count": 4,
+      "hit_count": 4,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "15-Cerberus",
+      "tool_name": "Cerberus结直肠多功能模型",
+      "expected_count": 2,
+      "hit_count": 2,
+      "recall_rate": 1.0
+    }
+  ],
+  "contract_compliance": {
+    "output_count": 2000,
+    "missing_required_fields": 0,
+    "visible_internal_id_leaks": 0,
+    "visible_internal_tool_id_leaks": 0,
+    "empty_reasoning": 0,
+    "empty_risks": 0,
+    "empty_alternative": 0,
+    "empty_follow_up_questions": 0,
+    "violations": []
+  },
+  "live_ask_probe": {
+    "attempted": true,
+    "backend": "gpt-5.5",
+    "case_id": "immune_001",
+    "success": false,
+    "detail": "LLM API 请求失败 (HTTP 401, model=gpt-5.5): {\"error\": {\"code\": \"\", \"message\": \"Invalid token (request id: 202606141154032562720288268d9d6igyF6Fyo)\", \"type\": \"new_api_error\"}}"
+  },
+  "top_exact_toolchains": [
+    {
+      "count": 700,
+      "toolchain": [
+        "29-Summarize-slide-info",
+        "40-GrandQC",
+        "1-foreground-segmentation",
+        "53-hover-next-mp",
+        "77-Pathomics-pipeline-from-slides-nucleus"
+      ]
+    },
+    {
+      "count": 260,
+      "toolchain": [
+        "29-Summarize-slide-info",
+        "40-GrandQC",
+        "48-foreground-segmentation-beta",
+        "41-Deepliif"
+      ]
+    },
+    {
+      "count": 230,
+      "toolchain": [
+        "29-Summarize-slide-info",
+        "40-GrandQC"
+      ]
+    },
+    {
+      "count": 200,
+      "toolchain": [
+        "29-Summarize-slide-info",
+        "40-GrandQC",
+        "53-hover-next-mp",
+        "77-Pathomics-pipeline-from-slides-nucleus"
+      ]
+    },
+    {
+      "count": 110,
+      "toolchain": [
+        "29-Summarize-slide-info",
+        "40-GrandQC",
+        "3-tissue-segmentation",
+        "53-hover-next-mp",
+        "77-Pathomics-pipeline-from-slides-nucleus"
+      ]
+    },
+    {
+      "count": 76,
+      "toolchain": [
+        "29-Summarize-slide-info",
+        "40-GrandQC",
+        "61-hooknet-tls"
+      ]
+    },
+    {
+      "count": 40,
+      "toolchain": [
+        "29-Summarize-slide-info",
+        "40-GrandQC",
+        "1-foreground-segmentation",
+        "53-hover-next-mp",
+        "77-Pathomics-pipeline-from-slides-nucleus",
+        "67-GigaTIME"
+      ]
+    },
+    {
+      "count": 30,
+      "toolchain": [
+        "29-Summarize-slide-info",
+        "40-GrandQC",
+        "67-GigaTIME"
+      ]
+    },
+    {
+      "count": 20,
+      "toolchain": [
+        "29-Summarize-slide-info",
+        "40-GrandQC",
+        "49-slide-embedding-all-methods",
+        "73-Infer-MIL-pipeline-for-slides"
+      ]
+    },
+    {
+      "count": 20,
+      "toolchain": [
+        "30-Get-slide-previews"
+      ]
+    },
+    {
+      "count": 20,
+      "toolchain": [
+        "54-kfb2svs",
+        "29-Summarize-slide-info"
+      ]
+    },
+    {
+      "count": 20,
+      "toolchain": [
+        "29-Summarize-slide-info",
+        "40-GrandQC",
+        "52-Global-Macenko"
+      ]
+    },
+    {
+      "count": 20,
+      "toolchain": [
+        "29-Summarize-slide-info",
+        "40-GrandQC",
+        "3-tissue-segmentation"
+      ]
+    },
+    {
+      "count": 20,
+      "toolchain": [
+        "29-Summarize-slide-info",
+        "40-GrandQC",
+        "53-hover-next-mp"
+      ]
+    },
+    {
+      "count": 20,
+      "toolchain": [
+        "29-Summarize-slide-info",
+        "40-GrandQC",
+        "49-slide-embedding-all-methods"
+      ]
+    }
+  ],
+  "top_edges": [
+    {
+      "count": 1850,
+      "from_tool_id": "29-Summarize-slide-info",
+      "to_tool_id": "40-GrandQC"
+    },
+    {
+      "count": 1052,
+      "from_tool_id": "53-hover-next-mp",
+      "to_tool_id": "77-Pathomics-pipeline-from-slides-nucleus"
+    },
+    {
+      "count": 742,
+      "from_tool_id": "40-GrandQC",
+      "to_tool_id": "1-foreground-segmentation"
+    },
+    {
+      "count": 740,
+      "from_tool_id": "1-foreground-segmentation",
+      "to_tool_id": "53-hover-next-mp"
+    },
+    {
+      "count": 260,
+      "from_tool_id": "40-GrandQC",
+      "to_tool_id": "48-foreground-segmentation-beta"
+    },
+    {
+      "count": 260,
+      "from_tool_id": "48-foreground-segmentation-beta",
+      "to_tool_id": "41-Deepliif"
+    },
+    {
+      "count": 220,
+      "from_tool_id": "40-GrandQC",
+      "to_tool_id": "53-hover-next-mp"
+    },
+    {
+      "count": 130,
+      "from_tool_id": "40-GrandQC",
+      "to_tool_id": "3-tissue-segmentation"
+    },
+    {
+      "count": 110,
+      "from_tool_id": "3-tissue-segmentation",
+      "to_tool_id": "53-hover-next-mp"
+    },
+    {
+      "count": 76,
+      "from_tool_id": "40-GrandQC",
+      "to_tool_id": "61-hooknet-tls"
+    },
+    {
+      "count": 40,
+      "from_tool_id": "40-GrandQC",
+      "to_tool_id": "49-slide-embedding-all-methods"
+    },
+    {
+      "count": 40,
+      "from_tool_id": "77-Pathomics-pipeline-from-slides-nucleus",
+      "to_tool_id": "67-GigaTIME"
+    },
+    {
+      "count": 30,
+      "from_tool_id": "40-GrandQC",
+      "to_tool_id": "67-GigaTIME"
+    },
+    {
+      "count": 30,
+      "from_tool_id": "31-Summarize-asap-xml-info",
+      "to_tool_id": "32-Transfer-asap-xml-to-tif"
+    },
+    {
+      "count": 20,
+      "from_tool_id": "49-slide-embedding-all-methods",
+      "to_tool_id": "73-Infer-MIL-pipeline-for-slides"
+    },
+    {
+      "count": 20,
+      "from_tool_id": "54-kfb2svs",
+      "to_tool_id": "29-Summarize-slide-info"
+    },
+    {
+      "count": 20,
+      "from_tool_id": "40-GrandQC",
+      "to_tool_id": "52-Global-Macenko"
+    },
+    {
+      "count": 20,
+      "from_tool_id": "68-Train-segmentation-pipeline-from-slides-xml",
+      "to_tool_id": "70-Infer-segmentation-pipeline"
+    },
+    {
+      "count": 20,
+      "from_tool_id": "32-Transfer-asap-xml-to-tif",
+      "to_tool_id": "34-Generate-classification-patches"
+    },
+    {
+      "count": 20,
+      "from_tool_id": "72-Train-MIL-pipeline-from-h5",
+      "to_tool_id": "74-Infer-MIL-pipeline-for-h5"
+    }
+  ],
+  "best_supported_workflow_mermaid": "flowchart LR\n  T1[\"获取切片信息<br/>29-Summarize-slide-info\"]\n  T2[\"全景病理切片质量控制(GrandQC)<br/>40-GrandQC\"]\n  T1 -->|1850| T2\n  T3[\"H&E前景分割<br/>1-foreground-segmentation\"]\n  T2 -->|742| T3\n  T4[\"HoverNeXt细胞核分割<br/>53-hover-next-mp\"]\n  T3 -->|740| T4\n  T5[\"从细胞核掩膜抽取病理组学特征<br/>77-Pathomics-pipeline-from-slides-nucleus\"]\n  T4 -->|1052| T5\n  T6[\"H&E与IHC前景分割<br/>48-foreground-segmentation-beta\"]\n  T2 -->|260| T6\n  T7[\"免疫组化阳性、阴性细胞检测分割(DeepLIIF)<br/>41-Deepliif\"]\n  T6 -->|260| T7\n  T8[\"多类组织语义分割(私有)<br/>3-tissue-segmentation\"]\n  T2 -->|130| T8\n  T8 -->|110| T4\n  T9[\"三级淋巴结构与生发中心分割<br/>61-hooknet-tls\"]\n  T2 -->|76| T9\n  T10[\"使用病理基础模型对全切片进行嵌入编码<br/>49-slide-embedding-all-methods\"]\n  T2 -->|40| T10\n  T11[\"应用多示例学习模型至切片(使用原始切片)<br/>73-Infer-MIL-pipeline-for-slides\"]\n  T10 -->|20| T11"
+}

@@ -1,0 +1,2 @@
+{"pattern_id": "pat_7c8ee3b8d104", "label": "stable_candidate", "initial_status": "provisional", "final_status": "stable", "trial_count": 3, "known_bad_avoidance_count": 3, "evidence_first_count": 3, "false_trigger_count": 0, "path_fitness_score": 0.952}
+{"pattern_id": "pat_7044a78f9b51", "label": "challenged_candidate", "initial_status": "challenged", "final_status": "challenged", "trial_count": 1, "known_bad_avoidance_count": 0, "evidence_first_count": 0, "false_trigger_count": 1, "path_fitness_score": 0.004}

@@ -1,0 +1,6 @@
+{
+  "current_validation_data": "built-in synthetic fixture",
+  "official_memevobench_integrated": false,
+  "claim": "MemoryWeaver reduces polluted retrieval, wrong promotion, and contradiction false-accepts in a MemEvoBench-style synthetic dirty fixture, without reducing trusted Recall@10.",
+  "reference": "https://arxiv.org/abs/2604.15774"
+}

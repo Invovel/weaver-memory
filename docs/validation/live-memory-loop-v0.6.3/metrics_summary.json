@@ -1,0 +1,19 @@
+{
+  "validation": "live-memory-loop-v0.6.3",
+  "evidence_write_count": 2,
+  "memory_write_count": 2,
+  "verified_memory_write_count": 2,
+  "promotion_count": 2,
+  "retrieval_result_count": 2,
+  "retrieved_success_memory": true,
+  "retrieved_known_bad_memory": true,
+  "conflict_handling_count": 1,
+  "conflict_block_or_warn_count": 1,
+  "layer3_mutation_count": 1,
+  "rollback_count": 1,
+  "runtime_marker_write_count": 1,
+  "known_bad_path_write_count": 1,
+  "online_llm_call_count": 0,
+  "workspace_validate_valid": true,
+  "workspace_doctor_valid": true
+}

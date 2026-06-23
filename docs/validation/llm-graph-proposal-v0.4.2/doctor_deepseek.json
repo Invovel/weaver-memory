@@ -1,0 +1,15 @@
+{
+  "valid": true,
+  "schema_version": "0.2.0",
+  "memory_policy_version": "memory-policy-v1",
+  "retrieval_policy_version": "retrieval-policy-v1",
+  "errors": [],
+  "warnings": [
+    "orphan evidence node count: 5"
+  ],
+  "info": [
+    "missing empty store: patterns.json",
+    "missing empty store: evidence_links.json",
+    "graph store is non-empty but accepted edge count is 0"
+  ]
+}

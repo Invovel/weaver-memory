@@ -1,0 +1,682 @@
+{
+  "passed": true,
+  "task_count": 50,
+  "run_config": {
+    "seed": 0,
+    "reliability_passes": 1
+  },
+  "metrics": {
+    "no_memory": {
+      "task_count": 50,
+      "success_rate": 0.0,
+      "repeated_failure_rate": 1.0,
+      "invalid_action_rate": 1.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 0.0,
+      "negative_memory_hit_rate": 0.0,
+      "promotion_precision": 0.0
+    },
+    "naive_memory": {
+      "task_count": 50,
+      "success_rate": 0.0,
+      "repeated_failure_rate": 1.0,
+      "invalid_action_rate": 1.0,
+      "memory_induced_regression_rate": 1.0,
+      "rollback_frequency": 0.0,
+      "negative_memory_hit_rate": 0.0,
+      "promotion_precision": 0.0
+    },
+    "retrieval_memory": {
+      "task_count": 50,
+      "success_rate": 0.5,
+      "repeated_failure_rate": 0.5,
+      "invalid_action_rate": 0.5,
+      "memory_induced_regression_rate": 0.2,
+      "rollback_frequency": 0.0,
+      "negative_memory_hit_rate": 0.5,
+      "promotion_precision": 0.0
+    },
+    "memoryweaver_trace_candidate_runtime": {
+      "task_count": 50,
+      "success_rate": 1.0,
+      "repeated_failure_rate": 0.0,
+      "invalid_action_rate": 0.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 0.0,
+      "negative_memory_hit_rate": 1.0,
+      "promotion_precision": 1.0
+    },
+    "rollback_probe": {
+      "task_count": 1,
+      "success_rate": 1.0,
+      "repeated_failure_rate": 0.0,
+      "invalid_action_rate": 0.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 1.0,
+      "negative_memory_hit_rate": 1.0,
+      "promotion_precision": 0.0
+    },
+    "memoryweaver_trace_candidate_runtime_recovery": {
+      "task_count": 10,
+      "success_rate": 1.0,
+      "repeated_failure_rate": 0.0,
+      "invalid_action_rate": 0.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 1.0,
+      "negative_memory_hit_rate": 1.0,
+      "promotion_precision": 0.0
+    },
+    "replacement_probe": {
+      "task_count": 1,
+      "success_rate": 1.0,
+      "repeated_failure_rate": 0.0,
+      "invalid_action_rate": 0.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 0.0,
+      "negative_memory_hit_rate": 1.0,
+      "promotion_precision": 0.0
+    }
+  },
+  "aggregate_metrics": {
+    "same_family_task_count": 50,
+    "repeated_failure_rate_delta_vs_no_memory": -1.0,
+    "invalid_action_rate_delta_vs_naive_memory": -1.0,
+    "task_success_delta_vs_retrieval_memory": 0.5,
+    "memory_induced_regression_delta_vs_naive_memory": -1.0,
+    "promotion_precision": 1.0,
+    "negative_memory_hit_rate": 1.0,
+    "candidate_registration_promotable": 1.0,
+    "candidate_registration_audited": 1.0,
+    "rejected_evidence_audited_count": 1,
+    "replacement_path_selected": 1.0,
+    "replacement_registration_audited": 1.0,
+    "trace_store_roundtrip": 1.0,
+    "runtime_path_store_roundtrip": 1.0,
+    "rollback_recovery_success_rate": 1.0
+  },
+  "persistence_probe": {
+    "trace_count": 2,
+    "restored_trace_id": "trace-seed-1",
+    "path_count": 2,
+    "evidence_count": 159,
+    "ledger_count": 221,
+    "candidate_registration_event_present": true,
+    "registration_rejected_evidence_count": 1,
+    "registration_rejected_as_challenge": false,
+    "replacement_registration_event_present": true,
+    "restored_rollback_recommended": false,
+    "restored_policy_completed": true,
+    "restored_selected_path_id": "path_benchmark_debug_invalid_action_trace_replacement_task_1",
+    "restored_selected_action": {
+      "action_name": "check_evidence",
+      "target": "action_schema_v2",
+      "arguments": {
+        "target": "action_schema_v2"
+      },
+      "reasoning": "",
+      "working_directory": "",
+      "timeout_seconds": 30,
+      "idempotency_key": "trace-bench-restored:1:check_evidence:action_schema_v2",
+      "user_confirmation": false,
+      "resource_budget": {},
+      "proposed_by": "assistant",
+      "metadata": {
+        "source_trace_id": "trace-replacement-1",
+        "source_step_id": "step_0002",
+        "source_node": "check_schema"
+      },
+      "created_at": "2026-06-11T02:06:25.772646+00:00"
+    },
+    "restored_fallback_action": null,
+    "journal_event_count": 161,
+    "seed_journal_event_count": 4,
+    "runtime_replay_journal_event_count": 150,
+    "checkpoint_count_for_seed_thread": 4,
+    "runtime_replay_checkpoint_count": 150
+  },
+  "registration": {
+    "path_id": "path_benchmark_debug_invalid_action_trace_seed_task_1",
+    "candidate_id": "candidate_trace_seed_1",
+    "trace_id": "trace-seed-1",
+    "assessment": {
+      "path_id": "path_benchmark_debug_invalid_action_trace_seed_task_1",
+      "can_promote": true,
+      "should_rollback": false,
+      "reasons": [],
+      "hard_evidence_count": 8,
+      "model_confidence_ignored_count": 0,
+      "repeated_validation_count": 3,
+      "counterexample_count": 0,
+      "conflict_count": 0,
+      "benchmark_delta": 0.16,
+      "memory_induced_regression_rate": 0.0,
+      "decayed_support": 10.0
+    },
+    "initial_evidence_count": 8,
+    "rejected_evidence_count": 1,
+    "rejected_as_challenge": false,
+    "ledger_index": 2
+  },
+  "candidate": {
+    "candidate_id": "candidate_trace_seed_1",
+    "trace_id": "trace-seed-1",
+    "path": {
+      "path_id": "path_benchmark_debug_invalid_action_trace_seed_task_1",
+      "name": "Trace-derived path for benchmark_debug",
+      "condition": {
+        "task_tags": [
+          "benchmark",
+          "debug"
+        ],
+        "query_terms": [
+          "invalid_action"
+        ],
+        "failure_modes": [
+          "invalid_action"
+        ],
+        "required_state": {}
+      },
+      "action_policy": [
+        {
+          "action_name": "check_evidence",
+          "target": "action_schema",
+          "arguments": {
+            "target": "action_schema"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-seed-1",
+            "source_step_id": "step_0002",
+            "source_node": "check_schema"
+          },
+          "created_at": "2026-06-11T02:06:24.333978+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "marker_only_boundary",
+          "arguments": {
+            "target": "marker_only_boundary"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-seed-1",
+            "source_step_id": "step_0003",
+            "source_node": "isolate_marker_only"
+          },
+          "created_at": "2026-06-11T02:06:24.333995+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "pass_power_3",
+          "arguments": {
+            "target": "pass_power_3"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-seed-1",
+            "source_step_id": "step_0004",
+            "source_node": "run_pass_power_3"
+          },
+          "created_at": "2026-06-11T02:06:24.334006+00:00"
+        }
+      ],
+      "validation_gate": {
+        "required_evidence": [
+          "tool_result",
+          "test_result",
+          "file_diff",
+          "benchmark_score",
+          "repeat_validation",
+          "time_decay"
+        ],
+        "min_repeated_validations": 3,
+        "min_benchmark_delta": 0.0,
+        "max_counterexamples": 0,
+        "max_conflicts": 0,
+        "max_memory_induced_regression_rate": 0.0,
+        "half_life_days": 30.0,
+        "min_decayed_support": 1.0,
+        "allow_model_confidence": false
+      },
+      "fallback": {
+        "action_name": "ask_user",
+        "target": "confirm_benchmark_debug_invalid_action_trace_seed_task_1_fallback",
+        "arguments": {
+          "target": "confirm_benchmark_debug_invalid_action_trace_seed_task_1_fallback"
+        },
+        "reasoning": "",
+        "working_directory": "",
+        "timeout_seconds": 30,
+        "idempotency_key": "",
+        "user_confirmation": false,
+        "resource_budget": {},
+        "proposed_by": "assistant",
+        "metadata": {},
+        "created_at": "2026-06-11T02:06:24.334201+00:00"
+      },
+      "rollback_rule": {
+        "rollback_on_conflict": true,
+        "rollback_on_counterexamples": 1,
+        "rollback_on_regression_rate": 0.0,
+        "rollback_reason": "trace-derived runtime path challenged by external evidence"
+      },
+      "pattern_id": "",
+      "blocked_targets": [
+        "__invalid_action__"
+      ],
+      "metadata": {
+        "source_trace_id": "trace-seed-1",
+        "source_task_id": "trace-seed-task-1",
+        "source_task_type": "benchmark_debug",
+        "trace_success": true,
+        "rejected_evidence_count": 1
+      }
+    },
+    "evidence": [
+      {
+        "evidence_type": "tool_result",
+        "task_id": "trace-seed-task-1",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000002",
+        "status": "evidence_observed",
+        "target": "action_schema",
+        "expected": "",
+        "observed": "action_schema verified in pass^3 seed trace",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": true,
+        "evidence_first": true,
+        "false_trigger": false,
+        "created_at": "2026-06-11T02:06:24.334042+00:00",
+        "metadata": {
+          "step_id": "step_0002",
+          "node_name": "check_schema",
+          "action_type": "check_evidence",
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "trace-seed-task-1",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000003",
+        "status": "evidence_observed",
+        "target": "marker_only_boundary",
+        "expected": "",
+        "observed": "marker_only_boundary verified in pass^3 seed trace",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T02:06:24.334061+00:00",
+        "metadata": {
+          "step_id": "step_0003",
+          "node_name": "isolate_marker_only",
+          "action_type": "check_evidence",
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "trace-seed-task-1",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000004",
+        "status": "evidence_observed",
+        "target": "pass_power_3",
+        "expected": "",
+        "observed": "pass_power_3 verified in pass^3 seed trace",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T02:06:24.334074+00:00",
+        "metadata": {
+          "step_id": "step_0004",
+          "node_name": "run_pass_power_3",
+          "action_type": "check_evidence",
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "test_result",
+        "task_id": "trace-seed-task-1",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "passed",
+        "target": "pass_power_3",
+        "expected": "",
+        "observed": "",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T02:06:24.334092+00:00",
+        "metadata": {},
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "file_diff",
+        "task_id": "trace-seed-task-1",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "",
+        "target": "marker_only_boundary",
+        "expected": "split marker-only boundary and filter invalid_action",
+        "observed": "marker-only boundary isolated; invalid_action filtered",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T02:06:24.334105+00:00",
+        "metadata": {},
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "benchmark_score",
+        "task_id": "trace-seed-task-1",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "",
+        "target": "benchmark_debug_family",
+        "expected": "",
+        "observed": "",
+        "score_before": 0.72,
+        "score_after": 0.88,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T02:06:24.334127+00:00",
+        "metadata": {},
+        "benchmark_delta": 0.16,
+        "is_external": true
+      },
+      {
+        "evidence_type": "repeat_validation",
+        "task_id": "trace-seed-task-1",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "",
+        "target": "action_schema",
+        "expected": "",
+        "observed": "",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 3,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": true,
+        "evidence_first": true,
+        "false_trigger": false,
+        "created_at": "2026-06-11T02:06:24.334142+00:00",
+        "metadata": {},
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "time_decay",
+        "task_id": "trace-seed-task-1",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "",
+        "target": "",
+        "expected": "",
+        "observed": "1.0",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T02:06:24.334166+00:00",
+        "metadata": {
+          "decay_weight": 1.0
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      }
+    ],
+    "rejected_evidence": [
+      {
+        "evidence_type": "tool_result",
+        "task_id": "",
+        "task_family": "",
+        "passed": false,
+        "source_ref": "evt_00000001",
+        "status": "missing_handler",
+        "target": "__invalid_action__",
+        "expected": "",
+        "observed": "no handler registered for tool_call",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": true,
+        "created_at": "2026-06-11T02:06:24.333947+00:00",
+        "metadata": {
+          "step_id": "step_0001",
+          "node_name": "bad_action",
+          "action_type": "tool_call",
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      }
+    ],
+    "metrics": {
+      "step_count": 4,
+      "tool_action_count": 4,
+      "tool_result_count": 4,
+      "successful_tool_result_count": 3,
+      "failed_tool_result_count": 1,
+      "duplicate_tool_result_count": 0,
+      "error_step_count": 0,
+      "event_linked_step_count": 4,
+      "total_latency_ms": 27,
+      "total_token_cost": 0,
+      "action_type_counts": {
+        "tool_call": 1,
+        "check_evidence": 3
+      },
+      "status_counts": {
+        "missing_handler": 1,
+        "evidence_observed": 3
+      },
+      "tests_passed": true,
+      "test_target": "pass_power_3",
+      "file_diff_matches_expected": true,
+      "diff_target": "marker_only_boundary",
+      "diff_expected": "split marker-only boundary and filter invalid_action",
+      "diff_observed": "marker-only boundary isolated; invalid_action filtered",
+      "benchmark_name": "benchmark_debug_family",
+      "score_before": 0.72,
+      "score_after": 0.88,
+      "repeat_validation_count": 3,
+      "repeat_validation_target": "action_schema",
+      "known_bad_avoided": true,
+      "evidence_first": true,
+      "time_decay_weight": 1.0
+    },
+    "notes": [
+      "bad actions were retained as rejected evidence and blocked targets"
+    ]
+  },
+  "research_question": "Can evidence-gated path promotion reduce repeated agent failures without increasing memory-induced error propagation?",
+  "reliability": {
+    "run_count": 1,
+    "pass_at_1": true,
+    "pass_power_3": true,
+    "seeds": [
+      0
+    ],
+    "by_arm": {
+      "no_memory": {
+        "pass_at_1": true,
+        "pass_power_3": true,
+        "success_rate_mean": 0.0,
+        "success_rate_std": 0.0,
+        "repeated_failure_rate_mean": 1.0,
+        "repeated_failure_rate_std": 0.0,
+        "invalid_action_rate_mean": 1.0,
+        "invalid_action_rate_std": 0.0,
+        "rollback_frequency_mean": 0.0,
+        "rollback_frequency_std": 0.0,
+        "negative_memory_hit_rate_mean": 0.0,
+        "negative_memory_hit_rate_std": 0.0
+      },
+      "naive_memory": {
+        "pass_at_1": true,
+        "pass_power_3": true,
+        "success_rate_mean": 0.0,
+        "success_rate_std": 0.0,
+        "repeated_failure_rate_mean": 1.0,
+        "repeated_failure_rate_std": 0.0,
+        "invalid_action_rate_mean": 1.0,
+        "invalid_action_rate_std": 0.0,
+        "rollback_frequency_mean": 0.0,
+        "rollback_frequency_std": 0.0,
+        "negative_memory_hit_rate_mean": 0.0,
+        "negative_memory_hit_rate_std": 0.0
+      },
+      "retrieval_memory": {
+        "pass_at_1": true,
+        "pass_power_3": true,
+        "success_rate_mean": 0.5,
+        "success_rate_std": 0.0,
+        "repeated_failure_rate_mean": 0.5,
+        "repeated_failure_rate_std": 0.0,
+        "invalid_action_rate_mean": 0.5,
+        "invalid_action_rate_std": 0.0,
+        "rollback_frequency_mean": 0.0,
+        "rollback_frequency_std": 0.0,
+        "negative_memory_hit_rate_mean": 0.5,
+        "negative_memory_hit_rate_std": 0.0
+      },
+      "memoryweaver_trace_candidate_runtime": {
+        "pass_at_1": true,
+        "pass_power_3": true,
+        "success_rate_mean": 1.0,
+        "success_rate_std": 0.0,
+        "repeated_failure_rate_mean": 0.0,
+        "repeated_failure_rate_std": 0.0,
+        "invalid_action_rate_mean": 0.0,
+        "invalid_action_rate_std": 0.0,
+        "rollback_frequency_mean": 0.0,
+        "rollback_frequency_std": 0.0,
+        "negative_memory_hit_rate_mean": 1.0,
+        "negative_memory_hit_rate_std": 0.0
+      },
+      "rollback_probe": {
+        "pass_at_1": true,
+        "pass_power_3": true,
+        "success_rate_mean": 1.0,
+        "success_rate_std": 0.0,
+        "repeated_failure_rate_mean": 0.0,
+        "repeated_failure_rate_std": 0.0,
+        "invalid_action_rate_mean": 0.0,
+        "invalid_action_rate_std": 0.0,
+        "rollback_frequency_mean": 1.0,
+        "rollback_frequency_std": 0.0,
+        "negative_memory_hit_rate_mean": 1.0,
+        "negative_memory_hit_rate_std": 0.0
+      },
+      "memoryweaver_trace_candidate_runtime_recovery": {
+        "pass_at_1": true,
+        "pass_power_3": true,
+        "success_rate_mean": 1.0,
+        "success_rate_std": 0.0,
+        "repeated_failure_rate_mean": 0.0,
+        "repeated_failure_rate_std": 0.0,
+        "invalid_action_rate_mean": 0.0,
+        "invalid_action_rate_std": 0.0,
+        "rollback_frequency_mean": 1.0,
+        "rollback_frequency_std": 0.0,
+        "negative_memory_hit_rate_mean": 1.0,
+        "negative_memory_hit_rate_std": 0.0
+      },
+      "replacement_probe": {
+        "pass_at_1": true,
+        "pass_power_3": true,
+        "success_rate_mean": 1.0,
+        "success_rate_std": 0.0,
+        "repeated_failure_rate_mean": 0.0,
+        "repeated_failure_rate_std": 0.0,
+        "invalid_action_rate_mean": 0.0,
+        "invalid_action_rate_std": 0.0,
+        "rollback_frequency_mean": 0.0,
+        "rollback_frequency_std": 0.0,
+        "negative_memory_hit_rate_mean": 1.0,
+        "negative_memory_hit_rate_std": 0.0
+      }
+    }
+  }
+}

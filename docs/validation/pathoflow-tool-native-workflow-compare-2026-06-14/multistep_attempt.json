@@ -1,0 +1,184 @@
+{
+  "success": true,
+  "foreground_manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\d2669083\\execution_manifest.json",
+  "foreground_mask_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\d2669083\\demo_1-foreground-segmentation_foreground.tif",
+  "staged_slide_path": "D:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-14\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.svs",
+  "staged_mask_path": "D:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-14\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.tif",
+  "overlay_invocation": {
+    "executor": "wish",
+    "mode": "manual",
+    "request_id": "manual_overlay_from_foreground",
+    "task_id": "",
+    "steps": [
+      {
+        "step_index": 1,
+        "tool_id": "59-generate-overlays"
+      }
+    ],
+    "input_artifacts": [
+      "input_slide",
+      "input_mask"
+    ],
+    "slot_bindings": [
+      {
+        "tool_id": "59-generate-overlays",
+        "slot": "input_slide",
+        "artifact": "D:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-14\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.svs",
+        "source": "manual"
+      },
+      {
+        "tool_id": "59-generate-overlays",
+        "slot": "input_mask",
+        "artifact": "D:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-14\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.tif",
+        "source": "manual"
+      }
+    ],
+    "parameter_bindings": [],
+    "output_policy": "default_backend_run_directory",
+    "output_subdirectory": "",
+    "execution_status": "not_executed"
+  },
+  "overlay_run_requests": [
+    {
+      "request_id": "manual_overlay_from_foreground",
+      "step_index": 1,
+      "tool_id": "59-generate-overlays",
+      "slide_paths": [
+        "D:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-14\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.svs"
+      ],
+      "model_args": {},
+      "username": "pathoflow_demo",
+      "extra_slots": {
+        "input_mask": [
+          "D:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-14\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.tif"
+        ]
+      }
+    }
+  ],
+  "overlay_preflight": {
+    "success": true,
+    "ready": true,
+    "status": "ready",
+    "checks": [
+      {
+        "tool_id": "59-generate-overlays",
+        "step_index": 1,
+        "ready": true,
+        "reasons": [],
+        "slide_paths": [
+          "D:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-14\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.svs"
+        ],
+        "extra_slots": {
+          "input_mask": [
+            "D:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-14\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.tif"
+          ]
+        }
+      }
+    ],
+    "reasons": []
+  },
+  "overlay_result": {
+    "success": true,
+    "executor": "wish",
+    "mode": "real",
+    "request_id": "manual_overlay_from_foreground",
+    "execution_status": "completed",
+    "step_count": 1,
+    "steps": [
+      {
+        "step_index": 1,
+        "tool_id": "59-generate-overlays",
+        "request": {
+          "request_id": "manual_overlay_from_foreground",
+          "step_index": 1,
+          "tool_id": "59-generate-overlays",
+          "slide_paths": [
+            "D:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-14\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.svs"
+          ],
+          "model_args": {},
+          "username": "pathoflow_demo",
+          "extra_slots": {
+            "input_mask": [
+              "D:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-14\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.tif"
+            ]
+          }
+        },
+        "result": {
+          "success": true,
+          "task_id": "8f0e3984",
+          "result": {
+            "tool": "59-generate-overlays",
+            "task_id": "8f0e3984",
+            "status": "completed",
+            "summary": "演示模式完成，输出 0 个结果文件",
+            "output_images": [],
+            "notes": "本结果为演示模式预设输出，不代表真实推理结果。"
+          },
+          "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\8f0e3984",
+          "output_files": [],
+          "output_file_metadata": [],
+          "duration": 4.94,
+          "execution_manifest": {
+            "schema_version": "result-manifest/v1",
+            "tool_id": "59-generate-overlays",
+            "task_id": "8f0e3984",
+            "username": "pathoflow_demo",
+            "success": true,
+            "execution_state": "completed_no_output",
+            "duration": 4.94,
+            "created_at": "2026-06-14T12:18:23Z",
+            "result_dir": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\8f0e3984",
+            "inputs": {
+              "input_image_path": "D:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-14\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.svs",
+              "extra_slots": {
+                "input_mask": [
+                  "D:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-14\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.tif"
+                ]
+              }
+            },
+            "model_args": {},
+            "file_count": 0,
+            "files_by_kind": {},
+            "files": [],
+            "result_summary": {
+              "tool": "59-generate-overlays",
+              "task_id": "8f0e3984",
+              "status": "completed",
+              "summary": "演示模式完成，输出 0 个结果文件",
+              "output_images": [],
+              "notes": "本结果为演示模式预设输出，不代表真实推理结果。"
+            },
+            "error": null,
+            "warnings": [
+              "Execution succeeded but no output files were found."
+            ],
+            "interpretation_boundary": "This manifest summarizes output artifacts and lightweight file metadata. It does not make clinical or diagnostic claims without human/pathologist review.",
+            "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\8f0e3984\\execution_manifest.json"
+          },
+          "execution_manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\8f0e3984\\execution_manifest.json"
+        },
+        "success": true
+      }
+    ],
+    "error": null
+  },
+  "overlay_handoff_resolution": {
+    "success": true,
+    "ready": true,
+    "status": "ready",
+    "resolved_count": 1,
+    "reasons": [],
+    "slot_bindings": [
+      {
+        "tool_id": "59-generate-overlays",
+        "slot": "input_mask",
+        "artifact": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\d2669083\\demo_1-foreground-segmentation_foreground.tif",
+        "source": "manifest_handoff",
+        "from_tool_id": "1-foreground-segmentation",
+        "from_step_index": 0,
+        "artifact_kind": "mask_or_labelmap",
+        "resolved_from_manifest": true
+      }
+    ]
+  }
+}

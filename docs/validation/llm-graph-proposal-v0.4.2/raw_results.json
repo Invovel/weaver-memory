@@ -1,0 +1,687 @@
+{
+  "benchmark": "llm-graph-proposal-v0.4.2",
+  "providers": {
+    "local": {
+      "provider": "local",
+      "model": "local-graph-proposer"
+    },
+    "deepseek": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-pro"
+    }
+  },
+  "prompt_version": "graph_proposal_deepseek_v0.4.2",
+  "review_policy_version": "graph-proposal-review-v0.4.2",
+  "iterations": 100,
+  "dataset": {
+    "memory_count": 40,
+    "evidence_count": 5,
+    "query_count": 4
+  },
+  "online_llm_call_count": 0,
+  "provider_runs": {
+    "local": {
+      "json_parse_success_rate": 1.0,
+      "provider_errors": [],
+      "proposal_count": 4
+    },
+    "deepseek": {
+      "json_parse_success_rate": 0.0,
+      "provider_errors": [
+        "q_subscription_cn: DeepSeek graph proposal request failed: HTTP Error 402: Payment Required",
+        "q_wsl_subscription: DeepSeek graph proposal request failed: HTTP Error 402: Payment Required",
+        "q_org_problem: DeepSeek graph proposal request failed: HTTP Error 402: Payment Required",
+        "q_api_key_but_codex_fails: DeepSeek graph proposal request failed: HTTP Error 402: Payment Required"
+      ],
+      "proposal_count": 0
+    }
+  },
+  "provider_metrics": {
+    "local": {
+      "gold_count": 5,
+      "proposal_count": 4,
+      "matched_count": 1,
+      "wrong_count": 3,
+      "precision": 0.25,
+      "recall": 0.2,
+      "wrong_link_rate": 0.75,
+      "accepted": 1,
+      "accepted_edge_count": 1,
+      "pending": 2,
+      "rejected": 1,
+      "quarantined": 0,
+      "human_review_needed": 3,
+      "pending_rate": 0.5,
+      "reject_rate": 0.25,
+      "human_review_needed_rate": 0.75,
+      "evidence_coverage": 0.0,
+      "exact_support_rate": 0.25,
+      "partial_support_rate": 0.5,
+      "unsupported_rate": 0.25,
+      "accepted_wrong_link_rate": 0.0,
+      "review_cost_per_accepted_edge": 3.0,
+      "matched_ids": [
+        "gp_d634cbb073ab"
+      ]
+    },
+    "deepseek": {
+      "gold_count": 5,
+      "proposal_count": 0,
+      "matched_count": 0,
+      "wrong_count": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "wrong_link_rate": 0.0,
+      "accepted": 0,
+      "accepted_edge_count": 0,
+      "pending": 0,
+      "rejected": 0,
+      "quarantined": 0,
+      "human_review_needed": 0,
+      "pending_rate": 0.0,
+      "reject_rate": 0.0,
+      "human_review_needed_rate": 0.0,
+      "evidence_coverage": 0.0,
+      "exact_support_rate": 0.0,
+      "partial_support_rate": 0.0,
+      "unsupported_rate": 0.0,
+      "accepted_wrong_link_rate": 0.0,
+      "review_cost_per_accepted_edge": 0.0,
+      "matched_ids": []
+    }
+  },
+  "support_audits": {
+    "local": {
+      "supports_exact_count": 1,
+      "supports_exact_correct": 1,
+      "supports_exact_precision": 1.0,
+      "supports_partial_count": 2,
+      "unsupported_count": 1,
+      "contradicts_count": 0
+    },
+    "deepseek": {
+      "supports_exact_count": 0,
+      "supports_exact_correct": 0,
+      "supports_exact_precision": 0.0,
+      "supports_partial_count": 0,
+      "unsupported_count": 0,
+      "contradicts_count": 0
+    }
+  },
+  "doctor_reports": {
+    "local": {
+      "valid": true,
+      "schema_version": "0.2.0",
+      "memory_policy_version": "memory-policy-v1",
+      "retrieval_policy_version": "retrieval-policy-v1",
+      "errors": [],
+      "warnings": [
+        "orphan evidence node count: 5"
+      ],
+      "info": [
+        "missing empty store: patterns.json",
+        "missing empty store: evidence_links.json"
+      ]
+    },
+    "deepseek": {
+      "valid": true,
+      "schema_version": "0.2.0",
+      "memory_policy_version": "memory-policy-v1",
+      "retrieval_policy_version": "retrieval-policy-v1",
+      "errors": [],
+      "warnings": [
+        "orphan evidence node count: 5"
+      ],
+      "info": [
+        "missing empty store: patterns.json",
+        "missing empty store: evidence_links.json",
+        "graph store is non-empty but accepted edge count is 0"
+      ]
+    }
+  },
+  "provider_workspaces": {
+    "local": "docs\\validation\\llm-graph-proposal-v0.4.2\\local_workspace",
+    "deepseek": "docs\\validation\\llm-graph-proposal-v0.4.2\\deepseek_workspace"
+  },
+  "success_criteria": {
+    "deepseek_provider_available": false,
+    "accepted_edge_count_gt_0": false,
+    "accepted_wrong_link_rate_near_zero": true,
+    "recall_beats_no_graph": false,
+    "online_llm_call_count_zero": true,
+    "proposal_budget_respected": true,
+    "supports_exact_precision_ok": false,
+    "rejected_gt_0": false,
+    "evidence_coverage_ok": true,
+    "passed": false
+  },
+  "retrieval_arms": [
+    {
+      "arm": "no_graph",
+      "tag_recall_at_k": 1.0,
+      "memory_recall_at_10": 0.5417,
+      "graph_expansion_precision": 1.0,
+      "candidate_reduction_ratio": 0.9125,
+      "graph_expansion_candidate_delta": 0,
+      "verified_text_p95_ms": 0.7172,
+      "verified_text_p50_ms": 0.3785,
+      "online_llm_call_count": 0,
+      "cases": [
+        {
+          "query_id": "q_subscription_cn",
+          "memory_recall_at_10": 0.6667,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 6,
+          "candidate_reduction_ratio": 0.85,
+          "graph_expansion_candidate_delta": 0,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.5097,
+          "verified_text_p50_ms": 0.4085,
+          "expanded_tags": [
+            "codex_subscription_failed"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_billing_not_root",
+            "mem_login_refresh",
+            "mem_npm_reinstall",
+            "mem_old_org_conflict",
+            "mem_subscription_failed"
+          ]
+        },
+        {
+          "query_id": "q_wsl_subscription",
+          "memory_recall_at_10": 0.6667,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 2,
+          "candidate_reduction_ratio": 0.95,
+          "graph_expansion_candidate_delta": 0,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.3413,
+          "verified_text_p50_ms": 0.3285,
+          "expanded_tags": [
+            "wsl"
+          ],
+          "returned_memory_ids": [
+            "mem_subscription_failed",
+            "mem_wsl_env"
+          ]
+        },
+        {
+          "query_id": "q_org_problem",
+          "memory_recall_at_10": 0.5,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 4,
+          "candidate_reduction_ratio": 0.9,
+          "graph_expansion_candidate_delta": 0,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.3699,
+          "verified_text_p50_ms": 0.3247,
+          "expanded_tags": [
+            "selected_organization"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_github_org_noise",
+            "mem_old_org_conflict",
+            "mem_organization_fix"
+          ]
+        },
+        {
+          "query_id": "q_api_key_but_codex_fails",
+          "memory_recall_at_10": 0.3333,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 2,
+          "candidate_reduction_ratio": 0.95,
+          "graph_expansion_candidate_delta": 0,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.7172,
+          "verified_text_p50_ms": 0.4523,
+          "expanded_tags": [
+            "api_key_exists"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_weather_api_noise"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "manual_graph",
+      "tag_recall_at_k": 1.0,
+      "memory_recall_at_10": 0.8334,
+      "graph_expansion_precision": 1.0,
+      "candidate_reduction_ratio": 0.8187,
+      "graph_expansion_candidate_delta": 3.75,
+      "verified_text_p95_ms": 0.6455,
+      "verified_text_p50_ms": 0.3953,
+      "online_llm_call_count": 0,
+      "cases": [
+        {
+          "query_id": "q_subscription_cn",
+          "memory_recall_at_10": 1.0,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 11,
+          "candidate_reduction_ratio": 0.725,
+          "graph_expansion_candidate_delta": 5,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.6455,
+          "verified_text_p50_ms": 0.4447,
+          "expanded_tags": [
+            "codex_subscription_failed",
+            "login_refresh_helped",
+            "selected_organization",
+            "wsl"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_billing_not_root",
+            "mem_github_org_noise",
+            "mem_login_refresh",
+            "mem_npm_reinstall",
+            "mem_old_org_conflict",
+            "mem_organization_fix",
+            "mem_subscription_failed",
+            "mem_vscode_extension_noise",
+            "mem_windows_terminal"
+          ]
+        },
+        {
+          "query_id": "q_wsl_subscription",
+          "memory_recall_at_10": 0.6667,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 7,
+          "candidate_reduction_ratio": 0.825,
+          "graph_expansion_candidate_delta": 5,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.3568,
+          "verified_text_p50_ms": 0.3438,
+          "expanded_tags": [
+            "codex_subscription_failed",
+            "wsl"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_billing_not_root",
+            "mem_login_refresh",
+            "mem_npm_reinstall",
+            "mem_old_org_conflict",
+            "mem_subscription_failed",
+            "mem_wsl_env"
+          ]
+        },
+        {
+          "query_id": "q_org_problem",
+          "memory_recall_at_10": 1.0,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 8,
+          "candidate_reduction_ratio": 0.8,
+          "graph_expansion_candidate_delta": 4,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.5408,
+          "verified_text_p50_ms": 0.3371,
+          "expanded_tags": [
+            "codex_subscription_failed",
+            "selected_organization"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_billing_not_root",
+            "mem_github_org_noise",
+            "mem_login_refresh",
+            "mem_npm_reinstall",
+            "mem_old_org_conflict",
+            "mem_organization_fix",
+            "mem_subscription_failed"
+          ]
+        },
+        {
+          "query_id": "q_api_key_but_codex_fails",
+          "memory_recall_at_10": 0.6667,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 3,
+          "candidate_reduction_ratio": 0.925,
+          "graph_expansion_candidate_delta": 1,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.4678,
+          "verified_text_p50_ms": 0.4555,
+          "expanded_tags": [
+            "api_key_exists",
+            "openai_api_billing"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_billing_not_root",
+            "mem_weather_api_noise"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "rule_graph",
+      "tag_recall_at_k": 1.0,
+      "memory_recall_at_10": 0.8334,
+      "graph_expansion_precision": 0.9167,
+      "candidate_reduction_ratio": 0.8,
+      "graph_expansion_candidate_delta": 4.5,
+      "verified_text_p95_ms": 0.7389,
+      "verified_text_p50_ms": 0.4023,
+      "online_llm_call_count": 0,
+      "cases": [
+        {
+          "query_id": "q_subscription_cn",
+          "memory_recall_at_10": 1.0,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 9,
+          "candidate_reduction_ratio": 0.775,
+          "graph_expansion_candidate_delta": 3,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.4929,
+          "verified_text_p50_ms": 0.4402,
+          "expanded_tags": [
+            "codex_subscription_failed",
+            "selected_organization",
+            "wsl"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_billing_not_root",
+            "mem_github_org_noise",
+            "mem_login_refresh",
+            "mem_npm_reinstall",
+            "mem_old_org_conflict",
+            "mem_organization_fix",
+            "mem_subscription_failed",
+            "mem_wsl_env"
+          ]
+        },
+        {
+          "query_id": "q_wsl_subscription",
+          "memory_recall_at_10": 0.6667,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 7,
+          "candidate_reduction_ratio": 0.825,
+          "graph_expansion_candidate_delta": 5,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.4046,
+          "verified_text_p50_ms": 0.3518,
+          "expanded_tags": [
+            "codex_subscription_failed",
+            "wsl"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_billing_not_root",
+            "mem_login_refresh",
+            "mem_npm_reinstall",
+            "mem_old_org_conflict",
+            "mem_subscription_failed",
+            "mem_wsl_env"
+          ]
+        },
+        {
+          "query_id": "q_org_problem",
+          "memory_recall_at_10": 1.0,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 8,
+          "candidate_reduction_ratio": 0.8,
+          "graph_expansion_candidate_delta": 4,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.5125,
+          "verified_text_p50_ms": 0.3373,
+          "expanded_tags": [
+            "codex_subscription_failed",
+            "selected_organization"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_billing_not_root",
+            "mem_github_org_noise",
+            "mem_login_refresh",
+            "mem_npm_reinstall",
+            "mem_old_org_conflict",
+            "mem_organization_fix",
+            "mem_subscription_failed"
+          ]
+        },
+        {
+          "query_id": "q_api_key_but_codex_fails",
+          "memory_recall_at_10": 0.6667,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 0.6667,
+          "candidate_count": 8,
+          "candidate_reduction_ratio": 0.8,
+          "graph_expansion_candidate_delta": 6,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.7389,
+          "verified_text_p50_ms": 0.4799,
+          "expanded_tags": [
+            "api_key_exists",
+            "openai_api_billing",
+            "weather_api_key"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_billing_not_root",
+            "mem_noise_02",
+            "mem_noise_07",
+            "mem_noise_12",
+            "mem_noise_17",
+            "mem_noise_22",
+            "mem_weather_api_noise"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "local_offline_proposal_graph",
+      "tag_recall_at_k": 1.0,
+      "memory_recall_at_10": 0.75,
+      "graph_expansion_precision": 1.0,
+      "candidate_reduction_ratio": 0.875,
+      "graph_expansion_candidate_delta": 1.5,
+      "verified_text_p95_ms": 0.6213,
+      "verified_text_p50_ms": 0.3846,
+      "online_llm_call_count": 0,
+      "cases": [
+        {
+          "query_id": "q_subscription_cn",
+          "memory_recall_at_10": 1.0,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 8,
+          "candidate_reduction_ratio": 0.8,
+          "graph_expansion_candidate_delta": 2,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.5433,
+          "verified_text_p50_ms": 0.4284,
+          "expanded_tags": [
+            "codex_subscription_failed",
+            "selected_organization"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_billing_not_root",
+            "mem_github_org_noise",
+            "mem_login_refresh",
+            "mem_npm_reinstall",
+            "mem_old_org_conflict",
+            "mem_organization_fix",
+            "mem_subscription_failed"
+          ]
+        },
+        {
+          "query_id": "q_wsl_subscription",
+          "memory_recall_at_10": 0.6667,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 2,
+          "candidate_reduction_ratio": 0.95,
+          "graph_expansion_candidate_delta": 0,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.4467,
+          "verified_text_p50_ms": 0.3288,
+          "expanded_tags": [
+            "wsl"
+          ],
+          "returned_memory_ids": [
+            "mem_subscription_failed",
+            "mem_wsl_env"
+          ]
+        },
+        {
+          "query_id": "q_org_problem",
+          "memory_recall_at_10": 1.0,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 8,
+          "candidate_reduction_ratio": 0.8,
+          "graph_expansion_candidate_delta": 4,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.4317,
+          "verified_text_p50_ms": 0.3418,
+          "expanded_tags": [
+            "codex_subscription_failed",
+            "selected_organization"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_billing_not_root",
+            "mem_github_org_noise",
+            "mem_login_refresh",
+            "mem_npm_reinstall",
+            "mem_old_org_conflict",
+            "mem_organization_fix",
+            "mem_subscription_failed"
+          ]
+        },
+        {
+          "query_id": "q_api_key_but_codex_fails",
+          "memory_recall_at_10": 0.3333,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 2,
+          "candidate_reduction_ratio": 0.95,
+          "graph_expansion_candidate_delta": 0,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.6213,
+          "verified_text_p50_ms": 0.4396,
+          "expanded_tags": [
+            "api_key_exists"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_weather_api_noise"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "deepseek_offline_proposal_graph",
+      "tag_recall_at_k": 1.0,
+      "memory_recall_at_10": 0.5417,
+      "graph_expansion_precision": 1.0,
+      "candidate_reduction_ratio": 0.9125,
+      "graph_expansion_candidate_delta": 0,
+      "verified_text_p95_ms": 0.7226,
+      "verified_text_p50_ms": 0.3688,
+      "online_llm_call_count": 0,
+      "cases": [
+        {
+          "query_id": "q_subscription_cn",
+          "memory_recall_at_10": 0.6667,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 6,
+          "candidate_reduction_ratio": 0.85,
+          "graph_expansion_candidate_delta": 0,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.4535,
+          "verified_text_p50_ms": 0.4033,
+          "expanded_tags": [
+            "codex_subscription_failed"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_billing_not_root",
+            "mem_login_refresh",
+            "mem_npm_reinstall",
+            "mem_old_org_conflict",
+            "mem_subscription_failed"
+          ]
+        },
+        {
+          "query_id": "q_wsl_subscription",
+          "memory_recall_at_10": 0.6667,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 2,
+          "candidate_reduction_ratio": 0.95,
+          "graph_expansion_candidate_delta": 0,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.3342,
+          "verified_text_p50_ms": 0.3199,
+          "expanded_tags": [
+            "wsl"
+          ],
+          "returned_memory_ids": [
+            "mem_subscription_failed",
+            "mem_wsl_env"
+          ]
+        },
+        {
+          "query_id": "q_org_problem",
+          "memory_recall_at_10": 0.5,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 4,
+          "candidate_reduction_ratio": 0.9,
+          "graph_expansion_candidate_delta": 0,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.5497,
+          "verified_text_p50_ms": 0.3144,
+          "expanded_tags": [
+            "selected_organization"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_github_org_noise",
+            "mem_old_org_conflict",
+            "mem_organization_fix"
+          ]
+        },
+        {
+          "query_id": "q_api_key_but_codex_fails",
+          "memory_recall_at_10": 0.3333,
+          "tag_recall_at_k": 1.0,
+          "graph_expansion_precision": 1.0,
+          "candidate_count": 2,
+          "candidate_reduction_ratio": 0.95,
+          "graph_expansion_candidate_delta": 0,
+          "expansion_skipped": false,
+          "verified_text_p95_ms": 0.7226,
+          "verified_text_p50_ms": 0.4376,
+          "expanded_tags": [
+            "api_key_exists"
+          ],
+          "returned_memory_ids": [
+            "mem_api_key_not_subscription",
+            "mem_weather_api_noise"
+          ]
+        }
+      ]
+    }
+  ]
+}

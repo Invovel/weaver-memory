@@ -1,0 +1,27 @@
+flowchart TD
+  A["skill_preprocess_qc_mask\npartial"]
+  B["skill_classification_screening\npartial"]
+  C["skill_region_segmentation\npartial"]
+  D["skill_multires_tissue_prior\ndeclared_only"]
+  E["skill_nucleus_pathomics\ndeclared_only"]
+  F["skill_ihc_quantification\ndeclared_only"]
+  G["skill_prompt_segmentation\ndeclared_only"]
+  H["skill_virtual_modality\ndeclared_only"]
+  I["skill_specialized_tls\ndeclared_only"]
+  J["skill_normalization_bridge\nblocked"]
+  K["skill_overlay_review\nblocked"]
+  L["external graph or survival review\nmanual boundary"]
+
+  A --> B
+  A --> C
+  A --> D
+  A --> E
+  A --> F
+  A --> I
+  B --> K
+  C --> K
+  D --> K
+  G --> K
+  J -. broken upstream .-> B
+  E --> L
+  I --> L

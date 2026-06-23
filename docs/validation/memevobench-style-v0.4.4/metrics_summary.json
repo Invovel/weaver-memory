@@ -1,0 +1,46 @@
+{
+  "benchmark": "memevobench-style-v0.4.4",
+  "dataset": {
+    "records": 66,
+    "events": 50,
+    "queries": 16
+  },
+  "baselines": {
+    "naive_no_gate": {
+      "trusted_recall_at_10": 0.625,
+      "pollution_retrieval_leak_count": 9,
+      "wrong_promotion_count": 37,
+      "contradiction_false_accept_rate": 1.0
+    },
+    "memoryweaver_source_gate": {
+      "promotion_accuracy": 1.0,
+      "trusted_promotion_recall": 1.0,
+      "pollution_promotion_block_rate": 1.0,
+      "untrusted_retrieval_block_rate": 1.0,
+      "contradiction_severity_accuracy": 1.0,
+      "contradiction_block_rate": 1.0,
+      "official_correct_recall_at_10": 0.0,
+      "official_misleading_leak_rate": 0.0,
+      "memory_recall_at_10": 0.8125,
+      "trusted_recall_at_10": 0.8125,
+      "pollution_retrieval_leak_count": 0,
+      "wrong_promotion_count": 0,
+      "contradiction_false_accept_rate": 0.0,
+      "boundary_case_pass_rate": 1.0
+    },
+    "strict_verified_only": {
+      "trusted_recall_at_10": 0.8125,
+      "pollution_retrieval_leak_count": 0,
+      "wrong_promotion_count": 0,
+      "contradiction_false_accept_rate": 0.0
+    }
+  },
+  "comparison": {
+    "pollution_leak_delta": 9,
+    "wrong_promotion_delta": 37,
+    "contradiction_false_accept_delta": 1.0,
+    "trusted_recall_delta": 0.1875,
+    "memoryweaver_vs_strict_pollution_delta": 0,
+    "memoryweaver_vs_strict_recall_delta": 0.0
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "aggregate": {
+    "path_regret_delta_vs_verified_memory": -1,
+    "path_regret_delta_vs_retrieval_memory": -2,
+    "known_bad_action_delta_vs_retrieval_memory": -3,
+    "tests_passed": 1.0,
+    "file_diff_matches_expected": 1.0,
+    "memory_induced_regression_rate": 0.0,
+    "rollback_success_rate": 1.0
+  },
+  "arms": {
+    "no_memory": {
+      "task_count": 3,
+      "best_path_selection_accuracy": 0.0,
+      "average_path_regret": 3,
+      "known_bad_action_attempts": 3,
+      "required_evidence_first_step_rate": 0.0,
+      "retrieval_before_critical_action_rate": 0.0,
+      "tests_passed": 0.0,
+      "file_diff_matches_expected": 0.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_success_rate": 0.0
+    },
+    "raw_rag_over_logs": {
+      "task_count": 3,
+      "best_path_selection_accuracy": 0.0,
+      "average_path_regret": 3,
+      "known_bad_action_attempts": 3,
+      "required_evidence_first_step_rate": 0.0,
+      "retrieval_before_critical_action_rate": 0.0,
+      "tests_passed": 0.0,
+      "file_diff_matches_expected": 0.0,
+      "memory_induced_regression_rate": 1.0,
+      "rollback_success_rate": 0.0
+    },
+    "retrieval_memory": {
+      "task_count": 3,
+      "best_path_selection_accuracy": 0.0,
+      "average_path_regret": 2,
+      "known_bad_action_attempts": 3,
+      "required_evidence_first_step_rate": 0.0,
+      "retrieval_before_critical_action_rate": 1.0,
+      "tests_passed": 1.0,
+      "file_diff_matches_expected": 1.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_success_rate": 0.0
+    },
+    "mw_verified_memory": {
+      "task_count": 3,
+      "best_path_selection_accuracy": 0.0,
+      "average_path_regret": 1,
+      "known_bad_action_attempts": 0,
+      "required_evidence_first_step_rate": 1.0,
+      "retrieval_before_critical_action_rate": 1.0,
+      "tests_passed": 1.0,
+      "file_diff_matches_expected": 1.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_success_rate": 0.0
+    },
+    "mw_layer3_path": {
+      "task_count": 3,
+      "best_path_selection_accuracy": 1.0,
+      "average_path_regret": 0,
+      "known_bad_action_attempts": 0,
+      "required_evidence_first_step_rate": 1.0,
+      "retrieval_before_critical_action_rate": 1.0,
+      "tests_passed": 1.0,
+      "file_diff_matches_expected": 1.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_success_rate": 1.0,
+      "latest_path_selection_accuracy": 1.0,
+      "stale_path_suppression_rate": 1.0,
+      "supersession_accuracy": 1.0,
+      "false_stable_promotion_count": 0
+    }
+  },
+  "path_protocol": {
+    "family_count": 3,
+    "task_count": 9,
+    "stable_promotion_rate": 1.0,
+    "latest_path_selection_accuracy": 1.0,
+    "skill_path_selection_accuracy": 1.0,
+    "harness_path_selection_accuracy": 1.0,
+    "stale_path_suppression_rate": 1.0,
+    "rollback_success_rate": 1.0,
+    "false_stable_promotion_count": 0,
+    "average_path_regret": 0
+  }
+}

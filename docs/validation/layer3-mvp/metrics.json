@@ -1,0 +1,9 @@
+{
+  "candidate_to_provisional": true,
+  "stable_after_trials": true,
+  "challenged_on_conflict": true,
+  "known_bad_avoidance_count": 3,
+  "evidence_first_count": 3,
+  "false_trigger_count": 1,
+  "average_path_regret": 0.5
+}

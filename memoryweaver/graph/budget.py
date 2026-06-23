@@ -18,8 +18,8 @@ class ProposalBudgetDecision:
 class ProposalBudgetGate:
     """Keep LLM proposal generation out of the online path."""
 
-    max_batch_proposals: int = 24
-    max_proposals_per_query: int = 6
+    max_batch_proposals: int = 12
+    max_proposals_per_query: int = 3
     max_graph_hops: int = 1
     max_candidates_per_query: int = 50
     provider_wrong_link_threshold: float = 0.5

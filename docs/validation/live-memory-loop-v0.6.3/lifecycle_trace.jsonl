@@ -1,0 +1,11 @@
+{"step": "evidence_write", "id": "ev_codex_org_selected"}
+{"step": "evidence_write", "id": "ev_reinstall_not_root_cause"}
+{"step": "memory_write", "id": "mem_codex_org_fix", "layer": 1}
+{"step": "known_bad_path_write", "id": "mem_avoid_npm_reinstall_subscription", "layer": 1}
+{"step": "evidence_link_write", "ids": ["link_org_supports_memory", "link_reinstall_supports_memory"]}
+{"step": "promotion", "ids": ["mem_codex_org_fix", "mem_avoid_npm_reinstall_subscription"], "target_layer": 2}
+{"step": "retrieval", "query": "Codex subscription failed should I reinstall npm or check organization", "result_ids": ["mem_codex_org_fix", "mem_avoid_npm_reinstall_subscription"]}
+{"step": "conflict_handling", "new_id": "mem_assistant_reinstall_claim", "existing_id": "mem_avoid_npm_reinstall_subscription", "severity": "block", "action": "block", "relation": "contradicts"}
+{"step": "layer3_mutation", "kind": "compose_provisional", "pattern_id": "pat_2116cd39055e", "status": "provisional"}
+{"step": "rollback", "pattern_id": "pat_2116cd39055e", "status": "rolled_back", "rollback_to": ["mem_codex_org_fix", "mem_avoid_npm_reinstall_subscription"]}
+{"step": "runtime_marker_write", "marker_id": "marker_codex_subscription_org_first", "store": "marker_evidence_contexts"}

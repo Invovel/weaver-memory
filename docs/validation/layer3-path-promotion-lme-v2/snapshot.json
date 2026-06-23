@@ -1,0 +1,12 @@
+{
+  "resolved_root": "D:\\benchmarks\\longmemeval-v2",
+  "root_resolution_source": "benchmarks",
+  "question_count": 5,
+  "requested_trajectory_refs": 1,
+  "loaded_trajectory_count": 1,
+  "missing_trajectory_refs": 0,
+  "haystack": "lme_v2_small.json",
+  "trajectories_per_question": 1,
+  "states_per_trajectory": 2,
+  "max_observation_chars": 1800
+}

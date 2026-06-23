@@ -1,0 +1,52 @@
+{
+  "mode": "search",
+  "query": "Before closing the incident, which evidence should be checked and which action is unsafe?",
+  "scope": {
+    "brain_id": "workspace",
+    "source_id": "v08-fixture",
+    "workspace_root": "",
+    "owner_scope": "project",
+    "federated": false
+  },
+  "hits": [
+    {
+      "ref_id": "activity_stream",
+      "ref_type": "tag",
+      "title": "activity stream evidence",
+      "score": 0.05,
+      "graph_layer": "candidate",
+      "evidence": [
+        {
+          "ref_id": "ev_f69309659854",
+          "ref_type": "source_ref",
+          "layer": "",
+          "authority": "",
+          "freshness": "",
+          "snippet": ""
+        }
+      ],
+      "metadata": {
+        "graph_layer": "candidate",
+        "source_refs": [
+          "ev_f69309659854"
+        ],
+        "proposed_by": "llm",
+        "authority_granted": false,
+        "scope": {
+          "brain_id": "workspace",
+          "source_id": "v08-fixture",
+          "workspace_root": "",
+          "owner_scope": "project",
+          "federated": false
+        }
+      }
+    }
+  ],
+  "graph_signals": [
+    "candidate_graph_available",
+    "scope_checked"
+  ],
+  "retrieval_notes": [
+    "search returns raw refs and citations only; synthesis is separate"
+  ]
+}

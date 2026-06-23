@@ -1,0 +1,4 @@
+{"task_id": "trial-1", "successful": true, "known_bad_avoidance": 1, "evidence_first": true, "false_trigger": false, "selected_cost": 1, "oracle_cost": 1, "path_regret": 0, "status_after_trial": "provisional"}
+{"task_id": "trial-2", "successful": true, "known_bad_avoidance": 1, "evidence_first": true, "false_trigger": false, "selected_cost": 1, "oracle_cost": 1, "path_regret": 0, "status_after_trial": "provisional"}
+{"task_id": "trial-3", "successful": true, "known_bad_avoidance": 1, "evidence_first": true, "false_trigger": false, "selected_cost": 1, "oracle_cost": 1, "path_regret": 0, "status_after_trial": "provisional"}
+{"task_id": "trial-4", "successful": false, "known_bad_avoidance": 0, "evidence_first": false, "false_trigger": true, "selected_cost": 3, "oracle_cost": 1, "path_regret": 2, "status_after_trial": "challenged"}

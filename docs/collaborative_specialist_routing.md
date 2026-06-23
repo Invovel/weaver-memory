@@ -2,7 +2,7 @@
 
 ## 文档状态
 
-本文是后续实现方案，不代表当前 Sprint 0 原型已经具备多 specialist 调度能力。
+本文描述 v0.8 已接入的最小 specialist routing 框架以及 v0.9 优化方向。
 方案参考 GSCo，但必须保留 MemoryWeaver 的核心原则：
 
 > **LLM proposes, Harness judges.**
@@ -116,13 +116,21 @@ specialist 只返回结构化证据，不直接写 verified memory：
 | 成本 | token、模型调用次数、rerank 次数、图谱查询次数、CLI worker minutes |
 | 恢复 | retry、cooldown、checkpoint resume、duplicate side effect |
 
-## 最小实施顺序
+## v0.8 实施状态
+
+已完成最小可运行框架：
 
 1. 保持 P0 source、tag、Router 与 heat 回归门禁。
-2. 实现 `MemoryPolicy`、`RetrievalPolicy` 和结构化 `EvidencePacket`。
-3. 增加 L0 deterministic specialists，不引入多模型编排。
-4. 增加最小 GBrain point lookup、tag lookup 和 1-hop expansion。
-5. 接入 RAG evidence，并让 L1 可以独立降级。
-6. 增加 bounded ReAct、checkpoint 和 ToolGateway。
-7. 最后增加 L2 高端模型维护、shadow、canary 与 rollback。
+2. 扩展结构化 `EvidencePacket`，记录 specialists 与 citations。
+3. 增加 L0 deterministic specialist：tag/source/scope/time。
+4. 增加 L1 RAG evidence specialist。
+5. 增加 L1 GBrain one-hop specialist。
+6. 接入 checkpoint/resume probe。
+7. 输出 `docs/validation/v0.8-integration/` artifact，并记录 pass^3。
 
+v0.9 优化方向：
+
+- L2 高端模型维护、shadow、canary 与 rollback。
+- provider fallback、cooldown、circuit breaker。
+- 外部 benchmark、压力测试、雪崩测试。
+- specialist latency / cost / escalation rate 优化。

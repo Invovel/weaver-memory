@@ -1,0 +1,14 @@
+{
+  "marker_count": 5,
+  "active_preview_generated_count": 5,
+  "marker_context_bound_count": 5,
+  "marker_context_hit_rate": 1.0,
+  "required_evidence_total": 15,
+  "required_evidence_covered": 15,
+  "required_evidence_coverage": 1.0,
+  "raw_recovery_rate": 1.0,
+  "runtime_mutation_count": 0,
+  "layer3_mutation_count": 0,
+  "memory_promotion_count": 0,
+  "online_llm_call_count": 0
+}

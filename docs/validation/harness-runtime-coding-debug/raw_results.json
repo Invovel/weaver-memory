@@ -1,0 +1,493 @@
+{
+  "passed": true,
+  "metrics": {
+    "no_memory": {
+      "task_count": 12,
+      "success_rate": 0.0,
+      "repeated_failure_rate": 1.0,
+      "invalid_action_rate": 1.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 0.0,
+      "promotion_precision": 0.0
+    },
+    "naive_memory": {
+      "task_count": 12,
+      "success_rate": 0.0,
+      "repeated_failure_rate": 1.0,
+      "invalid_action_rate": 1.0,
+      "memory_induced_regression_rate": 1.0,
+      "rollback_frequency": 0.0,
+      "promotion_precision": 0.0
+    },
+    "memoryweaver_coding_debug_runtime": {
+      "task_count": 12,
+      "success_rate": 1.0,
+      "repeated_failure_rate": 0.0,
+      "invalid_action_rate": 0.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 0.0,
+      "promotion_precision": 1.0
+    },
+    "rollback_probe": {
+      "task_count": 1,
+      "success_rate": 1.0,
+      "repeated_failure_rate": 0.0,
+      "invalid_action_rate": 0.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 1.0,
+      "promotion_precision": 0.0
+    }
+  },
+  "aggregate_metrics": {
+    "real_pytest_before_failed": 1.0,
+    "real_pytest_after_passed": 1.0,
+    "real_diff_matches_expected": 1.0,
+    "candidate_registration_promotable": 1.0,
+    "promotion_external_evidence_only": 1.0,
+    "repeated_failure_rate_delta_vs_no_memory": -1.0,
+    "invalid_action_rate_delta_vs_naive_memory": -1.0,
+    "memory_induced_regression_delta_vs_naive_memory": -1.0,
+    "runtime_path_store_roundtrip": 1.0,
+    "rollback_recorded": 1.0
+  },
+  "registration": {
+    "path_id": "path_coding_debug_invalid_action_pytest_failure_coding_debug_seed_task",
+    "candidate_id": "candidate_trace_coding_debug_seed",
+    "trace_id": "trace-coding-debug-seed",
+    "assessment": {
+      "path_id": "path_coding_debug_invalid_action_pytest_failure_coding_debug_seed_task",
+      "can_promote": true,
+      "should_rollback": false,
+      "reasons": [],
+      "hard_evidence_count": 8,
+      "model_confidence_ignored_count": 0,
+      "repeated_validation_count": 3,
+      "counterexample_count": 0,
+      "conflict_count": 0,
+      "benchmark_delta": 1.0,
+      "memory_induced_regression_rate": 0.0,
+      "decayed_support": 10.0
+    },
+    "initial_evidence_count": 8,
+    "rejected_evidence_count": 1,
+    "rejected_as_challenge": false,
+    "ledger_index": 2
+  },
+  "candidate": {
+    "candidate_id": "candidate_trace_coding_debug_seed",
+    "trace_id": "trace-coding-debug-seed",
+    "path": {
+      "path_id": "path_coding_debug_invalid_action_pytest_failure_coding_debug_seed_task",
+      "name": "Trace-derived path for coding_debug",
+      "condition": {
+        "task_tags": [
+          "coding",
+          "debug"
+        ],
+        "query_terms": [
+          "invalid_action",
+          "pytest_failure"
+        ],
+        "failure_modes": [
+          "invalid_action",
+          "pytest_failure"
+        ],
+        "required_state": {}
+      },
+      "action_policy": [
+        {
+          "action_name": "check_evidence",
+          "target": "run_failing_tests",
+          "arguments": {
+            "target": "run_failing_tests"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-coding-debug-seed",
+            "source_step_id": "step_0002",
+            "source_node": "run_failing_tests"
+          },
+          "created_at": "2026-06-11T02:06:25.907732+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "apply_minimal_diff",
+          "arguments": {
+            "target": "apply_minimal_diff"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-coding-debug-seed",
+            "source_step_id": "step_0003",
+            "source_node": "apply_minimal_diff"
+          },
+          "created_at": "2026-06-11T02:06:25.907743+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "run_tests_after_patch",
+          "arguments": {
+            "target": "run_tests_after_patch"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-coding-debug-seed",
+            "source_step_id": "step_0004",
+            "source_node": "run_tests_after_patch"
+          },
+          "created_at": "2026-06-11T02:06:25.907749+00:00"
+        }
+      ],
+      "validation_gate": {
+        "required_evidence": [
+          "tool_result",
+          "test_result",
+          "file_diff",
+          "benchmark_score",
+          "repeat_validation",
+          "time_decay"
+        ],
+        "min_repeated_validations": 3,
+        "min_benchmark_delta": 0.0,
+        "max_counterexamples": 0,
+        "max_conflicts": 0,
+        "max_memory_induced_regression_rate": 0.0,
+        "half_life_days": 30.0,
+        "min_decayed_support": 1.0,
+        "allow_model_confidence": false
+      },
+      "fallback": {
+        "action_name": "ask_user",
+        "target": "confirm_coding_debug_invalid_action_pytest_failure_coding_debug_seed_task_fallback",
+        "arguments": {
+          "target": "confirm_coding_debug_invalid_action_pytest_failure_coding_debug_seed_task_fallback"
+        },
+        "reasoning": "",
+        "working_directory": "",
+        "timeout_seconds": 30,
+        "idempotency_key": "",
+        "user_confirmation": false,
+        "resource_budget": {},
+        "proposed_by": "assistant",
+        "metadata": {},
+        "created_at": "2026-06-11T02:06:25.907886+00:00"
+      },
+      "rollback_rule": {
+        "rollback_on_conflict": true,
+        "rollback_on_counterexamples": 1,
+        "rollback_on_regression_rate": 0.0,
+        "rollback_reason": "trace-derived runtime path challenged by external evidence"
+      },
+      "pattern_id": "",
+      "blocked_targets": [
+        "__invalid_action__"
+      ],
+      "metadata": {
+        "source_trace_id": "trace-coding-debug-seed",
+        "source_task_id": "coding-debug-seed-task",
+        "source_task_type": "coding_debug",
+        "trace_success": true,
+        "rejected_evidence_count": 1
+      }
+    },
+    "evidence": [
+      {
+        "evidence_type": "tool_result",
+        "task_id": "coding-debug-seed-task",
+        "task_family": "coding_debug",
+        "passed": true,
+        "source_ref": "evt_00000002",
+        "status": "evidence_observed",
+        "target": "run_failing_tests",
+        "expected": "",
+        "observed": "pytest failure reproduced before patch",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": true,
+        "evidence_first": true,
+        "false_trigger": false,
+        "created_at": "2026-06-11T02:06:25.907773+00:00",
+        "metadata": {
+          "step_id": "step_0002",
+          "node_name": "run_failing_tests",
+          "action_type": "check_evidence",
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "coding-debug-seed-task",
+        "task_family": "coding_debug",
+        "passed": true,
+        "source_ref": "evt_00000003",
+        "status": "evidence_observed",
+        "target": "apply_minimal_diff",
+        "expected": "",
+        "observed": "minimal diff applied",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T02:06:25.907787+00:00",
+        "metadata": {
+          "step_id": "step_0003",
+          "node_name": "apply_minimal_diff",
+          "action_type": "check_evidence",
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "coding-debug-seed-task",
+        "task_family": "coding_debug",
+        "passed": true,
+        "source_ref": "evt_00000004",
+        "status": "evidence_observed",
+        "target": "run_tests_after_patch",
+        "expected": "",
+        "observed": "pytest passed after patch",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T02:06:25.907795+00:00",
+        "metadata": {
+          "step_id": "step_0004",
+          "node_name": "run_tests_after_patch",
+          "action_type": "check_evidence",
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "test_result",
+        "task_id": "coding-debug-seed-task",
+        "task_family": "coding_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "passed",
+        "target": "pytest -q",
+        "expected": "",
+        "observed": "..                                                                       [100%]\n2 passed in 0.04s\n",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T02:06:25.907809+00:00",
+        "metadata": {},
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "file_diff",
+        "task_id": "coding-debug-seed-task",
+        "task_family": "coding_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "",
+        "target": "sample_project/calculator.py",
+        "expected": "guard denominator == 0 before division",
+        "observed": "--- a/sample_project/calculator.py\n+++ b/sample_project/calculator.py\n@@ -1,2 +1,4 @@\n def safe_divide(numerator, denominator):\n+    if denominator == 0:\n+        return None\n     return numerator / denominator\n",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T02:06:25.907816+00:00",
+        "metadata": {},
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "benchmark_score",
+        "task_id": "coding-debug-seed-task",
+        "task_family": "coding_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "",
+        "target": "coding_debug_pytest_micro_repo",
+        "expected": "",
+        "observed": "",
+        "score_before": 0.0,
+        "score_after": 1.0,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T02:06:25.907834+00:00",
+        "metadata": {},
+        "benchmark_delta": 1.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "repeat_validation",
+        "task_id": "coding-debug-seed-task",
+        "task_family": "coding_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "",
+        "target": "run_tests_after_patch",
+        "expected": "",
+        "observed": "",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 3,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": true,
+        "evidence_first": true,
+        "false_trigger": false,
+        "created_at": "2026-06-11T02:06:25.907846+00:00",
+        "metadata": {},
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "time_decay",
+        "task_id": "coding-debug-seed-task",
+        "task_family": "coding_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "",
+        "target": "",
+        "expected": "",
+        "observed": "1.0",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T02:06:25.907862+00:00",
+        "metadata": {
+          "decay_weight": 1.0
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      }
+    ],
+    "rejected_evidence": [
+      {
+        "evidence_type": "tool_result",
+        "task_id": "",
+        "task_family": "",
+        "passed": false,
+        "source_ref": "evt_00000001",
+        "status": "invalid_action",
+        "target": "__invalid_action__",
+        "expected": "",
+        "observed": "__invalid_action__ rejected before execution",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": true,
+        "created_at": "2026-06-11T02:06:25.907701+00:00",
+        "metadata": {
+          "step_id": "step_0001",
+          "node_name": "reject_invalid_action",
+          "action_type": "tool_call",
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      }
+    ],
+    "metrics": {
+      "step_count": 4,
+      "tool_action_count": 4,
+      "tool_result_count": 4,
+      "successful_tool_result_count": 3,
+      "failed_tool_result_count": 1,
+      "duplicate_tool_result_count": 0,
+      "error_step_count": 0,
+      "event_linked_step_count": 4,
+      "total_latency_ms": 26,
+      "total_token_cost": 0,
+      "action_type_counts": {
+        "tool_call": 1,
+        "check_evidence": 3
+      },
+      "status_counts": {
+        "invalid_action": 1,
+        "evidence_observed": 3
+      },
+      "tests_passed": true,
+      "test_target": "pytest -q",
+      "test_output": "..                                                                       [100%]\n2 passed in 0.04s\n",
+      "file_diff_matches_expected": true,
+      "diff_target": "sample_project/calculator.py",
+      "diff_expected": "guard denominator == 0 before division",
+      "diff_observed": "--- a/sample_project/calculator.py\n+++ b/sample_project/calculator.py\n@@ -1,2 +1,4 @@\n def safe_divide(numerator, denominator):\n+    if denominator == 0:\n+        return None\n     return numerator / denominator\n",
+      "benchmark_name": "coding_debug_pytest_micro_repo",
+      "score_before": 0.0,
+      "score_after": 1.0,
+      "repeat_validation_count": 3,
+      "repeat_validation_target": "run_tests_after_patch",
+      "known_bad_avoided": true,
+      "evidence_first": true,
+      "time_decay_weight": 1.0
+    },
+    "notes": [
+      "bad actions were retained as rejected evidence and blocked targets"
+    ]
+  },
+  "research_question": "Can evidence-gated path promotion reduce repeated agent failures without increasing memory-induced error propagation?"
+}

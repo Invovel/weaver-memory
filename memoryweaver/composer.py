@@ -3,14 +3,18 @@
 from __future__ import annotations
 
 import json
-import os
 from pathlib import Path
 from typing import Any, Optional
 
 from memoryweaver.evidence import EvidenceStore
 from memoryweaver.policy import MemoryPolicy, RetrievalPolicy
 from memoryweaver.schema import Freshness, Layer, Pattern, PatternStatus
-from memoryweaver.store import MemoryStore, SCHEMA_VERSION, token_jaccard
+from memoryweaver.store import (
+    MemoryStore,
+    SCHEMA_VERSION,
+    atomic_write_json,
+    token_jaccard,
+)
 
 
 class PatternStore:
@@ -57,24 +61,23 @@ class PatternStore:
                 continue
             similarity = token_jaccard(query, pattern.rule)
             if similarity >= threshold:
-                scored.append((similarity * pattern.confidence, pattern))
+                signal = max(
+                    pattern.path_fitness_score,
+                    pattern.confidence,
+                    0.1 if pattern.status == PatternStatus.PROVISIONAL else 0.0,
+                )
+                scored.append((similarity * signal, pattern))
         scored.sort(key=lambda pair: pair[0], reverse=True)
         return [pattern for _, pattern in scored[:limit]]
 
     def _save(self) -> None:
-        self._path.parent.mkdir(parents=True, exist_ok=True)
-        tmp = self._path.with_suffix(".tmp")
-        with open(tmp, "w", encoding="utf-8") as f:
-            json.dump(
-                {
-                    "version": SCHEMA_VERSION,
-                    "patterns": [p.to_dict() for p in self._patterns.values()],
-                },
-                f,
-                ensure_ascii=False,
-                indent=2,
-            )
-        os.replace(tmp, self._path)
+        atomic_write_json(
+            self._path,
+            {
+                "version": SCHEMA_VERSION,
+                "patterns": [p.to_dict() for p in self._patterns.values()],
+            },
+        )
 
     def _load(self) -> None:
         if not self._path.exists():
@@ -91,6 +94,8 @@ class PatternStore:
 
 class PatternComposer:
     """Create and explicitly advance provisional Pattern records."""
+
+    STABLE_PATH_FITNESS_THRESHOLD = 0.55
 
     def __init__(
         self,
@@ -156,18 +161,92 @@ class PatternComposer:
         successful: bool,
         conflict_ref: str = "",
     ) -> Pattern:
+        if successful:
+            return self.record_path_trial(
+                pattern_id,
+                task_run_id=task_run_id,
+                successful=True,
+                conflict_ref=conflict_ref,
+                steps_saved=1,
+                evidence_first=True,
+            )
         pattern = self._get(pattern_id)
+        pattern.trial_count += 1
+        pattern.failure_count += 1
+        pattern.conflict_refs.append(conflict_ref or f"task:{task_run_id}")
+        pattern.status = PatternStatus.ROLLED_BACK
+        pattern.rollback_reason = conflict_ref or f"failed validation: {task_run_id}"
+        pattern.confidence = self._confidence(pattern)
+        pattern.path_fitness_score = self._path_fitness(
+            pattern,
+            scope_match=True,
+            recency_score=1.0,
+        )
+        self._patterns.update(pattern)
+        return pattern
+
+    def record_path_trial(
+        self,
+        pattern_id: str,
+        *,
+        task_run_id: str,
+        successful: bool,
+        steps_saved: int = 0,
+        known_bad_avoided: int = 0,
+        evidence_first: bool = False,
+        false_trigger: bool = False,
+        token_cost: float = 0.0,
+        scope_match: bool = True,
+        recency_score: float = 1.0,
+        supersedes_pattern_ids: list[str] | None = None,
+        conflict_ref: str = "",
+    ) -> Pattern:
+        pattern = self._get(pattern_id)
+        pattern.trial_count += 1
+        pattern.last_validated_at = pattern.updated_at
+        if supersedes_pattern_ids:
+            for pattern_id_ref in supersedes_pattern_ids:
+                if pattern_id_ref not in pattern.supersedes_patterns:
+                    pattern.supersedes_patterns.append(pattern_id_ref)
+        pattern.average_step_delta = self._running_average(
+            pattern.average_step_delta,
+            pattern.trial_count,
+            float(steps_saved),
+        )
+        pattern.average_token_cost = self._running_average(
+            pattern.average_token_cost,
+            pattern.trial_count,
+            float(token_cost),
+        )
+        if known_bad_avoided > 0:
+            pattern.known_bad_avoidance_count += int(known_bad_avoided)
+        if evidence_first:
+            pattern.evidence_first_count += 1
+        if false_trigger:
+            pattern.false_trigger_count += 1
         if successful:
             pattern.validation_task_runs.append(task_run_id)
-            pattern.confidence = round(
-                len(pattern.validation_task_runs)
-                / (len(pattern.validation_task_runs) + len(pattern.conflict_refs)),
-                2,
-            )
+            pattern.success_count += 1
         else:
+            pattern.failure_count += 1
             pattern.conflict_refs.append(conflict_ref or f"task:{task_run_id}")
-            pattern.status = PatternStatus.ROLLED_BACK
-            pattern.rollback_reason = conflict_ref or f"failed validation: {task_run_id}"
+        if false_trigger and conflict_ref and conflict_ref not in pattern.challenged_by:
+            pattern.challenged_by.append(conflict_ref)
+        pattern.confidence = self._confidence(pattern)
+        pattern.path_fitness_score = self._path_fitness(
+            pattern,
+            scope_match=scope_match,
+            recency_score=recency_score,
+        )
+        if not successful and pattern.status == PatternStatus.STABLE:
+            pattern.status = PatternStatus.CHALLENGED
+            pattern.rollback_reason = conflict_ref or f"challenged by task: {task_run_id}"
+        elif (
+            pattern.false_trigger_count >= 2
+            or pattern.failure_count > pattern.success_count
+        ) and pattern.status in (PatternStatus.PROVISIONAL, PatternStatus.STABLE):
+            pattern.status = PatternStatus.CHALLENGED
+            pattern.rollback_reason = conflict_ref or "path challenged by repeated failures"
         self._patterns.update(pattern)
         return pattern
 
@@ -185,9 +264,46 @@ class PatternComposer:
             raise ValueError("expired Pattern cannot become stable")
         if pattern.policy_version != self._policy.version:
             raise ValueError("Pattern policy version is stale")
+        if pattern.path_fitness_score < self.STABLE_PATH_FITNESS_THRESHOLD:
+            raise ValueError(
+                "stable Pattern requires sufficient path fitness "
+                f"(>= {self.STABLE_PATH_FITNESS_THRESHOLD:.2f})"
+            )
         pattern.status = PatternStatus.STABLE
         self._patterns.update(pattern)
         return pattern
+
+    def select_best_path(
+        self,
+        query: str,
+        *,
+        scope: str = "project",
+        limit: int = 3,
+        threshold: float = 0.05,
+    ) -> list[Pattern]:
+        candidates = self._patterns.search(
+            query,
+            scope=scope,
+            limit=max(limit * 3, 10),
+            threshold=threshold,
+        )
+        ranked = [
+            pattern for pattern in candidates
+            if pattern.status not in {
+                PatternStatus.ROLLED_BACK,
+                PatternStatus.ARCHIVED,
+                PatternStatus.CHALLENGED,
+            }
+        ]
+        ranked.sort(
+            key=lambda pattern: (
+                pattern.path_fitness_score,
+                pattern.confidence,
+                token_jaccard(query, pattern.rule),
+            ),
+            reverse=True,
+        )
+        return ranked[:limit]
 
     def rollback(self, pattern_id: str, reason: str) -> Pattern:
         pattern = self._get(pattern_id)
@@ -208,3 +324,52 @@ class PatternComposer:
         if pattern is None:
             raise KeyError(f"Pattern '{pattern_id}' not found")
         return pattern
+
+    @staticmethod
+    def _running_average(current: float, count: int, value: float) -> float:
+        if count <= 0:
+            return value
+        previous_total = current * (count - 1)
+        return round((previous_total + value) / count, 4)
+
+    @staticmethod
+    def _confidence(pattern: Pattern) -> float:
+        denominator = (
+            pattern.success_count
+            + pattern.failure_count
+            + pattern.false_trigger_count
+            + len(pattern.conflict_refs)
+        )
+        if denominator <= 0:
+            return 0.0
+        return round(pattern.success_count / denominator, 4)
+
+    @staticmethod
+    def _path_fitness(
+        pattern: Pattern,
+        *,
+        scope_match: bool,
+        recency_score: float,
+    ) -> float:
+        trial_count = max(pattern.trial_count, 1)
+        success_rate = pattern.success_count / trial_count
+        known_bad_gain = pattern.known_bad_avoidance_count / trial_count
+        evidence_first_gain = pattern.evidence_first_count / trial_count
+        repeatability = min(len(set(pattern.validation_task_runs)) / 3, 1.0)
+        step_gain = max(pattern.average_step_delta, 0.0) / 5
+        false_trigger_penalty = pattern.false_trigger_count / trial_count
+        failure_penalty = pattern.failure_count / trial_count
+        token_cost_penalty = min(pattern.average_token_cost / 2000, 1.0)
+        score = (
+            0.28 * success_rate
+            + 0.18 * known_bad_gain
+            + 0.14 * evidence_first_gain
+            + 0.12 * repeatability
+            + 0.12 * step_gain
+            + 0.10 * max(min(recency_score, 1.0), 0.0)
+            + 0.06 * (1.0 if scope_match else 0.0)
+            - 0.10 * false_trigger_penalty
+            - 0.08 * failure_penalty
+            - 0.04 * token_cost_penalty
+        )
+        return round(max(0.0, min(score, 1.0)), 4)

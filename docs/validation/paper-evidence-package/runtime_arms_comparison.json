@@ -1,0 +1,52 @@
+[
+  {
+    "paper_label": "no_memory",
+    "artifact_arm": "no_memory",
+    "task_count": 50,
+    "success_rate": 0.0,
+    "invalid_action_rate": 1.0,
+    "memory_induced_regression_rate": 0.0,
+    "negative_memory_hit_rate": 0.0,
+    "promotion_precision": 0.0
+  },
+  {
+    "paper_label": "naive",
+    "artifact_arm": "naive_memory",
+    "task_count": 50,
+    "success_rate": 0.0,
+    "invalid_action_rate": 1.0,
+    "memory_induced_regression_rate": 1.0,
+    "negative_memory_hit_rate": 0.0,
+    "promotion_precision": 0.0
+  },
+  {
+    "paper_label": "summary",
+    "artifact_arm": "summary_memory",
+    "task_count": 50,
+    "success_rate": 0.32,
+    "invalid_action_rate": 0.68,
+    "memory_induced_regression_rate": 0.24,
+    "negative_memory_hit_rate": 0.0,
+    "promotion_precision": 0.0
+  },
+  {
+    "paper_label": "retrieval",
+    "artifact_arm": "retrieval_memory",
+    "task_count": 50,
+    "success_rate": 0.5,
+    "invalid_action_rate": 0.5,
+    "memory_induced_regression_rate": 0.2,
+    "negative_memory_hit_rate": 0.5,
+    "promotion_precision": 0.0
+  },
+  {
+    "paper_label": "MemoryWeaver",
+    "artifact_arm": "memoryweaver_harness_runtime",
+    "task_count": 50,
+    "success_rate": 1.0,
+    "invalid_action_rate": 0.0,
+    "memory_induced_regression_rate": 0.0,
+    "negative_memory_hit_rate": 1.0,
+    "promotion_precision": 1.0
+  }
+]

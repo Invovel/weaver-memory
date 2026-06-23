@@ -1,0 +1,1 @@
+{"event_id": "evt_00000001", "event_type": "v08_resume_probe", "thread_id": "v08-thread", "step": 1, "payload": {"status": "before_resume"}, "timestamp": "2026-06-12T05:35:16.251914+00:00"}

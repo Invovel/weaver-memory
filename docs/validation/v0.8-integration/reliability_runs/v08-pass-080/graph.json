@@ -1,0 +1,85 @@
+{
+  "version": "0.2.0",
+  "nodes": [
+    {
+      "id": "v08_tag_activity_stream",
+      "node_type": "tag",
+      "label": "activity stream evidence",
+      "ref_id": "activity_stream",
+      "metadata": {
+        "graph_layer": "candidate",
+        "source_refs": [
+          "ev_f69309659854"
+        ],
+        "proposed_by": "llm",
+        "authority_granted": false,
+        "scope": {
+          "brain_id": "workspace",
+          "source_id": "v08-fixture",
+          "workspace_root": "",
+          "owner_scope": "project",
+          "federated": false
+        }
+      },
+      "created_at": "2026-06-12T05:35:16.241464+00:00",
+      "updated_at": "2026-06-12T05:35:16.241473+00:00"
+    },
+    {
+      "id": "v08_tag_blind_close",
+      "node_type": "tag",
+      "label": "blind close known-bad path",
+      "ref_id": "blind_close",
+      "metadata": {
+        "graph_layer": "candidate",
+        "source_refs": [
+          "ev_7b0f4e6a6f7c"
+        ],
+        "proposed_by": "llm",
+        "authority_granted": false,
+        "scope": {
+          "brain_id": "workspace",
+          "source_id": "v08-fixture",
+          "workspace_root": "",
+          "owner_scope": "project",
+          "federated": false
+        }
+      },
+      "created_at": "2026-06-12T05:35:16.244690+00:00",
+      "updated_at": "2026-06-12T05:35:16.244698+00:00"
+    }
+  ],
+  "edges": [
+    {
+      "source_id": "v08_tag_activity_stream",
+      "target_id": "v08_tag_blind_close",
+      "relation": "limits",
+      "id": "edge_v08_tag_activity_stream_limits_v08_tag_blind_close",
+      "confidence": 0.72,
+      "source": "gbrain_v08_candidate_bundle",
+      "status": "candidate",
+      "created_at": "2026-06-12T05:35:16.248090+00:00",
+      "updated_at": "2026-06-12T05:35:16.248100+00:00",
+      "evidence_links": [
+        "ev_f69309659854",
+        "ev_7b0f4e6a6f7c"
+      ],
+      "metadata": {
+        "graph_layer": "candidate",
+        "source_refs": [
+          "ev_f69309659854",
+          "ev_7b0f4e6a6f7c"
+        ],
+        "proposed_by": "llm",
+        "authority_granted": false,
+        "scope": {
+          "brain_id": "workspace",
+          "source_id": "v08-fixture",
+          "workspace_root": "",
+          "owner_scope": "project",
+          "federated": false
+        }
+      }
+    }
+  ],
+  "proposals": []
+}

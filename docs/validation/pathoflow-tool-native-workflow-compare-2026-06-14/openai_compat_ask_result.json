@@ -1,0 +1,89 @@
+{
+  "user_goal": "",
+  "task_breakdown": [],
+  "recommended_toolchain": [],
+  "reasoning": "å¯ä»¥ï¼å»ºè®®æâ**å¨çæ¢ç´¢ â å°æ ·æ¬äººå·¥å¤æ ¸ â åå³å®æ¯å¦ç»åROI**âçç§ç æµç¨èµ°ï¼è¿åä½ ä»¬å½åâæ IHCãæ ç¨³å®ROIãåä¸­å¿æ¥æºâçæ¡ä»¶æ¯å¹éçã\n\n- **æ»ä½ç­ç¥**ï¼ååå¨çH&Eä»£çåæï¼ææ¯å¼ NDPIäº§åº `æ·å·´ç»èæ ·æ ¸å¯åº¦`ã`è¿ç¤é»è¿æ·å·´ç»èå¯åº¦`ã`ç©ºé´èé/ææ¥ç¹å¾`ã`ä¸­å¿é´åå¸å·®å¼`ï¼ç¶åæ½å å¼ é«ç­/ä½ç­/å¯çæ ·æ¬åççå¤æ ¸ã\n- **ä¸ºä»ä¹åå¨ç**ï¼æ²¡æç¨³å®ROIæ¶ï¼åå¨çè½é¿åä¸»è§ååºååï¼ä½æç»è§£è¯»è¦å¼ºè°è¿æ¯ **TIL proxy / immune hot-cold trend**ï¼ä¸æ¯IHCæä¹ä¸çCD3/CD8å®éã\n- **æ¨èæµç¨**ï¼`åæ¯åå²` å»ç»çèæ¯ â `ç»ç»/è¿ç¤-é´è´¨ç²ååº` â `æ ¸åå²` â `æ·å·´ç»èæ ·æ ¸åç±»` â è®¡ç®æ¯å¹³æ¹æ¯«ç±³å¯åº¦ãæè¿é»è·ç¦»ãè¿ç¤è¾¹ç¼å¯éãç­ç¹å¾ã\n- **åä¸­å¿æ³¨æç¹**ï¼ä¸¤ä¸­å¿åçå¾å®¹æææè²åæ«æå·®å¼ï¼å»ºè®®ååé¢è²æ ååæè³å°åä¸­å¿åå±è´¨æ§ï¼ç»è®¡æ¶æ `center` å½åå±åéï¼ä¸è¦ç´æ¥æ··å¨ä¸èµ·ä¸ç»è®ºã\n- **äººå·¥å¤æ ¸æ½æ ·**ï¼ä¼åæ½ `2â3å¼ é«TIL`ã`2â3å¼ ä½TIL`ã`2å¼ æ¨¡åä¸ç¡®å®/åç`ï¼æ¯å¼ ç 3 ç±»é®é¢ï¼åæ­»/åç¢æ¯å¦è¯¯æ£ãæµç»è/å°è¡ç®¡åç®æ¯å¦è¢«å½æ·å·´ç»èãè¿ç¤è¾¹çæ¯å¦åç§»ã\n- **è¾åºå»ºè®®**ï¼æ¯çè³å°ä¿ç `æ»ç»ç»é¢ç§¯`ã`æ·å·´ç»èæ ·æ ¸æ°`ã`å¯åº¦/mmÂ²`ã`ç­å¾`ã`ä»£è¡¨æ§patch`ã`è´¨æ§æ è®°`ï¼è¿æ ·åé¢å¤æ ¸åè®ºæè¡¥åææé½æ´æ¹ä¾¿ã\n\nå¦æä½ ä»¬æ¿æï¼æä¸ä¸æ­¥å¯ä»¥ç´æ¥ç»ä½ ä¸ç **36å¼ NDPIçå¯æ§è¡åææ¹æ¡**ï¼åæ¬è¾å¥è¾åºç®å½ãæ¨èæ¨¡åç»åãè´¨æ§é¡¹ãä»¥åæåæ±æ»æâåç«å·/ä¸­/ç­âè¶å¿è¡¨çè§åã",
+  "alternative": "",
+  "risks": "",
+  "_parse_error": "找不到 JSON 起始 {: line 1 column 1 (char 0)",
+  "_raw": "å¯ä»¥ï¼å»ºè®®æâ**å¨çæ¢ç´¢ â å°æ ·æ¬äººå·¥å¤æ ¸ â åå³å®æ¯å¦ç»åROI**âçç§ç æµç¨èµ°ï¼è¿åä½ ä»¬å½åâæ IHCãæ ç¨³å®ROIãåä¸­å¿æ¥æºâçæ¡ä»¶æ¯å¹éçã\n\n- **æ»ä½ç­ç¥**ï¼ååå¨çH&Eä»£çåæï¼ææ¯å¼ NDPIäº§åº `æ·å·´ç»èæ ·æ ¸å¯åº¦`ã`è¿ç¤é»è¿æ·å·´ç»èå¯åº¦`ã`ç©ºé´èé/ææ¥ç¹å¾`ã`ä¸­å¿é´åå¸å·®å¼`ï¼ç¶åæ½å å¼ é«ç­/ä½ç­/å¯çæ ·æ¬åççå¤æ ¸ã\n- **ä¸ºä»ä¹åå¨ç**ï¼æ²¡æç¨³å®ROIæ¶ï¼åå¨çè½é¿åä¸»è§ååºååï¼ä½æç»è§£è¯»è¦å¼ºè°è¿æ¯ **TIL proxy / immune hot-cold trend**ï¼ä¸æ¯IHCæä¹ä¸çCD3/CD8å®éã\n- **æ¨èæµç¨**ï¼`åæ¯åå²` å»ç»çèæ¯ â `ç»ç»/è¿ç¤-é´è´¨ç²ååº` â `æ ¸åå²` â `æ·å·´ç»èæ ·æ ¸åç±»` â è®¡ç®æ¯å¹³æ¹æ¯«ç±³å¯åº¦ãæè¿é»è·ç¦»ãè¿ç¤è¾¹ç¼å¯éãç­ç¹å¾ã\n- **åä¸­å¿æ³¨æç¹**ï¼ä¸¤ä¸­å¿åçå¾å®¹æææè²åæ«æå·®å¼ï¼å»ºè®®ååé¢è²æ ååæè³å°åä¸­å¿åå±è´¨æ§ï¼ç»è®¡æ¶æ `center` å½åå±åéï¼ä¸è¦ç´æ¥æ··å¨ä¸èµ·ä¸ç»è®ºã\n- **äººå·¥å¤æ ¸æ½æ ·**ï¼ä¼åæ½ `2â3å¼ é«TIL`ã`2â3å¼ ä½TIL`ã`2å¼ æ¨¡åä¸ç¡®å®/åç`ï¼æ¯å¼ ç 3 ç±»é®é¢ï¼åæ­»/åç¢æ¯å¦è¯¯æ£ãæµç»è/å°è¡ç®¡åç®æ¯å¦è¢«å½æ·å·´ç»èãè¿ç¤è¾¹çæ¯å¦åç§»ã\n- **è¾åºå»ºè®®**ï¼æ¯çè³å°ä¿ç `æ»ç»ç»é¢ç§¯`ã`æ·å·´ç»èæ ·æ ¸æ°`ã`å¯åº¦/mmÂ²`ã`ç­å¾`ã`ä»£è¡¨æ§patch`ã`è´¨æ§æ è®°`ï¼è¿æ ·åé¢å¤æ ¸åè®ºæè¡¥åææé½æ´æ¹ä¾¿ã\n\nå¦æä½ ä»¬æ¿æï¼æä¸ä¸æ­¥å¯ä»¥ç´æ¥ç»ä½ ä¸ç **36å¼ NDPIçå¯æ§è¡åææ¹æ¡**ï¼åæ¬è¾å¥è¾åºç®å½ãæ¨èæ¨¡åç»åãè´¨æ§é¡¹ãä»¥åæåæ±æ»æâåç«å·/ä¸­/ç­âè¶å¿è¡¨çè§åã",
+  "follow_up_questions": [],
+  "_intent": "general",
+  "_intent_confidence": 0.42,
+  "_tool_name_map": {
+    "76-Pathomics-pipeline-from-slides": "从病理切片抽取病理组学特征",
+    "77-Pathomics-pipeline-from-slides-nucleus": "从细胞核掩膜抽取病理组学特征",
+    "49-slide-embedding-all-methods": "使用病理基础模型对全切片进行嵌入编码",
+    "68-Train-segmentation-pipeline-from-slides-xml": "一键训练语义分割模型(切片+XML标注)",
+    "69-Train-segmentation-pipeline-from-slides-mask": "一键训练语义分割模型(切片+TIF掩膜)",
+    "70-Infer-segmentation-pipeline": "语义分割模型一键推理",
+    "71-Train-MIL-pipeline-from-slides": "一键训练多示例学习模型(从切片+csv标签)",
+    "72-Train-MIL-pipeline-from-h5": "一键训练多示例学习模型(从H5嵌入+csv标签)",
+    "73-Infer-MIL-pipeline-for-slides": "应用多示例学习模型至切片(使用原始切片)",
+    "74-Infer-MIL-pipeline-for-h5": "应用多示例学习模型至切片(使用预编码的H5)",
+    "78-Train-MIL-multi-modal-pipeline-from-slides": "一键训练多示例学习多模态模型(从切片+csv标签)",
+    "79-Train-MIL-multi-modal-pipeline-from-h5": "一键训练多示例学习多模态模型(从H5嵌入+csv标签)",
+    "80-Infer-MIL-multi-modal-pipeline-for-slides": "应用多示例学习多模态模型至切片(使用原始切片)",
+    "81-Infer-MIL-multi-modal-pipeline-for-h5": "应用多示例学习多模态模型至切片(使用预编码的H5)",
+    "40-GrandQC": "全景病理切片质量控制(GrandQC)",
+    "52-Global-Macenko": "全局Macenko染色归一化",
+    "57-estimate-image-spacing": "估计普通图片的像素分辨率",
+    "64-TUZI": "泛用组织分割基础模型TUZI",
+    "4-nucleus-segmentation-hovernet-pannuke": "HoverNet-PanNuke细胞核分割",
+    "53-hover-next-mp": "HoverNeXt细胞核分割",
+    "39-HE-transfer-to-SHG": "虚拟SHG成像",
+    "65-PSPStain": "PSPStain-虚拟HER2染色(B版)",
+    "67-GigaTIME": "GigaTIME-虚拟免疫荧光",
+    "62-pancancer-detection-20": "TCGA肿瘤检测模型@2.0μm/px",
+    "63-pancancer-detection-40": "TCGA肿瘤检测模型@4.0μm/px",
+    "2-lung-cancer-segmentation": "肺癌区域精细分割",
+    "23-SAM-point-annotation": "SAM用于点标注自动掩膜",
+    "24-SAM2.1-point-annotation": "SAM 2.1用于点标注自动掩膜",
+    "25-BiomedParse": "基于文本Prompt的分割",
+    "29-Summarize-slide-info": "获取切片信息",
+    "31-Summarize-asap-xml-info": "获取标注信息",
+    "32-Transfer-asap-xml-to-tif": "标注XML转掩膜TIF",
+    "30-Get-slide-previews": "获取切片略缩图",
+    "59-generate-overlays": "获取切片与结果掩膜的混叠预览",
+    "58-value-mapping": "掩膜数值映射",
+    "55-pkl2h5": "PKL文件转存为HDF5",
+    "54-kfb2svs": "KFB转换为SVS格式",
+    "56-image2tif": "普通图片转TIF",
+    "15-Cerberus": "Cerberus结直肠多功能模型",
+    "3-tissue-segmentation": "多类组织语义分割(私有)",
+    "28-Stain-Normalization": "染色归一化",
+    "46-Train-cyclegan-normalizer": "训练用于染色风格迁移的CycleGAN模型",
+    "47-Eval-cyclegan-normalizer": "应用已经训练好的染色风格迁移CycleGAN模型",
+    "61-hooknet-tls": "三级淋巴结构与生发中心分割",
+    "1-foreground-segmentation": "H&E前景分割",
+    "5-pancreas-tumor-detection": "胰腺癌检测",
+    "6-breast-tumor-detection": "乳腺癌检测",
+    "7-gastric-tumor-detection": "胃癌检测",
+    "8-colon-tumor-detection": "结肠癌检测",
+    "11-CD34-vessel-segmentation": "CD34+血管分割（私有）",
+    "12-PAS-kidney-glomeruli-segmentation": "PAS肾小球分割",
+    "13-intrahepatic-cholangiocarcinoma-tissue-segmentation": "肝内胆管癌组织分割",
+    "14-intrahepatic-cholangiocarcinoma-cancer-detection": "肝内胆管癌检测",
+    "16-liver-tissue-segmentation": "肝脏组织分割",
+    "17-lung-tertiary-lymphoid-structures-segmentation": "肺癌三级淋巴结构分割",
+    "18-PAS-kidney-glomeruli-multi-class-segmentation": "PAS染色肾小管多类别分割",
+    "26-Kidney-Masson-4-class-segmentation": "肾脏Masson染色四类别分割",
+    "33-Generate-segmentation-patches": "生成语义分割训练样本",
+    "34-Generate-classification-patches": "生成图像分类训练样本",
+    "35-Train-segmentation-baseline": "训练一个语义分割基线模型",
+    "36-Infer-segmentation-baseline": "将训练好的语义分割基线模型用于分析指定切片",
+    "38-Text-Encoding": "使用PLIP、CONCH、MUSK对指定文本编码",
+    "41-Deepliif": "免疫组化阳性、阴性细胞检测分割(DeepLIIF)",
+    "42-CycleGAN-Norm-Xiacong": "基于CycleGAN的切片颜色风格标准化(胰腺癌队列-夏老师)",
+    "48-foreground-segmentation-beta": "H&E与IHC前景分割",
+    "51-ssl-luad-classification": "肺腺癌生长模式分类",
+    "60-tissue-segmentation-trial": "Tissue segmentation public trial",
+    "75-Gleason-AGGC": "前列腺Gleason评分",
+    "cpu_pseudo_task": "测试CPU占用",
+    "gpu_pseudo_task": "测试GPU占用",
+    "9-endometrium-tumor-detection": "子宫内膜癌检测",
+    "10-ovarian-tumor-detection": "卵巢癌检测",
+    "66-HistoPlexer": "HistoPlexer-多路免疫荧光染色",
+    "50-hovernet-pannuke-mp": "HoverNet-PanNuke细胞核分割"
+  }
+}

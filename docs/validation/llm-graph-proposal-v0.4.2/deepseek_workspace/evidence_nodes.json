@@ -1,0 +1,100 @@
+{
+  "version": "0.2.0",
+  "nodes": [
+    {
+      "id": "ev_org_selection",
+      "text": "User confirmation: selected organization fixed Codex subscription loading.",
+      "source": "terminal",
+      "source_uri": "fixture://ev_org_selection",
+      "content_hash": "547a9e487aae9482e0db629f91c64e09f3d6c4a38437e836dbef795328ab5f46",
+      "document_id": "",
+      "document_version": "",
+      "title": "",
+      "language": "unknown",
+      "created_at": "2026-06-04T06:34:13.248014+00:00",
+      "updated_at": "2026-06-04T06:34:13.248021+00:00",
+      "metadata": {
+        "tags": [
+          "selected_organization",
+          "codex_subscription_failed"
+        ]
+      }
+    },
+    {
+      "id": "ev_login_refresh",
+      "text": "Terminal transcript: login refresh helped after subscription load failed.",
+      "source": "terminal",
+      "source_uri": "fixture://ev_login_refresh",
+      "content_hash": "64b3365887625fe848ed63f116e870ae71ff155461d62545ad3836e319678d4a",
+      "document_id": "",
+      "document_version": "",
+      "title": "",
+      "language": "unknown",
+      "created_at": "2026-06-04T06:34:13.248646+00:00",
+      "updated_at": "2026-06-04T06:34:13.248652+00:00",
+      "metadata": {
+        "tags": [
+          "login_refresh_helped",
+          "codex_subscription_failed"
+        ]
+      }
+    },
+    {
+      "id": "ev_wsl_terminal",
+      "text": "Terminal evidence: WSL auth behavior differed from Windows native terminal.",
+      "source": "terminal",
+      "source_uri": "fixture://ev_wsl_terminal",
+      "content_hash": "8a8398cd5bbb821e544f22ac457a8ec222740900dcde511734c32c2a2c979501",
+      "document_id": "",
+      "document_version": "",
+      "title": "",
+      "language": "unknown",
+      "created_at": "2026-06-04T06:34:13.249353+00:00",
+      "updated_at": "2026-06-04T06:34:13.249360+00:00",
+      "metadata": {
+        "tags": [
+          "wsl",
+          "windows_native_terminal"
+        ]
+      }
+    },
+    {
+      "id": "ev_api_key_scope",
+      "text": "README note: API key presence does not prove Codex subscription entitlement.",
+      "source": "terminal",
+      "source_uri": "fixture://ev_api_key_scope",
+      "content_hash": "be638cd9439a23582d84605c4d8e8561972ef72a269cf64f63fff5188e39f719",
+      "document_id": "",
+      "document_version": "",
+      "title": "",
+      "language": "unknown",
+      "created_at": "2026-06-04T06:34:13.250189+00:00",
+      "updated_at": "2026-06-04T06:34:13.250195+00:00",
+      "metadata": {
+        "tags": [
+          "api_key_exists",
+          "openai_api_billing"
+        ]
+      }
+    },
+    {
+      "id": "ev_npm_reinstall",
+      "text": "Terminal evidence: npm reinstall completed but subscription error remained.",
+      "source": "terminal",
+      "source_uri": "fixture://ev_npm_reinstall",
+      "content_hash": "5f7ba49aaffc4e899660f6090a785daba24f0d0bb213f7ee6484669da63eea0f",
+      "document_id": "",
+      "document_version": "",
+      "title": "",
+      "language": "unknown",
+      "created_at": "2026-06-04T06:34:13.251018+00:00",
+      "updated_at": "2026-06-04T06:34:13.251024+00:00",
+      "metadata": {
+        "tags": [
+          "npm_reinstall_failed",
+          "npm_install_success"
+        ]
+      }
+    }
+  ]
+}

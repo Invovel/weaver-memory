@@ -1,0 +1,404 @@
+{
+  "schema": "pathoflow_model_family_scope_skill_map_v1",
+  "generated_at": "2026-06-15",
+  "purpose": "Keep PathoFlow's original framework boundaries, split the main model families by runtime entrypoint, and record composition-ready skill blocks.",
+  "evidence": {
+    "runtime_validation_artifacts": [
+      "comparison.json",
+      "sequential_chains.json",
+      "workflow_contrast_report.md",
+      "native_framework_issue_list.md"
+    ],
+    "registry_flows": [
+      "flow_registry/data/flows/wrapper/classification_construct_cmd.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_1_foreground_segmentation.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_2_lung_cancer_segmentation.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_5_pancreas_tumor_detection.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_15_cerberus.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_25_biomedparse.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_39_he_transfer_to_shg.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_40_grandqc.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_41_deepliif.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_50_hovernet_pannuke_mp.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_51_ssl_luad_classification.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_53_hover_next_mp.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_57_estimate_image_spacing.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_59_generate_overlays.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_61_hooknet_tls.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_62_pancancer_detection_20.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_64_tuzi.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_67_gigatime.yaml",
+      "flow_registry/data/flows/wish_reviewed/wish_77_pathomics_pipeline_from_slides_nucleus.yaml",
+      "flow_registry/data/flows/wish_reviewed/workflow_foreground_nucleus_pathomics_survival.yaml",
+      "flow_registry/data/flows/wish_reviewed/workflow_nucleus_graph_visualization.yaml"
+    ]
+  },
+  "families": [
+    {
+      "family_id": "classification",
+      "runtime_entrypoints": [
+        "scripts.classification_mp_apply.construct_cmd",
+        "pinglib.classification.apps.apply"
+      ],
+      "semantic_role": "WSI-level tumor screening, coarse localization, and heatmap-style prediction",
+      "best_for": [
+        "disease-specific tumor detection",
+        "pan-cancer heatmap screening",
+        "prediction JSON or score export"
+      ],
+      "not_for": [
+        "pixel-exact region boundaries",
+        "nucleus geometry",
+        "graph-ready downstream tables"
+      ],
+      "representative_models": [
+        {
+          "wish_tool_id": "5-pancreas-tumor-detection",
+          "display_name": "胰腺癌检测",
+          "source_flow_id": "wish_5_pancreas_tumor_detection",
+          "validation_state": "verified_local_cpu_pseudo",
+          "actual_local_outputs": [
+            "detection_result.png",
+            "tumor_mask.png",
+            "report.json"
+          ]
+        },
+        {
+          "wish_tool_id": "6-breast-tumor-detection",
+          "display_name": "乳腺肿瘤检测",
+          "source_flow_id": "wish_6_breast_tumor_detection",
+          "validation_state": "verified_local_cpu_pseudo"
+        },
+        {
+          "wish_tool_id": "62-pancancer-detection-20",
+          "display_name": "TCGA肿瘤检测模型@2.0um/px",
+          "source_flow_id": "wish_62_pancancer_detection_20",
+          "validation_state": "reviewed_registry_only"
+        },
+        {
+          "wish_tool_id": "63-pancancer-detection-40",
+          "display_name": "TCGA肿瘤检测模型@4.0um/px",
+          "source_flow_id": "wish_63_pancancer_detection_40",
+          "validation_state": "reviewed_registry_only"
+        }
+      ],
+      "common_inputs": [
+        "input_slide"
+      ],
+      "common_outputs": [
+        "heatmap_tif",
+        "overlay_png",
+        "score_json"
+      ],
+      "best_upstream_blocks": [
+        "40-GrandQC",
+        "1-foreground-segmentation",
+        "52-Global-Macenko (declared useful but currently gapped)"
+      ],
+      "best_downstream_blocks": [
+        "59-generate-overlays if mask contract is normalized to mask_tif"
+      ],
+      "current_local_findings": [
+        "5 and 6 can run in cpu_pseudo mode and emit real manifests.",
+        "classification to overlay is currently blocked by png-versus-tif mask contract mismatch."
+      ],
+      "skill_atoms": [
+        {
+          "skill_id": "skill_classification_screening",
+          "steps": [
+            "40-GrandQC?",
+            "1-foreground-segmentation?",
+            "5|6|62|63",
+            "59-generate-overlays?"
+          ]
+        }
+      ]
+    },
+    {
+      "family_id": "segmentation",
+      "runtime_entrypoints": [
+        "pinglib.segmentation.apps.apply",
+        "scripts.segmentation_mp_apply.construct_cmd"
+      ],
+      "semantic_role": "WSI-aligned region or tissue mask generation",
+      "best_for": [
+        "foreground masking",
+        "organ or lesion region segmentation",
+        "binary or multi-class tissue masks"
+      ],
+      "not_for": [
+        "slide-level diagnosis ranking",
+        "virtual stain generation",
+        "mask-free report workflows"
+      ],
+      "representative_models": [
+        {
+          "wish_tool_id": "1-foreground-segmentation",
+          "display_name": "H&E前景分割",
+          "source_flow_id": "wish_1_foreground_segmentation",
+          "validation_state": "verified_local_demo",
+          "actual_local_outputs": [
+            "demo_1-foreground-segmentation_foreground.tif"
+          ]
+        },
+        {
+          "wish_tool_id": "2-lung-cancer-segmentation",
+          "display_name": "肺癌区域精细分割",
+          "source_flow_id": "wish_2_lung_cancer_segmentation",
+          "validation_state": "reviewed_registry_only"
+        },
+        {
+          "wish_tool_id": "11-CD34-vessel-segmentation",
+          "display_name": "CD34血管分割",
+          "source_flow_id": "wish_11_cd34_vessel_segmentation",
+          "validation_state": "reviewed_registry_only"
+        },
+        {
+          "wish_tool_id": "12-PAS-kidney-glomeruli-segmentation",
+          "display_name": "PAS肾小球分割",
+          "source_flow_id": "wish_12_pas_kidney_glomeruli_segmentation",
+          "validation_state": "reviewed_registry_only"
+        },
+        {
+          "wish_tool_id": "18-PAS-kidney-glomeruli-multi-class-segmentation",
+          "display_name": "PAS肾小球多分类分割",
+          "source_flow_id": "wish_18_pas_kidney_glomeruli_multi_class_segmentation",
+          "validation_state": "reviewed_registry_only"
+        }
+      ],
+      "common_inputs": [
+        "input_slide"
+      ],
+      "common_outputs": [
+        "mask_tif",
+        "overlay_png",
+        "region_json"
+      ],
+      "best_upstream_blocks": [
+        "40-GrandQC",
+        "57-estimate-image-spacing when spacing is uncertain",
+        "52-Global-Macenko when normalization is explicitly required"
+      ],
+      "best_downstream_blocks": [
+        "59-generate-overlays",
+        "mask-based composite post-processing"
+      ],
+      "current_local_findings": [
+        "1-foreground-segmentation is locally runnable in demo mode.",
+        "legacy 4-nucleus-segmentation-hovernet-pannuke is locally runnable in demo mode and proves a nucleus-mask branch still executes.",
+        "foreground to overlay preflight is ready, but overlay currently returns completed_no_output."
+      ],
+      "skill_atoms": [
+        {
+          "skill_id": "skill_region_segmentation",
+          "steps": [
+            "40-GrandQC?",
+            "1-foreground-segmentation?",
+            "2|11|12|16|17|18|26",
+            "59-generate-overlays"
+          ]
+        }
+      ]
+    },
+    {
+      "family_id": "segmentation_multi_resolution",
+      "runtime_entrypoints": [
+        "scripts.segmentation_multires_mp_apply.construct_cmd"
+      ],
+      "semantic_role": "Multi-scale tissue segmentation prior generation",
+      "best_for": [
+        "multi-resolution tissue masks",
+        "coarse-to-fine segmentation priors"
+      ],
+      "not_for": [
+        "slide-level classification",
+        "cell graph feature construction",
+        "image synthesis"
+      ],
+      "representative_models": [
+        {
+          "wish_tool_id": "64-TUZI",
+          "display_name": "泛用组织分割基础模型TUZI",
+          "source_flow_id": "wish_64_tuzi",
+          "validation_state": "reviewed_registry_only"
+        }
+      ],
+      "common_inputs": [
+        "input_slide"
+      ],
+      "common_outputs": [
+        "mask_tif",
+        "overlay_png",
+        "region_json"
+      ],
+      "best_upstream_blocks": [
+        "40-GrandQC",
+        "57-estimate-image-spacing?"
+      ],
+      "best_downstream_blocks": [
+        "59-generate-overlays",
+        "downstream analysis that only requires a tissue prior"
+      ],
+      "current_local_findings": [
+        "This family is clearly registered, but there is no matching local execution manifest in the current validation pass."
+      ],
+      "skill_atoms": [
+        {
+          "skill_id": "skill_multires_tissue_prior",
+          "steps": [
+            "40-GrandQC?",
+            "57-estimate-image-spacing?",
+            "64-TUZI",
+            "59-generate-overlays?"
+          ]
+        }
+      ]
+    },
+    {
+      "family_id": "external",
+      "runtime_entrypoints": [
+        "pinglib.external.*",
+        "scripts.externals.*"
+      ],
+      "semantic_role": "Specialized adapters that do not share one universal artifact contract",
+      "best_for": [
+        "QC",
+        "IHC cell analysis",
+        "prompt-based segmentation",
+        "virtual modality generation",
+        "specialized external open-source tasks"
+      ],
+      "not_for": [
+        "treating all external models as one interchangeable family",
+        "generic planner shortcuts without per-tool contract checks"
+      ],
+      "representative_models": [
+        {
+          "wish_tool_id": "40-GrandQC",
+          "display_name": "全景病理切片质量控制",
+          "source_flow_id": "wish_40_grandqc",
+          "validation_state": "reviewed_registry_only"
+        },
+        {
+          "wish_tool_id": "41-Deepliif",
+          "display_name": "IHC阳性阴性细胞检测分割",
+          "source_flow_id": "wish_41_deepliif",
+          "validation_state": "reviewed_registry_only"
+        },
+        {
+          "wish_tool_id": "25-BiomedParse",
+          "display_name": "基于文本Prompt的分割",
+          "source_flow_id": "wish_25_biomedparse",
+          "validation_state": "reviewed_registry_only"
+        },
+        {
+          "wish_tool_id": "61-hooknet-tls",
+          "display_name": "三级淋巴结构与生发中心分割",
+          "source_flow_id": "wish_61_hooknet_tls",
+          "validation_state": "reviewed_registry_only"
+        },
+        {
+          "wish_tool_id": "67-GigaTIME",
+          "display_name": "GigaTIME虚拟免疫荧光",
+          "source_flow_id": "wish_67_gigatime",
+          "validation_state": "reviewed_registry_only"
+        },
+        {
+          "wish_tool_id": "39-HE-transfer-to-SHG",
+          "display_name": "虚拟SHG成像",
+          "source_flow_id": "wish_39_he_transfer_to_shg",
+          "validation_state": "reviewed_registry_only"
+        }
+      ],
+      "common_inputs": [
+        "task_specific"
+      ],
+      "common_outputs": [
+        "qc_report_json",
+        "mask_tif",
+        "feature_csv",
+        "generated_image",
+        "generated_multichannel"
+      ],
+      "best_upstream_blocks": [
+        "40-GrandQC before expensive downstream work",
+        "57-estimate-image-spacing only for the special spacing-unknown case"
+      ],
+      "best_downstream_blocks": [
+        "59-generate-overlays for mask-producing external tools only",
+        "external review or plotting for graph/statistics style outputs"
+      ],
+      "current_local_findings": [
+        "Most external-family tools were not directly executed in this local pass.",
+        "Adjacent support wrapper 52-Global-Macenko currently returns completed_no_output, which warns against assuming execution completeness from registry presence alone."
+      ],
+      "skill_atoms": [
+        {
+          "skill_id": "skill_ihc_quantification",
+          "steps": [
+            "40-GrandQC?",
+            "41-DeepLIIF"
+          ]
+        },
+        {
+          "skill_id": "skill_prompt_segmentation",
+          "steps": [
+            "25-BiomedParse",
+            "59-generate-overlays?"
+          ]
+        },
+        {
+          "skill_id": "skill_virtual_modality",
+          "steps": [
+            "39-HE-transfer-to-SHG | 67-GigaTIME"
+          ]
+        }
+      ]
+    }
+  ],
+  "cross_family_blocks": [
+    {
+      "block_id": "nucleus_pathomics",
+      "purpose": "Nucleus instance extraction followed by nucleus-aware pathomics feature generation",
+      "preferred_steps": [
+        "1-foreground-segmentation?",
+        "50-hovernet-pannuke-mp | 53-hover-next-mp",
+        "77-Pathomics-pipeline-from-slides-nucleus"
+      ],
+      "registry_preference": [
+        "50-hovernet-pannuke-mp",
+        "53-hover-next-mp"
+      ],
+      "local_execution_nuance": [
+        "Reviewed workflow layer prefers 50 and 53.",
+        "Current local execution proof in this pass is stronger for legacy 4-nucleus-segmentation-hovernet-pannuke."
+      ],
+      "source_workflows": [
+        "workflow_foreground_nucleus_pathomics_survival",
+        "workflow_nucleus_graph_visualization"
+      ]
+    },
+    {
+      "block_id": "visualization",
+      "purpose": "Turn a slide plus a TIF/TIFF mask into a human-readable overlay preview",
+      "preferred_steps": [
+        "59-generate-overlays"
+      ],
+      "current_problem": "preflight often succeeds but local execution currently returns completed_no_output"
+    },
+    {
+      "block_id": "normalization",
+      "purpose": "Stain normalization before downstream classification or segmentation",
+      "preferred_steps": [
+        "52-Global-Macenko"
+      ],
+      "current_problem": "local demo execution returns completed_no_output"
+    }
+  ],
+  "combination_risks": [
+    "classification to overlay currently fails at the mask contract boundary because detection masks are png while overlay expects tif or tiff",
+    "foreground or nucleus masks can pass overlay preflight but the overlay tool currently emits zero files in local demo mode",
+    "Global Macenko currently emits no artifacts, so any downstream chain depending on normalized output breaks immediately",
+    "OfflineFlowPlanner drift is severe enough that skill composition should use deterministic guards rather than current primary-tool selection"
+  ]
+}

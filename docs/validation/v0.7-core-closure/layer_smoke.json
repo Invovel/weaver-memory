@@ -1,0 +1,351 @@
+{
+  "passed": true,
+  "metrics": {
+    "verified_memory_write_count": 2,
+    "promotion_count": 2,
+    "retrieval_result_count": 2,
+    "retrieved_success_memory": true,
+    "retrieved_known_bad_memory": true,
+    "conflict_handling_count": 1,
+    "layer3_mutation_count": 1,
+    "rollback_count": 1,
+    "runtime_marker_write_count": 1,
+    "known_bad_path_write_count": 1,
+    "mind_map_node_count": 12,
+    "mind_map_edge_count": 13,
+    "online_llm_call_count": 0,
+    "workspace_validate_valid": true,
+    "workspace_doctor_valid": true
+  },
+  "trace": [
+    {
+      "step": "verified_write",
+      "memory_id": "mem_codex_org_fix",
+      "promoted": true
+    },
+    {
+      "step": "known_bad_write",
+      "memory_id": "mem_avoid_npm_reinstall_subscription",
+      "promoted": true
+    },
+    {
+      "step": "retrieval",
+      "result_ids": [
+        "mem_codex_org_fix",
+        "mem_avoid_npm_reinstall_subscription"
+      ]
+    },
+    {
+      "step": "conflict",
+      "severity": "block",
+      "action": "block",
+      "relation": "contradicts"
+    },
+    {
+      "step": "layer3_compose",
+      "pattern_id": "pat_ba5e9230704d",
+      "status": "provisional"
+    },
+    {
+      "step": "rollback",
+      "pattern_id": "pat_ba5e9230704d",
+      "status": "rolled_back"
+    },
+    {
+      "step": "runtime_marker_write",
+      "marker_id": "marker_codex_subscription_org_first"
+    }
+  ],
+  "mind_map": {
+    "center_tags": [
+      "codex",
+      "subscription"
+    ],
+    "nodes": [
+      {
+        "id": "memnode_mem_avoid_npm_reinstall_subscription",
+        "label": "Do not use npm reinstall as the first fix for Codex subscription load failures; ",
+        "node_type": "memory",
+        "ref_id": "mem_avoid_npm_reinstall_subscription",
+        "layer": "layer_2",
+        "status": "activated",
+        "rank": 9.0,
+        "metadata": {
+          "source": "tool",
+          "layer": 2
+        }
+      },
+      {
+        "id": "memnode_mem_codex_org_fix",
+        "label": "For Codex subscription load failures, check selected organization and account en",
+        "node_type": "memory",
+        "ref_id": "mem_codex_org_fix",
+        "layer": "layer_2",
+        "status": "activated",
+        "rank": 8.0,
+        "metadata": {
+          "source": "terminal",
+          "layer": 2
+        }
+      },
+      {
+        "id": "patnode_pat_ba5e9230704d",
+        "label": "For Codex subscription failures, check organization and entitlement before npm r",
+        "node_type": "pattern",
+        "ref_id": "pat_ba5e9230704d",
+        "layer": "layer_3",
+        "status": "rolled_back",
+        "rank": 5.0,
+        "metadata": {
+          "status": "rolled_back"
+        }
+      },
+      {
+        "id": "tag_subscription",
+        "label": "subscription",
+        "node_type": "tag",
+        "ref_id": "subscription",
+        "layer": "tag",
+        "status": "",
+        "rank": 2.0,
+        "metadata": {}
+      },
+      {
+        "id": "tag_codex",
+        "label": "codex",
+        "node_type": "tag",
+        "ref_id": "codex",
+        "layer": "tag",
+        "status": "",
+        "rank": 2.0,
+        "metadata": {}
+      },
+      {
+        "id": "evnode_ev_d1810568a692",
+        "label": "For Codex subscription load failures, check selected organization and account en",
+        "node_type": "evidence",
+        "ref_id": "ev_d1810568a692",
+        "layer": "evidence",
+        "status": "",
+        "rank": 2.0,
+        "metadata": {}
+      },
+      {
+        "id": "evnode_ev_c0ba132c195a",
+        "label": "Do not use npm reinstall as the first fix for Codex subscription load failures; ",
+        "node_type": "evidence",
+        "ref_id": "ev_c0ba132c195a",
+        "layer": "evidence",
+        "status": "",
+        "rank": 2.0,
+        "metadata": {}
+      },
+      {
+        "id": "tag_reinstall",
+        "label": "reinstall",
+        "node_type": "tag",
+        "ref_id": "reinstall",
+        "layer": "tag",
+        "status": "",
+        "rank": 1.0,
+        "metadata": {}
+      },
+      {
+        "id": "tag_organization",
+        "label": "organization",
+        "node_type": "tag",
+        "ref_id": "organization",
+        "layer": "tag",
+        "status": "",
+        "rank": 1.0,
+        "metadata": {}
+      },
+      {
+        "id": "tag_npm",
+        "label": "npm",
+        "node_type": "tag",
+        "ref_id": "npm",
+        "layer": "tag",
+        "status": "",
+        "rank": 1.0,
+        "metadata": {}
+      },
+      {
+        "id": "tag_known_bad_path",
+        "label": "known_bad_path",
+        "node_type": "tag",
+        "ref_id": "known_bad_path",
+        "layer": "tag",
+        "status": "",
+        "rank": 1.0,
+        "metadata": {}
+      },
+      {
+        "id": "tag_entitlement",
+        "label": "entitlement",
+        "node_type": "tag",
+        "ref_id": "entitlement",
+        "layer": "tag",
+        "status": "",
+        "rank": 1.0,
+        "metadata": {}
+      }
+    ],
+    "edges": [
+      {
+        "id": "edge_memnode_mem_codex_org_fix_related_to_tag_codex",
+        "source_id": "memnode_mem_codex_org_fix",
+        "target_id": "tag_codex",
+        "relation": "related_to",
+        "status": "accepted",
+        "confidence": 1.0,
+        "temporal": {}
+      },
+      {
+        "id": "edge_memnode_mem_codex_org_fix_related_to_tag_subscription",
+        "source_id": "memnode_mem_codex_org_fix",
+        "target_id": "tag_subscription",
+        "relation": "related_to",
+        "status": "accepted",
+        "confidence": 1.0,
+        "temporal": {}
+      },
+      {
+        "id": "edge_memnode_mem_codex_org_fix_related_to_tag_organization",
+        "source_id": "memnode_mem_codex_org_fix",
+        "target_id": "tag_organization",
+        "relation": "related_to",
+        "status": "accepted",
+        "confidence": 1.0,
+        "temporal": {}
+      },
+      {
+        "id": "edge_memnode_mem_codex_org_fix_related_to_tag_entitlement",
+        "source_id": "memnode_mem_codex_org_fix",
+        "target_id": "tag_entitlement",
+        "relation": "related_to",
+        "status": "accepted",
+        "confidence": 1.0,
+        "temporal": {}
+      },
+      {
+        "id": "edge_evnode_ev_d1810568a692_supports_memnode_mem_codex_org_fix",
+        "source_id": "evnode_ev_d1810568a692",
+        "target_id": "memnode_mem_codex_org_fix",
+        "relation": "supports",
+        "status": "accepted",
+        "confidence": 0.9,
+        "temporal": {}
+      },
+      {
+        "id": "edge_memnode_mem_avoid_npm_reinstall_subscription_related_to_tag_codex",
+        "source_id": "memnode_mem_avoid_npm_reinstall_subscription",
+        "target_id": "tag_codex",
+        "relation": "related_to",
+        "status": "accepted",
+        "confidence": 1.0,
+        "temporal": {}
+      },
+      {
+        "id": "edge_memnode_mem_avoid_npm_reinstall_subscription_related_to_tag_subscription",
+        "source_id": "memnode_mem_avoid_npm_reinstall_subscription",
+        "target_id": "tag_subscription",
+        "relation": "related_to",
+        "status": "accepted",
+        "confidence": 1.0,
+        "temporal": {}
+      },
+      {
+        "id": "edge_memnode_mem_avoid_npm_reinstall_subscription_related_to_tag_npm",
+        "source_id": "memnode_mem_avoid_npm_reinstall_subscription",
+        "target_id": "tag_npm",
+        "relation": "related_to",
+        "status": "accepted",
+        "confidence": 1.0,
+        "temporal": {}
+      },
+      {
+        "id": "edge_memnode_mem_avoid_npm_reinstall_subscription_related_to_tag_reinstall",
+        "source_id": "memnode_mem_avoid_npm_reinstall_subscription",
+        "target_id": "tag_reinstall",
+        "relation": "related_to",
+        "status": "accepted",
+        "confidence": 1.0,
+        "temporal": {}
+      },
+      {
+        "id": "edge_memnode_mem_avoid_npm_reinstall_subscription_related_to_tag_known_bad_path",
+        "source_id": "memnode_mem_avoid_npm_reinstall_subscription",
+        "target_id": "tag_known_bad_path",
+        "relation": "related_to",
+        "status": "accepted",
+        "confidence": 1.0,
+        "temporal": {}
+      },
+      {
+        "id": "edge_evnode_ev_c0ba132c195a_supports_memnode_mem_avoid_npm_reinstall_subscription",
+        "source_id": "evnode_ev_c0ba132c195a",
+        "target_id": "memnode_mem_avoid_npm_reinstall_subscription",
+        "relation": "supports",
+        "status": "accepted",
+        "confidence": 0.9,
+        "temporal": {}
+      },
+      {
+        "id": "edge_patnode_pat_ba5e9230704d_supports_memnode_mem_codex_org_fix",
+        "source_id": "patnode_pat_ba5e9230704d",
+        "target_id": "memnode_mem_codex_org_fix",
+        "relation": "supports",
+        "status": "accepted",
+        "confidence": 1.0,
+        "temporal": {}
+      },
+      {
+        "id": "edge_patnode_pat_ba5e9230704d_supports_memnode_mem_avoid_npm_reinstall_subscription",
+        "source_id": "patnode_pat_ba5e9230704d",
+        "target_id": "memnode_mem_avoid_npm_reinstall_subscription",
+        "relation": "supports",
+        "status": "accepted",
+        "confidence": 1.0,
+        "temporal": {}
+      }
+    ],
+    "core_node_ids": [
+      "memnode_mem_avoid_npm_reinstall_subscription",
+      "memnode_mem_codex_org_fix",
+      "patnode_pat_ba5e9230704d",
+      "tag_subscription",
+      "tag_codex",
+      "evnode_ev_d1810568a692",
+      "evnode_ev_c0ba132c195a",
+      "tag_reinstall",
+      "tag_organization",
+      "tag_npm"
+    ]
+  },
+  "workspace_validate": {
+    "valid": true,
+    "schema_version": "0.2.0",
+    "memory_policy_version": "memory-policy-v1",
+    "retrieval_policy_version": "retrieval-policy-v1",
+    "errors": [],
+    "warnings": [
+      "missing optional empty store: raw_spans.json",
+      "missing optional empty store: context_capsules.json",
+      "missing optional empty store: tag_time_index.json"
+    ]
+  },
+  "workspace_doctor": {
+    "valid": true,
+    "schema_version": "0.2.0",
+    "memory_policy_version": "memory-policy-v1",
+    "retrieval_policy_version": "retrieval-policy-v1",
+    "errors": [],
+    "warnings": [],
+    "info": [
+      "missing empty store: raw_spans.json",
+      "missing empty store: context_capsules.json",
+      "missing empty store: tag_time_index.json"
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+{"dialogue_card_id": "card_002_npm_install_dependency_conflict", "marker_a": "avoid_force_install_before_peer_range_check", "marker_b": "preserve_lockfile_until_dependency_root_known", "conflict_type": "suppress_vs_suggest", "action": "delete_lockfile", "status": "shadow_unresolved"}

@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "checkpoints": {
+    "v08-thread": [
+      {
+        "checkpoint_id": "ckpt_v08-thread_0001",
+        "thread_id": "v08-thread",
+        "step": 1,
+        "state": {
+          "stage": "specialist_router",
+          "packet_ready": true
+        },
+        "last_event_id": "evt_00000001",
+        "created_at": "2026-06-12T05:35:16.286651+00:00"
+      }
+    ]
+  }
+}

@@ -1,0 +1,511 @@
+{
+  "version": "0.2.0",
+  "checkpoints": {
+    "coding-debug-seed": [
+      {
+        "checkpoint_id": "ckpt_coding-debug-seed_0001",
+        "thread_id": "coding-debug-seed",
+        "step": 1,
+        "state": {
+          "last_tool_status": "invalid_action",
+          "last_tool_target": "__invalid_action__",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000001",
+        "created_at": "2026-06-11T02:06:23.130948+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-seed_0002",
+        "thread_id": "coding-debug-seed",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_failing_tests",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000002",
+        "created_at": "2026-06-11T02:06:24.706445+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-seed_0003",
+        "thread_id": "coding-debug-seed",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "apply_minimal_diff",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000003",
+        "created_at": "2026-06-11T02:06:24.718612+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-seed_0004",
+        "thread_id": "coding-debug-seed",
+        "step": 4,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_tests_after_patch",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000004",
+        "created_at": "2026-06-11T02:06:25.878067+00:00"
+      }
+    ],
+    "coding-debug-replay-001": [
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-001_0001",
+        "thread_id": "coding-debug-replay-001",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_failing_tests",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000005",
+        "created_at": "2026-06-11T02:06:27.341218+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-001_0002",
+        "thread_id": "coding-debug-replay-001",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "apply_minimal_diff",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000006",
+        "created_at": "2026-06-11T02:06:27.351207+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-001_0003",
+        "thread_id": "coding-debug-replay-001",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_tests_after_patch",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000007",
+        "created_at": "2026-06-11T02:06:28.457897+00:00"
+      }
+    ],
+    "coding-debug-replay-002": [
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-002_0001",
+        "thread_id": "coding-debug-replay-002",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_failing_tests",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000008",
+        "created_at": "2026-06-11T02:06:29.739106+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-002_0002",
+        "thread_id": "coding-debug-replay-002",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "apply_minimal_diff",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000009",
+        "created_at": "2026-06-11T02:06:29.752556+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-002_0003",
+        "thread_id": "coding-debug-replay-002",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_tests_after_patch",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000010",
+        "created_at": "2026-06-11T02:06:31.082385+00:00"
+      }
+    ],
+    "coding-debug-replay-003": [
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-003_0001",
+        "thread_id": "coding-debug-replay-003",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_failing_tests",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000011",
+        "created_at": "2026-06-11T02:06:32.296141+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-003_0002",
+        "thread_id": "coding-debug-replay-003",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "apply_minimal_diff",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000012",
+        "created_at": "2026-06-11T02:06:32.308016+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-003_0003",
+        "thread_id": "coding-debug-replay-003",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_tests_after_patch",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000013",
+        "created_at": "2026-06-11T02:06:33.403422+00:00"
+      }
+    ],
+    "coding-debug-replay-004": [
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-004_0001",
+        "thread_id": "coding-debug-replay-004",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_failing_tests",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000014",
+        "created_at": "2026-06-11T02:06:34.486574+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-004_0002",
+        "thread_id": "coding-debug-replay-004",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "apply_minimal_diff",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000015",
+        "created_at": "2026-06-11T02:06:34.498670+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-004_0003",
+        "thread_id": "coding-debug-replay-004",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_tests_after_patch",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000016",
+        "created_at": "2026-06-11T02:06:35.401317+00:00"
+      }
+    ],
+    "coding-debug-replay-005": [
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-005_0001",
+        "thread_id": "coding-debug-replay-005",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_failing_tests",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000017",
+        "created_at": "2026-06-11T02:06:36.500050+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-005_0002",
+        "thread_id": "coding-debug-replay-005",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "apply_minimal_diff",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000018",
+        "created_at": "2026-06-11T02:06:36.513835+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-005_0003",
+        "thread_id": "coding-debug-replay-005",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_tests_after_patch",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000019",
+        "created_at": "2026-06-11T02:06:37.495371+00:00"
+      }
+    ],
+    "coding-debug-replay-006": [
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-006_0001",
+        "thread_id": "coding-debug-replay-006",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_failing_tests",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000020",
+        "created_at": "2026-06-11T02:06:38.637034+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-006_0002",
+        "thread_id": "coding-debug-replay-006",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "apply_minimal_diff",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000021",
+        "created_at": "2026-06-11T02:06:38.651740+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-006_0003",
+        "thread_id": "coding-debug-replay-006",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_tests_after_patch",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000022",
+        "created_at": "2026-06-11T02:06:39.924330+00:00"
+      }
+    ],
+    "coding-debug-replay-007": [
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-007_0001",
+        "thread_id": "coding-debug-replay-007",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_failing_tests",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000023",
+        "created_at": "2026-06-11T02:06:41.319789+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-007_0002",
+        "thread_id": "coding-debug-replay-007",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "apply_minimal_diff",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000024",
+        "created_at": "2026-06-11T02:06:41.335101+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-007_0003",
+        "thread_id": "coding-debug-replay-007",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_tests_after_patch",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000025",
+        "created_at": "2026-06-11T02:06:42.641998+00:00"
+      }
+    ],
+    "coding-debug-replay-008": [
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-008_0001",
+        "thread_id": "coding-debug-replay-008",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_failing_tests",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000026",
+        "created_at": "2026-06-11T02:06:43.985920+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-008_0002",
+        "thread_id": "coding-debug-replay-008",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "apply_minimal_diff",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000027",
+        "created_at": "2026-06-11T02:06:43.999820+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-008_0003",
+        "thread_id": "coding-debug-replay-008",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_tests_after_patch",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000028",
+        "created_at": "2026-06-11T02:06:45.070836+00:00"
+      }
+    ],
+    "coding-debug-replay-009": [
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-009_0001",
+        "thread_id": "coding-debug-replay-009",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_failing_tests",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000029",
+        "created_at": "2026-06-11T02:06:46.418675+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-009_0002",
+        "thread_id": "coding-debug-replay-009",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "apply_minimal_diff",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000030",
+        "created_at": "2026-06-11T02:06:46.430455+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-009_0003",
+        "thread_id": "coding-debug-replay-009",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_tests_after_patch",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000031",
+        "created_at": "2026-06-11T02:06:47.525783+00:00"
+      }
+    ],
+    "coding-debug-replay-010": [
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-010_0001",
+        "thread_id": "coding-debug-replay-010",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_failing_tests",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000032",
+        "created_at": "2026-06-11T02:06:48.909115+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-010_0002",
+        "thread_id": "coding-debug-replay-010",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "apply_minimal_diff",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000033",
+        "created_at": "2026-06-11T02:06:48.924099+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-010_0003",
+        "thread_id": "coding-debug-replay-010",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_tests_after_patch",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000034",
+        "created_at": "2026-06-11T02:06:50.088182+00:00"
+      }
+    ],
+    "coding-debug-replay-011": [
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-011_0001",
+        "thread_id": "coding-debug-replay-011",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_failing_tests",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000035",
+        "created_at": "2026-06-11T02:06:51.248648+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-011_0002",
+        "thread_id": "coding-debug-replay-011",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "apply_minimal_diff",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000036",
+        "created_at": "2026-06-11T02:06:51.262177+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-011_0003",
+        "thread_id": "coding-debug-replay-011",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_tests_after_patch",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000037",
+        "created_at": "2026-06-11T02:06:52.260255+00:00"
+      }
+    ],
+    "coding-debug-replay-012": [
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-012_0001",
+        "thread_id": "coding-debug-replay-012",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_failing_tests",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000038",
+        "created_at": "2026-06-11T02:06:53.370019+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-012_0002",
+        "thread_id": "coding-debug-replay-012",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "apply_minimal_diff",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000039",
+        "created_at": "2026-06-11T02:06:53.382732+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_coding-debug-replay-012_0003",
+        "thread_id": "coding-debug-replay-012",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "run_tests_after_patch",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000040",
+        "created_at": "2026-06-11T02:06:54.421445+00:00"
+      }
+    ]
+  }
+}

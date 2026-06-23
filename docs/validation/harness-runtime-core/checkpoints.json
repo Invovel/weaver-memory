@@ -1,0 +1,47 @@
+{
+  "version": "0.2.0",
+  "checkpoints": {
+    "bench-invalid-001": [
+      {
+        "checkpoint_id": "ckpt_bench-invalid-001_0001",
+        "thread_id": "bench-invalid-001",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000001",
+        "created_at": "2026-06-11T02:06:20.384216+00:00"
+      }
+    ],
+    "bench-invalid-002": [
+      {
+        "checkpoint_id": "ckpt_bench-invalid-002_0001",
+        "thread_id": "bench-invalid-002",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000002",
+        "created_at": "2026-06-11T02:06:20.394628+00:00"
+      }
+    ],
+    "bench-invalid-003": [
+      {
+        "checkpoint_id": "ckpt_bench-invalid-003_0001",
+        "thread_id": "bench-invalid-003",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000003",
+        "created_at": "2026-06-11T02:06:20.400677+00:00"
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "dataset_count": 9,
+  "primary_dataset_count": 1,
+  "candidate_dataset_count": 8,
+  "integrated_dataset_count": 1,
+  "not_integrated_candidate_count": 6,
+  "preview_adapter_validated_count": 2,
+  "boundary_violation_count": 0,
+  "live_checked_count": 9,
+  "live_available_count": 9,
+  "live_error_count": 0,
+  "license_mismatch_count": 0,
+  "size_mismatch_count": 0
+}

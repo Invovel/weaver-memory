@@ -1,0 +1,16 @@
+{
+  "marker_count": 5,
+  "active_guard_applied_count": 1,
+  "preview_only_count": 4,
+  "high_risk_blocked_count": 4,
+  "active_guard_application_rate": 0.2,
+  "tool_execution_count": 0,
+  "actual_suppression_count": 0,
+  "memory_promotion_count": 0,
+  "layer3_mutation_count": 0,
+  "online_llm_call_count": 0,
+  "conflict_logged_count": 1,
+  "conflict_blocked_count": 1,
+  "required_evidence_plan_applied_count": 1,
+  "route_hint_applied_count": 1
+}

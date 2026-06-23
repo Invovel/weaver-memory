@@ -1,0 +1,32 @@
+{
+  "previous_runtime_any_hit_rate": 0.372,
+  "previous_canonical_any_hit_rate": 0.5755,
+  "planner_primary_flow_counts": {
+    "wish_40_grandqc": 1,
+    "workflow_foreground_nucleus_pathomics_survival": 1,
+    "wish_41_deepliif": 1
+  },
+  "tool_execution_success_counts": {
+    "5-pancreas-tumor-detection": 1,
+    "1-foreground-segmentation": 1,
+    "59-generate-overlays": 1,
+    "4-nucleus-segmentation-hovernet-pannuke": 1,
+    "52-Global-Macenko": 1,
+    "6-breast-tumor-detection": 1
+  },
+  "executed_manifest_kind_totals": {
+    "image": 3,
+    "mask_or_labelmap": 4,
+    "structured_json": 2,
+    "overlay_or_heatmap": 1
+  },
+  "execution_cases_with_no_output_files": [],
+  "key_problems": [
+    "上一版主要是 prepare_context / retriever 回放，缺少真正的工具执行结果目录与 manifest。",
+    "代表性 planner query 已不再全部漂移到肝内胆管癌检测；当前 QC=1, TME=1, IHC=1。",
+    "demo overlay 与 demo Macenko 已不再是 success=true 且 file_count=0；当前零输出用例数=0。",
+    "CPU_PSEUDO 和 DEMO 执行器可以产出真实 result_manifest，这证明无 LLM 时仍能走一条工具驱动的流程，但覆盖范围仍小于上一版理论工具链。",
+    "当前 reviewed TME composite 已能在 planner / preparer / executable_flow / API real-preflight / mock execute 路径中被展开理解，但真实多步执行仍是受控、缩减后的验证路径。",
+    "上一版 workflow 里大量工具来自数据集标注主链，而不是 PathoFlow 当前无 LLM planner 自己稳定规划出来的链路；两者不能等价看待。"
+  ]
+}

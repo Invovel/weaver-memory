@@ -1,0 +1,248 @@
+{
+  "passed": true,
+  "metrics": {
+    "validation": "live-memory-loop-v0.6.3",
+    "evidence_write_count": 2,
+    "memory_write_count": 2,
+    "verified_memory_write_count": 2,
+    "promotion_count": 2,
+    "retrieval_result_count": 2,
+    "retrieved_success_memory": true,
+    "retrieved_known_bad_memory": true,
+    "conflict_handling_count": 1,
+    "conflict_block_or_warn_count": 1,
+    "layer3_mutation_count": 1,
+    "rollback_count": 1,
+    "runtime_marker_write_count": 1,
+    "known_bad_path_write_count": 1,
+    "online_llm_call_count": 0,
+    "workspace_validate_valid": true,
+    "workspace_doctor_valid": true
+  },
+  "hard_gates": {
+    "verified_memory_write_count": true,
+    "promotion_count": true,
+    "retrieved_success_memory": true,
+    "retrieved_known_bad_memory": true,
+    "conflict_handling_count": true,
+    "layer3_mutation_count": true,
+    "rollback_count": true,
+    "runtime_marker_write_count": true,
+    "known_bad_path_write_count": true,
+    "online_llm_call_count": true,
+    "workspace_validate_valid": true,
+    "workspace_doctor_valid": true
+  },
+  "trace": [
+    {
+      "step": "evidence_write",
+      "id": "ev_codex_org_selected"
+    },
+    {
+      "step": "evidence_write",
+      "id": "ev_reinstall_not_root_cause"
+    },
+    {
+      "step": "memory_write",
+      "id": "mem_codex_org_fix",
+      "layer": 1
+    },
+    {
+      "step": "known_bad_path_write",
+      "id": "mem_avoid_npm_reinstall_subscription",
+      "layer": 1
+    },
+    {
+      "step": "evidence_link_write",
+      "ids": [
+        "link_org_supports_memory",
+        "link_reinstall_supports_memory"
+      ]
+    },
+    {
+      "step": "promotion",
+      "ids": [
+        "mem_codex_org_fix",
+        "mem_avoid_npm_reinstall_subscription"
+      ],
+      "target_layer": 2
+    },
+    {
+      "step": "retrieval",
+      "query": "Codex subscription failed should I reinstall npm or check organization",
+      "result_ids": [
+        "mem_codex_org_fix",
+        "mem_avoid_npm_reinstall_subscription"
+      ]
+    },
+    {
+      "step": "conflict_handling",
+      "new_id": "mem_assistant_reinstall_claim",
+      "existing_id": "mem_avoid_npm_reinstall_subscription",
+      "severity": "block",
+      "action": "block",
+      "relation": "contradicts"
+    },
+    {
+      "step": "layer3_mutation",
+      "kind": "compose_provisional",
+      "pattern_id": "pat_2116cd39055e",
+      "status": "provisional"
+    },
+    {
+      "step": "rollback",
+      "pattern_id": "pat_2116cd39055e",
+      "status": "rolled_back",
+      "rollback_to": [
+        "mem_codex_org_fix",
+        "mem_avoid_npm_reinstall_subscription"
+      ]
+    },
+    {
+      "step": "runtime_marker_write",
+      "marker_id": "marker_codex_subscription_org_first",
+      "store": "marker_evidence_contexts"
+    }
+  ],
+  "retrieval_results": [
+    {
+      "id": "mem_codex_org_fix",
+      "layer": 2,
+      "polarity": "positive",
+      "memory_type": "success_path",
+      "content": "For Codex subscription load failures, check selected organization and account entitlement before reinstalling npm.",
+      "tags": [
+        "codex",
+        "subscription",
+        "organization",
+        "entitlement",
+        "fast_verify"
+      ],
+      "linked_tags": [],
+      "source": "terminal",
+      "evidence": "Terminal evidence: selected organization corrected subscription failure.",
+      "scope": "project",
+      "model_fit": [],
+      "confidence": 0.86,
+      "heat": 0,
+      "use_count": 0,
+      "validation_count": 0,
+      "success_score": 0.0,
+      "correction_score": 0.0,
+      "freshness": "stable",
+      "status": "activated",
+      "created_at": "2026-06-06T07:05:52.331723+00:00",
+      "updated_at": "2026-06-06T07:05:52.337389+00:00",
+      "accessed_at": "",
+      "used_at": "",
+      "validated_at": "",
+      "legacy_pattern": false
+    },
+    {
+      "id": "mem_avoid_npm_reinstall_subscription",
+      "layer": 2,
+      "polarity": "negative",
+      "memory_type": "failed_attempt",
+      "content": "Do not use npm reinstall as the first fix for Codex subscription load failures; it previously failed.",
+      "tags": [
+        "codex",
+        "subscription",
+        "npm",
+        "reinstall",
+        "known_bad_path"
+      ],
+      "linked_tags": [],
+      "source": "tool",
+      "evidence": "Tool evidence: npm reinstall did not affect subscription failure.",
+      "scope": "project",
+      "model_fit": [],
+      "confidence": 0.82,
+      "heat": 0,
+      "use_count": 0,
+      "validation_count": 0,
+      "success_score": 0.0,
+      "correction_score": 0.0,
+      "freshness": "stable",
+      "status": "activated",
+      "created_at": "2026-06-06T07:05:52.333048+00:00",
+      "updated_at": "2026-06-06T07:05:52.339238+00:00",
+      "accessed_at": "",
+      "used_at": "",
+      "validated_at": "",
+      "legacy_pattern": false
+    }
+  ],
+  "pattern": {
+    "id": "pat_2116cd39055e",
+    "pattern_type": "diagnostic_rule",
+    "status": "rolled_back",
+    "composed_from": [
+      "mem_codex_org_fix",
+      "mem_avoid_npm_reinstall_subscription"
+    ],
+    "rule": "For Codex subscription failures, check organization and entitlement before npm reinstall.",
+    "applies_when": [
+      "codex subscription load failed",
+      "api key exists but request denied"
+    ],
+    "avoid_when": [
+      "install failure is the actual error",
+      "npm package is missing"
+    ],
+    "success_path": [
+      "check selected organization",
+      "verify active account",
+      "check entitlement"
+    ],
+    "failed_path": [
+      "blind npm reinstall",
+      "reset auth files before evidence"
+    ],
+    "evidence_links": [
+      "link_org_supports_memory",
+      "link_reinstall_supports_memory"
+    ],
+    "rollback_to": [
+      "mem_codex_org_fix",
+      "mem_avoid_npm_reinstall_subscription"
+    ],
+    "scope": "project",
+    "policy_version": "memory-policy-v1",
+    "freshness": "unknown",
+    "confidence": 0.0,
+    "model_fit": [],
+    "promotion_reason": "",
+    "validation_task_runs": [],
+    "conflict_refs": [],
+    "rollback_reason": "live lifecycle smoke intentionally exercises rollback path",
+    "created_at": "2026-06-06T07:05:52.343427+00:00",
+    "updated_at": "2026-06-06T07:05:52.345073+00:00"
+  },
+  "workspace_validate": {
+    "valid": true,
+    "schema_version": "0.2.0",
+    "memory_policy_version": "memory-policy-v1",
+    "retrieval_policy_version": "retrieval-policy-v1",
+    "errors": [],
+    "warnings": [
+      "missing optional empty store: graph.json",
+      "missing optional empty store: raw_spans.json",
+      "missing optional empty store: context_capsules.json",
+      "missing optional empty store: tag_time_index.json"
+    ]
+  },
+  "workspace_doctor": {
+    "valid": true,
+    "schema_version": "0.2.0",
+    "memory_policy_version": "memory-policy-v1",
+    "retrieval_policy_version": "retrieval-policy-v1",
+    "errors": [],
+    "warnings": [],
+    "info": [
+      "missing empty store: graph.json",
+      "missing empty store: raw_spans.json",
+      "missing empty store: context_capsules.json",
+      "missing empty store: tag_time_index.json"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "promotion_accuracy": 1.0,
+  "trusted_promotion_recall": 1.0,
+  "pollution_promotion_block_rate": 1.0,
+  "untrusted_retrieval_block_rate": 1.0,
+  "contradiction_severity_accuracy": 1.0,
+  "contradiction_block_rate": 1.0,
+  "official_correct_recall_at_10": 0.0,
+  "official_misleading_leak_rate": 0.0,
+  "memory_recall_at_10": 1.0,
+  "trusted_recall_at_10": 1.0,
+  "pollution_retrieval_leak_count": 0,
+  "wrong_promotion_count": 0,
+  "contradiction_false_accept_rate": 0.0
+}

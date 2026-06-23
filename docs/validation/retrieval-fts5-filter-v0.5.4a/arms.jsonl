@@ -1,0 +1,5 @@
+{"name": "full_scan", "recall_at_10": 1.0, "average_candidate_count": 341, "candidate_reduction_ratio": 0.0, "latency_p50_ms": 12.0716, "latency_p95_ms": 16.6719, "average_top_score": 0.2295}
+{"name": "fts5_all", "recall_at_10": 1.0, "average_candidate_count": 341, "candidate_reduction_ratio": 0.0, "latency_p50_ms": 8.7509, "latency_p95_ms": 13.8236, "average_top_score": 0.2295}
+{"name": "mw_tag_time_filter", "recall_at_10": 1.0, "average_candidate_count": 6.44, "candidate_reduction_ratio": 0.9811, "latency_p50_ms": 0.1262, "latency_p95_ms": 0.928, "average_top_score": 0.2295}
+{"name": "mw_tag_time_fts5", "recall_at_10": 1.0, "average_candidate_count": 6.44, "candidate_reduction_ratio": 0.9811, "latency_p50_ms": 1.0939, "latency_p95_ms": 2.0277, "average_top_score": 0.2295}
+{"name": "mw_graph_tag_time_fts5", "recall_at_10": 1.0, "average_candidate_count": 6.44, "candidate_reduction_ratio": 0.9811, "latency_p50_ms": 1.003, "latency_p95_ms": 2.5161, "average_top_score": 0.2295}

@@ -1,0 +1,37 @@
+{
+  "validation": "external-dataset-adapter-v0.6.4",
+  "adapter_mode": "local_schema_fixture",
+  "datasets": [
+    {
+      "dataset_id": "memoryagentbench",
+      "source": "https://huggingface.co/datasets/ai-hyz/MemoryAgentBench",
+      "fixture_records": 2,
+      "adapter_mode": "local_schema_fixture"
+    },
+    {
+      "dataset_id": "longmemeval",
+      "source": "https://huggingface.co/datasets/mteb/LongMemEval",
+      "fixture_records": 2,
+      "adapter_mode": "local_schema_fixture"
+    },
+    {
+      "dataset_id": "locomo",
+      "source": "https://huggingface.co/datasets/mteb/LoCoMo",
+      "fixture_records": 2,
+      "adapter_mode": "local_schema_fixture"
+    }
+  ],
+  "hard_gates": {
+    "conversion_success_rate": true,
+    "raw_ref_coverage": true,
+    "capsule_build_success_rate": true,
+    "query_answer_pair_coverage": true,
+    "policy_gate_leak_count": true,
+    "source_inheritance_violation_count": true,
+    "conflict_signal_count": true,
+    "temporal_signal_count": true,
+    "memory_promotion_count": true,
+    "layer3_mutation_count": true,
+    "online_llm_call_count": true
+  }
+}

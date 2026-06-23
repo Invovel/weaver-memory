@@ -1,0 +1,4 @@
+{"id": "q_subscription_cn", "query": "Codex 订阅加载失败", "tags": ["codex_subscription_failed", "selected_organization", "login_refresh_helped", "npm_reinstall_failed", "wsl", "api_key_exists"]}
+{"id": "q_wsl_subscription", "query": "subscription failed in WSL", "tags": ["codex_subscription_failed", "wsl", "selected_organization", "api_key_exists", "npm_reinstall_failed", "login_refresh_helped"]}
+{"id": "q_org_problem", "query": "codex org problem", "tags": ["selected_organization", "codex_subscription_failed", "login_refresh_helped", "wsl", "api_key_exists", "npm_reinstall_failed"]}
+{"id": "q_api_key_but_codex_fails", "query": "API key 有了但是 Codex 不能用", "tags": ["api_key_exists", "codex_subscription_failed", "selected_organization", "login_refresh_helped", "wsl", "npm_reinstall_failed"]}

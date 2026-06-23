@@ -1,0 +1,22 @@
+{
+  "validation": "retrieval-fts5-filter-v0.5.4a",
+  "query_count": 50,
+  "capsule_count": 341,
+  "fts5_available": true,
+  "fts5_all_recall_at_10": 1.0,
+  "tag_time_fts5_recall_at_10": 1.0,
+  "graph_tag_time_fts5_recall_at_10": 1.0,
+  "fts5_all_average_candidate_count": 341,
+  "tag_time_fts5_average_candidate_count": 6.44,
+  "graph_tag_time_fts5_average_candidate_count": 6.44,
+  "tag_time_fts5_candidate_reduction_ratio": 0.9811,
+  "graph_tag_time_fts5_candidate_reduction_ratio": 0.9811,
+  "fts5_all_latency_p95_ms": 13.8236,
+  "tag_time_fts5_latency_p95_ms": 2.0277,
+  "graph_tag_time_fts5_latency_p95_ms": 2.5161,
+  "recall_delta_tag_time_vs_fts5": 0.0,
+  "recall_delta_graph_vs_fts5": 0.0,
+  "online_llm_call_count": 0,
+  "memory_promotion_count": 0,
+  "layer3_mutation_count": 0
+}

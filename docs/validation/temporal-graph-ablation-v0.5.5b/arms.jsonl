@@ -1,0 +1,2 @@
+{"name": "static_cooccurrence", "recall_at_10": 1.0, "average_candidate_count": 50, "stale_runtime_leak_count": 66, "challenged_runtime_leak_count": 66, "review_capture_rate": 1.0}
+{"name": "temporal_runtime", "recall_at_10": 1.0, "average_candidate_count": 37, "stale_runtime_leak_count": 0, "challenged_runtime_leak_count": 0, "review_capture_rate": 1.0}

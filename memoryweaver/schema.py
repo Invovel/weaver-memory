@@ -55,6 +55,7 @@ class Status(str, Enum):
 class PatternStatus(str, Enum):
     PROVISIONAL = "provisional"
     STABLE = "stable"
+    CHALLENGED = "challenged"
     ROLLED_BACK = "rolled_back"
     ARCHIVED = "archived"
 
@@ -256,7 +257,10 @@ class Pattern:
 
     Patterns combine signals from different polarity zones
     (positive + negative + neutral + ambiguous) into reusable
-    diagnostic or decision rules.
+    diagnostic or decision rules. In the current harness direction,
+    Layer 3 acts as a path-promotion layer: verified experience is
+    trialed, scored, promoted, challenged, or rolled back as a
+    reusable execution path.
     """
 
     id: str = field(default_factory=lambda: f"pat_{uuid.uuid4().hex[:12]}")
@@ -274,11 +278,23 @@ class Pattern:
     policy_version: str = "memory-policy-v1"
     freshness: Freshness = Freshness.UNKNOWN
     confidence: float = 0.0
+    path_fitness_score: float = 0.0
     model_fit: list[str] = field(default_factory=list)
     promotion_reason: str = ""
     validation_task_runs: list[str] = field(default_factory=list)
+    trial_count: int = 0
+    success_count: int = 0
+    failure_count: int = 0
+    false_trigger_count: int = 0
+    known_bad_avoidance_count: int = 0
+    evidence_first_count: int = 0
+    average_step_delta: float = 0.0
+    average_token_cost: float = 0.0
+    supersedes_patterns: list[str] = field(default_factory=list)
+    challenged_by: list[str] = field(default_factory=list)
     conflict_refs: list[str] = field(default_factory=list)
     rollback_reason: str = ""
+    last_validated_at: str = ""
     created_at: str = field(
         default_factory=lambda: datetime.now(timezone.utc).isoformat()
     )

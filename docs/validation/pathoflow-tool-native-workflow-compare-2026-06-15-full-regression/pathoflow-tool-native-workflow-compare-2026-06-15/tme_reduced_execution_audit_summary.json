@@ -1,0 +1,10 @@
+{
+  "planner_primary_flow_id": "workflow_foreground_nucleus_pathomics_survival",
+  "active_preparer_ready": true,
+  "run_preparer_ready": true,
+  "executable_flow_expanded": true,
+  "real_preflight_ready": false,
+  "mock_execute_status": "mock_executed",
+  "execute_real_status": "real_completed",
+  "execute_real_step_count": 3
+}

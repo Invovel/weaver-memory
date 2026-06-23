@@ -1,0 +1,20 @@
+{
+  "validation": "temporal-graph-ablation-v0.5.5b",
+  "query_count": 50,
+  "marker_count": 50,
+  "runtime_eligible_query_count": 37,
+  "review_only_query_count": 13,
+  "static_recall_at_10": 1.0,
+  "temporal_runtime_recall_at_10": 1.0,
+  "static_average_candidate_count": 50,
+  "temporal_average_candidate_count": 37,
+  "static_stale_runtime_leak_count": 66,
+  "temporal_stale_runtime_leak_count": 0,
+  "static_challenged_runtime_leak_count": 66,
+  "temporal_challenged_runtime_leak_count": 0,
+  "temporal_review_capture_rate": 1.0,
+  "runtime_authority_granted_count": 0,
+  "memory_promotion_count": 0,
+  "layer3_mutation_count": 0,
+  "online_llm_call_count": 0
+}

@@ -1,0 +1,3352 @@
+{
+  "version": "0.2.0",
+  "runtime_paths": [
+    {
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "name": "Trace-derived path for benchmark_debug",
+      "condition": {
+        "task_tags": [
+          "benchmark",
+          "debug"
+        ],
+        "query_terms": [
+          "invalid_action"
+        ],
+        "failure_modes": [
+          "invalid_action"
+        ],
+        "required_state": {}
+      },
+      "action_policy": [
+        {
+          "action_name": "check_evidence",
+          "target": "action_schema",
+          "arguments": {
+            "target": "action_schema"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0001",
+            "source_node": "live_check_schema"
+          },
+          "created_at": "2026-06-11T08:30:56.184945+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "marker_only_boundary",
+          "arguments": {
+            "target": "marker_only_boundary"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0002",
+            "source_node": "live_isolate_marker_only"
+          },
+          "created_at": "2026-06-11T08:30:56.184960+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "pass_power_3",
+          "arguments": {
+            "target": "pass_power_3"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0003",
+            "source_node": "live_run_pass_power_3"
+          },
+          "created_at": "2026-06-11T08:30:56.184966+00:00"
+        }
+      ],
+      "validation_gate": {
+        "required_evidence": [
+          "tool_result",
+          "test_result",
+          "file_diff",
+          "benchmark_score",
+          "repeat_validation",
+          "time_decay"
+        ],
+        "min_repeated_validations": 3,
+        "min_benchmark_delta": 0.0,
+        "max_counterexamples": 0,
+        "max_conflicts": 0,
+        "max_memory_induced_regression_rate": 0.0,
+        "half_life_days": 30.0,
+        "min_decayed_support": 1.0,
+        "allow_model_confidence": false
+      },
+      "fallback": {
+        "action_name": "ask_user",
+        "target": "confirm_benchmark_debug_invalid_action_live_llm_seed_task_21_fallback",
+        "arguments": {
+          "target": "confirm_benchmark_debug_invalid_action_live_llm_seed_task_21_fallback"
+        },
+        "reasoning": "",
+        "working_directory": "",
+        "timeout_seconds": 30,
+        "idempotency_key": "",
+        "user_confirmation": false,
+        "resource_budget": {},
+        "proposed_by": "assistant",
+        "metadata": {},
+        "created_at": "2026-06-11T08:30:56.185086+00:00"
+      },
+      "rollback_rule": {
+        "rollback_on_conflict": true,
+        "rollback_on_counterexamples": 1,
+        "rollback_on_regression_rate": 0.0,
+        "rollback_reason": "trace-derived runtime path challenged by external evidence"
+      },
+      "pattern_id": "",
+      "blocked_targets": [],
+      "metadata": {
+        "source_trace_id": "trace-live-llm-21",
+        "source_task_id": "live-llm-seed-task-21",
+        "source_task_type": "benchmark_debug",
+        "trace_success": true,
+        "rejected_evidence_count": 0
+      }
+    }
+  ],
+  "evidence": {
+    "path_benchmark_debug_invalid_action_live_llm_seed_task_21": [
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-seed-task-21",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000001",
+        "status": "evidence_observed",
+        "target": "action_schema",
+        "expected": "",
+        "observed": "action_schema verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": true,
+        "evidence_first": true,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.184989+00:00",
+        "metadata": {
+          "step_id": "step_0001",
+          "node_name": "live_check_schema",
+          "action_type": "check_evidence",
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-seed-task-21",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000002",
+        "status": "evidence_observed",
+        "target": "marker_only_boundary",
+        "expected": "",
+        "observed": "marker_only_boundary verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.185006+00:00",
+        "metadata": {
+          "step_id": "step_0002",
+          "node_name": "live_isolate_marker_only",
+          "action_type": "check_evidence",
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-seed-task-21",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000003",
+        "status": "evidence_observed",
+        "target": "pass_power_3",
+        "expected": "",
+        "observed": "pass_power_3 verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.185015+00:00",
+        "metadata": {
+          "step_id": "step_0003",
+          "node_name": "live_run_pass_power_3",
+          "action_type": "check_evidence",
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "test_result",
+        "task_id": "live-llm-seed-task-21",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "passed",
+        "target": "live_llm_runtime_path_smoke",
+        "expected": "",
+        "observed": "",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.185024+00:00",
+        "metadata": {},
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "file_diff",
+        "task_id": "live-llm-seed-task-21",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "",
+        "target": "live_llm_runtime_path_diff",
+        "expected": "filter invalid_action and isolate marker-only boundary",
+        "observed": "invalid_action rejected; marker-only boundary checked",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.185032+00:00",
+        "metadata": {},
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "benchmark_score",
+        "task_id": "live-llm-seed-task-21",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "",
+        "target": "live_llm_runtime_path_bridge",
+        "expected": "",
+        "observed": "",
+        "score_before": 0.72,
+        "score_after": 0.88,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.185044+00:00",
+        "metadata": {},
+        "benchmark_delta": 0.16,
+        "is_external": true
+      },
+      {
+        "evidence_type": "repeat_validation",
+        "task_id": "live-llm-seed-task-21",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "",
+        "target": "action_schema",
+        "expected": "",
+        "observed": "",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 3,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": true,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.185052+00:00",
+        "metadata": {},
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "time_decay",
+        "task_id": "live-llm-seed-task-21",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "",
+        "target": "",
+        "expected": "",
+        "observed": "1.0",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.185066+00:00",
+        "metadata": {
+          "decay_weight": 1.0
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-replay-001",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000004",
+        "status": "evidence_observed",
+        "target": "action_schema",
+        "expected": "",
+        "observed": "action_schema verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": true,
+        "evidence_first": true,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.211022+00:00",
+        "metadata": {
+          "signal": "positive",
+          "executed": true,
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-replay-001",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000005",
+        "status": "evidence_observed",
+        "target": "marker_only_boundary",
+        "expected": "",
+        "observed": "marker_only_boundary verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.215524+00:00",
+        "metadata": {
+          "signal": "positive",
+          "executed": true,
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-replay-001",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000006",
+        "status": "evidence_observed",
+        "target": "pass_power_3",
+        "expected": "",
+        "observed": "pass_power_3 verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.221094+00:00",
+        "metadata": {
+          "signal": "positive",
+          "executed": true,
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-replay-002",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000007",
+        "status": "evidence_observed",
+        "target": "action_schema",
+        "expected": "",
+        "observed": "action_schema verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": true,
+        "evidence_first": true,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.226139+00:00",
+        "metadata": {
+          "signal": "positive",
+          "executed": true,
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-replay-002",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000008",
+        "status": "evidence_observed",
+        "target": "marker_only_boundary",
+        "expected": "",
+        "observed": "marker_only_boundary verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.230449+00:00",
+        "metadata": {
+          "signal": "positive",
+          "executed": true,
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-replay-002",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000009",
+        "status": "evidence_observed",
+        "target": "pass_power_3",
+        "expected": "",
+        "observed": "pass_power_3 verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.235343+00:00",
+        "metadata": {
+          "signal": "positive",
+          "executed": true,
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-replay-003",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000010",
+        "status": "evidence_observed",
+        "target": "action_schema",
+        "expected": "",
+        "observed": "action_schema verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": true,
+        "evidence_first": true,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.240116+00:00",
+        "metadata": {
+          "signal": "positive",
+          "executed": true,
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-replay-003",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000011",
+        "status": "evidence_observed",
+        "target": "marker_only_boundary",
+        "expected": "",
+        "observed": "marker_only_boundary verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.245063+00:00",
+        "metadata": {
+          "signal": "positive",
+          "executed": true,
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-replay-003",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000012",
+        "status": "evidence_observed",
+        "target": "pass_power_3",
+        "expected": "",
+        "observed": "pass_power_3 verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.250754+00:00",
+        "metadata": {
+          "signal": "positive",
+          "executed": true,
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-replay-004",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000013",
+        "status": "evidence_observed",
+        "target": "action_schema",
+        "expected": "",
+        "observed": "action_schema verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": true,
+        "evidence_first": true,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.256431+00:00",
+        "metadata": {
+          "signal": "positive",
+          "executed": true,
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-replay-004",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000014",
+        "status": "evidence_observed",
+        "target": "marker_only_boundary",
+        "expected": "",
+        "observed": "marker_only_boundary verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.261780+00:00",
+        "metadata": {
+          "signal": "positive",
+          "executed": true,
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-replay-004",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000015",
+        "status": "evidence_observed",
+        "target": "pass_power_3",
+        "expected": "",
+        "observed": "pass_power_3 verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.269745+00:00",
+        "metadata": {
+          "signal": "positive",
+          "executed": true,
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-replay-005",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000016",
+        "status": "evidence_observed",
+        "target": "action_schema",
+        "expected": "",
+        "observed": "action_schema verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": true,
+        "evidence_first": true,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.275526+00:00",
+        "metadata": {
+          "signal": "positive",
+          "executed": true,
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-replay-005",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000017",
+        "status": "evidence_observed",
+        "target": "marker_only_boundary",
+        "expected": "",
+        "observed": "marker_only_boundary verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.280781+00:00",
+        "metadata": {
+          "signal": "positive",
+          "executed": true,
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-replay-005",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000018",
+        "status": "evidence_observed",
+        "target": "pass_power_3",
+        "expected": "",
+        "observed": "pass_power_3 verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.286650+00:00",
+        "metadata": {
+          "signal": "positive",
+          "executed": true,
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "conflict",
+        "task_id": "live-llm-conflict",
+        "task_family": "benchmark_debug",
+        "passed": false,
+        "source_ref": "",
+        "status": "",
+        "target": "",
+        "expected": "",
+        "observed": "",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.2,
+        "count": 1,
+        "conflict_ref": "conflict://live-llm-schema-v2",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.287162+00:00",
+        "metadata": {},
+        "benchmark_delta": 0.0,
+        "is_external": true
+      }
+    ]
+  },
+  "ledger": [
+    {
+      "index": 1,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.185292+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-seed-task-21",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000001",
+          "status": "evidence_observed",
+          "target": "action_schema",
+          "expected": "",
+          "observed": "action_schema verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": true,
+          "evidence_first": true,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.184989+00:00",
+          "metadata": {
+            "step_id": "step_0001",
+            "node_name": "live_check_schema",
+            "action_type": "check_evidence",
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        },
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-seed-task-21",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000002",
+          "status": "evidence_observed",
+          "target": "marker_only_boundary",
+          "expected": "",
+          "observed": "marker_only_boundary verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.185006+00:00",
+          "metadata": {
+            "step_id": "step_0002",
+            "node_name": "live_isolate_marker_only",
+            "action_type": "check_evidence",
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        },
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-seed-task-21",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000003",
+          "status": "evidence_observed",
+          "target": "pass_power_3",
+          "expected": "",
+          "observed": "pass_power_3 verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.185015+00:00",
+          "metadata": {
+            "step_id": "step_0003",
+            "node_name": "live_run_pass_power_3",
+            "action_type": "check_evidence",
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        },
+        {
+          "evidence_type": "test_result",
+          "task_id": "live-llm-seed-task-21",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "",
+          "status": "passed",
+          "target": "live_llm_runtime_path_smoke",
+          "expected": "",
+          "observed": "",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.185024+00:00",
+          "metadata": {},
+          "benchmark_delta": 0.0,
+          "is_external": true
+        },
+        {
+          "evidence_type": "file_diff",
+          "task_id": "live-llm-seed-task-21",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "",
+          "status": "",
+          "target": "live_llm_runtime_path_diff",
+          "expected": "filter invalid_action and isolate marker-only boundary",
+          "observed": "invalid_action rejected; marker-only boundary checked",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.185032+00:00",
+          "metadata": {},
+          "benchmark_delta": 0.0,
+          "is_external": true
+        },
+        {
+          "evidence_type": "benchmark_score",
+          "task_id": "live-llm-seed-task-21",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "",
+          "status": "",
+          "target": "live_llm_runtime_path_bridge",
+          "expected": "",
+          "observed": "",
+          "score_before": 0.72,
+          "score_after": 0.88,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.185044+00:00",
+          "metadata": {},
+          "benchmark_delta": 0.16,
+          "is_external": true
+        },
+        {
+          "evidence_type": "repeat_validation",
+          "task_id": "live-llm-seed-task-21",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "",
+          "status": "",
+          "target": "action_schema",
+          "expected": "",
+          "observed": "",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 3,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": true,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.185052+00:00",
+          "metadata": {},
+          "benchmark_delta": 0.0,
+          "is_external": true
+        },
+        {
+          "evidence_type": "time_decay",
+          "task_id": "live-llm-seed-task-21",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "",
+          "status": "",
+          "target": "",
+          "expected": "",
+          "observed": "1.0",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.185066+00:00",
+          "metadata": {
+            "decay_weight": 1.0
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "event": "candidate_registered",
+      "timestamp": "2026-06-11T08:30:56.185400+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "candidate_id": "candidate_trace_live_llm_21",
+      "trace_id": "trace-live-llm-21",
+      "assessment": {
+        "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+        "can_promote": true,
+        "should_rollback": false,
+        "reasons": [],
+        "hard_evidence_count": 8,
+        "model_confidence_ignored_count": 0,
+        "repeated_validation_count": 3,
+        "counterexample_count": 0,
+        "conflict_count": 0,
+        "benchmark_delta": 0.16,
+        "memory_induced_regression_rate": 0.0,
+        "decayed_support": 10.0
+      },
+      "initial_evidence_count": 8,
+      "rejected_evidence_count": 0,
+      "rejected_as_challenge": false,
+      "rejected_evidence": [],
+      "metrics": {
+        "step_count": 3,
+        "tool_action_count": 3,
+        "tool_result_count": 3,
+        "successful_tool_result_count": 3,
+        "failed_tool_result_count": 0,
+        "duplicate_tool_result_count": 0,
+        "error_step_count": 0,
+        "event_linked_step_count": 3,
+        "total_latency_ms": 21,
+        "total_token_cost": 192,
+        "action_type_counts": {
+          "check_evidence": 3
+        },
+        "status_counts": {
+          "evidence_observed": 3
+        },
+        "tests_passed": true,
+        "test_target": "live_llm_runtime_path_smoke",
+        "file_diff_matches_expected": true,
+        "diff_target": "live_llm_runtime_path_diff",
+        "diff_expected": "filter invalid_action and isolate marker-only boundary",
+        "diff_observed": "invalid_action rejected; marker-only boundary checked",
+        "benchmark_name": "live_llm_runtime_path_bridge",
+        "score_before": 0.72,
+        "score_after": 0.88,
+        "repeat_validation_count": 3,
+        "repeat_validation_target": "action_schema",
+        "known_bad_avoided": false,
+        "evidence_first": true,
+        "time_decay_weight": 1.0,
+        "online_llm_call_count": 3,
+        "live_llm_run": true,
+        "canonicalized_bundle_count": 2
+      },
+      "notes": []
+    },
+    {
+      "index": 3,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.211077+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-replay-001",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000004",
+          "status": "evidence_observed",
+          "target": "action_schema",
+          "expected": "",
+          "observed": "action_schema verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": true,
+          "evidence_first": true,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.211022+00:00",
+          "metadata": {
+            "signal": "positive",
+            "executed": true,
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.215580+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-replay-001",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000005",
+          "status": "evidence_observed",
+          "target": "marker_only_boundary",
+          "expected": "",
+          "observed": "marker_only_boundary verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.215524+00:00",
+          "metadata": {
+            "signal": "positive",
+            "executed": true,
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.221199+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-replay-001",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000006",
+          "status": "evidence_observed",
+          "target": "pass_power_3",
+          "expected": "",
+          "observed": "pass_power_3 verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.221094+00:00",
+          "metadata": {
+            "signal": "positive",
+            "executed": true,
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "event": "guarded_replay",
+      "timestamp": "2026-06-11T08:30:56.221535+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "task": {
+        "task_id": "live-llm-replay-001",
+        "query": "live LLM benchmark debug invalid_action sibling task 1",
+        "tags": [
+          "benchmark",
+          "debug"
+        ],
+        "state": {
+          "failure_mode": "invalid_action"
+        },
+        "task_family": "benchmark_debug"
+      },
+      "proposed_action": {
+        "action_name": "tool_call",
+        "target": "__invalid_action__",
+        "arguments": {
+          "target": "__invalid_action__"
+        },
+        "reasoning": "",
+        "working_directory": "",
+        "timeout_seconds": 30,
+        "idempotency_key": "live-llm-replay-001:invalid",
+        "user_confirmation": false,
+        "resource_budget": {},
+        "proposed_by": "assistant",
+        "metadata": {},
+        "created_at": "2026-06-11T08:30:56.205676+00:00"
+      },
+      "executed_actions": [
+        {
+          "action_name": "check_evidence",
+          "target": "action_schema",
+          "arguments": {
+            "target": "action_schema"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "live-llm-replay-001:1:check_evidence:action_schema",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0001",
+            "source_node": "live_check_schema"
+          },
+          "created_at": "2026-06-11T08:30:56.184945+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "marker_only_boundary",
+          "arguments": {
+            "target": "marker_only_boundary"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "live-llm-replay-001:2:check_evidence:marker_only_boundary",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0002",
+            "source_node": "live_isolate_marker_only"
+          },
+          "created_at": "2026-06-11T08:30:56.184960+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "pass_power_3",
+          "arguments": {
+            "target": "pass_power_3"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "live-llm-replay-001:3:check_evidence:pass_power_3",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0003",
+            "source_node": "live_run_pass_power_3"
+          },
+          "created_at": "2026-06-11T08:30:56.184966+00:00"
+        }
+      ],
+      "skipped_targets": [],
+      "tool_results": [
+        {
+          "proposal": {
+            "action_name": "check_evidence",
+            "target": "action_schema",
+            "arguments": {
+              "target": "action_schema"
+            },
+            "reasoning": "",
+            "working_directory": "",
+            "timeout_seconds": 30,
+            "idempotency_key": "live-llm-replay-001:1:check_evidence:action_schema",
+            "user_confirmation": false,
+            "resource_budget": {},
+            "proposed_by": "assistant",
+            "metadata": {
+              "source_trace_id": "trace-live-llm-21",
+              "source_step_id": "step_0001",
+              "source_node": "live_check_schema"
+            },
+            "created_at": "2026-06-11T08:30:56.184945+00:00"
+          },
+          "gate_decision": {
+            "status": "allow",
+            "allowed": true,
+            "reasons": [],
+            "warnings": [],
+            "risk": "low",
+            "tool_name": "check_evidence",
+            "normalized_proposal": {
+              "action_name": "check_evidence",
+              "target": "action_schema",
+              "arguments": {
+                "target": "action_schema"
+              },
+              "reasoning": "",
+              "working_directory": "",
+              "timeout_seconds": 30,
+              "idempotency_key": "live-llm-replay-001:1:check_evidence:action_schema",
+              "user_confirmation": false,
+              "resource_budget": {},
+              "proposed_by": "assistant",
+              "metadata": {
+                "source_trace_id": "trace-live-llm-21",
+                "source_step_id": "step_0001",
+                "source_node": "live_check_schema"
+              },
+              "created_at": "2026-06-11T08:30:56.184945+00:00"
+            }
+          },
+          "executed": true,
+          "status": "evidence_observed",
+          "signal": "positive",
+          "evidence": "action_schema verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "action_schema verified from external tool result",
+            "known_bad_avoided": true,
+            "evidence_first": true
+          },
+          "event_id": "evt_00000004",
+          "duplicate": false,
+          "error": ""
+        },
+        {
+          "proposal": {
+            "action_name": "check_evidence",
+            "target": "marker_only_boundary",
+            "arguments": {
+              "target": "marker_only_boundary"
+            },
+            "reasoning": "",
+            "working_directory": "",
+            "timeout_seconds": 30,
+            "idempotency_key": "live-llm-replay-001:2:check_evidence:marker_only_boundary",
+            "user_confirmation": false,
+            "resource_budget": {},
+            "proposed_by": "assistant",
+            "metadata": {
+              "source_trace_id": "trace-live-llm-21",
+              "source_step_id": "step_0002",
+              "source_node": "live_isolate_marker_only"
+            },
+            "created_at": "2026-06-11T08:30:56.184960+00:00"
+          },
+          "gate_decision": {
+            "status": "allow",
+            "allowed": true,
+            "reasons": [],
+            "warnings": [],
+            "risk": "low",
+            "tool_name": "check_evidence",
+            "normalized_proposal": {
+              "action_name": "check_evidence",
+              "target": "marker_only_boundary",
+              "arguments": {
+                "target": "marker_only_boundary"
+              },
+              "reasoning": "",
+              "working_directory": "",
+              "timeout_seconds": 30,
+              "idempotency_key": "live-llm-replay-001:2:check_evidence:marker_only_boundary",
+              "user_confirmation": false,
+              "resource_budget": {},
+              "proposed_by": "assistant",
+              "metadata": {
+                "source_trace_id": "trace-live-llm-21",
+                "source_step_id": "step_0002",
+                "source_node": "live_isolate_marker_only"
+              },
+              "created_at": "2026-06-11T08:30:56.184960+00:00"
+            }
+          },
+          "executed": true,
+          "status": "evidence_observed",
+          "signal": "positive",
+          "evidence": "marker_only_boundary verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "marker_only_boundary verified from external tool result",
+            "known_bad_avoided": false,
+            "evidence_first": false
+          },
+          "event_id": "evt_00000005",
+          "duplicate": false,
+          "error": ""
+        },
+        {
+          "proposal": {
+            "action_name": "check_evidence",
+            "target": "pass_power_3",
+            "arguments": {
+              "target": "pass_power_3"
+            },
+            "reasoning": "",
+            "working_directory": "",
+            "timeout_seconds": 30,
+            "idempotency_key": "live-llm-replay-001:3:check_evidence:pass_power_3",
+            "user_confirmation": false,
+            "resource_budget": {},
+            "proposed_by": "assistant",
+            "metadata": {
+              "source_trace_id": "trace-live-llm-21",
+              "source_step_id": "step_0003",
+              "source_node": "live_run_pass_power_3"
+            },
+            "created_at": "2026-06-11T08:30:56.184966+00:00"
+          },
+          "gate_decision": {
+            "status": "allow",
+            "allowed": true,
+            "reasons": [],
+            "warnings": [],
+            "risk": "low",
+            "tool_name": "check_evidence",
+            "normalized_proposal": {
+              "action_name": "check_evidence",
+              "target": "pass_power_3",
+              "arguments": {
+                "target": "pass_power_3"
+              },
+              "reasoning": "",
+              "working_directory": "",
+              "timeout_seconds": 30,
+              "idempotency_key": "live-llm-replay-001:3:check_evidence:pass_power_3",
+              "user_confirmation": false,
+              "resource_budget": {},
+              "proposed_by": "assistant",
+              "metadata": {
+                "source_trace_id": "trace-live-llm-21",
+                "source_step_id": "step_0003",
+                "source_node": "live_run_pass_power_3"
+              },
+              "created_at": "2026-06-11T08:30:56.184966+00:00"
+            }
+          },
+          "executed": true,
+          "status": "evidence_observed",
+          "signal": "positive",
+          "evidence": "pass_power_3 verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "pass_power_3 verified from external tool result",
+            "known_bad_avoided": false,
+            "evidence_first": false
+          },
+          "event_id": "evt_00000006",
+          "duplicate": false,
+          "error": ""
+        }
+      ],
+      "assessment_before": {
+        "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+        "can_promote": true,
+        "should_rollback": false,
+        "reasons": [],
+        "hard_evidence_count": 8,
+        "model_confidence_ignored_count": 0,
+        "repeated_validation_count": 3,
+        "counterexample_count": 0,
+        "conflict_count": 0,
+        "benchmark_delta": 0.16,
+        "memory_induced_regression_rate": 0.0,
+        "decayed_support": 10.0
+      },
+      "assessment_after": {
+        "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+        "can_promote": true,
+        "should_rollback": false,
+        "reasons": [],
+        "hard_evidence_count": 11,
+        "model_confidence_ignored_count": 0,
+        "repeated_validation_count": 3,
+        "counterexample_count": 0,
+        "conflict_count": 0,
+        "benchmark_delta": 0.16,
+        "memory_induced_regression_rate": 0.0,
+        "decayed_support": 13.0
+      },
+      "policy_completed": true,
+      "rollback_recommended": false,
+      "fallback_action": null,
+      "matched": true
+    },
+    {
+      "index": 7,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.226261+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-replay-002",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000007",
+          "status": "evidence_observed",
+          "target": "action_schema",
+          "expected": "",
+          "observed": "action_schema verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": true,
+          "evidence_first": true,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.226139+00:00",
+          "metadata": {
+            "signal": "positive",
+            "executed": true,
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.230501+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-replay-002",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000008",
+          "status": "evidence_observed",
+          "target": "marker_only_boundary",
+          "expected": "",
+          "observed": "marker_only_boundary verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.230449+00:00",
+          "metadata": {
+            "signal": "positive",
+            "executed": true,
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.235393+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-replay-002",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000009",
+          "status": "evidence_observed",
+          "target": "pass_power_3",
+          "expected": "",
+          "observed": "pass_power_3 verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.235343+00:00",
+          "metadata": {
+            "signal": "positive",
+            "executed": true,
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "event": "guarded_replay",
+      "timestamp": "2026-06-11T08:30:56.235665+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "task": {
+        "task_id": "live-llm-replay-002",
+        "query": "live LLM benchmark debug invalid_action sibling task 2",
+        "tags": [
+          "benchmark",
+          "debug"
+        ],
+        "state": {
+          "failure_mode": "invalid_action"
+        },
+        "task_family": "benchmark_debug"
+      },
+      "proposed_action": {
+        "action_name": "tool_call",
+        "target": "__invalid_action__",
+        "arguments": {
+          "target": "__invalid_action__"
+        },
+        "reasoning": "",
+        "working_directory": "",
+        "timeout_seconds": 30,
+        "idempotency_key": "live-llm-replay-002:invalid",
+        "user_confirmation": false,
+        "resource_budget": {},
+        "proposed_by": "assistant",
+        "metadata": {},
+        "created_at": "2026-06-11T08:30:56.221650+00:00"
+      },
+      "executed_actions": [
+        {
+          "action_name": "check_evidence",
+          "target": "action_schema",
+          "arguments": {
+            "target": "action_schema"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "live-llm-replay-002:1:check_evidence:action_schema",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0001",
+            "source_node": "live_check_schema"
+          },
+          "created_at": "2026-06-11T08:30:56.184945+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "marker_only_boundary",
+          "arguments": {
+            "target": "marker_only_boundary"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "live-llm-replay-002:2:check_evidence:marker_only_boundary",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0002",
+            "source_node": "live_isolate_marker_only"
+          },
+          "created_at": "2026-06-11T08:30:56.184960+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "pass_power_3",
+          "arguments": {
+            "target": "pass_power_3"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "live-llm-replay-002:3:check_evidence:pass_power_3",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0003",
+            "source_node": "live_run_pass_power_3"
+          },
+          "created_at": "2026-06-11T08:30:56.184966+00:00"
+        }
+      ],
+      "skipped_targets": [],
+      "tool_results": [
+        {
+          "proposal": {
+            "action_name": "check_evidence",
+            "target": "action_schema",
+            "arguments": {
+              "target": "action_schema"
+            },
+            "reasoning": "",
+            "working_directory": "",
+            "timeout_seconds": 30,
+            "idempotency_key": "live-llm-replay-002:1:check_evidence:action_schema",
+            "user_confirmation": false,
+            "resource_budget": {},
+            "proposed_by": "assistant",
+            "metadata": {
+              "source_trace_id": "trace-live-llm-21",
+              "source_step_id": "step_0001",
+              "source_node": "live_check_schema"
+            },
+            "created_at": "2026-06-11T08:30:56.184945+00:00"
+          },
+          "gate_decision": {
+            "status": "allow",
+            "allowed": true,
+            "reasons": [],
+            "warnings": [],
+            "risk": "low",
+            "tool_name": "check_evidence",
+            "normalized_proposal": {
+              "action_name": "check_evidence",
+              "target": "action_schema",
+              "arguments": {
+                "target": "action_schema"
+              },
+              "reasoning": "",
+              "working_directory": "",
+              "timeout_seconds": 30,
+              "idempotency_key": "live-llm-replay-002:1:check_evidence:action_schema",
+              "user_confirmation": false,
+              "resource_budget": {},
+              "proposed_by": "assistant",
+              "metadata": {
+                "source_trace_id": "trace-live-llm-21",
+                "source_step_id": "step_0001",
+                "source_node": "live_check_schema"
+              },
+              "created_at": "2026-06-11T08:30:56.184945+00:00"
+            }
+          },
+          "executed": true,
+          "status": "evidence_observed",
+          "signal": "positive",
+          "evidence": "action_schema verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "action_schema verified from external tool result",
+            "known_bad_avoided": true,
+            "evidence_first": true
+          },
+          "event_id": "evt_00000007",
+          "duplicate": false,
+          "error": ""
+        },
+        {
+          "proposal": {
+            "action_name": "check_evidence",
+            "target": "marker_only_boundary",
+            "arguments": {
+              "target": "marker_only_boundary"
+            },
+            "reasoning": "",
+            "working_directory": "",
+            "timeout_seconds": 30,
+            "idempotency_key": "live-llm-replay-002:2:check_evidence:marker_only_boundary",
+            "user_confirmation": false,
+            "resource_budget": {},
+            "proposed_by": "assistant",
+            "metadata": {
+              "source_trace_id": "trace-live-llm-21",
+              "source_step_id": "step_0002",
+              "source_node": "live_isolate_marker_only"
+            },
+            "created_at": "2026-06-11T08:30:56.184960+00:00"
+          },
+          "gate_decision": {
+            "status": "allow",
+            "allowed": true,
+            "reasons": [],
+            "warnings": [],
+            "risk": "low",
+            "tool_name": "check_evidence",
+            "normalized_proposal": {
+              "action_name": "check_evidence",
+              "target": "marker_only_boundary",
+              "arguments": {
+                "target": "marker_only_boundary"
+              },
+              "reasoning": "",
+              "working_directory": "",
+              "timeout_seconds": 30,
+              "idempotency_key": "live-llm-replay-002:2:check_evidence:marker_only_boundary",
+              "user_confirmation": false,
+              "resource_budget": {},
+              "proposed_by": "assistant",
+              "metadata": {
+                "source_trace_id": "trace-live-llm-21",
+                "source_step_id": "step_0002",
+                "source_node": "live_isolate_marker_only"
+              },
+              "created_at": "2026-06-11T08:30:56.184960+00:00"
+            }
+          },
+          "executed": true,
+          "status": "evidence_observed",
+          "signal": "positive",
+          "evidence": "marker_only_boundary verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "marker_only_boundary verified from external tool result",
+            "known_bad_avoided": false,
+            "evidence_first": false
+          },
+          "event_id": "evt_00000008",
+          "duplicate": false,
+          "error": ""
+        },
+        {
+          "proposal": {
+            "action_name": "check_evidence",
+            "target": "pass_power_3",
+            "arguments": {
+              "target": "pass_power_3"
+            },
+            "reasoning": "",
+            "working_directory": "",
+            "timeout_seconds": 30,
+            "idempotency_key": "live-llm-replay-002:3:check_evidence:pass_power_3",
+            "user_confirmation": false,
+            "resource_budget": {},
+            "proposed_by": "assistant",
+            "metadata": {
+              "source_trace_id": "trace-live-llm-21",
+              "source_step_id": "step_0003",
+              "source_node": "live_run_pass_power_3"
+            },
+            "created_at": "2026-06-11T08:30:56.184966+00:00"
+          },
+          "gate_decision": {
+            "status": "allow",
+            "allowed": true,
+            "reasons": [],
+            "warnings": [],
+            "risk": "low",
+            "tool_name": "check_evidence",
+            "normalized_proposal": {
+              "action_name": "check_evidence",
+              "target": "pass_power_3",
+              "arguments": {
+                "target": "pass_power_3"
+              },
+              "reasoning": "",
+              "working_directory": "",
+              "timeout_seconds": 30,
+              "idempotency_key": "live-llm-replay-002:3:check_evidence:pass_power_3",
+              "user_confirmation": false,
+              "resource_budget": {},
+              "proposed_by": "assistant",
+              "metadata": {
+                "source_trace_id": "trace-live-llm-21",
+                "source_step_id": "step_0003",
+                "source_node": "live_run_pass_power_3"
+              },
+              "created_at": "2026-06-11T08:30:56.184966+00:00"
+            }
+          },
+          "executed": true,
+          "status": "evidence_observed",
+          "signal": "positive",
+          "evidence": "pass_power_3 verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "pass_power_3 verified from external tool result",
+            "known_bad_avoided": false,
+            "evidence_first": false
+          },
+          "event_id": "evt_00000009",
+          "duplicate": false,
+          "error": ""
+        }
+      ],
+      "assessment_before": {
+        "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+        "can_promote": true,
+        "should_rollback": false,
+        "reasons": [],
+        "hard_evidence_count": 11,
+        "model_confidence_ignored_count": 0,
+        "repeated_validation_count": 3,
+        "counterexample_count": 0,
+        "conflict_count": 0,
+        "benchmark_delta": 0.16,
+        "memory_induced_regression_rate": 0.0,
+        "decayed_support": 13.0
+      },
+      "assessment_after": {
+        "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+        "can_promote": true,
+        "should_rollback": false,
+        "reasons": [],
+        "hard_evidence_count": 14,
+        "model_confidence_ignored_count": 0,
+        "repeated_validation_count": 3,
+        "counterexample_count": 0,
+        "conflict_count": 0,
+        "benchmark_delta": 0.16,
+        "memory_induced_regression_rate": 0.0,
+        "decayed_support": 16.0
+      },
+      "policy_completed": true,
+      "rollback_recommended": false,
+      "fallback_action": null,
+      "matched": true
+    },
+    {
+      "index": 11,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.240182+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-replay-003",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000010",
+          "status": "evidence_observed",
+          "target": "action_schema",
+          "expected": "",
+          "observed": "action_schema verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": true,
+          "evidence_first": true,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.240116+00:00",
+          "metadata": {
+            "signal": "positive",
+            "executed": true,
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.245205+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-replay-003",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000011",
+          "status": "evidence_observed",
+          "target": "marker_only_boundary",
+          "expected": "",
+          "observed": "marker_only_boundary verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.245063+00:00",
+          "metadata": {
+            "signal": "positive",
+            "executed": true,
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.250920+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-replay-003",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000012",
+          "status": "evidence_observed",
+          "target": "pass_power_3",
+          "expected": "",
+          "observed": "pass_power_3 verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.250754+00:00",
+          "metadata": {
+            "signal": "positive",
+            "executed": true,
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "event": "guarded_replay",
+      "timestamp": "2026-06-11T08:30:56.251408+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "task": {
+        "task_id": "live-llm-replay-003",
+        "query": "live LLM benchmark debug invalid_action sibling task 3",
+        "tags": [
+          "benchmark",
+          "debug"
+        ],
+        "state": {
+          "failure_mode": "invalid_action"
+        },
+        "task_family": "benchmark_debug"
+      },
+      "proposed_action": {
+        "action_name": "tool_call",
+        "target": "__invalid_action__",
+        "arguments": {
+          "target": "__invalid_action__"
+        },
+        "reasoning": "",
+        "working_directory": "",
+        "timeout_seconds": 30,
+        "idempotency_key": "live-llm-replay-003:invalid",
+        "user_confirmation": false,
+        "resource_budget": {},
+        "proposed_by": "assistant",
+        "metadata": {},
+        "created_at": "2026-06-11T08:30:56.235781+00:00"
+      },
+      "executed_actions": [
+        {
+          "action_name": "check_evidence",
+          "target": "action_schema",
+          "arguments": {
+            "target": "action_schema"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "live-llm-replay-003:1:check_evidence:action_schema",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0001",
+            "source_node": "live_check_schema"
+          },
+          "created_at": "2026-06-11T08:30:56.184945+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "marker_only_boundary",
+          "arguments": {
+            "target": "marker_only_boundary"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "live-llm-replay-003:2:check_evidence:marker_only_boundary",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0002",
+            "source_node": "live_isolate_marker_only"
+          },
+          "created_at": "2026-06-11T08:30:56.184960+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "pass_power_3",
+          "arguments": {
+            "target": "pass_power_3"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "live-llm-replay-003:3:check_evidence:pass_power_3",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0003",
+            "source_node": "live_run_pass_power_3"
+          },
+          "created_at": "2026-06-11T08:30:56.184966+00:00"
+        }
+      ],
+      "skipped_targets": [],
+      "tool_results": [
+        {
+          "proposal": {
+            "action_name": "check_evidence",
+            "target": "action_schema",
+            "arguments": {
+              "target": "action_schema"
+            },
+            "reasoning": "",
+            "working_directory": "",
+            "timeout_seconds": 30,
+            "idempotency_key": "live-llm-replay-003:1:check_evidence:action_schema",
+            "user_confirmation": false,
+            "resource_budget": {},
+            "proposed_by": "assistant",
+            "metadata": {
+              "source_trace_id": "trace-live-llm-21",
+              "source_step_id": "step_0001",
+              "source_node": "live_check_schema"
+            },
+            "created_at": "2026-06-11T08:30:56.184945+00:00"
+          },
+          "gate_decision": {
+            "status": "allow",
+            "allowed": true,
+            "reasons": [],
+            "warnings": [],
+            "risk": "low",
+            "tool_name": "check_evidence",
+            "normalized_proposal": {
+              "action_name": "check_evidence",
+              "target": "action_schema",
+              "arguments": {
+                "target": "action_schema"
+              },
+              "reasoning": "",
+              "working_directory": "",
+              "timeout_seconds": 30,
+              "idempotency_key": "live-llm-replay-003:1:check_evidence:action_schema",
+              "user_confirmation": false,
+              "resource_budget": {},
+              "proposed_by": "assistant",
+              "metadata": {
+                "source_trace_id": "trace-live-llm-21",
+                "source_step_id": "step_0001",
+                "source_node": "live_check_schema"
+              },
+              "created_at": "2026-06-11T08:30:56.184945+00:00"
+            }
+          },
+          "executed": true,
+          "status": "evidence_observed",
+          "signal": "positive",
+          "evidence": "action_schema verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "action_schema verified from external tool result",
+            "known_bad_avoided": true,
+            "evidence_first": true
+          },
+          "event_id": "evt_00000010",
+          "duplicate": false,
+          "error": ""
+        },
+        {
+          "proposal": {
+            "action_name": "check_evidence",
+            "target": "marker_only_boundary",
+            "arguments": {
+              "target": "marker_only_boundary"
+            },
+            "reasoning": "",
+            "working_directory": "",
+            "timeout_seconds": 30,
+            "idempotency_key": "live-llm-replay-003:2:check_evidence:marker_only_boundary",
+            "user_confirmation": false,
+            "resource_budget": {},
+            "proposed_by": "assistant",
+            "metadata": {
+              "source_trace_id": "trace-live-llm-21",
+              "source_step_id": "step_0002",
+              "source_node": "live_isolate_marker_only"
+            },
+            "created_at": "2026-06-11T08:30:56.184960+00:00"
+          },
+          "gate_decision": {
+            "status": "allow",
+            "allowed": true,
+            "reasons": [],
+            "warnings": [],
+            "risk": "low",
+            "tool_name": "check_evidence",
+            "normalized_proposal": {
+              "action_name": "check_evidence",
+              "target": "marker_only_boundary",
+              "arguments": {
+                "target": "marker_only_boundary"
+              },
+              "reasoning": "",
+              "working_directory": "",
+              "timeout_seconds": 30,
+              "idempotency_key": "live-llm-replay-003:2:check_evidence:marker_only_boundary",
+              "user_confirmation": false,
+              "resource_budget": {},
+              "proposed_by": "assistant",
+              "metadata": {
+                "source_trace_id": "trace-live-llm-21",
+                "source_step_id": "step_0002",
+                "source_node": "live_isolate_marker_only"
+              },
+              "created_at": "2026-06-11T08:30:56.184960+00:00"
+            }
+          },
+          "executed": true,
+          "status": "evidence_observed",
+          "signal": "positive",
+          "evidence": "marker_only_boundary verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "marker_only_boundary verified from external tool result",
+            "known_bad_avoided": false,
+            "evidence_first": false
+          },
+          "event_id": "evt_00000011",
+          "duplicate": false,
+          "error": ""
+        },
+        {
+          "proposal": {
+            "action_name": "check_evidence",
+            "target": "pass_power_3",
+            "arguments": {
+              "target": "pass_power_3"
+            },
+            "reasoning": "",
+            "working_directory": "",
+            "timeout_seconds": 30,
+            "idempotency_key": "live-llm-replay-003:3:check_evidence:pass_power_3",
+            "user_confirmation": false,
+            "resource_budget": {},
+            "proposed_by": "assistant",
+            "metadata": {
+              "source_trace_id": "trace-live-llm-21",
+              "source_step_id": "step_0003",
+              "source_node": "live_run_pass_power_3"
+            },
+            "created_at": "2026-06-11T08:30:56.184966+00:00"
+          },
+          "gate_decision": {
+            "status": "allow",
+            "allowed": true,
+            "reasons": [],
+            "warnings": [],
+            "risk": "low",
+            "tool_name": "check_evidence",
+            "normalized_proposal": {
+              "action_name": "check_evidence",
+              "target": "pass_power_3",
+              "arguments": {
+                "target": "pass_power_3"
+              },
+              "reasoning": "",
+              "working_directory": "",
+              "timeout_seconds": 30,
+              "idempotency_key": "live-llm-replay-003:3:check_evidence:pass_power_3",
+              "user_confirmation": false,
+              "resource_budget": {},
+              "proposed_by": "assistant",
+              "metadata": {
+                "source_trace_id": "trace-live-llm-21",
+                "source_step_id": "step_0003",
+                "source_node": "live_run_pass_power_3"
+              },
+              "created_at": "2026-06-11T08:30:56.184966+00:00"
+            }
+          },
+          "executed": true,
+          "status": "evidence_observed",
+          "signal": "positive",
+          "evidence": "pass_power_3 verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "pass_power_3 verified from external tool result",
+            "known_bad_avoided": false,
+            "evidence_first": false
+          },
+          "event_id": "evt_00000012",
+          "duplicate": false,
+          "error": ""
+        }
+      ],
+      "assessment_before": {
+        "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+        "can_promote": true,
+        "should_rollback": false,
+        "reasons": [],
+        "hard_evidence_count": 14,
+        "model_confidence_ignored_count": 0,
+        "repeated_validation_count": 3,
+        "counterexample_count": 0,
+        "conflict_count": 0,
+        "benchmark_delta": 0.16,
+        "memory_induced_regression_rate": 0.0,
+        "decayed_support": 16.0
+      },
+      "assessment_after": {
+        "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+        "can_promote": true,
+        "should_rollback": false,
+        "reasons": [],
+        "hard_evidence_count": 17,
+        "model_confidence_ignored_count": 0,
+        "repeated_validation_count": 3,
+        "counterexample_count": 0,
+        "conflict_count": 0,
+        "benchmark_delta": 0.16,
+        "memory_induced_regression_rate": 0.0,
+        "decayed_support": 19.0
+      },
+      "policy_completed": true,
+      "rollback_recommended": false,
+      "fallback_action": null,
+      "matched": true
+    },
+    {
+      "index": 15,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.256544+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-replay-004",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000013",
+          "status": "evidence_observed",
+          "target": "action_schema",
+          "expected": "",
+          "observed": "action_schema verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": true,
+          "evidence_first": true,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.256431+00:00",
+          "metadata": {
+            "signal": "positive",
+            "executed": true,
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.261871+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-replay-004",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000014",
+          "status": "evidence_observed",
+          "target": "marker_only_boundary",
+          "expected": "",
+          "observed": "marker_only_boundary verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.261780+00:00",
+          "metadata": {
+            "signal": "positive",
+            "executed": true,
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.269887+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-replay-004",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000015",
+          "status": "evidence_observed",
+          "target": "pass_power_3",
+          "expected": "",
+          "observed": "pass_power_3 verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.269745+00:00",
+          "metadata": {
+            "signal": "positive",
+            "executed": true,
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "event": "guarded_replay",
+      "timestamp": "2026-06-11T08:30:56.270456+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "task": {
+        "task_id": "live-llm-replay-004",
+        "query": "live LLM benchmark debug invalid_action sibling task 4",
+        "tags": [
+          "benchmark",
+          "debug"
+        ],
+        "state": {
+          "failure_mode": "invalid_action"
+        },
+        "task_family": "benchmark_debug"
+      },
+      "proposed_action": {
+        "action_name": "tool_call",
+        "target": "__invalid_action__",
+        "arguments": {
+          "target": "__invalid_action__"
+        },
+        "reasoning": "",
+        "working_directory": "",
+        "timeout_seconds": 30,
+        "idempotency_key": "live-llm-replay-004:invalid",
+        "user_confirmation": false,
+        "resource_budget": {},
+        "proposed_by": "assistant",
+        "metadata": {},
+        "created_at": "2026-06-11T08:30:56.251622+00:00"
+      },
+      "executed_actions": [
+        {
+          "action_name": "check_evidence",
+          "target": "action_schema",
+          "arguments": {
+            "target": "action_schema"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "live-llm-replay-004:1:check_evidence:action_schema",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0001",
+            "source_node": "live_check_schema"
+          },
+          "created_at": "2026-06-11T08:30:56.184945+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "marker_only_boundary",
+          "arguments": {
+            "target": "marker_only_boundary"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "live-llm-replay-004:2:check_evidence:marker_only_boundary",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0002",
+            "source_node": "live_isolate_marker_only"
+          },
+          "created_at": "2026-06-11T08:30:56.184960+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "pass_power_3",
+          "arguments": {
+            "target": "pass_power_3"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "live-llm-replay-004:3:check_evidence:pass_power_3",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0003",
+            "source_node": "live_run_pass_power_3"
+          },
+          "created_at": "2026-06-11T08:30:56.184966+00:00"
+        }
+      ],
+      "skipped_targets": [],
+      "tool_results": [
+        {
+          "proposal": {
+            "action_name": "check_evidence",
+            "target": "action_schema",
+            "arguments": {
+              "target": "action_schema"
+            },
+            "reasoning": "",
+            "working_directory": "",
+            "timeout_seconds": 30,
+            "idempotency_key": "live-llm-replay-004:1:check_evidence:action_schema",
+            "user_confirmation": false,
+            "resource_budget": {},
+            "proposed_by": "assistant",
+            "metadata": {
+              "source_trace_id": "trace-live-llm-21",
+              "source_step_id": "step_0001",
+              "source_node": "live_check_schema"
+            },
+            "created_at": "2026-06-11T08:30:56.184945+00:00"
+          },
+          "gate_decision": {
+            "status": "allow",
+            "allowed": true,
+            "reasons": [],
+            "warnings": [],
+            "risk": "low",
+            "tool_name": "check_evidence",
+            "normalized_proposal": {
+              "action_name": "check_evidence",
+              "target": "action_schema",
+              "arguments": {
+                "target": "action_schema"
+              },
+              "reasoning": "",
+              "working_directory": "",
+              "timeout_seconds": 30,
+              "idempotency_key": "live-llm-replay-004:1:check_evidence:action_schema",
+              "user_confirmation": false,
+              "resource_budget": {},
+              "proposed_by": "assistant",
+              "metadata": {
+                "source_trace_id": "trace-live-llm-21",
+                "source_step_id": "step_0001",
+                "source_node": "live_check_schema"
+              },
+              "created_at": "2026-06-11T08:30:56.184945+00:00"
+            }
+          },
+          "executed": true,
+          "status": "evidence_observed",
+          "signal": "positive",
+          "evidence": "action_schema verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "action_schema verified from external tool result",
+            "known_bad_avoided": true,
+            "evidence_first": true
+          },
+          "event_id": "evt_00000013",
+          "duplicate": false,
+          "error": ""
+        },
+        {
+          "proposal": {
+            "action_name": "check_evidence",
+            "target": "marker_only_boundary",
+            "arguments": {
+              "target": "marker_only_boundary"
+            },
+            "reasoning": "",
+            "working_directory": "",
+            "timeout_seconds": 30,
+            "idempotency_key": "live-llm-replay-004:2:check_evidence:marker_only_boundary",
+            "user_confirmation": false,
+            "resource_budget": {},
+            "proposed_by": "assistant",
+            "metadata": {
+              "source_trace_id": "trace-live-llm-21",
+              "source_step_id": "step_0002",
+              "source_node": "live_isolate_marker_only"
+            },
+            "created_at": "2026-06-11T08:30:56.184960+00:00"
+          },
+          "gate_decision": {
+            "status": "allow",
+            "allowed": true,
+            "reasons": [],
+            "warnings": [],
+            "risk": "low",
+            "tool_name": "check_evidence",
+            "normalized_proposal": {
+              "action_name": "check_evidence",
+              "target": "marker_only_boundary",
+              "arguments": {
+                "target": "marker_only_boundary"
+              },
+              "reasoning": "",
+              "working_directory": "",
+              "timeout_seconds": 30,
+              "idempotency_key": "live-llm-replay-004:2:check_evidence:marker_only_boundary",
+              "user_confirmation": false,
+              "resource_budget": {},
+              "proposed_by": "assistant",
+              "metadata": {
+                "source_trace_id": "trace-live-llm-21",
+                "source_step_id": "step_0002",
+                "source_node": "live_isolate_marker_only"
+              },
+              "created_at": "2026-06-11T08:30:56.184960+00:00"
+            }
+          },
+          "executed": true,
+          "status": "evidence_observed",
+          "signal": "positive",
+          "evidence": "marker_only_boundary verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "marker_only_boundary verified from external tool result",
+            "known_bad_avoided": false,
+            "evidence_first": false
+          },
+          "event_id": "evt_00000014",
+          "duplicate": false,
+          "error": ""
+        },
+        {
+          "proposal": {
+            "action_name": "check_evidence",
+            "target": "pass_power_3",
+            "arguments": {
+              "target": "pass_power_3"
+            },
+            "reasoning": "",
+            "working_directory": "",
+            "timeout_seconds": 30,
+            "idempotency_key": "live-llm-replay-004:3:check_evidence:pass_power_3",
+            "user_confirmation": false,
+            "resource_budget": {},
+            "proposed_by": "assistant",
+            "metadata": {
+              "source_trace_id": "trace-live-llm-21",
+              "source_step_id": "step_0003",
+              "source_node": "live_run_pass_power_3"
+            },
+            "created_at": "2026-06-11T08:30:56.184966+00:00"
+          },
+          "gate_decision": {
+            "status": "allow",
+            "allowed": true,
+            "reasons": [],
+            "warnings": [],
+            "risk": "low",
+            "tool_name": "check_evidence",
+            "normalized_proposal": {
+              "action_name": "check_evidence",
+              "target": "pass_power_3",
+              "arguments": {
+                "target": "pass_power_3"
+              },
+              "reasoning": "",
+              "working_directory": "",
+              "timeout_seconds": 30,
+              "idempotency_key": "live-llm-replay-004:3:check_evidence:pass_power_3",
+              "user_confirmation": false,
+              "resource_budget": {},
+              "proposed_by": "assistant",
+              "metadata": {
+                "source_trace_id": "trace-live-llm-21",
+                "source_step_id": "step_0003",
+                "source_node": "live_run_pass_power_3"
+              },
+              "created_at": "2026-06-11T08:30:56.184966+00:00"
+            }
+          },
+          "executed": true,
+          "status": "evidence_observed",
+          "signal": "positive",
+          "evidence": "pass_power_3 verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "pass_power_3 verified from external tool result",
+            "known_bad_avoided": false,
+            "evidence_first": false
+          },
+          "event_id": "evt_00000015",
+          "duplicate": false,
+          "error": ""
+        }
+      ],
+      "assessment_before": {
+        "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+        "can_promote": true,
+        "should_rollback": false,
+        "reasons": [],
+        "hard_evidence_count": 17,
+        "model_confidence_ignored_count": 0,
+        "repeated_validation_count": 3,
+        "counterexample_count": 0,
+        "conflict_count": 0,
+        "benchmark_delta": 0.16,
+        "memory_induced_regression_rate": 0.0,
+        "decayed_support": 19.0
+      },
+      "assessment_after": {
+        "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+        "can_promote": true,
+        "should_rollback": false,
+        "reasons": [],
+        "hard_evidence_count": 20,
+        "model_confidence_ignored_count": 0,
+        "repeated_validation_count": 3,
+        "counterexample_count": 0,
+        "conflict_count": 0,
+        "benchmark_delta": 0.16,
+        "memory_induced_regression_rate": 0.0,
+        "decayed_support": 22.0
+      },
+      "policy_completed": true,
+      "rollback_recommended": false,
+      "fallback_action": null,
+      "matched": true
+    },
+    {
+      "index": 19,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.275664+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-replay-005",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000016",
+          "status": "evidence_observed",
+          "target": "action_schema",
+          "expected": "",
+          "observed": "action_schema verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": true,
+          "evidence_first": true,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.275526+00:00",
+          "metadata": {
+            "signal": "positive",
+            "executed": true,
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.280845+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-replay-005",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000017",
+          "status": "evidence_observed",
+          "target": "marker_only_boundary",
+          "expected": "",
+          "observed": "marker_only_boundary verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.280781+00:00",
+          "metadata": {
+            "signal": "positive",
+            "executed": true,
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.286699+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "tool_result",
+          "task_id": "live-llm-replay-005",
+          "task_family": "benchmark_debug",
+          "passed": true,
+          "source_ref": "evt_00000018",
+          "status": "evidence_observed",
+          "target": "pass_power_3",
+          "expected": "",
+          "observed": "pass_power_3 verified from external tool result",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.0,
+          "count": 1,
+          "conflict_ref": "",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.286650+00:00",
+          "metadata": {
+            "signal": "positive",
+            "executed": true,
+            "duplicate": false
+          },
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "event": "guarded_replay",
+      "timestamp": "2026-06-11T08:30:56.287037+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "task": {
+        "task_id": "live-llm-replay-005",
+        "query": "live LLM benchmark debug invalid_action sibling task 5",
+        "tags": [
+          "benchmark",
+          "debug"
+        ],
+        "state": {
+          "failure_mode": "invalid_action"
+        },
+        "task_family": "benchmark_debug"
+      },
+      "proposed_action": {
+        "action_name": "tool_call",
+        "target": "__invalid_action__",
+        "arguments": {
+          "target": "__invalid_action__"
+        },
+        "reasoning": "",
+        "working_directory": "",
+        "timeout_seconds": 30,
+        "idempotency_key": "live-llm-replay-005:invalid",
+        "user_confirmation": false,
+        "resource_budget": {},
+        "proposed_by": "assistant",
+        "metadata": {},
+        "created_at": "2026-06-11T08:30:56.270606+00:00"
+      },
+      "executed_actions": [
+        {
+          "action_name": "check_evidence",
+          "target": "action_schema",
+          "arguments": {
+            "target": "action_schema"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "live-llm-replay-005:1:check_evidence:action_schema",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0001",
+            "source_node": "live_check_schema"
+          },
+          "created_at": "2026-06-11T08:30:56.184945+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "marker_only_boundary",
+          "arguments": {
+            "target": "marker_only_boundary"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "live-llm-replay-005:2:check_evidence:marker_only_boundary",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0002",
+            "source_node": "live_isolate_marker_only"
+          },
+          "created_at": "2026-06-11T08:30:56.184960+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "pass_power_3",
+          "arguments": {
+            "target": "pass_power_3"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "live-llm-replay-005:3:check_evidence:pass_power_3",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0003",
+            "source_node": "live_run_pass_power_3"
+          },
+          "created_at": "2026-06-11T08:30:56.184966+00:00"
+        }
+      ],
+      "skipped_targets": [],
+      "tool_results": [
+        {
+          "proposal": {
+            "action_name": "check_evidence",
+            "target": "action_schema",
+            "arguments": {
+              "target": "action_schema"
+            },
+            "reasoning": "",
+            "working_directory": "",
+            "timeout_seconds": 30,
+            "idempotency_key": "live-llm-replay-005:1:check_evidence:action_schema",
+            "user_confirmation": false,
+            "resource_budget": {},
+            "proposed_by": "assistant",
+            "metadata": {
+              "source_trace_id": "trace-live-llm-21",
+              "source_step_id": "step_0001",
+              "source_node": "live_check_schema"
+            },
+            "created_at": "2026-06-11T08:30:56.184945+00:00"
+          },
+          "gate_decision": {
+            "status": "allow",
+            "allowed": true,
+            "reasons": [],
+            "warnings": [],
+            "risk": "low",
+            "tool_name": "check_evidence",
+            "normalized_proposal": {
+              "action_name": "check_evidence",
+              "target": "action_schema",
+              "arguments": {
+                "target": "action_schema"
+              },
+              "reasoning": "",
+              "working_directory": "",
+              "timeout_seconds": 30,
+              "idempotency_key": "live-llm-replay-005:1:check_evidence:action_schema",
+              "user_confirmation": false,
+              "resource_budget": {},
+              "proposed_by": "assistant",
+              "metadata": {
+                "source_trace_id": "trace-live-llm-21",
+                "source_step_id": "step_0001",
+                "source_node": "live_check_schema"
+              },
+              "created_at": "2026-06-11T08:30:56.184945+00:00"
+            }
+          },
+          "executed": true,
+          "status": "evidence_observed",
+          "signal": "positive",
+          "evidence": "action_schema verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "action_schema verified from external tool result",
+            "known_bad_avoided": true,
+            "evidence_first": true
+          },
+          "event_id": "evt_00000016",
+          "duplicate": false,
+          "error": ""
+        },
+        {
+          "proposal": {
+            "action_name": "check_evidence",
+            "target": "marker_only_boundary",
+            "arguments": {
+              "target": "marker_only_boundary"
+            },
+            "reasoning": "",
+            "working_directory": "",
+            "timeout_seconds": 30,
+            "idempotency_key": "live-llm-replay-005:2:check_evidence:marker_only_boundary",
+            "user_confirmation": false,
+            "resource_budget": {},
+            "proposed_by": "assistant",
+            "metadata": {
+              "source_trace_id": "trace-live-llm-21",
+              "source_step_id": "step_0002",
+              "source_node": "live_isolate_marker_only"
+            },
+            "created_at": "2026-06-11T08:30:56.184960+00:00"
+          },
+          "gate_decision": {
+            "status": "allow",
+            "allowed": true,
+            "reasons": [],
+            "warnings": [],
+            "risk": "low",
+            "tool_name": "check_evidence",
+            "normalized_proposal": {
+              "action_name": "check_evidence",
+              "target": "marker_only_boundary",
+              "arguments": {
+                "target": "marker_only_boundary"
+              },
+              "reasoning": "",
+              "working_directory": "",
+              "timeout_seconds": 30,
+              "idempotency_key": "live-llm-replay-005:2:check_evidence:marker_only_boundary",
+              "user_confirmation": false,
+              "resource_budget": {},
+              "proposed_by": "assistant",
+              "metadata": {
+                "source_trace_id": "trace-live-llm-21",
+                "source_step_id": "step_0002",
+                "source_node": "live_isolate_marker_only"
+              },
+              "created_at": "2026-06-11T08:30:56.184960+00:00"
+            }
+          },
+          "executed": true,
+          "status": "evidence_observed",
+          "signal": "positive",
+          "evidence": "marker_only_boundary verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "marker_only_boundary verified from external tool result",
+            "known_bad_avoided": false,
+            "evidence_first": false
+          },
+          "event_id": "evt_00000017",
+          "duplicate": false,
+          "error": ""
+        },
+        {
+          "proposal": {
+            "action_name": "check_evidence",
+            "target": "pass_power_3",
+            "arguments": {
+              "target": "pass_power_3"
+            },
+            "reasoning": "",
+            "working_directory": "",
+            "timeout_seconds": 30,
+            "idempotency_key": "live-llm-replay-005:3:check_evidence:pass_power_3",
+            "user_confirmation": false,
+            "resource_budget": {},
+            "proposed_by": "assistant",
+            "metadata": {
+              "source_trace_id": "trace-live-llm-21",
+              "source_step_id": "step_0003",
+              "source_node": "live_run_pass_power_3"
+            },
+            "created_at": "2026-06-11T08:30:56.184966+00:00"
+          },
+          "gate_decision": {
+            "status": "allow",
+            "allowed": true,
+            "reasons": [],
+            "warnings": [],
+            "risk": "low",
+            "tool_name": "check_evidence",
+            "normalized_proposal": {
+              "action_name": "check_evidence",
+              "target": "pass_power_3",
+              "arguments": {
+                "target": "pass_power_3"
+              },
+              "reasoning": "",
+              "working_directory": "",
+              "timeout_seconds": 30,
+              "idempotency_key": "live-llm-replay-005:3:check_evidence:pass_power_3",
+              "user_confirmation": false,
+              "resource_budget": {},
+              "proposed_by": "assistant",
+              "metadata": {
+                "source_trace_id": "trace-live-llm-21",
+                "source_step_id": "step_0003",
+                "source_node": "live_run_pass_power_3"
+              },
+              "created_at": "2026-06-11T08:30:56.184966+00:00"
+            }
+          },
+          "executed": true,
+          "status": "evidence_observed",
+          "signal": "positive",
+          "evidence": "pass_power_3 verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "pass_power_3 verified from external tool result",
+            "known_bad_avoided": false,
+            "evidence_first": false
+          },
+          "event_id": "evt_00000018",
+          "duplicate": false,
+          "error": ""
+        }
+      ],
+      "assessment_before": {
+        "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+        "can_promote": true,
+        "should_rollback": false,
+        "reasons": [],
+        "hard_evidence_count": 20,
+        "model_confidence_ignored_count": 0,
+        "repeated_validation_count": 3,
+        "counterexample_count": 0,
+        "conflict_count": 0,
+        "benchmark_delta": 0.16,
+        "memory_induced_regression_rate": 0.0,
+        "decayed_support": 22.0
+      },
+      "assessment_after": {
+        "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+        "can_promote": true,
+        "should_rollback": false,
+        "reasons": [],
+        "hard_evidence_count": 23,
+        "model_confidence_ignored_count": 0,
+        "repeated_validation_count": 3,
+        "counterexample_count": 0,
+        "conflict_count": 0,
+        "benchmark_delta": 0.16,
+        "memory_induced_regression_rate": 0.0,
+        "decayed_support": 25.0
+      },
+      "policy_completed": true,
+      "rollback_recommended": false,
+      "fallback_action": null,
+      "matched": true
+    },
+    {
+      "index": 23,
+      "event": "evidence",
+      "timestamp": "2026-06-11T08:30:56.287186+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "evidence": [
+        {
+          "evidence_type": "conflict",
+          "task_id": "live-llm-conflict",
+          "task_family": "benchmark_debug",
+          "passed": false,
+          "source_ref": "",
+          "status": "",
+          "target": "",
+          "expected": "",
+          "observed": "",
+          "score_before": null,
+          "score_after": null,
+          "regression_rate": 0.2,
+          "count": 1,
+          "conflict_ref": "conflict://live-llm-schema-v2",
+          "rollback_ref": "",
+          "known_bad_avoided": false,
+          "evidence_first": false,
+          "false_trigger": false,
+          "created_at": "2026-06-11T08:30:56.287162+00:00",
+          "metadata": {},
+          "benchmark_delta": 0.0,
+          "is_external": true
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "event": "guarded_replay",
+      "timestamp": "2026-06-11T08:30:56.287345+00:00",
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "task": {
+        "task_id": "live-llm-replay-005",
+        "query": "live LLM benchmark debug invalid_action sibling task 5",
+        "tags": [
+          "benchmark",
+          "debug"
+        ],
+        "state": {
+          "failure_mode": "invalid_action"
+        },
+        "task_family": "benchmark_debug"
+      },
+      "proposed_action": {
+        "action_name": "tool_call",
+        "target": "__invalid_action__",
+        "arguments": {
+          "target": "__invalid_action__"
+        },
+        "reasoning": "",
+        "working_directory": "",
+        "timeout_seconds": 30,
+        "idempotency_key": "live-llm-conflict:invalid",
+        "user_confirmation": false,
+        "resource_budget": {},
+        "proposed_by": "assistant",
+        "metadata": {},
+        "created_at": "2026-06-11T08:30:56.287195+00:00"
+      },
+      "executed_actions": [],
+      "skipped_targets": [],
+      "tool_results": [],
+      "assessment_before": {
+        "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+        "can_promote": false,
+        "should_rollback": true,
+        "reasons": [
+          "conflict evidence present",
+          "memory-induced regression threshold exceeded",
+          "too many conflicts",
+          "memory-induced regression rate too high"
+        ],
+        "hard_evidence_count": 24,
+        "model_confidence_ignored_count": 0,
+        "repeated_validation_count": 3,
+        "counterexample_count": 0,
+        "conflict_count": 1,
+        "benchmark_delta": 0.16,
+        "memory_induced_regression_rate": 0.2,
+        "decayed_support": 25.0
+      },
+      "assessment_after": {
+        "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+        "can_promote": false,
+        "should_rollback": true,
+        "reasons": [
+          "conflict evidence present",
+          "memory-induced regression threshold exceeded",
+          "too many conflicts",
+          "memory-induced regression rate too high"
+        ],
+        "hard_evidence_count": 24,
+        "model_confidence_ignored_count": 0,
+        "repeated_validation_count": 3,
+        "counterexample_count": 0,
+        "conflict_count": 1,
+        "benchmark_delta": 0.16,
+        "memory_induced_regression_rate": 0.2,
+        "decayed_support": 25.0
+      },
+      "policy_completed": false,
+      "rollback_recommended": true,
+      "fallback_action": {
+        "action_name": "ask_user",
+        "target": "confirm_benchmark_debug_invalid_action_live_llm_seed_task_21_fallback",
+        "arguments": {
+          "target": "confirm_benchmark_debug_invalid_action_live_llm_seed_task_21_fallback"
+        },
+        "reasoning": "",
+        "working_directory": "",
+        "timeout_seconds": 30,
+        "idempotency_key": "",
+        "user_confirmation": false,
+        "resource_budget": {},
+        "proposed_by": "assistant",
+        "metadata": {},
+        "created_at": "2026-06-11T08:30:56.185086+00:00"
+      },
+      "matched": true
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+[
+  {
+    "name": "runtime core reduces repeated failure",
+    "status": "pass",
+    "detail": "delta=-1.0",
+    "artifact": "harness-runtime-core/metrics.json"
+  },
+  {
+    "name": "runtime core blocks invalid action propagation",
+    "status": "pass",
+    "detail": "delta=-1.0",
+    "artifact": "harness-runtime-core/metrics.json"
+  },
+  {
+    "name": "runtime core avoids memory-induced regression",
+    "status": "pass",
+    "detail": "delta=-1.0",
+    "artifact": "harness-runtime-core/metrics.json"
+  },
+  {
+    "name": "live LLM bridge uses real online proposals",
+    "status": "pass",
+    "detail": "calls=3.0",
+    "artifact": "harness-runtime-live-llm/metrics.json"
+  },
+  {
+    "name": "live LLM bridge is pass^3",
+    "status": "pass",
+    "detail": "run_count=3, pass_power_3=True",
+    "artifact": "harness-runtime-live-llm/reliability.json"
+  },
+  {
+    "name": "coding-debug has real pytest failure and pass",
+    "status": "pass",
+    "detail": "pytest_before_failed=1.0, pytest_after_passed=1.0",
+    "artifact": "harness-runtime-coding-debug/metrics.json"
+  },
+  {
+    "name": "coding-debug has real expected diff",
+    "status": "pass",
+    "detail": "diff_matches=1.0",
+    "artifact": "harness-runtime-coding-debug/diff.patch"
+  },
+  {
+    "name": "Layer-3 E2E improves path regret",
+    "status": "pass",
+    "detail": "deltas=-1,-2",
+    "artifact": "layer3-path-promotion-e2e/metrics.json"
+  },
+  {
+    "name": "Layer-3 E2E keeps hard evidence true",
+    "status": "pass",
+    "detail": "tests=1.0, diff=1.0",
+    "artifact": "layer3-path-promotion-e2e/metrics.json"
+  },
+  {
+    "name": "Layer-3 E2E is pass^3",
+    "status": "pass",
+    "detail": "run_count=3",
+    "artifact": "layer3-path-promotion-e2e/reliability.json"
+  },
+  {
+    "name": "Layer-3 E2E evidence files exist",
+    "status": "pass",
+    "detail": "missing=0, file_refs=9",
+    "artifact": "layer3-path-promotion-e2e/artifact_manifest.json"
+  },
+  {
+    "name": "v0.8 substrate preserves authority boundaries",
+    "status": "pass",
+    "detail": "synthetic/RAG/GBrain outputs remain non-authoritative",
+    "artifact": "v0.8-integration/metrics.json"
+  },
+  {
+    "name": "v0.8 substrate is pass^3",
+    "status": "pass",
+    "detail": "run_count=3",
+    "artifact": "v0.8-integration/reliability.json"
+  },
+  {
+    "name": "external HF candidate boundary has no violations",
+    "status": "pass",
+    "detail": "live_checked=9, violations=0",
+    "artifact": "hf-dataset-candidates-check/metrics.json"
+  },
+  {
+    "name": "LongMemEval-V2 can build records from local root",
+    "status": "pass",
+    "detail": "root=D:\\benchmarks\\longmemeval-v2",
+    "artifact": "lme-v2-storage-check/metrics.json"
+  },
+  {
+    "name": "LoCoMo-MC10 preview adapter is boundary-safe",
+    "status": "pass",
+    "detail": "sample_count=3, candidates=638",
+    "artifact": "locomo-mc10-adapter-check/metrics.json"
+  },
+  {
+    "name": "MemoryAgentBench preview adapter is boundary-safe",
+    "status": "pass",
+    "detail": "splits=4, queries=103",
+    "artifact": "memoryagentbench-adapter-check/metrics.json"
+  },
+  {
+    "name": "experience-transfer reliability is pass^3",
+    "status": "pass",
+    "detail": "run_count=3, pass_power_3=True",
+    "artifact": "experience-transfer-v0.7/reliability.json"
+  }
+]

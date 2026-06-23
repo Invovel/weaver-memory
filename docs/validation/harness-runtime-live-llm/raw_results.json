@@ -1,0 +1,709 @@
+{
+  "passed": true,
+  "run_config": {
+    "mode": "live_llm",
+    "llm": true,
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "base_url": "",
+    "seed": 21,
+    "replay_task_count": 5,
+    "reliability_passes": 3
+  },
+  "metrics": {
+    "memoryweaver_live_candidate_runtime": {
+      "task_count": 5,
+      "success_rate": 1.0,
+      "repeated_failure_rate": 0.0,
+      "invalid_action_rate": 0.0,
+      "known_bad_action_rate": 0.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 0.0,
+      "negative_memory_hit_rate": 1.0,
+      "promotion_precision": 1.0
+    },
+    "rollback_probe": {
+      "task_count": 1,
+      "success_rate": 1.0,
+      "repeated_failure_rate": 0.0,
+      "invalid_action_rate": 0.0,
+      "known_bad_action_rate": 1.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 1.0,
+      "negative_memory_hit_rate": 1.0,
+      "promotion_precision": 0.0
+    }
+  },
+  "aggregate_metrics": {
+    "live_llm_run_complete": 1.0,
+    "online_llm_call_count": 3.0,
+    "live_proposal_count": 3.0,
+    "tool_result_count": 3.0,
+    "canonicalized_bundle_count": 2.0,
+    "tests_passed": 1.0,
+    "file_diff_matches_expected": 1.0,
+    "benchmark_delta": 0.16,
+    "candidate_registration_promotable": 1.0,
+    "candidate_registration_audited": 1.0,
+    "rejected_evidence_audited_count": 0.0,
+    "promotion_external_evidence_only": 1.0,
+    "trace_store_roundtrip": 1.0,
+    "runtime_path_store_roundtrip": 1.0,
+    "rollback_recorded": 1.0,
+    "memory_induced_regression_rate": 0.0
+  },
+  "registration": {
+    "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+    "candidate_id": "candidate_trace_live_llm_21",
+    "trace_id": "trace-live-llm-21",
+    "assessment": {
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "can_promote": true,
+      "should_rollback": false,
+      "reasons": [],
+      "hard_evidence_count": 8,
+      "model_confidence_ignored_count": 0,
+      "repeated_validation_count": 3,
+      "counterexample_count": 0,
+      "conflict_count": 0,
+      "benchmark_delta": 0.16,
+      "memory_induced_regression_rate": 0.0,
+      "decayed_support": 10.0
+    },
+    "initial_evidence_count": 8,
+    "rejected_evidence_count": 0,
+    "rejected_as_challenge": false,
+    "ledger_index": 2
+  },
+  "candidate": {
+    "candidate_id": "candidate_trace_live_llm_21",
+    "trace_id": "trace-live-llm-21",
+    "path": {
+      "path_id": "path_benchmark_debug_invalid_action_live_llm_seed_task_21",
+      "name": "Trace-derived path for benchmark_debug",
+      "condition": {
+        "task_tags": [
+          "benchmark",
+          "debug"
+        ],
+        "query_terms": [
+          "invalid_action"
+        ],
+        "failure_modes": [
+          "invalid_action"
+        ],
+        "required_state": {}
+      },
+      "action_policy": [
+        {
+          "action_name": "check_evidence",
+          "target": "action_schema",
+          "arguments": {
+            "target": "action_schema"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0001",
+            "source_node": "live_check_schema"
+          },
+          "created_at": "2026-06-11T08:30:56.184945+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "marker_only_boundary",
+          "arguments": {
+            "target": "marker_only_boundary"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0002",
+            "source_node": "live_isolate_marker_only"
+          },
+          "created_at": "2026-06-11T08:30:56.184960+00:00"
+        },
+        {
+          "action_name": "check_evidence",
+          "target": "pass_power_3",
+          "arguments": {
+            "target": "pass_power_3"
+          },
+          "reasoning": "",
+          "working_directory": "",
+          "timeout_seconds": 30,
+          "idempotency_key": "",
+          "user_confirmation": false,
+          "resource_budget": {},
+          "proposed_by": "assistant",
+          "metadata": {
+            "source_trace_id": "trace-live-llm-21",
+            "source_step_id": "step_0003",
+            "source_node": "live_run_pass_power_3"
+          },
+          "created_at": "2026-06-11T08:30:56.184966+00:00"
+        }
+      ],
+      "validation_gate": {
+        "required_evidence": [
+          "tool_result",
+          "test_result",
+          "file_diff",
+          "benchmark_score",
+          "repeat_validation",
+          "time_decay"
+        ],
+        "min_repeated_validations": 3,
+        "min_benchmark_delta": 0.0,
+        "max_counterexamples": 0,
+        "max_conflicts": 0,
+        "max_memory_induced_regression_rate": 0.0,
+        "half_life_days": 30.0,
+        "min_decayed_support": 1.0,
+        "allow_model_confidence": false
+      },
+      "fallback": {
+        "action_name": "ask_user",
+        "target": "confirm_benchmark_debug_invalid_action_live_llm_seed_task_21_fallback",
+        "arguments": {
+          "target": "confirm_benchmark_debug_invalid_action_live_llm_seed_task_21_fallback"
+        },
+        "reasoning": "",
+        "working_directory": "",
+        "timeout_seconds": 30,
+        "idempotency_key": "",
+        "user_confirmation": false,
+        "resource_budget": {},
+        "proposed_by": "assistant",
+        "metadata": {},
+        "created_at": "2026-06-11T08:30:56.185086+00:00"
+      },
+      "rollback_rule": {
+        "rollback_on_conflict": true,
+        "rollback_on_counterexamples": 1,
+        "rollback_on_regression_rate": 0.0,
+        "rollback_reason": "trace-derived runtime path challenged by external evidence"
+      },
+      "pattern_id": "",
+      "blocked_targets": [],
+      "metadata": {
+        "source_trace_id": "trace-live-llm-21",
+        "source_task_id": "live-llm-seed-task-21",
+        "source_task_type": "benchmark_debug",
+        "trace_success": true,
+        "rejected_evidence_count": 0
+      }
+    },
+    "evidence": [
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-seed-task-21",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000001",
+        "status": "evidence_observed",
+        "target": "action_schema",
+        "expected": "",
+        "observed": "action_schema verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": true,
+        "evidence_first": true,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.184989+00:00",
+        "metadata": {
+          "step_id": "step_0001",
+          "node_name": "live_check_schema",
+          "action_type": "check_evidence",
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-seed-task-21",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000002",
+        "status": "evidence_observed",
+        "target": "marker_only_boundary",
+        "expected": "",
+        "observed": "marker_only_boundary verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.185006+00:00",
+        "metadata": {
+          "step_id": "step_0002",
+          "node_name": "live_isolate_marker_only",
+          "action_type": "check_evidence",
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "tool_result",
+        "task_id": "live-llm-seed-task-21",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "evt_00000003",
+        "status": "evidence_observed",
+        "target": "pass_power_3",
+        "expected": "",
+        "observed": "pass_power_3 verified from external tool result",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.185015+00:00",
+        "metadata": {
+          "step_id": "step_0003",
+          "node_name": "live_run_pass_power_3",
+          "action_type": "check_evidence",
+          "duplicate": false
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "test_result",
+        "task_id": "live-llm-seed-task-21",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "passed",
+        "target": "live_llm_runtime_path_smoke",
+        "expected": "",
+        "observed": "",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.185024+00:00",
+        "metadata": {},
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "file_diff",
+        "task_id": "live-llm-seed-task-21",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "",
+        "target": "live_llm_runtime_path_diff",
+        "expected": "filter invalid_action and isolate marker-only boundary",
+        "observed": "invalid_action rejected; marker-only boundary checked",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.185032+00:00",
+        "metadata": {},
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "benchmark_score",
+        "task_id": "live-llm-seed-task-21",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "",
+        "target": "live_llm_runtime_path_bridge",
+        "expected": "",
+        "observed": "",
+        "score_before": 0.72,
+        "score_after": 0.88,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.185044+00:00",
+        "metadata": {},
+        "benchmark_delta": 0.16,
+        "is_external": true
+      },
+      {
+        "evidence_type": "repeat_validation",
+        "task_id": "live-llm-seed-task-21",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "",
+        "target": "action_schema",
+        "expected": "",
+        "observed": "",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 3,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": true,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.185052+00:00",
+        "metadata": {},
+        "benchmark_delta": 0.0,
+        "is_external": true
+      },
+      {
+        "evidence_type": "time_decay",
+        "task_id": "live-llm-seed-task-21",
+        "task_family": "benchmark_debug",
+        "passed": true,
+        "source_ref": "",
+        "status": "",
+        "target": "",
+        "expected": "",
+        "observed": "1.0",
+        "score_before": null,
+        "score_after": null,
+        "regression_rate": 0.0,
+        "count": 1,
+        "conflict_ref": "",
+        "rollback_ref": "",
+        "known_bad_avoided": false,
+        "evidence_first": false,
+        "false_trigger": false,
+        "created_at": "2026-06-11T08:30:56.185066+00:00",
+        "metadata": {
+          "decay_weight": 1.0
+        },
+        "benchmark_delta": 0.0,
+        "is_external": true
+      }
+    ],
+    "rejected_evidence": [],
+    "metrics": {
+      "step_count": 3,
+      "tool_action_count": 3,
+      "tool_result_count": 3,
+      "successful_tool_result_count": 3,
+      "failed_tool_result_count": 0,
+      "duplicate_tool_result_count": 0,
+      "error_step_count": 0,
+      "event_linked_step_count": 3,
+      "total_latency_ms": 21,
+      "total_token_cost": 192,
+      "action_type_counts": {
+        "check_evidence": 3
+      },
+      "status_counts": {
+        "evidence_observed": 3
+      },
+      "tests_passed": true,
+      "test_target": "live_llm_runtime_path_smoke",
+      "file_diff_matches_expected": true,
+      "diff_target": "live_llm_runtime_path_diff",
+      "diff_expected": "filter invalid_action and isolate marker-only boundary",
+      "diff_observed": "invalid_action rejected; marker-only boundary checked",
+      "benchmark_name": "live_llm_runtime_path_bridge",
+      "score_before": 0.72,
+      "score_after": 0.88,
+      "repeat_validation_count": 3,
+      "repeat_validation_target": "action_schema",
+      "known_bad_avoided": false,
+      "evidence_first": true,
+      "time_decay_weight": 1.0,
+      "online_llm_call_count": 3,
+      "live_llm_run": true,
+      "canonicalized_bundle_count": 2
+    },
+    "notes": []
+  },
+  "trace": {
+    "trace_id": "trace-live-llm-21",
+    "task_id": "live-llm-seed-task-21",
+    "task_type": "benchmark_debug",
+    "user_goal": "Debug benchmark invalid_action by proposing a reusable runtime path.",
+    "initial_context": {
+      "tags": [
+        "benchmark",
+        "debug"
+      ],
+      "failure_mode": "invalid_action",
+      "family": "benchmark_debug",
+      "mode": "live_llm"
+    },
+    "steps": [
+      {
+        "step_id": "step_0001",
+        "node_name": "live_check_schema",
+        "action_type": "check_evidence",
+        "tool_name": "check_evidence",
+        "tool_args": {
+          "target": "action_schema"
+        },
+        "observation": {
+          "evidence": "action_schema verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "action_schema verified from external tool result",
+            "known_bad_avoided": true,
+            "evidence_first": true
+          },
+          "duplicate": false
+        },
+        "status": "evidence_observed",
+        "thought_summary": "The recommended safe action suggests checking all three evidence items together. This aligns with the goal of debugging invalid_action by gathering required evidence efficiently.",
+        "error": "",
+        "latency_ms": 6,
+        "token_cost": 64,
+        "event_id": "evt_00000001",
+        "metadata": {
+          "raw_action": {
+            "name": "check_evidence",
+            "target": "action_schema_and_marker_only_boundary_and_pass_power_3",
+            "reasoning": "The recommended safe action suggests checking all three evidence items together. This aligns with the goal of debugging invalid_action by gathering required evidence efficiently."
+          },
+          "canonical_action": {
+            "name": "check_evidence",
+            "target": "action_schema",
+            "reasoning": "The recommended safe action suggests checking all three evidence items together. This aligns with the goal of debugging invalid_action by gathering required evidence efficiently."
+          },
+          "live_llm": true,
+          "event_id": "evt_00000001",
+          "target": "action_schema"
+        },
+        "timestamp": "2026-06-11T08:30:52.280711+00:00"
+      },
+      {
+        "step_id": "step_0002",
+        "node_name": "live_isolate_marker_only",
+        "action_type": "check_evidence",
+        "tool_name": "check_evidence",
+        "tool_args": {
+          "target": "marker_only_boundary"
+        },
+        "observation": {
+          "evidence": "marker_only_boundary verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "marker_only_boundary verified from external tool result",
+            "known_bad_avoided": false,
+            "evidence_first": false
+          },
+          "duplicate": false
+        },
+        "status": "evidence_observed",
+        "thought_summary": "The recommended safe action suggests checking both remaining evidence items together. This aligns with the goal of debugging invalid_action by gathering required evidence efficiently, and avoids the known bad action __invalid_action__.",
+        "error": "",
+        "latency_ms": 7,
+        "token_cost": 64,
+        "event_id": "evt_00000002",
+        "metadata": {
+          "raw_action": {
+            "name": "check_evidence",
+            "target": "marker_only_boundary_and_pass_power_3",
+            "reasoning": "The recommended safe action suggests checking both remaining evidence items together. This aligns with the goal of debugging invalid_action by gathering required evidence efficiently, and avoids the known bad action __invalid_action__."
+          },
+          "canonical_action": {
+            "name": "check_evidence",
+            "target": "marker_only_boundary",
+            "reasoning": "The recommended safe action suggests checking both remaining evidence items together. This aligns with the goal of debugging invalid_action by gathering required evidence efficiently, and avoids the known bad action __invalid_action__."
+          },
+          "live_llm": true,
+          "event_id": "evt_00000002",
+          "target": "marker_only_boundary"
+        },
+        "timestamp": "2026-06-11T08:30:53.998219+00:00"
+      },
+      {
+        "step_id": "step_0003",
+        "node_name": "live_run_pass_power_3",
+        "action_type": "check_evidence",
+        "tool_name": "check_evidence",
+        "tool_args": {
+          "target": "pass_power_3"
+        },
+        "observation": {
+          "evidence": "pass_power_3 verified from external tool result",
+          "output": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "pass_power_3 verified from external tool result",
+            "known_bad_avoided": false,
+            "evidence_first": false
+          },
+          "duplicate": false
+        },
+        "status": "evidence_observed",
+        "thought_summary": "The remaining evidence is pass_power_3, and the recommended safe action is to check it. This avoids the known bad action __invalid_action__ and gathers required evidence for debugging.",
+        "error": "",
+        "latency_ms": 8,
+        "token_cost": 64,
+        "event_id": "evt_00000003",
+        "metadata": {
+          "raw_action": {
+            "name": "check_evidence",
+            "target": "pass_power_3",
+            "reasoning": "The remaining evidence is pass_power_3, and the recommended safe action is to check it. This avoids the known bad action __invalid_action__ and gathers required evidence for debugging."
+          },
+          "canonical_action": {
+            "name": "check_evidence",
+            "target": "pass_power_3",
+            "reasoning": "The remaining evidence is pass_power_3, and the recommended safe action is to check it. This avoids the known bad action __invalid_action__ and gathers required evidence for debugging."
+          },
+          "live_llm": true,
+          "event_id": "evt_00000003",
+          "target": "pass_power_3"
+        },
+        "timestamp": "2026-06-11T08:30:56.184155+00:00"
+      }
+    ],
+    "final_result": {
+      "selected_action": "pass_power_3",
+      "failure_mode": "invalid_action",
+      "observed_targets": [
+        "action_schema",
+        "marker_only_boundary",
+        "pass_power_3"
+      ],
+      "rejected_targets": []
+    },
+    "success": true,
+    "metrics": {
+      "step_count": 3,
+      "tool_action_count": 3,
+      "tool_result_count": 3,
+      "successful_tool_result_count": 3,
+      "failed_tool_result_count": 0,
+      "duplicate_tool_result_count": 0,
+      "error_step_count": 0,
+      "event_linked_step_count": 3,
+      "total_latency_ms": 21,
+      "total_token_cost": 192,
+      "action_type_counts": {
+        "check_evidence": 3
+      },
+      "status_counts": {
+        "evidence_observed": 3
+      },
+      "tests_passed": true,
+      "test_target": "live_llm_runtime_path_smoke",
+      "file_diff_matches_expected": true,
+      "diff_target": "live_llm_runtime_path_diff",
+      "diff_expected": "filter invalid_action and isolate marker-only boundary",
+      "diff_observed": "invalid_action rejected; marker-only boundary checked",
+      "benchmark_name": "live_llm_runtime_path_bridge",
+      "score_before": 0.72,
+      "score_after": 0.88,
+      "repeat_validation_count": 3,
+      "repeat_validation_target": "action_schema",
+      "known_bad_avoided": false,
+      "evidence_first": true,
+      "time_decay_weight": 1.0,
+      "online_llm_call_count": 3,
+      "live_llm_run": true,
+      "canonicalized_bundle_count": 2
+    },
+    "thread_id": "live-llm-thread-21",
+    "created_at": "2026-06-11T08:30:50.356582+00:00",
+    "finished_at": "2026-06-11T08:30:56.184213+00:00"
+  },
+  "research_question": "Can evidence-gated path promotion reduce repeated agent failures without increasing memory-induced error propagation?",
+  "reliability": {
+    "run_count": 3,
+    "pass_at_1": true,
+    "pass_power_3": true,
+    "seeds": [
+      21,
+      22,
+      23
+    ],
+    "by_arm": {
+      "memoryweaver_live_candidate_runtime": {
+        "pass_at_1": true,
+        "pass_power_3": true,
+        "success_rate_mean": 1.0,
+        "repeated_failure_rate_mean": 0.0,
+        "invalid_action_rate_mean": 0.0,
+        "known_bad_action_rate_mean": 0.0,
+        "memory_induced_regression_rate_mean": 0.0,
+        "rollback_frequency_mean": 0.0,
+        "promotion_precision_mean": 1.0,
+        "success_rate_std": 0.0,
+        "repeated_failure_rate_std": 0.0,
+        "invalid_action_rate_std": 0.0,
+        "known_bad_action_rate_std": 0.0,
+        "memory_induced_regression_rate_std": 0.0,
+        "rollback_frequency_std": 0.0,
+        "promotion_precision_std": 0.0
+      },
+      "rollback_probe": {
+        "pass_at_1": true,
+        "pass_power_3": true,
+        "success_rate_mean": 1.0,
+        "repeated_failure_rate_mean": 0.0,
+        "invalid_action_rate_mean": 0.0,
+        "known_bad_action_rate_mean": 1.0,
+        "memory_induced_regression_rate_mean": 0.0,
+        "rollback_frequency_mean": 1.0,
+        "promotion_precision_mean": 0.0,
+        "success_rate_std": 0.0,
+        "repeated_failure_rate_std": 0.0,
+        "invalid_action_rate_std": 0.0,
+        "known_bad_action_rate_std": 0.0,
+        "memory_induced_regression_rate_std": 0.0,
+        "rollback_frequency_std": 0.0,
+        "promotion_precision_std": 0.0
+      }
+    },
+    "aggregate": {
+      "online_llm_call_count_mean": 3.0,
+      "candidate_registration_promotable_mean": 1.0,
+      "promotion_external_evidence_only_mean": 1.0,
+      "rollback_recorded_mean": 1.0,
+      "online_llm_call_count_std": 0.0,
+      "candidate_registration_promotable_std": 0.0,
+      "promotion_external_evidence_only_std": 0.0,
+      "rollback_recorded_std": 0.0
+    }
+  }
+}

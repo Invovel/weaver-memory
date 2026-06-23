@@ -282,3 +282,18 @@ def test_graph_does_not_change_layer3_routing(graph_workspace):
 
 def test_tag_node_id_is_stable():
     assert tag_node_id("Codex subscription failed") == "tag_codex_subscription_failed"
+
+
+def test_recall_does_not_exceed_one_when_duplicate_gold_matched():
+    """Recall stays bounded when duplicate proposals hit the same gold edge."""
+    from memoryweaver.graph.proposal_eval import evaluate_proposals
+
+    gold = [{"from_tag": "a", "to_tag": "b", "relation": "related_to"}]
+    preds = [
+        {"proposal": {"from_tag": "a", "to_tag": "b", "relation": "related_to"}},
+        {"proposal": {"from_tag": "a", "to_tag": "b", "relation": "related_to"}},
+        {"proposal": {"from_tag": "a", "to_tag": "b", "relation": "related_to"}},
+    ]
+    result = evaluate_proposals(gold, preds)
+    assert result.recall <= 1.0
+    assert result.matched_count == 1

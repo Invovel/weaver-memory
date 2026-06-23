@@ -1,0 +1,233 @@
+{
+  "version": "0.2.0",
+  "checkpoints": {
+    "live-llm-thread-23": [
+      {
+        "checkpoint_id": "ckpt_live-llm-thread-23_0001",
+        "thread_id": "live-llm-thread-23",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000001",
+        "created_at": "2026-06-11T08:31:03.416734+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_live-llm-thread-23_0002",
+        "thread_id": "live-llm-thread-23",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000002",
+        "created_at": "2026-06-11T08:31:04.851890+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_live-llm-thread-23_0003",
+        "thread_id": "live-llm-thread-23",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000003",
+        "created_at": "2026-06-11T08:31:06.428755+00:00"
+      }
+    ],
+    "live-llm-replay-001": [
+      {
+        "checkpoint_id": "ckpt_live-llm-replay-001_0001",
+        "thread_id": "live-llm-replay-001",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000004",
+        "created_at": "2026-06-11T08:31:06.462047+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_live-llm-replay-001_0002",
+        "thread_id": "live-llm-replay-001",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000005",
+        "created_at": "2026-06-11T08:31:06.468811+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_live-llm-replay-001_0003",
+        "thread_id": "live-llm-replay-001",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000006",
+        "created_at": "2026-06-11T08:31:06.475536+00:00"
+      }
+    ],
+    "live-llm-replay-002": [
+      {
+        "checkpoint_id": "ckpt_live-llm-replay-002_0001",
+        "thread_id": "live-llm-replay-002",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000007",
+        "created_at": "2026-06-11T08:31:06.483153+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_live-llm-replay-002_0002",
+        "thread_id": "live-llm-replay-002",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000008",
+        "created_at": "2026-06-11T08:31:06.489591+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_live-llm-replay-002_0003",
+        "thread_id": "live-llm-replay-002",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000009",
+        "created_at": "2026-06-11T08:31:06.495971+00:00"
+      }
+    ],
+    "live-llm-replay-003": [
+      {
+        "checkpoint_id": "ckpt_live-llm-replay-003_0001",
+        "thread_id": "live-llm-replay-003",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000010",
+        "created_at": "2026-06-11T08:31:06.502740+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_live-llm-replay-003_0002",
+        "thread_id": "live-llm-replay-003",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000011",
+        "created_at": "2026-06-11T08:31:06.508766+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_live-llm-replay-003_0003",
+        "thread_id": "live-llm-replay-003",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000012",
+        "created_at": "2026-06-11T08:31:06.514874+00:00"
+      }
+    ],
+    "live-llm-replay-004": [
+      {
+        "checkpoint_id": "ckpt_live-llm-replay-004_0001",
+        "thread_id": "live-llm-replay-004",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000013",
+        "created_at": "2026-06-11T08:31:06.521392+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_live-llm-replay-004_0002",
+        "thread_id": "live-llm-replay-004",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000014",
+        "created_at": "2026-06-11T08:31:06.527989+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_live-llm-replay-004_0003",
+        "thread_id": "live-llm-replay-004",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000015",
+        "created_at": "2026-06-11T08:31:06.534710+00:00"
+      }
+    ],
+    "live-llm-replay-005": [
+      {
+        "checkpoint_id": "ckpt_live-llm-replay-005_0001",
+        "thread_id": "live-llm-replay-005",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000016",
+        "created_at": "2026-06-11T08:31:06.542204+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_live-llm-replay-005_0002",
+        "thread_id": "live-llm-replay-005",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000017",
+        "created_at": "2026-06-11T08:31:06.548141+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_live-llm-replay-005_0003",
+        "thread_id": "live-llm-replay-005",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000018",
+        "created_at": "2026-06-11T08:31:06.553961+00:00"
+      }
+    ]
+  }
+}

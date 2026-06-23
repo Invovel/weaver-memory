@@ -1,0 +1,14 @@
+[
+  {
+    "issue": "LoCoMo-MC10 and MemoryAgentBench are preview adapters, not task-accuracy benchmarks.",
+    "severity": "medium",
+    "paper_handling": "Use only as external dataset boundary evidence, not as main effectiveness evidence.",
+    "artifact": "locomo-mc10-adapter-check/, memoryagentbench-adapter-check/"
+  },
+  {
+    "issue": "The current main experiment is a controlled deterministic coding-debug fixture.",
+    "severity": "medium",
+    "paper_handling": "State scope clearly and avoid broad open-world claims without a larger task suite.",
+    "artifact": "layer3-path-promotion-e2e/"
+  }
+]

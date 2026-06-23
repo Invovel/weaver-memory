@@ -1,0 +1,22 @@
+{
+  "rag_evidence_node_count": 3,
+  "rag_evidence_hit_count": 3,
+  "citation_coverage": 1.0,
+  "hyde_synthetic_not_promoted": true,
+  "verified_memory_write_count": 0,
+  "layer3_mutation_count": 0,
+  "promotion_without_hard_evidence_count": 0,
+  "gbrain_candidate_node_count": 2,
+  "gbrain_candidate_edge_count": 1,
+  "gbrain_authority_granted": false,
+  "gbrain_search_hit_count": 1,
+  "gbrain_think_citation_count": 2,
+  "specialist_run_count": 3,
+  "l0_run_count": 1,
+  "l1_run_count": 2,
+  "l2_escalation_count": 0,
+  "evidence_packet_ref_count": 3,
+  "evidence_packet_specialist_count": 3,
+  "checkpoint_resume_success": true,
+  "checkpoint_roundtrip_rate": 1.0
+}

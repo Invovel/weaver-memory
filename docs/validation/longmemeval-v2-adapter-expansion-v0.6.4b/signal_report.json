@@ -1,0 +1,23 @@
+{
+  "validation": "longmemeval-v2-adapter-expansion-v0.6.4b",
+  "reports_by_limit": {
+    "50": {
+      "known_bad_path_count": 2,
+      "known_bad_path_detected_count": 2,
+      "known_bad_path_detection_rate": 1.0,
+      "conflict_pair_count": 0,
+      "conflict_resolution_applicable": false,
+      "conflict_resolution_accuracy": 0.0,
+      "negative_candidate_count": 0
+    },
+    "100": {
+      "known_bad_path_count": 2,
+      "known_bad_path_detected_count": 2,
+      "known_bad_path_detection_rate": 1.0,
+      "conflict_pair_count": 0,
+      "conflict_resolution_applicable": false,
+      "conflict_resolution_accuracy": 0.0,
+      "negative_candidate_count": 0
+    }
+  }
+}

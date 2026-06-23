@@ -1,0 +1,19 @@
+{
+  "marker_count": 5,
+  "l1_active_count": 1,
+  "l2_marker_count": 2,
+  "l2_approved_count": 1,
+  "l2_pending_count": 1,
+  "l2_applied_count": 1,
+  "l3_blocked_count": 2,
+  "conflict_blocked_count": 1,
+  "route_plan_applied_count": 2,
+  "required_evidence_plan_applied_count": 2,
+  "tool_execution_count": 0,
+  "actual_suppression_count": 0,
+  "memory_promotion_count": 0,
+  "layer3_mutation_count": 0,
+  "online_llm_call_count": 0,
+  "approval_record_count": 1,
+  "conflict_record_count": 1
+}

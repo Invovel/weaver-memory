@@ -1,0 +1,11 @@
+{
+  "weak_useful_hit_beats_strict": true,
+  "negative_avoidance_beats_strict": true,
+  "known_bad_path_suppression_beats_strict": true,
+  "partial_evidence_beats_strict": true,
+  "strict_false_negative_reduced": true,
+  "unsafe_weak_trust_zero": true,
+  "wrong_promotion_zero": true,
+  "all_weak_signals_labeled_unverified": true,
+  "passed": true
+}

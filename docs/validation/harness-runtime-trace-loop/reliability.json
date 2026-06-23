@@ -1,0 +1,108 @@
+{
+  "run_count": 1,
+  "pass_at_1": true,
+  "pass_power_3": true,
+  "seeds": [
+    0
+  ],
+  "by_arm": {
+    "no_memory": {
+      "pass_at_1": true,
+      "pass_power_3": true,
+      "success_rate_mean": 0.0,
+      "success_rate_std": 0.0,
+      "repeated_failure_rate_mean": 1.0,
+      "repeated_failure_rate_std": 0.0,
+      "invalid_action_rate_mean": 1.0,
+      "invalid_action_rate_std": 0.0,
+      "rollback_frequency_mean": 0.0,
+      "rollback_frequency_std": 0.0,
+      "negative_memory_hit_rate_mean": 0.0,
+      "negative_memory_hit_rate_std": 0.0
+    },
+    "naive_memory": {
+      "pass_at_1": true,
+      "pass_power_3": true,
+      "success_rate_mean": 0.0,
+      "success_rate_std": 0.0,
+      "repeated_failure_rate_mean": 1.0,
+      "repeated_failure_rate_std": 0.0,
+      "invalid_action_rate_mean": 1.0,
+      "invalid_action_rate_std": 0.0,
+      "rollback_frequency_mean": 0.0,
+      "rollback_frequency_std": 0.0,
+      "negative_memory_hit_rate_mean": 0.0,
+      "negative_memory_hit_rate_std": 0.0
+    },
+    "retrieval_memory": {
+      "pass_at_1": true,
+      "pass_power_3": true,
+      "success_rate_mean": 0.5,
+      "success_rate_std": 0.0,
+      "repeated_failure_rate_mean": 0.5,
+      "repeated_failure_rate_std": 0.0,
+      "invalid_action_rate_mean": 0.5,
+      "invalid_action_rate_std": 0.0,
+      "rollback_frequency_mean": 0.0,
+      "rollback_frequency_std": 0.0,
+      "negative_memory_hit_rate_mean": 0.5,
+      "negative_memory_hit_rate_std": 0.0
+    },
+    "memoryweaver_trace_candidate_runtime": {
+      "pass_at_1": true,
+      "pass_power_3": true,
+      "success_rate_mean": 1.0,
+      "success_rate_std": 0.0,
+      "repeated_failure_rate_mean": 0.0,
+      "repeated_failure_rate_std": 0.0,
+      "invalid_action_rate_mean": 0.0,
+      "invalid_action_rate_std": 0.0,
+      "rollback_frequency_mean": 0.0,
+      "rollback_frequency_std": 0.0,
+      "negative_memory_hit_rate_mean": 1.0,
+      "negative_memory_hit_rate_std": 0.0
+    },
+    "rollback_probe": {
+      "pass_at_1": true,
+      "pass_power_3": true,
+      "success_rate_mean": 1.0,
+      "success_rate_std": 0.0,
+      "repeated_failure_rate_mean": 0.0,
+      "repeated_failure_rate_std": 0.0,
+      "invalid_action_rate_mean": 0.0,
+      "invalid_action_rate_std": 0.0,
+      "rollback_frequency_mean": 1.0,
+      "rollback_frequency_std": 0.0,
+      "negative_memory_hit_rate_mean": 1.0,
+      "negative_memory_hit_rate_std": 0.0
+    },
+    "memoryweaver_trace_candidate_runtime_recovery": {
+      "pass_at_1": true,
+      "pass_power_3": true,
+      "success_rate_mean": 1.0,
+      "success_rate_std": 0.0,
+      "repeated_failure_rate_mean": 0.0,
+      "repeated_failure_rate_std": 0.0,
+      "invalid_action_rate_mean": 0.0,
+      "invalid_action_rate_std": 0.0,
+      "rollback_frequency_mean": 1.0,
+      "rollback_frequency_std": 0.0,
+      "negative_memory_hit_rate_mean": 1.0,
+      "negative_memory_hit_rate_std": 0.0
+    },
+    "replacement_probe": {
+      "pass_at_1": true,
+      "pass_power_3": true,
+      "success_rate_mean": 1.0,
+      "success_rate_std": 0.0,
+      "repeated_failure_rate_mean": 0.0,
+      "repeated_failure_rate_std": 0.0,
+      "invalid_action_rate_mean": 0.0,
+      "invalid_action_rate_std": 0.0,
+      "rollback_frequency_mean": 0.0,
+      "rollback_frequency_std": 0.0,
+      "negative_memory_hit_rate_mean": 1.0,
+      "negative_memory_hit_rate_std": 0.0
+    }
+  }
+}

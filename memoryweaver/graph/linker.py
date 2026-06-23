@@ -5,6 +5,7 @@ from __future__ import annotations
 from memoryweaver.graph_linker import GraphLinker
 from memoryweaver.graph_schema import GraphProposal, GraphStatus
 from memoryweaver.graph_store import GraphStore
+from memoryweaver.graph.proposal_lifecycle import PendingProposalLifecyclePolicy
 from memoryweaver.graph.reviewer import GraphProposalReviewPolicy
 
 
@@ -14,6 +15,7 @@ class ReviewedGraphLinker:
     def __init__(self, graph: GraphStore, policy: GraphProposalReviewPolicy | None = None):
         self.graph = graph
         self.policy = policy or GraphProposalReviewPolicy(graph)
+        self.lifecycle_policy = PendingProposalLifecyclePolicy()
         self.linker = GraphLinker(graph)
 
     def review_and_apply(self, proposal: GraphProposal):
@@ -22,6 +24,8 @@ class ReviewedGraphLinker:
         proposal.decision = review.decision
         proposal.confidence = review.confidence
         proposal.requires_review = review.requires_review
+        if review.decision == "pending":
+            self.lifecycle_policy.annotate(proposal)
         self.graph.add_proposal(proposal)
         if review.decision != "accept":
             return review, ""

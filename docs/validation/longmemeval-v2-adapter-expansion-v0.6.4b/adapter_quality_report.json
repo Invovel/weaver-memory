@@ -1,0 +1,39 @@
+{
+  "validation": "longmemeval-v2-adapter-expansion-v0.6.4b",
+  "reports_by_limit": {
+    "50": {
+      "question_limit": 50,
+      "question_count": 50,
+      "haystack_question_coverage": 1.0,
+      "trajectory_question_join_rate": 1.0,
+      "requested_trajectory_refs": 3,
+      "loaded_trajectory_count": 3,
+      "trajectory_ref_load_rate": 1.0,
+      "query_answer_pair_coverage": 1.0,
+      "episode_count": 50,
+      "raw_span_count": 1900,
+      "capsule_count": 1900,
+      "candidate_memory_count": 1900,
+      "trajectories_per_question": 3,
+      "states_per_trajectory": 5,
+      "max_observation_chars": 1800
+    },
+    "100": {
+      "question_limit": 100,
+      "question_count": 100,
+      "haystack_question_coverage": 1.0,
+      "trajectory_question_join_rate": 1.0,
+      "requested_trajectory_refs": 3,
+      "loaded_trajectory_count": 3,
+      "trajectory_ref_load_rate": 1.0,
+      "query_answer_pair_coverage": 1.0,
+      "episode_count": 100,
+      "raw_span_count": 3800,
+      "capsule_count": 3800,
+      "candidate_memory_count": 3800,
+      "trajectories_per_question": 3,
+      "states_per_trajectory": 5,
+      "max_observation_chars": 1800
+    }
+  }
+}

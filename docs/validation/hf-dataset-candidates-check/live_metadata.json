@@ -1,0 +1,295 @@
+{
+  "xiaowu0162/longmemeval-v2": {
+    "id": "xiaowu0162/longmemeval-v2",
+    "exists_on_hf": true,
+    "downloads": 2039,
+    "likes": 1,
+    "created_at": "2026-05-11T01:33:46.000Z",
+    "last_modified": "2026-05-17T02:59:48.000Z",
+    "license": "apache-2.0",
+    "size_categories": [
+      "n<1K"
+    ],
+    "tags": [
+      "task_categories:image-text-to-text",
+      "language:en",
+      "license:apache-2.0",
+      "size_categories:n<1K",
+      "format:imagefolder",
+      "modality:image",
+      "library:datasets",
+      "library:mlcroissant",
+      "arxiv:2605.12493",
+      "region:us",
+      "benchmark",
+      "agents",
+      "memory",
+      "retrieval",
+      "question-answering",
+      "web-agents",
+      "enterprise-agents"
+    ],
+    "url": "https://hf.co/datasets/xiaowu0162/longmemeval-v2"
+  },
+  "ai-hyz/MemoryAgentBench": {
+    "id": "ai-hyz/MemoryAgentBench",
+    "exists_on_hf": true,
+    "downloads": 13175,
+    "likes": 39,
+    "created_at": "2025-07-05T07:47:20.000Z",
+    "last_modified": "2025-10-07T23:53:07.000Z",
+    "license": "mit",
+    "size_categories": [
+      "n<1K"
+    ],
+    "tags": [
+      "task_categories:question-answering",
+      "task_categories:zero-shot-classification",
+      "task_categories:summarization",
+      "task_categories:text-classification",
+      "task_categories:text-generation",
+      "license:mit",
+      "size_categories:n<1K",
+      "format:parquet",
+      "modality:text",
+      "library:datasets",
+      "library:pandas",
+      "library:mlcroissant",
+      "library:polars",
+      "arxiv:2507.05257",
+      "region:us",
+      "llm-agents",
+      "memory",
+      "benchmark",
+      "rag"
+    ],
+    "url": "https://hf.co/datasets/ai-hyz/MemoryAgentBench"
+  },
+  "xiaowu0162/longmemeval-cleaned": {
+    "id": "xiaowu0162/longmemeval-cleaned",
+    "exists_on_hf": true,
+    "downloads": 11003,
+    "likes": 22,
+    "created_at": "2025-09-19T23:03:26.000Z",
+    "last_modified": "2025-09-19T23:48:16.000Z",
+    "license": "mit",
+    "size_categories": [],
+    "tags": [
+      "language:en",
+      "license:mit",
+      "region:us"
+    ],
+    "url": "https://hf.co/datasets/xiaowu0162/longmemeval-cleaned"
+  },
+  "Percena/locomo-mc10": {
+    "id": "Percena/locomo-mc10",
+    "exists_on_hf": true,
+    "downloads": 1050,
+    "likes": 7,
+    "created_at": "2025-07-04T13:09:52.000Z",
+    "last_modified": "2025-07-30T06:08:42.000Z",
+    "license": "cc-by-nc-4.0",
+    "size_categories": [
+      "1K<n<10K"
+    ],
+    "tags": [
+      "task_categories:question-answering",
+      "annotations_creators:expert-generated",
+      "annotations_creators:machine-generated",
+      "source_datasets:original-locomo",
+      "language:en",
+      "license:cc-by-nc-4.0",
+      "size_categories:1K<n<10K",
+      "region:us",
+      "multiple-choice",
+      "llm",
+      "conversation",
+      "memory",
+      "rag",
+      "long-context"
+    ],
+    "url": "https://hf.co/datasets/Percena/locomo-mc10"
+  },
+  "mteb/LoCoMo": {
+    "id": "mteb/LoCoMo",
+    "exists_on_hf": true,
+    "downloads": 464,
+    "likes": 0,
+    "created_at": "2026-05-11T15:14:11.000Z",
+    "last_modified": "2026-05-11T15:15:34.000Z",
+    "license": "cc-by-nc-4.0",
+    "size_categories": [
+      "10K<n<100K"
+    ],
+    "tags": [
+      "task_categories:text-retrieval",
+      "task_ids:multiple-choice-qa",
+      "annotations_creators:derived",
+      "multilinguality:monolingual",
+      "source_datasets:KaLM-Embedding/LMEB",
+      "language:eng",
+      "license:cc-by-nc-4.0",
+      "size_categories:10K<n<100K",
+      "format:parquet",
+      "format:optimized-parquet",
+      "modality:text",
+      "library:datasets",
+      "library:pandas",
+      "library:polars",
+      "library:mlcroissant",
+      "arxiv:2603.12572",
+      "arxiv:2502.13595",
+      "arxiv:2210.07316",
+      "region:us",
+      "mteb",
+      "text"
+    ],
+    "url": "https://hf.co/datasets/mteb/LoCoMo"
+  },
+  "miracl/miracl": {
+    "id": "miracl/miracl",
+    "exists_on_hf": true,
+    "downloads": 1999,
+    "likes": 73,
+    "created_at": "2022-10-11T22:20:12.000Z",
+    "last_modified": "2024-12-29T05:45:14.000Z",
+    "license": [
+      "apache-2.0"
+    ],
+    "size_categories": [],
+    "tags": [
+      "task_categories:text-retrieval",
+      "task_ids:document-retrieval",
+      "annotations_creators:expert-generated",
+      "multilinguality:multilingual",
+      "language:ar",
+      "language:bn",
+      "language:en",
+      "language:es",
+      "language:fa",
+      "language:fi",
+      "language:fr",
+      "language:hi",
+      "language:id",
+      "language:ja",
+      "language:ko",
+      "language:ru",
+      "language:sw",
+      "language:te",
+      "language:th",
+      "language:zh",
+      "language:de",
+      "language:yo",
+      "license:apache-2.0",
+      "arxiv:2210.09984",
+      "region:us"
+    ],
+    "url": "https://hf.co/datasets/miracl/miracl"
+  },
+  "miracl/miracl-corpus": {
+    "id": "miracl/miracl-corpus",
+    "exists_on_hf": true,
+    "downloads": 2694,
+    "likes": 52,
+    "created_at": "2022-09-29T14:49:58.000Z",
+    "last_modified": "2023-01-05T17:28:26.000Z",
+    "license": [
+      "apache-2.0"
+    ],
+    "size_categories": [
+      "10M<n<100M"
+    ],
+    "tags": [
+      "task_categories:text-retrieval",
+      "task_ids:document-retrieval",
+      "annotations_creators:expert-generated",
+      "multilinguality:multilingual",
+      "language:ar",
+      "language:bn",
+      "language:en",
+      "language:es",
+      "language:fa",
+      "language:fi",
+      "language:fr",
+      "language:hi",
+      "language:id",
+      "language:ja",
+      "language:ko",
+      "language:ru",
+      "language:sw",
+      "language:te",
+      "language:th",
+      "language:zh",
+      "license:apache-2.0",
+      "size_categories:10M<n<100M",
+      "modality:text",
+      "library:datasets",
+      "library:mlcroissant",
+      "arxiv:2210.09984",
+      "region:us"
+    ],
+    "url": "https://hf.co/datasets/miracl/miracl-corpus"
+  },
+  "BeIR/scifact": {
+    "id": "BeIR/scifact",
+    "exists_on_hf": true,
+    "downloads": 11375,
+    "likes": 7,
+    "created_at": "2022-06-05T16:24:20.000Z",
+    "last_modified": "2026-04-09T17:52:02.000Z",
+    "license": [
+      "cc-by-sa-4.0"
+    ],
+    "size_categories": [
+      "1K<n<10K"
+    ],
+    "tags": [
+      "task_categories:zero-shot-classification",
+      "task_categories:text-retrieval",
+      "task_ids:document-retrieval",
+      "task_ids:entity-linking-retrieval",
+      "task_ids:fact-checking-retrieval",
+      "multilinguality:monolingual",
+      "language:en",
+      "license:cc-by-sa-4.0",
+      "size_categories:1K<n<10K",
+      "format:parquet",
+      "modality:text",
+      "library:datasets",
+      "library:pandas",
+      "library:polars",
+      "library:mlcroissant",
+      "region:us",
+      "biomedical-information-retrieval",
+      "citation-prediction-retrieval",
+      "passage-retrieval",
+      "news-retrieval",
+      "argument-retrieval",
+      "zero-shot-information-retrieval",
+      "tweet-retrieval",
+      "question-answering-retrieval",
+      "duplication-question-retrieval",
+      "zero-shot-retrieval"
+    ],
+    "url": "https://hf.co/datasets/BeIR/scifact"
+  },
+  "miracl/hagrid": {
+    "id": "miracl/hagrid",
+    "exists_on_hf": true,
+    "downloads": 238,
+    "likes": 10,
+    "created_at": "2023-07-31T23:40:24.000Z",
+    "last_modified": "2023-08-01T13:01:38.000Z",
+    "license": "apache-2.0",
+    "size_categories": [
+      "1K<n<10K"
+    ],
+    "tags": [
+      "language:en",
+      "license:apache-2.0",
+      "size_categories:1K<n<10K",
+      "region:us"
+    ],
+    "url": "https://hf.co/datasets/miracl/hagrid"
+  }
+}

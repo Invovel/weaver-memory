@@ -1,0 +1,137 @@
+[
+  {
+    "task_id": "no_memory-task-001",
+    "arm": "no_memory",
+    "pytest_before": "evidence/no_memory/no_memory-task-001/pytest_before.txt",
+    "pytest_after": "evidence/no_memory/no_memory-task-001/pytest_after.txt",
+    "diff_patch": "evidence/no_memory/no_memory-task-001/diff.patch",
+    "tests_passed": false,
+    "file_diff_matches_expected": false
+  },
+  {
+    "task_id": "no_memory-task-002",
+    "arm": "no_memory",
+    "pytest_before": "evidence/no_memory/no_memory-task-002/pytest_before.txt",
+    "pytest_after": "evidence/no_memory/no_memory-task-002/pytest_after.txt",
+    "diff_patch": "evidence/no_memory/no_memory-task-002/diff.patch",
+    "tests_passed": false,
+    "file_diff_matches_expected": false
+  },
+  {
+    "task_id": "no_memory-task-003",
+    "arm": "no_memory",
+    "pytest_before": "evidence/no_memory/no_memory-task-003/pytest_before.txt",
+    "pytest_after": "evidence/no_memory/no_memory-task-003/pytest_after.txt",
+    "diff_patch": "evidence/no_memory/no_memory-task-003/diff.patch",
+    "tests_passed": false,
+    "file_diff_matches_expected": false
+  },
+  {
+    "task_id": "raw_rag_over_logs-task-001",
+    "arm": "raw_rag_over_logs",
+    "pytest_before": "evidence/raw_rag_over_logs/raw_rag_over_logs-task-001/pytest_before.txt",
+    "pytest_after": "evidence/raw_rag_over_logs/raw_rag_over_logs-task-001/pytest_after.txt",
+    "diff_patch": "evidence/raw_rag_over_logs/raw_rag_over_logs-task-001/diff.patch",
+    "tests_passed": false,
+    "file_diff_matches_expected": false
+  },
+  {
+    "task_id": "raw_rag_over_logs-task-002",
+    "arm": "raw_rag_over_logs",
+    "pytest_before": "evidence/raw_rag_over_logs/raw_rag_over_logs-task-002/pytest_before.txt",
+    "pytest_after": "evidence/raw_rag_over_logs/raw_rag_over_logs-task-002/pytest_after.txt",
+    "diff_patch": "evidence/raw_rag_over_logs/raw_rag_over_logs-task-002/diff.patch",
+    "tests_passed": false,
+    "file_diff_matches_expected": false
+  },
+  {
+    "task_id": "raw_rag_over_logs-task-003",
+    "arm": "raw_rag_over_logs",
+    "pytest_before": "evidence/raw_rag_over_logs/raw_rag_over_logs-task-003/pytest_before.txt",
+    "pytest_after": "evidence/raw_rag_over_logs/raw_rag_over_logs-task-003/pytest_after.txt",
+    "diff_patch": "evidence/raw_rag_over_logs/raw_rag_over_logs-task-003/diff.patch",
+    "tests_passed": false,
+    "file_diff_matches_expected": false
+  },
+  {
+    "task_id": "retrieval_memory-task-001",
+    "arm": "retrieval_memory",
+    "pytest_before": "evidence/retrieval_memory/retrieval_memory-task-001/pytest_before.txt",
+    "pytest_after": "evidence/retrieval_memory/retrieval_memory-task-001/pytest_after.txt",
+    "diff_patch": "evidence/retrieval_memory/retrieval_memory-task-001/diff.patch",
+    "tests_passed": true,
+    "file_diff_matches_expected": true
+  },
+  {
+    "task_id": "retrieval_memory-task-002",
+    "arm": "retrieval_memory",
+    "pytest_before": "evidence/retrieval_memory/retrieval_memory-task-002/pytest_before.txt",
+    "pytest_after": "evidence/retrieval_memory/retrieval_memory-task-002/pytest_after.txt",
+    "diff_patch": "evidence/retrieval_memory/retrieval_memory-task-002/diff.patch",
+    "tests_passed": true,
+    "file_diff_matches_expected": true
+  },
+  {
+    "task_id": "retrieval_memory-task-003",
+    "arm": "retrieval_memory",
+    "pytest_before": "evidence/retrieval_memory/retrieval_memory-task-003/pytest_before.txt",
+    "pytest_after": "evidence/retrieval_memory/retrieval_memory-task-003/pytest_after.txt",
+    "diff_patch": "evidence/retrieval_memory/retrieval_memory-task-003/diff.patch",
+    "tests_passed": true,
+    "file_diff_matches_expected": true
+  },
+  {
+    "task_id": "mw_verified_memory-task-001",
+    "arm": "mw_verified_memory",
+    "pytest_before": "evidence/mw_verified_memory/mw_verified_memory-task-001/pytest_before.txt",
+    "pytest_after": "evidence/mw_verified_memory/mw_verified_memory-task-001/pytest_after.txt",
+    "diff_patch": "evidence/mw_verified_memory/mw_verified_memory-task-001/diff.patch",
+    "tests_passed": true,
+    "file_diff_matches_expected": true
+  },
+  {
+    "task_id": "mw_verified_memory-task-002",
+    "arm": "mw_verified_memory",
+    "pytest_before": "evidence/mw_verified_memory/mw_verified_memory-task-002/pytest_before.txt",
+    "pytest_after": "evidence/mw_verified_memory/mw_verified_memory-task-002/pytest_after.txt",
+    "diff_patch": "evidence/mw_verified_memory/mw_verified_memory-task-002/diff.patch",
+    "tests_passed": true,
+    "file_diff_matches_expected": true
+  },
+  {
+    "task_id": "mw_verified_memory-task-003",
+    "arm": "mw_verified_memory",
+    "pytest_before": "evidence/mw_verified_memory/mw_verified_memory-task-003/pytest_before.txt",
+    "pytest_after": "evidence/mw_verified_memory/mw_verified_memory-task-003/pytest_after.txt",
+    "diff_patch": "evidence/mw_verified_memory/mw_verified_memory-task-003/diff.patch",
+    "tests_passed": true,
+    "file_diff_matches_expected": true
+  },
+  {
+    "task_id": "mw_layer3_path-task-001",
+    "arm": "mw_layer3_path",
+    "pytest_before": "evidence/mw_layer3_path/mw_layer3_path-task-001/pytest_before.txt",
+    "pytest_after": "evidence/mw_layer3_path/mw_layer3_path-task-001/pytest_after.txt",
+    "diff_patch": "evidence/mw_layer3_path/mw_layer3_path-task-001/diff.patch",
+    "tests_passed": true,
+    "file_diff_matches_expected": true
+  },
+  {
+    "task_id": "mw_layer3_path-task-002",
+    "arm": "mw_layer3_path",
+    "pytest_before": "evidence/mw_layer3_path/mw_layer3_path-task-002/pytest_before.txt",
+    "pytest_after": "evidence/mw_layer3_path/mw_layer3_path-task-002/pytest_after.txt",
+    "diff_patch": "evidence/mw_layer3_path/mw_layer3_path-task-002/diff.patch",
+    "tests_passed": true,
+    "file_diff_matches_expected": true
+  },
+  {
+    "task_id": "mw_layer3_path-task-003",
+    "arm": "mw_layer3_path",
+    "pytest_before": "evidence/mw_layer3_path/mw_layer3_path-task-003/pytest_before.txt",
+    "pytest_after": "evidence/mw_layer3_path/mw_layer3_path-task-003/pytest_after.txt",
+    "diff_patch": "evidence/mw_layer3_path/mw_layer3_path-task-003/diff.patch",
+    "tests_passed": true,
+    "file_diff_matches_expected": true
+  }
+]

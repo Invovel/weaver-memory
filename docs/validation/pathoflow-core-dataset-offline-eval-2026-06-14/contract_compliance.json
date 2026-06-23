@@ -1,0 +1,11 @@
+{
+  "output_count": 2000,
+  "missing_required_fields": 0,
+  "visible_internal_id_leaks": 0,
+  "visible_internal_tool_id_leaks": 0,
+  "empty_reasoning": 0,
+  "empty_risks": 0,
+  "empty_alternative": 0,
+  "empty_follow_up_questions": 0,
+  "violations": []
+}

@@ -1,0 +1,52 @@
+{
+  "run_count": 3,
+  "pass_at_1": true,
+  "pass_power_3": true,
+  "seeds": [
+    7,
+    8,
+    9
+  ],
+  "by_arm": {
+    "no_memory": {
+      "pass_at_1": true,
+      "pass_power_3": true,
+      "success_rate_mean": 1.0,
+      "success_rate_std": 0.0,
+      "average_steps_mean": 2.0,
+      "average_steps_std": 0.0,
+      "known_bad_mean": 15.0,
+      "known_bad_std": 0.0
+    },
+    "raw_rag_over_logs": {
+      "pass_at_1": true,
+      "pass_power_3": true,
+      "success_rate_mean": 1.0,
+      "success_rate_std": 0.0,
+      "average_steps_mean": 1.8,
+      "average_steps_std": 0.0,
+      "known_bad_mean": 12.0,
+      "known_bad_std": 0.0
+    },
+    "mw_verified_memory": {
+      "pass_at_1": true,
+      "pass_power_3": true,
+      "success_rate_mean": 1.0,
+      "success_rate_std": 0.0,
+      "average_steps_mean": 1.0,
+      "average_steps_std": 0.0,
+      "known_bad_mean": 0.0,
+      "known_bad_std": 0.0
+    },
+    "mw_verified_memory_marker": {
+      "pass_at_1": true,
+      "pass_power_3": true,
+      "success_rate_mean": 1.0,
+      "success_rate_std": 0.0,
+      "average_steps_mean": 1.0,
+      "average_steps_std": 0.0,
+      "known_bad_mean": 0.0,
+      "known_bad_std": 0.0
+    }
+  }
+}

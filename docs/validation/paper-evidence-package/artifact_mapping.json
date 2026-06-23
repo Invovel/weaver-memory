@@ -1,0 +1,44 @@
+[
+  {
+    "paper_claim": "Runtime path governance reduces repeated failures and invalid actions.",
+    "pytest": "tests/test_harness_runtime_core_benchmark.py",
+    "diff": "n/a",
+    "json": "harness-runtime-core/metrics.json; harness-runtime-core/raw_results.json",
+    "rollback_record": "harness-runtime-core/metrics.json::aggregate.rollback_recovery_success_rate"
+  },
+  {
+    "paper_claim": "Live LLM proposals remain Harness-gated.",
+    "pytest": "tests/test_harness_runtime_live_llm_benchmark.py",
+    "diff": "n/a",
+    "json": "harness-runtime-live-llm/metrics.json; harness-runtime-live-llm/reliability.json",
+    "rollback_record": "harness-runtime-live-llm/metrics.json::aggregate.rollback_recorded"
+  },
+  {
+    "paper_claim": "Coding-debug promotion uses real pytest and expected diff evidence.",
+    "pytest": "tests/test_harness_runtime_coding_debug_benchmark.py",
+    "diff": "harness-runtime-coding-debug/diff.patch",
+    "json": "harness-runtime-coding-debug/metrics.json; harness-runtime-coding-debug/task_runs.jsonl",
+    "rollback_record": "harness-runtime-coding-debug/metrics.json::aggregate.rollback_recorded"
+  },
+  {
+    "paper_claim": "Layer-3 path promotion improves reusable path selection over retrieval-only memory.",
+    "pytest": "tests/test_layer3_path_promotion_e2e.py",
+    "diff": "layer3-path-promotion-e2e/artifact_manifest.json::mw_layer3_path.diff_patch",
+    "json": "layer3-path-promotion-e2e/metrics.json; layer3-path-promotion-e2e/reliability.json",
+    "rollback_record": "layer3-path-promotion-e2e/metrics.json::aggregate.rollback_success_rate"
+  },
+  {
+    "paper_claim": "v0.8 substrate provides evidence without direct memory authority.",
+    "pytest": "tests/test_v08_integration.py",
+    "diff": "n/a",
+    "json": "v0.8-integration/metrics.json; v0.8-integration/reliability.json",
+    "rollback_record": "n/a; authority boundary checked by promotion_without_hard_evidence_count=0"
+  },
+  {
+    "paper_claim": "External HF datasets are boundary-checked, not claimed as effectiveness evidence.",
+    "pytest": "tests/test_hf_dataset_candidates_check.py; tests/test_locomo_mc10_adapter_check.py; tests/test_memoryagentbench_adapter_check.py",
+    "diff": "n/a",
+    "json": "hf-dataset-candidates-check/metrics.json; locomo-mc10-adapter-check/metrics.json; memoryagentbench-adapter-check/metrics.json",
+    "rollback_record": "n/a; boundary checked by memory_promotion_count=0 and layer3_mutation_count=0"
+  }
+]

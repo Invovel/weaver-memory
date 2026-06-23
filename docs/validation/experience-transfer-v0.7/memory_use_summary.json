@@ -1,0 +1,40 @@
+{
+  "no_memory": {
+    "probe_count": 18,
+    "reason_counts": {
+      "no_memory_arm": 18
+    },
+    "marker_required_count": 0,
+    "retrieval_miss_count": 0,
+    "retrieval_hit_count": 0
+  },
+  "raw_rag_over_logs": {
+    "probe_count": 18,
+    "reason_counts": {
+      "raw_context_no_retrieval": 18
+    },
+    "marker_required_count": 0,
+    "retrieval_miss_count": 0,
+    "retrieval_hit_count": 0
+  },
+  "mw_verified_memory": {
+    "probe_count": 18,
+    "reason_counts": {
+      "marker_required": 3,
+      "retrieval_hit": 15
+    },
+    "marker_required_count": 3,
+    "retrieval_miss_count": 0,
+    "retrieval_hit_count": 15
+  },
+  "mw_verified_memory_marker": {
+    "probe_count": 18,
+    "reason_counts": {
+      "marker_direct_guard": 3,
+      "retrieval_hit": 15
+    },
+    "marker_required_count": 0,
+    "retrieval_miss_count": 0,
+    "retrieval_hit_count": 15
+  }
+}

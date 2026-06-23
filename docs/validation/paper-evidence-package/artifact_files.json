@@ -1,0 +1,18 @@
+{
+  "coding_debug": [
+    "harness-runtime-coding-debug/pytest_before.txt",
+    "harness-runtime-coding-debug/pytest_after.txt",
+    "harness-runtime-coding-debug/diff.patch"
+  ],
+  "layer3_e2e": [
+    "layer3-path-promotion-e2e/evidence/mw_layer3_path/mw_layer3_path-task-001/pytest_before.txt",
+    "layer3-path-promotion-e2e/evidence/mw_layer3_path/mw_layer3_path-task-001/pytest_after.txt",
+    "layer3-path-promotion-e2e/evidence/mw_layer3_path/mw_layer3_path-task-001/diff.patch",
+    "layer3-path-promotion-e2e/evidence/mw_layer3_path/mw_layer3_path-task-002/pytest_before.txt",
+    "layer3-path-promotion-e2e/evidence/mw_layer3_path/mw_layer3_path-task-002/pytest_after.txt",
+    "layer3-path-promotion-e2e/evidence/mw_layer3_path/mw_layer3_path-task-002/diff.patch",
+    "layer3-path-promotion-e2e/evidence/mw_layer3_path/mw_layer3_path-task-003/pytest_before.txt",
+    "layer3-path-promotion-e2e/evidence/mw_layer3_path/mw_layer3_path-task-003/pytest_after.txt",
+    "layer3-path-promotion-e2e/evidence/mw_layer3_path/mw_layer3_path-task-003/diff.patch"
+  ]
+}

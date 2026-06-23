@@ -66,8 +66,16 @@ class GraphProposalReviewPolicy:
         ):
             reasons.append("confidence capped for assistant/llm proposal")
 
+        exact_candidate_evidence = (
+            candidate_only_evidence
+            and support.status == EvidenceSupport.SUPPORTS_EXACT
+        )
+        evidence_usable = verified_evidence or exact_candidate_evidence
+
         if not evidence_links:
             reasons.append("missing evidence link")
+        elif exact_candidate_evidence:
+            reasons.append("candidate evidence passed exact support check")
         elif candidate_only_evidence:
             reasons.append("candidate evidence requires review")
         if support.status == EvidenceSupport.DOES_NOT_SUPPORT:
@@ -105,6 +113,14 @@ class GraphProposalReviewPolicy:
             )
 
         relation_risk = self.relation_policy.classify(proposal.relation)
+        if (
+            support.status == EvidenceSupport.SUPPORTS_EXACT
+            and proposal.relation in {GraphRelation.RESOLVES, GraphRelation.SUPPORTS}
+        ):
+            proposal.metadata["original_relation"] = proposal.relation.value
+            proposal.relation = GraphRelation.RELATED_TO
+            relation_risk = self.relation_policy.classify(proposal.relation)
+            reasons.append("accepted only as downgraded low-risk related_to edge")
         if not relation_risk.auto_accept_allowed:
             reasons.append("high-risk relation cannot be auto accepted")
             return GraphProposalReview(
@@ -153,7 +169,7 @@ class GraphProposalReviewPolicy:
         low_risk_with_verified_evidence = (
             proposal.proposal_type in {"link_tags", "alias", "synonym"}
             and relation_risk.level == "low"
-            and verified_evidence
+            and evidence_usable
             and support.status == EvidenceSupport.SUPPORTS_EXACT
         )
         if low_risk_with_verified_evidence:

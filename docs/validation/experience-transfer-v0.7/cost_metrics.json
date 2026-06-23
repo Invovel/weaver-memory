@@ -1,0 +1,26 @@
+{
+  "no_memory": {
+    "average_token_estimate": 59.3333,
+    "token_overhead_vs_no_memory": 0.0,
+    "token_per_successful_task": 59.3333,
+    "llm_call_count": 0
+  },
+  "raw_rag_over_logs": {
+    "average_token_estimate": 145.1667,
+    "token_overhead_vs_no_memory": 85.8333,
+    "token_per_successful_task": 145.1667,
+    "llm_call_count": 0
+  },
+  "mw_verified_memory": {
+    "average_token_estimate": 88.1667,
+    "token_overhead_vs_no_memory": 28.8333,
+    "token_per_successful_task": 88.1667,
+    "llm_call_count": 0
+  },
+  "mw_verified_memory_marker": {
+    "average_token_estimate": 140.6667,
+    "token_overhead_vs_no_memory": 81.3333,
+    "token_per_successful_task": 140.6667,
+    "llm_call_count": 0
+  }
+}

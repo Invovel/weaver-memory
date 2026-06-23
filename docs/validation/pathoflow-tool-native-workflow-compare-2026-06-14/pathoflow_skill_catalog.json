@@ -1,0 +1,317 @@
+{
+  "schema": "pathoflow_skill_catalog_v1",
+  "generated_at": "2026-06-15",
+  "readiness_levels": {
+    "ready": "Core path has local execution evidence and produces usable artifacts.",
+    "partial": "At least one main step is locally validated, but an important downstream step is blocked, missing, or contract-fragile.",
+    "declared_only": "Clearly represented in the reviewed registry, but not locally executed in this validation pass.",
+    "blocked": "The intended chain is currently non-usable because a critical stage emits no artifacts or fails contract handoff."
+  },
+  "skills": [
+    {
+      "skill_id": "skill_preprocess_qc_mask",
+      "title": "Slide Preprocess Gate",
+      "purpose": "Filter low-quality slides, estimate spacing when needed, and restrict downstream analysis to tissue foreground.",
+      "sequence": [
+        "40-GrandQC?",
+        "57-estimate-image-spacing?",
+        "1-foreground-segmentation"
+      ],
+      "input_contract": [
+        "input_slide",
+        "input_images (spacing-estimation special case)"
+      ],
+      "output_contract": [
+        "qc_report_json or qc_label",
+        "resolution_value?",
+        "foreground_mask"
+      ],
+      "readiness": "partial",
+      "auto_schedulable": true,
+      "local_evidence": [
+        "1-foreground-segmentation verified in demo mode with a real TIF mask"
+      ],
+      "breakpoints": [
+        "40 and 57 are not locally executed in this pass",
+        "planner drift can skip or misroute this gate"
+      ]
+    },
+    {
+      "skill_id": "skill_classification_screening",
+      "title": "Classification Screening",
+      "purpose": "Run disease-specific or pan-cancer slide-level screening and emit heatmaps, suspicious-region masks, and reports.",
+      "sequence": [
+        "skill_preprocess_qc_mask",
+        "5|6|62|63",
+        "59-generate-overlays?"
+      ],
+      "input_contract": [
+        "input_slide"
+      ],
+      "output_contract": [
+        "heatmap-like detection image",
+        "tumor_mask",
+        "score_json",
+        "overlay?"
+      ],
+      "readiness": "partial",
+      "auto_schedulable": true,
+      "local_evidence": [
+        "5-pancreas-tumor-detection verified in cpu_pseudo mode",
+        "6-breast-tumor-detection verified in cpu_pseudo mode"
+      ],
+      "breakpoints": [
+        "classification-to-overlay mask contract mismatch: png versus tif/tiff",
+        "planner drift across disease families"
+      ]
+    },
+    {
+      "skill_id": "skill_region_segmentation",
+      "title": "Region Segmentation",
+      "purpose": "Produce WSI-aligned tissue or lesion masks for downstream interpretation or post-processing.",
+      "sequence": [
+        "skill_preprocess_qc_mask",
+        "2|11|12|16|17|18|26",
+        "59-generate-overlays"
+      ],
+      "input_contract": [
+        "input_slide"
+      ],
+      "output_contract": [
+        "mask_tif",
+        "region_json?",
+        "overlay?"
+      ],
+      "readiness": "partial",
+      "auto_schedulable": true,
+      "local_evidence": [
+        "foreground segmentation path is locally real",
+        "mask-oriented segmentation branch is structurally supported"
+      ],
+      "breakpoints": [
+        "overlay returns completed_no_output even when preflight is ready"
+      ]
+    },
+    {
+      "skill_id": "skill_multires_tissue_prior",
+      "title": "Multi-Resolution Tissue Prior",
+      "purpose": "Generate a stronger tissue prior mask when single-scale support masks may be too weak.",
+      "sequence": [
+        "40-GrandQC?",
+        "57-estimate-image-spacing?",
+        "64-TUZI",
+        "59-generate-overlays?"
+      ],
+      "input_contract": [
+        "input_slide"
+      ],
+      "output_contract": [
+        "mask_tif",
+        "region_json?",
+        "overlay?"
+      ],
+      "readiness": "declared_only",
+      "auto_schedulable": false,
+      "local_evidence": [],
+      "breakpoints": [
+        "no local manifest evidence for TUZI in this pass",
+        "overlay tail inherits the 59 gap if required"
+      ]
+    },
+    {
+      "skill_id": "skill_nucleus_pathomics",
+      "title": "Nucleus Pathomics",
+      "purpose": "Generate nucleus instances and pass them into nucleus-aware pathomics feature extraction.",
+      "sequence": [
+        "1-foreground-segmentation?",
+        "50|53",
+        "77"
+      ],
+      "input_contract": [
+        "input_slide"
+      ],
+      "output_contract": [
+        "nucleus_mask",
+        "pathomics_feature_table_or_pkl"
+      ],
+      "readiness": "declared_only",
+      "auto_schedulable": false,
+      "local_evidence": [
+        "legacy 4-nucleus-segmentation-hovernet-pannuke verified in demo mode as adjacent proof"
+      ],
+      "breakpoints": [
+        "reviewed preferred nucleus tools 50 and 53 were not locally executed in this pass",
+        "pathomics stage 77 has no local manifest proof in this pass"
+      ]
+    },
+    {
+      "skill_id": "skill_ihc_quantification",
+      "title": "IHC Quantification",
+      "purpose": "Detect and quantify positive and negative IHC cells.",
+      "sequence": [
+        "40-GrandQC?",
+        "41-DeepLIIF"
+      ],
+      "input_contract": [
+        "input_slide"
+      ],
+      "output_contract": [
+        "cell_mask",
+        "cell_count_csv?",
+        "overlay?"
+      ],
+      "readiness": "declared_only",
+      "auto_schedulable": false,
+      "local_evidence": [],
+      "breakpoints": [
+        "no local execution trace in this pass",
+        "planner currently drifts away from IHC tasks"
+      ]
+    },
+    {
+      "skill_id": "skill_prompt_segmentation",
+      "title": "Prompt Segmentation",
+      "purpose": "Use prompt-driven segmentation when the task is concept-based rather than disease-specific.",
+      "sequence": [
+        "25-BiomedParse",
+        "59-generate-overlays?"
+      ],
+      "input_contract": [
+        "input_slide",
+        "prompt_target"
+      ],
+      "output_contract": [
+        "mask_tif",
+        "overlay?"
+      ],
+      "readiness": "declared_only",
+      "auto_schedulable": false,
+      "local_evidence": [],
+      "breakpoints": [
+        "no local execution proof in this pass",
+        "overlay inherits the 59 zero-output problem if requested"
+      ]
+    },
+    {
+      "skill_id": "skill_virtual_modality",
+      "title": "Virtual Modality",
+      "purpose": "Generate virtual modality imagery rather than masks or classifications.",
+      "sequence": [
+        "39-HE-transfer-to-SHG | 67-GigaTIME"
+      ],
+      "input_contract": [
+        "input_slide"
+      ],
+      "output_contract": [
+        "generated_image_or_multichannel_directory"
+      ],
+      "readiness": "declared_only",
+      "auto_schedulable": false,
+      "local_evidence": [],
+      "breakpoints": [
+        "no local manifest evidence in this pass",
+        "outputs are generated images, not standard mask-chain artifacts"
+      ]
+    },
+    {
+      "skill_id": "skill_specialized_tls",
+      "title": "Specialized TLS",
+      "purpose": "Segment tertiary lymphoid structures and related germinal-center patterns.",
+      "sequence": [
+        "40-GrandQC?",
+        "61-hooknet-tls",
+        "review/export"
+      ],
+      "input_contract": [
+        "input_slide"
+      ],
+      "output_contract": [
+        "mask_tif",
+        "overlay?",
+        "structured_result?"
+      ],
+      "readiness": "declared_only",
+      "auto_schedulable": false,
+      "local_evidence": [],
+      "breakpoints": [
+        "no local execution proof in this pass",
+        "overlay still depends on the 59 visualization gap if requested"
+      ]
+    },
+    {
+      "skill_id": "skill_normalization_bridge",
+      "title": "Normalization Bridge",
+      "purpose": "Normalize stain appearance before a downstream model when normalization is required.",
+      "sequence": [
+        "52-Global-Macenko",
+        "downstream_model"
+      ],
+      "input_contract": [
+        "input_slide"
+      ],
+      "output_contract": [
+        "normalized_slide"
+      ],
+      "readiness": "blocked",
+      "auto_schedulable": false,
+      "local_evidence": [
+        "52-Global-Macenko executed locally but produced no output files"
+      ],
+      "breakpoints": [
+        "empty upstream output blocks the downstream chain immediately"
+      ]
+    },
+    {
+      "skill_id": "skill_overlay_review",
+      "title": "Overlay Review",
+      "purpose": "Generate a human-readable overlay from an existing slide and TIF/TIFF mask.",
+      "sequence": [
+        "input_slide + input_mask",
+        "59-generate-overlays"
+      ],
+      "input_contract": [
+        "input_slide",
+        "input_mask with tif or tiff extension"
+      ],
+      "output_contract": [
+        "overlay_png"
+      ],
+      "readiness": "blocked",
+      "auto_schedulable": false,
+      "local_evidence": [
+        "overlay preflight can be ready for foreground and nucleus masks"
+      ],
+      "breakpoints": [
+        "execution returns completed_no_output",
+        "detection masks also violate the required tif/tiff extension"
+      ]
+    }
+  ],
+  "recommended_tiers": {
+    "tier_a_usable_core": [
+      "skill_preprocess_qc_mask",
+      "skill_classification_screening"
+    ],
+    "tier_b_structurally_good_but_not_closed_loop": [
+      "skill_region_segmentation",
+      "skill_nucleus_pathomics",
+      "skill_ihc_quantification",
+      "skill_prompt_segmentation",
+      "skill_specialized_tls"
+    ],
+    "tier_c_registry_present_needs_execution_proof": [
+      "skill_multires_tissue_prior",
+      "skill_virtual_modality"
+    ],
+    "tier_d_explicitly_broken_helpers": [
+      "skill_normalization_bridge",
+      "skill_overlay_review"
+    ]
+  },
+  "scheduling_policy": [
+    "determine task family with deterministic rules before planner ranking",
+    "bind to a named skill before choosing individual tools",
+    "reject any chain that requires skill_overlay_review or skill_normalization_bridge as mandatory final steps",
+    "treat declared_only skills as review-mode suggestions until manifest proof is added"
+  ]
+}

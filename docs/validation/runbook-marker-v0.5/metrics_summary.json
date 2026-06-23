@@ -1,0 +1,72 @@
+{
+  "benchmark": "runbook-marker-trace-fixture-v0.5",
+  "dataset": {
+    "source": "D:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\runbook-marker-v0.5\\dialogue_cards.jsonl",
+    "cards": 50,
+    "dialogue_unit": "one 10-20 turn conversation",
+    "official_external_benchmark": false
+  },
+  "metrics": {
+    "card_count": 50,
+    "golden_card_count": 5,
+    "unique_dialogue_ids": 50,
+    "turn_min": 10,
+    "turn_max": 18,
+    "core_issue_match_accuracy": 1.0,
+    "marker_trigger_precision": 1.0,
+    "route_accuracy": 1.0,
+    "online_llm_zero_rate": 1.0,
+    "trace_completeness_rate": 1.0,
+    "complete_trace_count": 50,
+    "trace_generated_count": 50,
+    "shadow_mode_labeled_rate": 1.0,
+    "actual_runtime_unchanged_rate": 1.0,
+    "required_evidence_match_rate": 1.0,
+    "known_bad_path_warning_match_rate": 1.0,
+    "counterfactual_present_rate": 1.0,
+    "conflict_candidate_logged_count": 1,
+    "safety_violation_count": 0,
+    "counterfactual_step_reduction": 150,
+    "mean_counterfactual_step_reduction": 3.0,
+    "known_bad_action_reduction": 55,
+    "evidence_order_improvement": 200,
+    "user_correction_avoidance_estimate": 50,
+    "marker_advantage_card_count": 50,
+    "marker_advantage_card_rate": 1.0,
+    "high_confidence_advantage_count": 4,
+    "medium_or_high_confidence_advantage_count": 20,
+    "conflict_resolution_advantage_count": 1,
+    "advantage_attribution_totals": {
+      "source_gate_steps_saved": 18,
+      "guard_marker_steps_saved": 50,
+      "evidence_marker_steps_saved": 82
+    },
+    "card_type_counts": {
+      "known_bad_path_suppression": 6,
+      "marker_conflict_shadow": 1,
+      "weak_signal_partial": 6,
+      "freshness_conflict": 6,
+      "ambiguous_evidence": 6,
+      "negative_avoidance": 5,
+      "route_hint": 5,
+      "evidence_requirement": 5,
+      "scope_mismatch": 5,
+      "overgeneralized_marker_rejection": 5
+    },
+    "card_type_pass_counts": {
+      "known_bad_path_suppression": 6,
+      "marker_conflict_shadow": 1,
+      "weak_signal_partial": 6,
+      "freshness_conflict": 6,
+      "ambiguous_evidence": 6,
+      "negative_avoidance": 5,
+      "route_hint": 5,
+      "evidence_requirement": 5,
+      "scope_mismatch": 5,
+      "overgeneralized_marker_rejection": 5
+    }
+  },
+  "manual_core_issue_count": 50,
+  "manual_marker_count": 50,
+  "passed": true
+}

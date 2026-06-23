@@ -1,0 +1,22 @@
+{
+  "validation": "real-trajectory-experiment-v0.6",
+  "dataset_source": "D:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\runbook-marker-v0.5\\dialogue_cards.jsonl",
+  "official_external_benchmark": false,
+  "trajectory_mode": "semi_real_dialogue_card_replay",
+  "task_count": 50,
+  "trajectory_count": 150,
+  "arm_count": 3,
+  "mw_steps_to_success_delta_vs_no_memory": 3,
+  "mw_steps_to_success_delta_vs_rag": 1,
+  "mw_known_bad_action_reduction_vs_no_memory": 55,
+  "mw_known_bad_action_reduction_vs_rag": 50,
+  "mw_tool_call_reduction_vs_no_memory": 3,
+  "mw_user_correction_reduction_vs_no_memory": 50,
+  "mw_required_evidence_first_hit_rate": 1.0,
+  "rag_required_evidence_first_hit_rate": 0.0,
+  "no_memory_required_evidence_first_hit_rate": 0.0,
+  "mw_marker_activation_accuracy": 1.0,
+  "runtime_authority_violation_count": 0,
+  "online_llm_call_count": 0,
+  "trace_advantage_template_passed": true
+}

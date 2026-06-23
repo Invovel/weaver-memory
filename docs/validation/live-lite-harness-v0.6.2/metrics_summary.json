@@ -1,0 +1,22 @@
+{
+  "validation": "live-lite-harness-v0.6.2",
+  "task_count": 50,
+  "task_run_count": 150,
+  "decision_count": 150,
+  "hash_chain_valid": true,
+  "mw_steps_to_success_delta_vs_no_memory": 3,
+  "mw_steps_to_success_delta_vs_rag": 1,
+  "mw_known_bad_action_reduction_vs_no_memory": 55,
+  "mw_known_bad_action_reduction_vs_rag": 50,
+  "mw_known_bad_tool_failure_reduction_vs_no_memory": 55,
+  "mw_known_bad_tool_failure_reduction_vs_rag": 50,
+  "mw_required_evidence_first_hit_rate": 1.0,
+  "mw_known_bad_warning_count": 55,
+  "mw_evidence_observed_count": 100,
+  "mock_tool_execution_count": 500,
+  "mw_unsafe_mock_tool_execution_count": 0,
+  "real_tool_execution_count": 0,
+  "memory_promotion_count": 0,
+  "layer3_mutation_count": 0,
+  "online_llm_call_count": 0
+}

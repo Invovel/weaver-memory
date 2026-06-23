@@ -1,0 +1,823 @@
+{
+  "chain_count": 4,
+  "chains": [
+    {
+      "chain_id": "tool_executor_foreground_overlay",
+      "stages": [
+        {
+          "stage_id": 1,
+          "tools": [
+            "1-foreground-segmentation"
+          ],
+          "parallel": false
+        },
+        {
+          "stage_id": 2,
+          "tools": [
+            "59-generate-overlays"
+          ],
+          "parallel": false
+        }
+      ],
+      "result": {
+        "stages": [
+          {
+            "stage_id": 1,
+            "parallel": false,
+            "tools": [
+              {
+                "tool_id": "1-foreground-segmentation",
+                "status": "success",
+                "error": "",
+                "duration": 3.488,
+                "output": {
+                  "success": true,
+                  "tool_id": "1-foreground-segmentation",
+                  "execution_mode": "demo",
+                  "task_id": "4cae26a7",
+                  "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\4cae26a7",
+                  "output_files": [
+                    "demo_1-foreground-segmentation_foreground.tif"
+                  ],
+                  "error": "",
+                  "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\4cae26a7\\execution_manifest.json",
+                  "manifest_execution_state": "completed",
+                  "manifest_file_count": 1,
+                  "manifest_files_by_kind": {
+                    "mask_or_labelmap": 1
+                  },
+                  "manifest_warnings": [],
+                  "result_summary": {
+                    "tool": "1-foreground-segmentation",
+                    "task_id": "4cae26a7",
+                    "status": "completed",
+                    "summary": "演示模式完成，输出 1 个结果文件",
+                    "output_images": [
+                      "demo_1-foreground-segmentation_foreground.tif"
+                    ],
+                    "notes": "本结果为演示模式预设输出，不代表真实推理结果。"
+                  }
+                }
+              }
+            ],
+            "duration": 3.488
+          },
+          {
+            "stage_id": 2,
+            "parallel": false,
+            "tools": [
+              {
+                "tool_id": "59-generate-overlays",
+                "status": "success",
+                "error": "",
+                "duration": 4.008,
+                "output": {
+                  "success": true,
+                  "tool_id": "59-generate-overlays",
+                  "execution_mode": "demo",
+                  "task_id": "9798d937",
+                  "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\9798d937",
+                  "output_files": [
+                    "demo_59_generate_overlays_overlay.png"
+                  ],
+                  "error": "",
+                  "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\9798d937\\execution_manifest.json",
+                  "manifest_execution_state": "completed",
+                  "manifest_file_count": 1,
+                  "manifest_files_by_kind": {
+                    "overlay_or_heatmap": 1
+                  },
+                  "manifest_warnings": [],
+                  "result_summary": {
+                    "tool": "59-generate-overlays",
+                    "task_id": "9798d937",
+                    "status": "completed",
+                    "summary": "演示模式完成，输出 1 个结果文件",
+                    "output_images": [
+                      "demo_59_generate_overlays_overlay.png"
+                    ],
+                    "notes": "本结果为演示模式预设输出，不代表真实推理结果。"
+                  }
+                }
+              }
+            ],
+            "duration": 4.008
+          }
+        ],
+        "total_duration": 7.496,
+        "success_count": 2,
+        "failure_count": 0,
+        "skipped_count": 0
+      },
+      "responses": {
+        "1-foreground-segmentation": {
+          "success": true,
+          "tool_id": "1-foreground-segmentation",
+          "execution_mode": "demo",
+          "task_id": "4cae26a7",
+          "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\4cae26a7",
+          "output_files": [
+            "demo_1-foreground-segmentation_foreground.tif"
+          ],
+          "error": "",
+          "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\4cae26a7\\execution_manifest.json",
+          "manifest_execution_state": "completed",
+          "manifest_file_count": 1,
+          "manifest_files_by_kind": {
+            "mask_or_labelmap": 1
+          },
+          "manifest_warnings": [],
+          "result_summary": {
+            "tool": "1-foreground-segmentation",
+            "task_id": "4cae26a7",
+            "status": "completed",
+            "summary": "演示模式完成，输出 1 个结果文件",
+            "output_images": [
+              "demo_1-foreground-segmentation_foreground.tif"
+            ],
+            "notes": "本结果为演示模式预设输出，不代表真实推理结果。"
+          }
+        },
+        "59-generate-overlays": {
+          "success": true,
+          "tool_id": "59-generate-overlays",
+          "execution_mode": "demo",
+          "task_id": "9798d937",
+          "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\9798d937",
+          "output_files": [
+            "demo_59_generate_overlays_overlay.png"
+          ],
+          "error": "",
+          "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\9798d937\\execution_manifest.json",
+          "manifest_execution_state": "completed",
+          "manifest_file_count": 1,
+          "manifest_files_by_kind": {
+            "overlay_or_heatmap": 1
+          },
+          "manifest_warnings": [],
+          "result_summary": {
+            "tool": "59-generate-overlays",
+            "task_id": "9798d937",
+            "status": "completed",
+            "summary": "演示模式完成，输出 1 个结果文件",
+            "output_images": [
+              "demo_59_generate_overlays_overlay.png"
+            ],
+            "notes": "本结果为演示模式预设输出，不代表真实推理结果。"
+          }
+        }
+      },
+      "artifacts": {
+        "1-foreground-segmentation": {
+          "path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\4cae26a7\\demo_1-foreground-segmentation_foreground.tif"
+        },
+        "59-generate-overlays": {
+          "path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\9798d937\\demo_59_generate_overlays_overlay.png"
+        }
+      }
+    },
+    {
+      "chain_id": "tool_executor_nucleus_overlay",
+      "stages": [
+        {
+          "stage_id": 1,
+          "tools": [
+            "4-nucleus-segmentation-hovernet-pannuke"
+          ],
+          "parallel": false
+        },
+        {
+          "stage_id": 2,
+          "tools": [
+            "59-generate-overlays"
+          ],
+          "parallel": false
+        }
+      ],
+      "result": {
+        "stages": [
+          {
+            "stage_id": 1,
+            "parallel": false,
+            "tools": [
+              {
+                "tool_id": "4-nucleus-segmentation-hovernet-pannuke",
+                "status": "success",
+                "error": "",
+                "duration": 4.778,
+                "output": {
+                  "success": true,
+                  "tool_id": "4-nucleus-segmentation-hovernet-pannuke",
+                  "execution_mode": "demo",
+                  "task_id": "54fb4900",
+                  "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\54fb4900",
+                  "output_files": [
+                    "demo_4-nucleus-segmentation-hovernet-pannuke_nucleus_map.tif"
+                  ],
+                  "error": "",
+                  "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\54fb4900\\execution_manifest.json",
+                  "manifest_execution_state": "completed",
+                  "manifest_file_count": 1,
+                  "manifest_files_by_kind": {
+                    "mask_or_labelmap": 1
+                  },
+                  "manifest_warnings": [],
+                  "result_summary": {
+                    "tool": "4-nucleus-segmentation-hovernet-pannuke",
+                    "task_id": "54fb4900",
+                    "status": "completed",
+                    "summary": "演示模式完成，输出 1 个结果文件",
+                    "output_images": [
+                      "demo_4-nucleus-segmentation-hovernet-pannuke_nucleus_map.tif"
+                    ],
+                    "notes": "本结果为演示模式预设输出，不代表真实推理结果。"
+                  }
+                }
+              }
+            ],
+            "duration": 4.778
+          },
+          {
+            "stage_id": 2,
+            "parallel": false,
+            "tools": [
+              {
+                "tool_id": "59-generate-overlays",
+                "status": "success",
+                "error": "",
+                "duration": 4.528,
+                "output": {
+                  "success": true,
+                  "tool_id": "59-generate-overlays",
+                  "execution_mode": "demo",
+                  "task_id": "9ec8ed1d",
+                  "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\9ec8ed1d",
+                  "output_files": [
+                    "demo_59_generate_overlays_overlay.png"
+                  ],
+                  "error": "",
+                  "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\9ec8ed1d\\execution_manifest.json",
+                  "manifest_execution_state": "completed",
+                  "manifest_file_count": 1,
+                  "manifest_files_by_kind": {
+                    "overlay_or_heatmap": 1
+                  },
+                  "manifest_warnings": [],
+                  "result_summary": {
+                    "tool": "59-generate-overlays",
+                    "task_id": "9ec8ed1d",
+                    "status": "completed",
+                    "summary": "演示模式完成，输出 1 个结果文件",
+                    "output_images": [
+                      "demo_59_generate_overlays_overlay.png"
+                    ],
+                    "notes": "本结果为演示模式预设输出，不代表真实推理结果。"
+                  }
+                }
+              }
+            ],
+            "duration": 4.528
+          }
+        ],
+        "total_duration": 9.306,
+        "success_count": 2,
+        "failure_count": 0,
+        "skipped_count": 0
+      },
+      "responses": {
+        "4-nucleus-segmentation-hovernet-pannuke": {
+          "success": true,
+          "tool_id": "4-nucleus-segmentation-hovernet-pannuke",
+          "execution_mode": "demo",
+          "task_id": "54fb4900",
+          "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\54fb4900",
+          "output_files": [
+            "demo_4-nucleus-segmentation-hovernet-pannuke_nucleus_map.tif"
+          ],
+          "error": "",
+          "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\54fb4900\\execution_manifest.json",
+          "manifest_execution_state": "completed",
+          "manifest_file_count": 1,
+          "manifest_files_by_kind": {
+            "mask_or_labelmap": 1
+          },
+          "manifest_warnings": [],
+          "result_summary": {
+            "tool": "4-nucleus-segmentation-hovernet-pannuke",
+            "task_id": "54fb4900",
+            "status": "completed",
+            "summary": "演示模式完成，输出 1 个结果文件",
+            "output_images": [
+              "demo_4-nucleus-segmentation-hovernet-pannuke_nucleus_map.tif"
+            ],
+            "notes": "本结果为演示模式预设输出，不代表真实推理结果。"
+          }
+        },
+        "59-generate-overlays": {
+          "success": true,
+          "tool_id": "59-generate-overlays",
+          "execution_mode": "demo",
+          "task_id": "9ec8ed1d",
+          "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\9ec8ed1d",
+          "output_files": [
+            "demo_59_generate_overlays_overlay.png"
+          ],
+          "error": "",
+          "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\9ec8ed1d\\execution_manifest.json",
+          "manifest_execution_state": "completed",
+          "manifest_file_count": 1,
+          "manifest_files_by_kind": {
+            "overlay_or_heatmap": 1
+          },
+          "manifest_warnings": [],
+          "result_summary": {
+            "tool": "59-generate-overlays",
+            "task_id": "9ec8ed1d",
+            "status": "completed",
+            "summary": "演示模式完成，输出 1 个结果文件",
+            "output_images": [
+              "demo_59_generate_overlays_overlay.png"
+            ],
+            "notes": "本结果为演示模式预设输出，不代表真实推理结果。"
+          }
+        }
+      },
+      "artifacts": {
+        "4-nucleus-segmentation-hovernet-pannuke": {
+          "path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\54fb4900\\demo_4-nucleus-segmentation-hovernet-pannuke_nucleus_map.tif"
+        },
+        "59-generate-overlays": {
+          "path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\9ec8ed1d\\demo_59_generate_overlays_overlay.png"
+        }
+      }
+    },
+    {
+      "chain_id": "tool_executor_detection_overlay",
+      "stages": [
+        {
+          "stage_id": 1,
+          "tools": [
+            "5-pancreas-tumor-detection"
+          ],
+          "parallel": false
+        },
+        {
+          "stage_id": 2,
+          "tools": [
+            "59-generate-overlays"
+          ],
+          "parallel": false
+        }
+      ],
+      "result": {
+        "stages": [
+          {
+            "stage_id": 1,
+            "parallel": false,
+            "tools": [
+              {
+                "tool_id": "5-pancreas-tumor-detection",
+                "status": "success",
+                "error": "",
+                "duration": 5.001,
+                "output": {
+                  "success": true,
+                  "tool_id": "5-pancreas-tumor-detection",
+                  "execution_mode": "cpu_pseudo",
+                  "task_id": "72d0bea8",
+                  "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\72d0bea8",
+                  "output_files": [
+                    "detection_result.png",
+                    "tumor_mask.png",
+                    "report.json"
+                  ],
+                  "error": "",
+                  "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\72d0bea8\\execution_manifest.json",
+                  "manifest_execution_state": "completed",
+                  "manifest_file_count": 3,
+                  "manifest_files_by_kind": {
+                    "image": 1,
+                    "mask_or_labelmap": 1,
+                    "structured_json": 1
+                  },
+                  "manifest_warnings": [],
+                  "result_summary": {
+                    "tool": "5-pancreas-tumor-detection",
+                    "task_id": "72d0bea8",
+                    "status": "completed",
+                    "regions": [
+                      {
+                        "cx": 1046,
+                        "cy": 284,
+                        "rx": 118,
+                        "ry": 36,
+                        "confidence": 0.787
+                      },
+                      {
+                        "cx": 242,
+                        "cy": 274,
+                        "rx": 98,
+                        "ry": 48,
+                        "confidence": 0.694
+                      },
+                      {
+                        "cx": 520,
+                        "cy": 465,
+                        "rx": 55,
+                        "ry": 41,
+                        "confidence": 0.788
+                      },
+                      {
+                        "cx": 237,
+                        "cy": 114,
+                        "rx": 129,
+                        "ry": 83,
+                        "confidence": 0.776
+                      }
+                    ],
+                    "summary": "检测到 4 个胰腺癌疑似区域",
+                    "total_area_mm2": 68.81,
+                    "max_confidence": 0.788,
+                    "notes": "本结果为演示模式模拟输出，不代表真实病理诊断。"
+                  }
+                }
+              }
+            ],
+            "duration": 5.001
+          },
+          {
+            "stage_id": 2,
+            "parallel": false,
+            "tools": [
+              {
+                "tool_id": "59-generate-overlays",
+                "status": "success",
+                "error": "",
+                "duration": 4.31,
+                "output": {
+                  "success": true,
+                  "tool_id": "59-generate-overlays",
+                  "execution_mode": "demo",
+                  "task_id": "e31a5711",
+                  "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\e31a5711",
+                  "output_files": [
+                    "demo_59_generate_overlays_overlay.png"
+                  ],
+                  "error": "",
+                  "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\e31a5711\\execution_manifest.json",
+                  "manifest_execution_state": "completed",
+                  "manifest_file_count": 1,
+                  "manifest_files_by_kind": {
+                    "overlay_or_heatmap": 1
+                  },
+                  "manifest_warnings": [],
+                  "result_summary": {
+                    "tool": "59-generate-overlays",
+                    "task_id": "e31a5711",
+                    "status": "completed",
+                    "summary": "演示模式完成，输出 1 个结果文件",
+                    "output_images": [
+                      "demo_59_generate_overlays_overlay.png"
+                    ],
+                    "notes": "本结果为演示模式预设输出，不代表真实推理结果。"
+                  }
+                }
+              }
+            ],
+            "duration": 4.31
+          }
+        ],
+        "total_duration": 9.311,
+        "success_count": 2,
+        "failure_count": 0,
+        "skipped_count": 0
+      },
+      "responses": {
+        "5-pancreas-tumor-detection": {
+          "success": true,
+          "tool_id": "5-pancreas-tumor-detection",
+          "execution_mode": "cpu_pseudo",
+          "task_id": "72d0bea8",
+          "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\72d0bea8",
+          "output_files": [
+            "detection_result.png",
+            "tumor_mask.png",
+            "report.json"
+          ],
+          "error": "",
+          "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\72d0bea8\\execution_manifest.json",
+          "manifest_execution_state": "completed",
+          "manifest_file_count": 3,
+          "manifest_files_by_kind": {
+            "image": 1,
+            "mask_or_labelmap": 1,
+            "structured_json": 1
+          },
+          "manifest_warnings": [],
+          "result_summary": {
+            "tool": "5-pancreas-tumor-detection",
+            "task_id": "72d0bea8",
+            "status": "completed",
+            "regions": [
+              {
+                "cx": 1046,
+                "cy": 284,
+                "rx": 118,
+                "ry": 36,
+                "confidence": 0.787
+              },
+              {
+                "cx": 242,
+                "cy": 274,
+                "rx": 98,
+                "ry": 48,
+                "confidence": 0.694
+              },
+              {
+                "cx": 520,
+                "cy": 465,
+                "rx": 55,
+                "ry": 41,
+                "confidence": 0.788
+              },
+              {
+                "cx": 237,
+                "cy": 114,
+                "rx": 129,
+                "ry": 83,
+                "confidence": 0.776
+              }
+            ],
+            "summary": "检测到 4 个胰腺癌疑似区域",
+            "total_area_mm2": 68.81,
+            "max_confidence": 0.788,
+            "notes": "本结果为演示模式模拟输出，不代表真实病理诊断。"
+          }
+        },
+        "59-generate-overlays": {
+          "success": true,
+          "tool_id": "59-generate-overlays",
+          "execution_mode": "demo",
+          "task_id": "e31a5711",
+          "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\e31a5711",
+          "output_files": [
+            "demo_59_generate_overlays_overlay.png"
+          ],
+          "error": "",
+          "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\e31a5711\\execution_manifest.json",
+          "manifest_execution_state": "completed",
+          "manifest_file_count": 1,
+          "manifest_files_by_kind": {
+            "overlay_or_heatmap": 1
+          },
+          "manifest_warnings": [],
+          "result_summary": {
+            "tool": "59-generate-overlays",
+            "task_id": "e31a5711",
+            "status": "completed",
+            "summary": "演示模式完成，输出 1 个结果文件",
+            "output_images": [
+              "demo_59_generate_overlays_overlay.png"
+            ],
+            "notes": "本结果为演示模式预设输出，不代表真实推理结果。"
+          }
+        }
+      },
+      "artifacts": {
+        "5-pancreas-tumor-detection": {
+          "path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\72d0bea8\\detection_result.png"
+        },
+        "59-generate-overlays": {
+          "path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\e31a5711\\demo_59_generate_overlays_overlay.png"
+        }
+      }
+    },
+    {
+      "chain_id": "tool_executor_macenko_detection",
+      "stages": [
+        {
+          "stage_id": 1,
+          "tools": [
+            "52-Global-Macenko"
+          ],
+          "parallel": false
+        },
+        {
+          "stage_id": 2,
+          "tools": [
+            "5-pancreas-tumor-detection"
+          ],
+          "parallel": false
+        }
+      ],
+      "result": {
+        "stages": [
+          {
+            "stage_id": 1,
+            "parallel": false,
+            "tools": [
+              {
+                "tool_id": "52-Global-Macenko",
+                "status": "success",
+                "error": "",
+                "duration": 4.073,
+                "output": {
+                  "success": true,
+                  "tool_id": "52-Global-Macenko",
+                  "execution_mode": "demo",
+                  "task_id": "1a385044",
+                  "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\1a385044",
+                  "output_files": [
+                    "demo_52_global_macenko_normalized.png"
+                  ],
+                  "error": "",
+                  "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\1a385044\\execution_manifest.json",
+                  "manifest_execution_state": "completed",
+                  "manifest_file_count": 1,
+                  "manifest_files_by_kind": {
+                    "image": 1
+                  },
+                  "manifest_warnings": [],
+                  "result_summary": {
+                    "tool": "52-Global-Macenko",
+                    "task_id": "1a385044",
+                    "status": "completed",
+                    "summary": "演示模式完成，输出 1 个结果文件",
+                    "output_images": [
+                      "demo_52_global_macenko_normalized.png"
+                    ],
+                    "notes": "本结果为演示模式预设输出，不代表真实推理结果。"
+                  }
+                }
+              }
+            ],
+            "duration": 4.073
+          },
+          {
+            "stage_id": 2,
+            "parallel": false,
+            "tools": [
+              {
+                "tool_id": "5-pancreas-tumor-detection",
+                "status": "success",
+                "error": "",
+                "duration": 3.837,
+                "output": {
+                  "success": true,
+                  "tool_id": "5-pancreas-tumor-detection",
+                  "execution_mode": "cpu_pseudo",
+                  "task_id": "e3f4facd",
+                  "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\e3f4facd",
+                  "output_files": [
+                    "detection_result.png",
+                    "tumor_mask.png",
+                    "report.json"
+                  ],
+                  "error": "",
+                  "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\e3f4facd\\execution_manifest.json",
+                  "manifest_execution_state": "completed",
+                  "manifest_file_count": 3,
+                  "manifest_files_by_kind": {
+                    "image": 1,
+                    "mask_or_labelmap": 1,
+                    "structured_json": 1
+                  },
+                  "manifest_warnings": [],
+                  "result_summary": {
+                    "tool": "5-pancreas-tumor-detection",
+                    "task_id": "e3f4facd",
+                    "status": "completed",
+                    "regions": [
+                      {
+                        "cx": 441,
+                        "cy": 383,
+                        "rx": 80,
+                        "ry": 81,
+                        "confidence": 0.896
+                      },
+                      {
+                        "cx": 693,
+                        "cy": 415,
+                        "rx": 99,
+                        "ry": 67,
+                        "confidence": 0.665
+                      },
+                      {
+                        "cx": 430,
+                        "cy": 669,
+                        "rx": 94,
+                        "ry": 35,
+                        "confidence": 0.78
+                      }
+                    ],
+                    "summary": "检测到 3 个胰腺癌疑似区域",
+                    "total_area_mm2": 51.51,
+                    "max_confidence": 0.896,
+                    "notes": "本结果为演示模式模拟输出，不代表真实病理诊断。"
+                  }
+                }
+              }
+            ],
+            "duration": 3.837
+          }
+        ],
+        "total_duration": 7.91,
+        "success_count": 2,
+        "failure_count": 0,
+        "skipped_count": 0
+      },
+      "responses": {
+        "52-Global-Macenko": {
+          "success": true,
+          "tool_id": "52-Global-Macenko",
+          "execution_mode": "demo",
+          "task_id": "1a385044",
+          "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\1a385044",
+          "output_files": [
+            "demo_52_global_macenko_normalized.png"
+          ],
+          "error": "",
+          "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\1a385044\\execution_manifest.json",
+          "manifest_execution_state": "completed",
+          "manifest_file_count": 1,
+          "manifest_files_by_kind": {
+            "image": 1
+          },
+          "manifest_warnings": [],
+          "result_summary": {
+            "tool": "52-Global-Macenko",
+            "task_id": "1a385044",
+            "status": "completed",
+            "summary": "演示模式完成，输出 1 个结果文件",
+            "output_images": [
+              "demo_52_global_macenko_normalized.png"
+            ],
+            "notes": "本结果为演示模式预设输出，不代表真实推理结果。"
+          }
+        },
+        "5-pancreas-tumor-detection": {
+          "success": true,
+          "tool_id": "5-pancreas-tumor-detection",
+          "execution_mode": "cpu_pseudo",
+          "task_id": "e3f4facd",
+          "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\e3f4facd",
+          "output_files": [
+            "detection_result.png",
+            "tumor_mask.png",
+            "report.json"
+          ],
+          "error": "",
+          "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\e3f4facd\\execution_manifest.json",
+          "manifest_execution_state": "completed",
+          "manifest_file_count": 3,
+          "manifest_files_by_kind": {
+            "image": 1,
+            "mask_or_labelmap": 1,
+            "structured_json": 1
+          },
+          "manifest_warnings": [],
+          "result_summary": {
+            "tool": "5-pancreas-tumor-detection",
+            "task_id": "e3f4facd",
+            "status": "completed",
+            "regions": [
+              {
+                "cx": 441,
+                "cy": 383,
+                "rx": 80,
+                "ry": 81,
+                "confidence": 0.896
+              },
+              {
+                "cx": 693,
+                "cy": 415,
+                "rx": 99,
+                "ry": 67,
+                "confidence": 0.665
+              },
+              {
+                "cx": 430,
+                "cy": 669,
+                "rx": 94,
+                "ry": 35,
+                "confidence": 0.78
+              }
+            ],
+            "summary": "检测到 3 个胰腺癌疑似区域",
+            "total_area_mm2": 51.51,
+            "max_confidence": 0.896,
+            "notes": "本结果为演示模式模拟输出，不代表真实病理诊断。"
+          }
+        }
+      },
+      "artifacts": {
+        "52-Global-Macenko": {
+          "path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\1a385044\\demo_52_global_macenko_normalized.png"
+        },
+        "5-pancreas-tumor-detection": {
+          "path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\e3f4facd\\detection_result.png"
+        }
+      }
+    }
+  ]
+}

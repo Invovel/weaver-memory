@@ -1,0 +1,36 @@
+{
+  "status_code": 200,
+  "content_type": "application/json",
+  "body_json": {
+    "id": "0203a84c-5dc5-4626-8088-d3b5741a74e2",
+    "object": "chat.completion",
+    "created": 1781507671,
+    "model": "deepseek-v4-pro",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "",
+          "reasoning_content": "We are asked: \"Reply with exactly OK\". The instruction is to reply with exactly \"OK\". No other text. So I must output just \"OK\"."
+        },
+        "logprobs": null,
+        "finish_reason": "length"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 8,
+      "completion_tokens": 32,
+      "total_tokens": 40,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 32
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 8
+    },
+    "system_fingerprint": "fp_9954b31ca7_prod0820_fp8_kvcache_20260402"
+  }
+}

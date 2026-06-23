@@ -1,0 +1,13 @@
+{
+  "naive_baseline_ran": true,
+  "dirty_50_fixture_ran": true,
+  "at_least_10_queries": true,
+  "memoryweaver_pollution_leak_less_than_naive": true,
+  "memoryweaver_wrong_promotion_less_than_naive": true,
+  "memoryweaver_false_accept_less_than_naive": true,
+  "trusted_recall_not_significantly_lower_than_naive": true,
+  "strict_verified_only_baseline_ran": true,
+  "readme_labels_non_official_data": true,
+  "raw_results_reproducible": true,
+  "passed": true
+}

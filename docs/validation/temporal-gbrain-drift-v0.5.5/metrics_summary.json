@@ -1,0 +1,17 @@
+{
+  "core_issue_count": 50,
+  "marker_count": 50,
+  "graph_node_count": 113,
+  "temporal_edge_count": 76,
+  "temporal_metadata_complete_count": 113,
+  "stale_marker_count": 6,
+  "challenged_marker_count": 7,
+  "supersedes_edge_count": 13,
+  "challenged_by_edge_count": 13,
+  "marker_proposal_count": 13,
+  "review_required_count": 13,
+  "runtime_authority_granted_count": 0,
+  "memory_promotion_count": 0,
+  "layer3_mutation_count": 0,
+  "online_llm_call_count": 0
+}

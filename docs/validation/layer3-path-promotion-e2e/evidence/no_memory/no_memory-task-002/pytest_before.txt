@@ -1,0 +1,22 @@
+F.                                                                       [100%]
+================================== FAILURES ===================================
+________________________ test_safe_divide_handles_zero ________________________
+
+    def test_safe_divide_handles_zero():
+>       assert safe_divide(5, 0) is None
+               ^^^^^^^^^^^^^^^^^
+
+tests\test_calculator.py:5:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+numerator = 5, denominator = 0
+
+    def safe_divide(numerator, denominator):
+>       return numerator / denominator
+               ^^^^^^^^^^^^^^^^^^^^^^^
+E       ZeroDivisionError: division by zero
+
+sample_project\calculator.py:2: ZeroDivisionError
+=========================== short test summary info ===========================
+FAILED tests\test_calculator.py::test_safe_divide_handles_zero - ZeroDivision...
+1 failed, 1 passed in 0.11s

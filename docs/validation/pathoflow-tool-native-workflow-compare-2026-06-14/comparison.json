@@ -1,0 +1,32 @@
+{
+  "previous_runtime_any_hit_rate": 0.372,
+  "previous_canonical_any_hit_rate": 0.5755,
+  "planner_primary_flow_counts": {
+    "wish_14_intrahepatic_cholangiocarcinoma_cancer_detection": 3
+  },
+  "tool_execution_success_counts": {
+    "5-pancreas-tumor-detection": 1,
+    "1-foreground-segmentation": 1,
+    "59-generate-overlays": 1,
+    "4-nucleus-segmentation-hovernet-pannuke": 1,
+    "52-Global-Macenko": 1,
+    "6-breast-tumor-detection": 1
+  },
+  "executed_manifest_kind_totals": {
+    "image": 2,
+    "mask_or_labelmap": 4,
+    "structured_json": 2
+  },
+  "execution_cases_with_no_output_files": [
+    "demo_overlay_expected_gap",
+    "demo_macenko_expected_gap"
+  ],
+  "key_problems": [
+    "上一版主要是 prepare_context / retriever 回放，缺少真正的工具执行结果目录与 manifest。",
+    "PathoFlow 自带 OfflineFlowPlanner 在代表性查询上离线主选严重漂移，连续把肺癌/免疫/TME/IHC查询都选成了肝内胆管癌检测。",
+    "PathoFlow 的 demo overlay 工具当前会 success=true 但 file_count=0，说明工具链可视化末端存在资源或打包缺口。",
+    "CPU_PSEUDO 和 DEMO 执行器可以产出真实 result_manifest，这证明无 LLM 时仍能走一条工具驱动的流程，但覆盖范围明显小于上一版理论工具链。",
+    "当前可执行链更像多个单步工具的可运行片段，还不是 PathoFlow 自己稳定串好的多步病理工作流。",
+    "上一版 workflow 里大量工具来自数据集标注主链，而不是 PathoFlow 当前无 LLM planner 自己稳定规划出来的链路；两者不能等价看待。"
+  ]
+}

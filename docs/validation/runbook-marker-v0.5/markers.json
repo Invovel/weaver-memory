@@ -1,0 +1,865 @@
+{
+  "schema_version": "runbook-marker-v0.5",
+  "markers": [
+    {
+      "id": "avoid_npm_reinstall_for_subscription",
+      "core_issue_id": "codex_subscription_org_mismatch",
+      "status": "manual_seed",
+      "intervention_level": "L3_guard",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "check_selected_organization",
+        "verify_account_entitlement",
+        "confirm_codex_version"
+      ],
+      "suppressed_actions": [
+        "reinstall_npm",
+        "reset_auth_files"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "avoid_force_install_before_peer_range_check",
+      "core_issue_id": "npm_peer_dependency_range_mismatch",
+      "status": "manual_seed",
+      "intervention_level": "L3_guard",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "inspect_peer_range",
+        "inspect_lockfile_diff",
+        "identify_conflicting_package"
+      ],
+      "suppressed_actions": [
+        "npm_install_force",
+        "delete_lockfile"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "retain_docker_warning_as_partial_evidence",
+      "core_issue_id": "docker_platform_warning_partial_signal",
+      "status": "manual_seed",
+      "intervention_level": "L1_hint",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "compare_build_platform",
+        "compare_runtime_platform",
+        "check_exec_format_error"
+      ],
+      "suppressed_actions": [
+        "ignore_platform_warning",
+        "mark_warning_as_verified_root_cause"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "require_recent_ci_log_before_timeout_update",
+      "core_issue_id": "ci_timeout_freshness_conflict",
+      "status": "manual_seed",
+      "intervention_level": "L2_route",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "check_recent_ci_logs",
+        "compare_terminal_verified_baseline",
+        "identify_new_slow_test"
+      ],
+      "suppressed_actions": [
+        "overwrite_terminal_verified_timeout",
+        "increase_timeout_without_log_check"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "do_not_treat_key_existence_as_positive_auth",
+      "core_issue_id": "api_key_scope_ambiguous_evidence",
+      "status": "manual_seed",
+      "intervention_level": "L2_route",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "check_status_code",
+        "check_token_scope",
+        "check_endpoint_permission"
+      ],
+      "suppressed_actions": [
+        "mark_auth_positive_from_key_existence",
+        "rotate_key_before_scope_check"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_compare_native_and_wsl_auth_context",
+      "core_issue_id": "core_wsl_auth_environment_split",
+      "status": "manual_seed",
+      "intervention_level": "L1_hint",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "wsl_env",
+        "windows_env",
+        "config_path",
+        "login_state"
+      ],
+      "suppressed_actions": [
+        "treating_windows_success_as_wsl_proof"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_do_not_equate_api_key_with_subscription",
+      "core_issue_id": "core_api_key_vs_product_entitlement",
+      "status": "manual_seed",
+      "intervention_level": "L1_hint",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "key_test",
+        "account_email",
+        "org",
+        "entitlement"
+      ],
+      "suppressed_actions": [
+        "assuming_valid_api_key_proves_product_access"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_check_provider_model_before_billing",
+      "core_issue_id": "core_provider_model_name_mismatch",
+      "status": "manual_seed",
+      "intervention_level": "L1_hint",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "payload_model",
+        "env",
+        "endpoint",
+        "curl_smoke"
+      ],
+      "suppressed_actions": [
+        "assuming_402_always_means_balance_failure"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_verify_workspace_root_before_data_loss",
+      "core_issue_id": "core_workspace_root_mismatch",
+      "status": "manual_seed",
+      "intervention_level": "L1_hint",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "root",
+        "memoryweaver",
+        "proposal_file"
+      ],
+      "suppressed_actions": [
+        "recreating_empty_stores_before_checking_root"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_require_json_mode_for_machine_pipeline",
+      "core_issue_id": "core_cli_json_contract_violation",
+      "status": "manual_seed",
+      "intervention_level": "L1_hint",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "command_args",
+        "stdout",
+        "exit_code"
+      ],
+      "suppressed_actions": [
+        "changing_parser_before_checking_flags"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_check_provider_cooldown_before_retry",
+      "core_issue_id": "core_provider_health_gate",
+      "status": "manual_seed",
+      "intervention_level": "L1_hint",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "doctor_report",
+        "provider_health",
+        "budget_gate"
+      ],
+      "suppressed_actions": [
+        "unbounded_provider_retry_loop"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_require_env_file_when_using_provider",
+      "core_issue_id": "core_env_file_loading_contract",
+      "status": "manual_seed",
+      "intervention_level": "L1_hint",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "cli_args",
+        "config_source",
+        "provider_status"
+      ],
+      "suppressed_actions": [
+        "rotating_key_before_env_loading_check"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_request_scoped_write_approval",
+      "core_issue_id": "core_sandbox_path_permission",
+      "status": "manual_seed",
+      "intervention_level": "L1_hint",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "cwd",
+        "writable_roots",
+        "escalation_status"
+      ],
+      "suppressed_actions": [
+        "broad_destructive_permission_request"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_validate_module_and_console_entrypoints",
+      "core_issue_id": "core_cli_entrypoint_missing",
+      "status": "manual_seed",
+      "intervention_level": "L1_hint",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "pyproject_entrypoint",
+        "import_smoke",
+        "help"
+      ],
+      "suppressed_actions": [
+        "changing_core_logic_before_packaging_check"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_run_workspace_install_from_root",
+      "core_issue_id": "core_package_manager_workspace_root",
+      "status": "manual_seed",
+      "intervention_level": "L1_hint",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "workspace_file",
+        "lockfile",
+        "ci_command"
+      ],
+      "suppressed_actions": [
+        "deleting_lockfile_before_root_check"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_compare_python_and_pip_before_reinstall",
+      "core_issue_id": "core_python_interpreter_mismatch",
+      "status": "manual_seed",
+      "intervention_level": "L1_hint",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "python_c",
+        "pip_v",
+        "where_python",
+        "venv"
+      ],
+      "suppressed_actions": [
+        "reinstalling_before_interpreter_check"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_check_dependency_groups_before_code_change",
+      "core_issue_id": "core_dependency_group_not_installed",
+      "status": "manual_seed",
+      "intervention_level": "L1_hint",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "pyproject_groups",
+        "ci_command",
+        "import_error"
+      ],
+      "suppressed_actions": [
+        "editing_imports_before_dependency_check"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_check_runtime_version_before_dependency_edit",
+      "core_issue_id": "core_node_engine_mismatch",
+      "status": "manual_seed",
+      "intervention_level": "L1_hint",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "node_v",
+        "engines",
+        "ci_image"
+      ],
+      "suppressed_actions": [
+        "changing_deps_before_runtime_check"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_check_lockfile_diff_before_refactor",
+      "core_issue_id": "core_transitive_dependency_lock_regression",
+      "status": "manual_seed",
+      "intervention_level": "L1_hint",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "lockfile_diff",
+        "package_version",
+        "stack_trace"
+      ],
+      "suppressed_actions": [
+        "code_refactor_before_dependency_diff"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_verify_kernel_interpreter_before_install",
+      "core_issue_id": "core_notebook_kernel_env_split",
+      "status": "manual_seed",
+      "intervention_level": "L1_hint",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "kernel_path",
+        "sys_executable",
+        "env_list"
+      ],
+      "suppressed_actions": [
+        "repeated_pip_installs"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_check_import_file_before_reinstall",
+      "core_issue_id": "core_local_module_shadowing",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "module_file",
+        "repo_filenames",
+        "stack_trace"
+      ],
+      "suppressed_actions": [
+        "reinstall_before_import_path_check"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_check_pr_origin_before_secret_debug",
+      "core_issue_id": "core_ci_secret_fork_boundary",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "workflow_trigger",
+        "event_context",
+        "secret_log"
+      ],
+      "suppressed_actions": [
+        "rotating_secret_before_fork_check"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_compare_cached_and_clean_ci",
+      "core_issue_id": "core_ci_cache_stale_dependency",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "cache_key",
+        "lockfile",
+        "clean_install"
+      ],
+      "suppressed_actions": [
+        "assuming_cached_pass_proves_correctness"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_compare_env_contract_before_code_change",
+      "core_issue_id": "core_deploy_env_var_contract_mismatch",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "platform_env",
+        "app_config",
+        "runtime_logs"
+      ],
+      "suppressed_actions": [
+        "database_migration_before_env_contract_check"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_check_kube_context_namespace_first",
+      "core_issue_id": "core_kube_namespace_context_mismatch",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "context",
+        "namespace",
+        "rollout_status"
+      ],
+      "suppressed_actions": [
+        "reapplying_manifests_before_namespace_check"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_inspect_resolved_compose_config",
+      "core_issue_id": "core_compose_override_precedence",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "resolved_compose_config",
+        "override_file",
+        "container_env"
+      ],
+      "suppressed_actions": [
+        "editing_base_compose_repeatedly"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_verify_remote_tag_before_workflow_debug",
+      "core_issue_id": "core_release_tag_local_not_remote",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "local_tag",
+        "remote_refs",
+        "workflow_event"
+      ],
+      "suppressed_actions": [
+        "editing_workflow_before_remote_tag_check"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_no_manual_edit_applied_migration",
+      "core_issue_id": "core_applied_migration_checksum",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "migration_table",
+        "checksum",
+        "environment"
+      ],
+      "suppressed_actions": [
+        "editing_already_applied_migration_file"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_prefer_idempotent_seed_over_truncate",
+      "core_issue_id": "core_seed_idempotency_missing",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "unique_constraint",
+        "seed_code",
+        "existing_rows"
+      ],
+      "suppressed_actions": [
+        "truncating_table_first"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_check_query_count_before_network_debug",
+      "core_issue_id": "core_api_n_plus_one_regression",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "sql_count",
+        "trace_span",
+        "endpoint_diff"
+      ],
+      "suppressed_actions": [
+        "increasing_timeout_before_query_count"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_check_pool_and_transactions_before_retry",
+      "core_issue_id": "core_db_pool_exhaustion",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "pool_config",
+        "active_connections",
+        "transactions"
+      ],
+      "suppressed_actions": [
+        "adding_retry_loop_first"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_verify_schema_cache_after_migration",
+      "core_issue_id": "core_schema_cache_stale_after_migration",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "migration_applied",
+        "cache_state",
+        "restart_logs"
+      ],
+      "suppressed_actions": [
+        "rerunning_migration_repeatedly"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_test_boundary_dates_before_logic_rewrite",
+      "core_issue_id": "core_timezone_boundary_filter",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "stored_timestamp",
+        "query_timezone",
+        "examples"
+      ],
+      "suppressed_actions": [
+        "rewriting_logic_before_timezone_evidence"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_parse_status_and_headers_before_auth_fix",
+      "core_issue_id": "core_rate_limit_not_auth_failure",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "response_headers",
+        "quota",
+        "retry_policy"
+      ],
+      "suppressed_actions": [
+        "rotating_credentials_before_429_headers"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_freeze_time_before_assertion_rewrite",
+      "core_issue_id": "core_flaky_time_dependency",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "failing_timestamp",
+        "timezone",
+        "mocked_clock"
+      ],
+      "suppressed_actions": [
+        "relaxing_assertions_before_time_evidence"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_require_intent_before_snapshot_update",
+      "core_issue_id": "core_snapshot_intent_confirmation",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "product_copy",
+        "screenshot",
+        "snapshot_diff"
+      ],
+      "suppressed_actions": [
+        "blind_snapshot_update"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_compare_isolated_and_suite_run",
+      "core_issue_id": "core_test_global_state_leak",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "isolated_run",
+        "full_run",
+        "mock_lifecycle"
+      ],
+      "suppressed_actions": [
+        "changing_production_code_before_isolation_evidence"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_check_async_completion_before_timeout_increase",
+      "core_issue_id": "core_async_missing_await",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "pending_promises",
+        "assertion_timing",
+        "runner_warning"
+      ],
+      "suppressed_actions": [
+        "increasing_timeout_first"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_check_line_endings_before_logic_change",
+      "core_issue_id": "core_cross_platform_line_ending",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "encoding",
+        "gitattributes",
+        "diff_mode"
+      ],
+      "suppressed_actions": [
+        "editing_parser_logic_before_encoding_check"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_block_live_network_in_unit_tests",
+      "core_issue_id": "core_test_live_network_leak",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "stack_trace",
+        "network_mock",
+        "fixture_setup"
+      ],
+      "suppressed_actions": [
+        "increasing_timeout_before_network_isolation"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_inspect_diff_before_patch",
+      "core_issue_id": "core_dirty_worktree_preserve_user_changes",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "status",
+        "file_diff",
+        "task_scope"
+      ],
+      "suppressed_actions": [
+        "broad_revert_or_checkout"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_match_claim_to_metric_boundary",
+      "core_issue_id": "core_validation_claim_scope",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "validation_readme",
+        "raw_metrics",
+        "claim_text"
+      ],
+      "suppressed_actions": [
+        "production_e2e_claims_from_trust_data"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_learn_design_not_gpl_code",
+      "core_issue_id": "core_reference_license_boundary",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "repo_license",
+        "local_diff",
+        "design_notes"
+      ],
+      "suppressed_actions": [
+        "copying_gpl_implementation"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_require_validation_before_tag",
+      "core_issue_id": "core_release_tag_after_validation",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "pytest_output",
+        "raw_results",
+        "changelog"
+      ],
+      "suppressed_actions": [
+        "creating_tag_before_validation"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_check_model_payload_before_api_diagnosis",
+      "core_issue_id": "core_provider_specific_model_default",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "config_source",
+        "cli_args",
+        "payload"
+      ],
+      "suppressed_actions": [
+        "blaming_key_billing_first"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_require_raw_results_for_claim",
+      "core_issue_id": "core_validation_artifact_completeness",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "raw_path",
+        "metrics_summary",
+        "readme_links"
+      ],
+      "suppressed_actions": [
+        "publishing_summary_without_raw_data"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_prefer_hidden_canonical_memory_store",
+      "core_issue_id": "core_visible_bridge_not_canonical_store",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "hidden_store",
+        "generated_marker",
+        "source_hash"
+      ],
+      "suppressed_actions": [
+        "ingesting_generated_agents_md_as_verified_memory"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_trace_requires_reason_and_evidence",
+      "core_issue_id": "core_trace_explainability_gap",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "trace_json",
+        "matched_node",
+        "decision_log"
+      ],
+      "suppressed_actions": [
+        "opaque_marker_activation"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_surface_stale_pending_review",
+      "core_issue_id": "core_pending_review_queue_aging",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "pending_age",
+        "lifecycle_policy",
+        "doctor_report"
+      ],
+      "suppressed_actions": [
+        "using_stale_pending_marker_at_runtime"
+      ],
+      "runtime_authority": false
+    },
+    {
+      "id": "marker_resolve_scope_and_freshness_before_activation",
+      "core_issue_id": "core_marker_conflict_resolution",
+      "status": "manual_seed",
+      "intervention_level": "L0_trace",
+      "max_allowed_in_v0_5": "shadow_only",
+      "recommended_route": "fast_verify",
+      "required_evidence": [
+        "marker_scope",
+        "freshness",
+        "evidence_links",
+        "validation"
+      ],
+      "suppressed_actions": [
+        "activating_both_without_conflict_note"
+      ],
+      "runtime_authority": false
+    }
+  ]
+}

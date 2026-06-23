@@ -92,17 +92,17 @@ def main() -> None:
     image = Image.new("RGB", (WIDTH, HEIGHT), BACKGROUND)
     draw = ImageDraw.Draw(image)
 
-    draw.text((85, 55), "MemoryWeaver Runtime Architecture", font=TITLE, fill=INK)
+    draw.text((85, 55), "MemoryWeaver Path Promotion Architecture", font=TITLE, fill=INK)
     draw.text(
         (88, 125),
-        "LLM proposes. Harness judges. Deterministic lifecycle gates surround model actions.",
+        "Verified experience is promoted into reusable execution paths under deterministic lifecycle gates.",
         font=SUBTITLE,
         fill=MUTED,
     )
 
     lifecycle = [
         ((105, 170, 470, 218), "1  Environment Contract", "#E9F2FF", "#4D8FD8"),
-        ((500, 170, 865, 218), "2  Procedural Skills", "#F0EBFF", "#8067C8"),
+        ((500, 170, 865, 218), "2  Layer-3 Path Promotion", "#F0EBFF", "#8067C8"),
         ((895, 170, 1260, 218), "3  Action Realization", "#FDEDDD", "#C87837"),
         ((1290, 170, 1685, 218), "4  Trajectory Regulation", "#E7F7F1", "#3C9B79"),
     ]
@@ -122,10 +122,10 @@ def main() -> None:
     checkpoint = (95, 795, 475, 980)
 
     box(draw, user, "User / Agent Client", ["query", "confirmation", "correction"], "#E9F2FF", "#4D8FD8")
-    box(draw, harness, "MemoryWeaver Harness", ["contract + policy gates", "context fusion + router", "promotion / demotion", "anti-pollution judge"], "#FFF0D8", "#D58A28")
+    box(draw, harness, "MemoryWeaver Harness", ["contract + policy gates", "path selection + context fusion", "promotion / rollback", "anti-pollution judge"], "#FFF0D8", "#D58A28")
     box(draw, rag, "RAG Evidence Layer", ["documents + chunks", "hybrid retrieval", "citations + versions"], "#E7F7F1", "#3C9B79")
     box(draw, graph, "GBrain Graph", ["entities + tags", "relationships", "temporal context"], "#F0EBFF", "#8067C8")
-    box(draw, pattern, "Procedural Skills", ["Layer 3 patterns", "avoidance memory", "fast-path context"], "#FFEAF1", "#C65D83")
+    box(draw, pattern, "Layer-3 Path Promotion", ["provisional paths", "trial + path fitness", "stable / rollback / challenge"], "#FFEAF1", "#C65D83")
     box(draw, llm, "LLM", ["reason", "propose", "never self-verify"], "#EAF0FF", "#647FD0")
     box(draw, cli, "ActionGate / Tools", ["schema + permission", "sandboxed jobs", "idempotency"], "#FDEDDD", "#C87837")
     box(draw, feedback, "Trajectory Regulation", ["tool feedback", "loop + stagnation", "recovery signal"], "#E7F7F1", "#3C9B79")
@@ -147,7 +147,7 @@ def main() -> None:
     center_text(
         draw,
         (90, 1040, 1710, 1110),
-        "Online path: retrieve -> judge -> reason -> act -> observe -> checkpoint -> improve",
+        "Online path: verify -> promote path -> judge -> act -> observe -> checkpoint -> improve",
         SUBTITLE,
         fill=INK,
     )

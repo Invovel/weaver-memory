@@ -1,0 +1,6 @@
+{
+  "event_id": "evt_00000001",
+  "latest_checkpoint_id": "ckpt_v08-thread_0001",
+  "resume_success": true,
+  "roundtrip_rate": 1.0
+}

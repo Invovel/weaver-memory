@@ -1,8 +1,9 @@
-"""Deterministic write, promotion, and retrieval policies."""
+"""Deterministic write, promotion, retrieval, and action policies."""
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+import re
+from typing import TYPE_CHECKING, Any
 
 from memoryweaver.schema import (
     Layer,
@@ -118,3 +119,102 @@ class RetrievalPolicy:
             and pattern.freshness.value != "expired"
             and self._scope_matches(pattern.scope, scope)
         )
+
+
+class ActionPolicy:
+    """Deterministic policy for proposed tool actions."""
+
+    version = "action-policy-v1"
+    HIGH_RISK_TARGET_TOKENS = {
+        "chmod",
+        "chown",
+        "del",
+        "delete",
+        "drop_database",
+        "erase",
+        "format",
+        "iex",
+        "publish_release",
+        "push_latest",
+        "remove-item",
+        "remove_item",
+        "rmdir",
+        "reset_auth_files",
+        "rm",
+    }
+    LOW_RISK_ACTIONS = {"check_evidence", "ask_user", "resolve"}
+
+    def _risk_text(self, proposal: Any) -> str:
+        parts = [
+            str(getattr(proposal, "action_name", "")),
+            str(getattr(proposal, "target", "")),
+            str(getattr(proposal, "reasoning", "")),
+        ]
+        arguments = getattr(proposal, "arguments", {}) or {}
+        if isinstance(arguments, dict):
+            parts.extend(str(value) for value in arguments.values())
+        else:
+            parts.append(str(arguments))
+        return "\n".join(parts).lower()
+
+    def _risk_tokens(self, proposal: Any) -> set[str]:
+        text = self._risk_text(proposal)
+        tokens = {token for token in re.split(r"[^a-z0-9_-]+", text) if token}
+        tokens.update(token.replace("-", "_") for token in list(tokens))
+        tokens.update(token.replace("_", "-") for token in list(tokens))
+        for token in list(tokens):
+            tokens.update(part for part in re.split(r"[_-]+", token) if part)
+        return tokens
+
+    def classify_risk(self, proposal: Any, tool_contract: Any | None = None) -> str:
+        action_name = str(getattr(proposal, "action_name", ""))
+        side_effect_level = str(
+            getattr(tool_contract, "side_effect_level", "none")
+        ).lower()
+        if side_effect_level == "high":
+            return "high"
+        if self._risk_tokens(proposal) & self.HIGH_RISK_TARGET_TOKENS:
+            return "high"
+        if action_name in self.LOW_RISK_ACTIONS or side_effect_level == "none":
+            return "low"
+        return "medium"
+
+    def confirmation_required(self, proposal: Any, tool_contract: Any | None = None) -> bool:
+        if tool_contract is None:
+            return False
+        target = str(getattr(proposal, "target", ""))
+        return (
+            self.classify_risk(proposal, tool_contract) == "high"
+            or bool(tool_contract.target_requires_confirmation(target))
+        )
+
+    def idempotency_required(self, proposal: Any, tool_contract: Any | None = None) -> bool:
+        if tool_contract is not None and bool(
+            getattr(tool_contract, "idempotency_required", False)
+        ):
+            return True
+        return (
+            str(getattr(proposal, "action_name", "")) == "tool_call"
+            and self.classify_risk(proposal, tool_contract) in {"medium", "high"}
+        )
+
+    def budget_violations(
+        self,
+        proposal: Any,
+        environment_contract: Any,
+        tool_contract: Any | None = None,
+    ) -> list[str]:
+        violations: list[str] = []
+        requested_budget = dict(getattr(proposal, "resource_budget", {}) or {})
+        environment_budget = dict(getattr(environment_contract, "resource_budget", {}) or {})
+        tool_budget = dict(getattr(tool_contract, "resource_budget", {}) or {})
+        for key, value in requested_budget.items():
+            if key in environment_budget and int(value) > int(environment_budget[key]):
+                violations.append(
+                    f"resource budget '{key}'={value} exceeds environment limit {environment_budget[key]}"
+                )
+            if key in tool_budget and int(value) > int(tool_budget[key]):
+                violations.append(
+                    f"resource budget '{key}'={value} exceeds tool limit {tool_budget[key]}"
+                )
+        return violations

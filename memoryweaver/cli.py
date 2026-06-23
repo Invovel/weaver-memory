@@ -10,11 +10,18 @@ from pathlib import Path
 from typing import Any
 
 from memoryweaver import __version__
+from memoryweaver.action_gate import ActionGate, ActionProposal
 from memoryweaver.composer import PatternComposer
+from memoryweaver.content_router import ContentRouter
+from memoryweaver.contract import EnvironmentContract
+from memoryweaver.context_schema import ContentType, RawSpan
 from memoryweaver.evidence import EvidenceLink, EvidenceNode
+from memoryweaver.harness import MemoryWeaverHarness
 from memoryweaver.router import ModeRouter
-from memoryweaver.schema import MemoryItem
+from memoryweaver.schema import MemoryItem, Source
+from memoryweaver.skill import SkillRetriever
 from memoryweaver.store import MemoryWorkspace
+from memoryweaver.trajectory import TrajectoryRegulator
 
 
 def _add_common(parser: argparse.ArgumentParser, *, suppress_default: bool = False) -> None:
@@ -42,6 +49,7 @@ def build_parser() -> argparse.ArgumentParser:
     commands = parser.add_subparsers(dest="command", required=True)
 
     _leaf(commands, "validate", "Validate workspace structure and policy gates.")
+    _leaf(commands, "doctor", "Check workspace operational health.")
 
     memory = commands.add_parser("memory", help="Manage Layer 1 and Layer 2 memories.")
     memory_commands = memory.add_subparsers(dest="memory_command", required=True)
@@ -101,12 +109,39 @@ def build_parser() -> argparse.ArgumentParser:
     pattern_outcome.add_argument("--success", action="store_true")
     pattern_outcome.add_argument("--failure", action="store_true")
     pattern_validate.add_argument("--conflict-ref", default="")
+    pattern_trial = _leaf(
+        pattern_commands,
+        "trial",
+        "Record a Layer-3 execution-path trial with utility metrics.",
+    )
+    pattern_trial.add_argument("pattern_id")
+    pattern_trial.add_argument("--task-run-id", required=True)
+    pattern_trial_outcome = pattern_trial.add_mutually_exclusive_group(required=True)
+    pattern_trial_outcome.add_argument("--success", action="store_true")
+    pattern_trial_outcome.add_argument("--failure", action="store_true")
+    pattern_trial.add_argument("--steps-saved", type=int, default=0)
+    pattern_trial.add_argument("--known-bad-avoided", type=int, default=0)
+    pattern_trial.add_argument("--evidence-first", action="store_true")
+    pattern_trial.add_argument("--false-trigger", action="store_true")
+    pattern_trial.add_argument("--token-cost", type=float, default=0.0)
+    pattern_trial.add_argument("--scope-mismatch", action="store_true")
+    pattern_trial.add_argument("--recency-score", type=float, default=1.0)
+    pattern_trial.add_argument("--conflict-ref", default="")
     pattern_promote = _leaf(
         pattern_commands,
         "promote-stable",
         "Explicitly promote a Pattern to stable.",
     )
     pattern_promote.add_argument("pattern_id")
+    pattern_best_path = _leaf(
+        pattern_commands,
+        "best-path",
+        "Rank the best promoted execution paths for a query.",
+    )
+    pattern_best_path.add_argument("--query", required=True)
+    pattern_best_path.add_argument("--scope", default="project")
+    pattern_best_path.add_argument("--limit", type=int, default=3)
+    pattern_best_path.add_argument("--threshold", type=float, default=0.05)
     pattern_rollback = _leaf(pattern_commands, "rollback", "Rollback a Pattern.")
     pattern_rollback.add_argument("pattern_id")
     pattern_rollback.add_argument("--reason", required=True)
@@ -144,6 +179,165 @@ def build_parser() -> argparse.ArgumentParser:
     graph_eval.add_argument("--gold", required=True)
     graph_eval.add_argument("--pred", required=True)
     graph_eval.add_argument("--output", default="")
+
+    context = commands.add_parser("context", help="Manage RAW context capsules.")
+    context_commands = context.add_subparsers(dest="context_command", required=True)
+    context_add = _leaf(context_commands, "add", "Add a RawSpan and ContextCapsule.")
+    context_add.add_argument("--type", required=True, choices=[item.value for item in ContentType])
+    context_add.add_argument("--source", required=True, choices=[item.value for item in Source])
+    context_add.add_argument("--text", required=True)
+    context_add.add_argument("--timestamp", default="")
+    context_add.add_argument("--metadata-json", default="{}")
+    context_search = _leaf(context_commands, "search", "Search ContextCapsules by tag/time.")
+    context_search.add_argument("--tag", action="append", required=True)
+    context_search.add_argument("--since", default="")
+    context_search.add_argument("--until", default="")
+    context_search.add_argument("--source", action="append", default=[])
+    context_search.add_argument("--type", action="append", default=[])
+    context_search.add_argument("--limit", type=int, default=20)
+    context_raw = _leaf(context_commands, "raw", "Recover a RawSpan by raw_ref_id.")
+    context_raw.add_argument("raw_span_id")
+    _leaf(context_commands, "validate", "Validate ContextCapsule raw refs.")
+
+    external = commands.add_parser("external", help="Import external benchmark context.")
+    external_commands = external.add_subparsers(dest="external_command", required=True)
+    lme_context = _leaf(
+        external_commands,
+        "lme-v2-context",
+        "Build MemoryWeaver context from a local LongMemEval-V2 snapshot.",
+    )
+    lme_context.add_argument("--input-root", default="")
+    lme_context.add_argument("--question-index", type=int, default=0)
+    lme_context.add_argument("--trajectories-per-question", type=int, default=5)
+    lme_context.add_argument("--states-per-trajectory", type=int, default=5)
+    lme_context.add_argument("--no-write-context", action="store_true")
+    lme_context.add_argument("--hf-cache-root", default="")
+    lme_context.add_argument("--download-if-missing", action="store_true")
+    manifest = _leaf(
+        external_commands,
+        "manifest",
+        "Write a reproducibility manifest for repos or local snapshots.",
+    )
+    manifest.add_argument("--path", action="append", required=True)
+    manifest.add_argument("--out", required=True)
+
+    gbrain = commands.add_parser("gbrain", help="Sync and inspect GBrain/mind-map state.")
+    gbrain_commands = gbrain.add_subparsers(dest="gbrain_command", required=True)
+    _leaf(gbrain_commands, "sync", "Sync memories/evidence/patterns into GBrain.")
+    mindmap = _leaf(gbrain_commands, "mindmap", "Project GBrain into a mind-map view.")
+    mindmap.add_argument("--tag", action="append", default=[])
+    mindmap.add_argument("--max-nodes", type=int, default=80)
+
+    skill = commands.add_parser("skill", help="Retrieve procedural skills and avoidance memory.")
+    skill_commands = skill.add_subparsers(dest="skill_command", required=True)
+    skill_retrieve = _leaf(
+        skill_commands,
+        "retrieve",
+        "Retrieve Layer-3 procedural skills and avoidance memory for a query.",
+    )
+    skill_retrieve.add_argument("--query", required=True)
+    skill_retrieve.add_argument("--scope", default="project")
+    skill_retrieve.add_argument("--limit", type=int, default=5)
+
+    harness = commands.add_parser("harness", help="Inspect lifecycle harness stages.")
+    harness_commands = harness.add_subparsers(dest="harness_command", required=True)
+    harness_trace = _leaf(
+        harness_commands,
+        "trace",
+        "Trace deterministic lifecycle stages for one query/action pair.",
+    )
+    harness_trace.add_argument("--query", required=True)
+    harness_trace.add_argument("--tag", action="append", default=[])
+    harness_trace.add_argument("--scope", default="project")
+    harness_trace.add_argument("--arm", default="mw_marker")
+    harness_trace.add_argument("--step", type=int, default=1)
+    harness_trace.add_argument("--action-name", default="check_evidence")
+    harness_trace.add_argument("--action-target", default="selected_organization")
+    harness_trace.add_argument("--action-reasoning", default="")
+    harness_trace.add_argument(
+        "--result-json",
+        default='{"status":"no_signal","signal":"neutral","evidence":""}',
+    )
+
+    contract = commands.add_parser("contract", help="Inspect EnvironmentContract state.")
+    contract_commands = contract.add_subparsers(dest="contract_command", required=True)
+    contract_show = _leaf(
+        contract_commands,
+        "show",
+        "Show the default live-loop EnvironmentContract.",
+    )
+    contract_show.add_argument("--max-steps", type=int, default=8)
+    contract_show.add_argument("--max-tool-calls", type=int, default=4)
+
+    action = commands.add_parser("action", help="Validate structured ActionProposal objects.")
+    action_commands = action.add_subparsers(dest="action_command", required=True)
+    action_validate = _leaf(
+        action_commands,
+        "validate",
+        "Validate an ActionProposal against the default EnvironmentContract.",
+    )
+    action_validate.add_argument("--name", required=True)
+    action_validate.add_argument("--target", default="")
+    action_validate.add_argument("--reasoning", default="")
+    action_validate.add_argument("--timeout", type=int, default=30)
+    action_validate.add_argument("--working-directory", default="")
+    action_validate.add_argument("--idempotency-key", default="")
+    action_validate.add_argument("--confirm", action="store_true")
+    action_validate.add_argument("--budget-json", default="{}")
+
+    trajectory = commands.add_parser("trajectory", help="Evaluate trajectory-regulation decisions.")
+    trajectory_commands = trajectory.add_subparsers(dest="trajectory_command", required=True)
+    trajectory_eval = _leaf(
+        trajectory_commands,
+        "evaluate",
+        "Evaluate a sequence of action results with the default TrajectoryRegulator.",
+    )
+    trajectory_eval.add_argument("--events-json", required=True)
+    trajectory_eval.add_argument("--max-steps", type=int, default=8)
+    trajectory_eval.add_argument("--max-tool-calls", type=int, default=4)
+    trajectory_eval.add_argument("--repeated-failure-limit", type=int, default=2)
+    trajectory_eval.add_argument("--stagnation-window", type=int, default=2)
+
+    layer = commands.add_parser("layer", help="Run Layer lifecycle operations.")
+    layer_commands = layer.add_subparsers(dest="layer_command", required=True)
+    _leaf(layer_commands, "smoke", "Run verified write/promote/retrieve/rollback smoke.")
+
+    eval_cmd = commands.add_parser("eval", help="Run v0.7 validations and runtime smokes.")
+    eval_commands = eval_cmd.add_subparsers(dest="eval_command", required=True)
+    tau_smoke = _leaf(eval_commands, "tau-smoke", "Run tau-style live-loop smoke.")
+    tau_smoke.add_argument("--task-id", default="tau_smoke_codex_subscription")
+    tau_smoke.add_argument("--max-steps", type=int, default=5)
+    tau_llm = _leaf(
+        eval_commands,
+        "tau-llm-smoke",
+        "Run tau-style live-loop smoke with real LLM action selection.",
+    )
+    tau_llm.add_argument("--task-id", default="tau_llm_smoke_codex_subscription")
+    tau_llm.add_argument("--max-steps", type=int, default=5)
+    tau_llm.add_argument("--provider", default="deepseek")
+    tau_llm.add_argument("--model", default="deepseek-chat")
+    tau_llm.add_argument("--base-url", default="")
+    tau_llm.add_argument("--env-file", default=".env")
+    live_memory = _leaf(eval_commands, "live-memory-loop", "Run lifecycle smoke via eval.")
+    live_memory.add_argument("--output", default="")
+    path_promotion = _leaf(
+        eval_commands,
+        "path-promotion",
+        "Run Layer-3 path-promotion validation.",
+    )
+    path_promotion.add_argument("--output", default="")
+    lme_v2_path_promotion = _leaf(
+        eval_commands,
+        "path-promotion-lme-v2",
+        "Run Layer-3 path-promotion on a real LongMemEval-V2 snapshot subset.",
+    )
+    lme_v2_path_promotion.add_argument("--output", default="")
+    lme_v2_path_promotion.add_argument("--input-root", default="")
+    lme_v2_path_promotion.add_argument("--question-limit", type=int, default=5)
+    lme_v2_path_promotion.add_argument("--trajectories-per-question", type=int, default=1)
+    lme_v2_path_promotion.add_argument("--states-per-trajectory", type=int, default=2)
+    lme_v2_path_promotion.add_argument("--hf-cache-root", default="")
+    lme_v2_path_promotion.add_argument("--download-if-missing", action="store_true")
     return parser
 
 
@@ -187,6 +381,11 @@ def dispatch(args: argparse.Namespace) -> int:
     if args.command == "validate":
         report = workspace.validate()
         report["cli_import"] = True
+        _emit(report, json_output)
+        return 0 if report["valid"] else 1
+
+    if args.command == "doctor":
+        report = workspace.doctor()
         _emit(report, json_output)
         return 0 if report["valid"] else 1
 
@@ -279,8 +478,36 @@ def dispatch(args: argparse.Namespace) -> int:
                 args.conflict_ref,
             )
             _emit(pattern.to_dict(), json_output)
+        elif args.pattern_command == "trial":
+            pattern = composer.record_path_trial(
+                args.pattern_id,
+                task_run_id=args.task_run_id,
+                successful=args.success,
+                steps_saved=args.steps_saved,
+                known_bad_avoided=args.known_bad_avoided,
+                evidence_first=args.evidence_first,
+                false_trigger=args.false_trigger,
+                token_cost=args.token_cost,
+                scope_match=not args.scope_mismatch,
+                recency_score=args.recency_score,
+                conflict_ref=args.conflict_ref,
+            )
+            _emit(pattern.to_dict(), json_output)
         elif args.pattern_command == "promote-stable":
             _emit(composer.promote_stable(args.pattern_id).to_dict(), json_output)
+        elif args.pattern_command == "best-path":
+            _emit(
+                [
+                    pattern.to_dict()
+                    for pattern in composer.select_best_path(
+                        args.query,
+                        scope=args.scope,
+                        limit=args.limit,
+                        threshold=args.threshold,
+                    )
+                ],
+                json_output,
+            )
         elif args.pattern_command == "rollback":
             _emit(composer.rollback(args.pattern_id, args.reason).to_dict(), json_output)
         return 0
@@ -382,6 +609,348 @@ def dispatch(args: argparse.Namespace) -> int:
                     encoding="utf-8",
                 )
             _emit(metrics, json_output)
+        return 0
+
+    if args.command == "context":
+        if args.context_command == "add":
+            metadata = json.loads(args.metadata_json)
+            raw_kwargs: dict[str, Any] = {
+                "content": args.text,
+                "content_type": args.type,
+                "source": args.source,
+                "metadata": metadata,
+            }
+            if args.timestamp:
+                raw_kwargs["timestamp"] = args.timestamp
+            raw_span = RawSpan(**raw_kwargs)
+            workspace.raw_spans.add(raw_span)
+            capsule = ContentRouter().compress(raw_span)
+            workspace.context_capsules.add(capsule)
+            workspace.tag_time_index.add(capsule)
+            _emit({
+                "raw_span": raw_span.to_dict(),
+                "capsule": capsule.to_dict(),
+            }, json_output)
+        elif args.context_command == "search":
+            capsule_ids = workspace.tag_time_index.search(
+                tags=args.tag,
+                since=args.since,
+                until=args.until,
+                sources=[Source(source) for source in args.source],
+                content_types=[ContentType(content_type) for content_type in args.type],
+            )
+            capsules = [
+                workspace.context_capsules.get(capsule_id)
+                for capsule_id in capsule_ids[: args.limit]
+            ]
+            _emit([
+                capsule.to_dict()
+                for capsule in capsules
+                if capsule is not None
+            ], json_output)
+        elif args.context_command == "raw":
+            raw_span = workspace.raw_spans.get(args.raw_span_id)
+            if raw_span is None:
+                raise KeyError(f"RawSpan '{args.raw_span_id}' not found")
+            _emit(raw_span.to_dict(), json_output)
+        elif args.context_command == "validate":
+            raw_ids = {raw_span.id for raw_span in workspace.raw_spans.list_all()}
+            errors = workspace.context_capsules.validate_raw_refs(raw_ids)
+            report = {
+                "valid": not errors,
+                "raw_span_count": len(raw_ids),
+                "capsule_count": len(workspace.context_capsules.list_all()),
+                "errors": errors,
+            }
+            _emit(report, json_output)
+            return 0 if report["valid"] else 1
+        return 0
+
+    if args.command == "external":
+        if args.external_command == "lme-v2-context":
+            from memoryweaver.integrations import MemoryWeaverModule
+
+            module = MemoryWeaverModule(
+                workspace,
+                write_context=not args.no_write_context,
+                write_memory=False,
+            )
+            context = module.build_context_from_local_snapshot(
+                Path(args.input_root) if args.input_root else None,
+                question_index=args.question_index,
+                trajectories_per_question=args.trajectories_per_question,
+                states_per_trajectory=args.states_per_trajectory,
+                hf_cache_root=Path(args.hf_cache_root) if args.hf_cache_root else None,
+                allow_download=args.download_if_missing,
+            )
+            _emit(context.to_dict(), json_output)
+        elif args.external_command == "manifest":
+            from memoryweaver.external.manifest import write_manifest
+
+            manifest = write_manifest(
+                [Path(path) for path in args.path],
+                Path(args.out),
+            )
+            _emit(
+                {
+                    "output": args.out,
+                    "entry_count": len(manifest["entries"]),
+                    "schema_version": manifest["schema_version"],
+                },
+                json_output,
+            )
+        return 0
+
+    if args.command == "gbrain":
+        from memoryweaver.gbrain import GBrain
+
+        gbrain = GBrain(workspace)
+        if args.gbrain_command == "sync":
+            _emit(gbrain.sync_workspace(), json_output)
+        elif args.gbrain_command == "mindmap":
+            projection = gbrain.project_mind_map(
+                center_tags=args.tag,
+                max_nodes=args.max_nodes,
+            )
+            _emit(projection.to_dict(), json_output)
+        return 0
+
+    if args.command == "skill":
+        if args.skill_command == "retrieve":
+            retriever = SkillRetriever(
+                workspace.memories,
+                workspace.patterns,
+            )
+            retriever.set_composer(_composer(workspace))
+            result = retriever.retrieve(
+                args.query,
+                scope=args.scope,
+                limit=args.limit,
+            )
+            _emit(result.to_dict(), json_output)
+        return 0
+
+    if args.command == "harness":
+        if args.harness_command == "trace":
+            from memoryweaver.runtime import LiveAction
+
+            harness = MemoryWeaverHarness(workspace)
+            before = harness.before_interaction(args.query, scope=args.scope)
+            conditioning = harness.task_conditioning(
+                args.query,
+                tags=args.tag,
+                scope=args.scope,
+                arm=args.arm,
+                step=args.step,
+            )
+            action = LiveAction(
+                name=args.action_name,
+                target=args.action_target,
+                reasoning=args.action_reasoning,
+            )
+            execution = harness.before_execution(
+                action,
+                task_id="cli_harness_trace",
+                step=args.step,
+            )
+            result = json.loads(args.result_json)
+            feedback = harness.after_feedback(
+                step=args.step,
+                proposal=execution.proposal,
+                result=result,
+                gate_status=execution.decision.status.value,
+            )
+            outcome = harness.after_task_outcome(
+                task_id="cli_harness_trace",
+                step=args.step,
+                action=action,
+                result=result,
+            )
+            _emit(
+                {
+                    "before_interaction": before.to_dict(),
+                    "task_conditioning": conditioning.to_dict(),
+                    "before_execution": execution.to_dict(),
+                    "after_feedback": feedback.to_dict(),
+                    "after_task_outcome": outcome.to_dict(),
+                },
+                json_output,
+            )
+            return 0 if execution.decision.allowed else 1
+        return 0
+
+    if args.command == "contract":
+        if args.contract_command == "show":
+            contract = EnvironmentContract.default_live_loop(
+                max_steps=args.max_steps,
+                max_tool_calls=args.max_tool_calls,
+            )
+            _emit(contract.to_dict(), json_output)
+        return 0
+
+    if args.command == "action":
+        if args.action_command == "validate":
+            proposal = ActionProposal(
+                action_name=args.name,
+                target=args.target,
+                arguments={"target": args.target} if args.target else {},
+                reasoning=args.reasoning,
+                working_directory=args.working_directory,
+                timeout_seconds=args.timeout,
+                idempotency_key=args.idempotency_key,
+                user_confirmation=args.confirm,
+                resource_budget=json.loads(args.budget_json),
+            )
+            contract = EnvironmentContract.default_live_loop()
+            decision = ActionGate(contract).validate(proposal)
+            _emit(
+                {
+                    "proposal": proposal.to_dict(),
+                    "contract_id": contract.contract_id,
+                    "contract_version": contract.version,
+                    "decision": decision.to_dict(),
+                },
+                json_output,
+            )
+            return 0 if decision.allowed else 1
+        return 0
+
+    if args.command == "trajectory":
+        if args.trajectory_command == "evaluate":
+            regulator = TrajectoryRegulator(
+                max_steps=args.max_steps,
+                max_tool_calls=args.max_tool_calls,
+                repeated_failure_limit=args.repeated_failure_limit,
+                stagnation_window=args.stagnation_window,
+            )
+            events = json.loads(args.events_json)
+            decisions: list[dict[str, Any]] = []
+            for index, event in enumerate(events, start=1):
+                proposal = ActionProposal(
+                    action_name=str(event.get("action_name", "")),
+                    target=str(event.get("target", "")),
+                    idempotency_key=str(
+                        event.get(
+                            "idempotency_key",
+                            f"trajectory:{index}:{event.get('action_name', '')}:{event.get('target', '')}",
+                        )
+                    ),
+                )
+                decision = regulator.observe(
+                    step=int(event.get("step", index)),
+                    proposal=proposal,
+                    result=dict(event.get("result", {})),
+                    gate_status=str(event.get("gate_status", "allow")),
+                )
+                decisions.append(
+                    {
+                        "step": int(event.get("step", index)),
+                        "proposal": proposal.to_dict(),
+                        "decision": decision.to_dict(),
+                    }
+                )
+            report = {
+                "history": [record.to_dict() for record in regulator.history],
+                "decisions": decisions,
+                "final_decision": decisions[-1]["decision"] if decisions else {},
+            }
+            _emit(report, json_output)
+            final_status = report["final_decision"].get("status", "continue")
+            return 0 if final_status != "halt" else 1
+        return 0
+
+    if args.command == "layer":
+        from memoryweaver.lifecycle import MemoryLifecycle
+
+        if args.layer_command == "smoke":
+            result = MemoryLifecycle(workspace).run_codex_subscription_smoke()
+            _emit(result, json_output)
+            return 0 if result["passed"] else 1
+        return 0
+
+    if args.command == "eval":
+        if args.eval_command == "tau-smoke":
+            from memoryweaver.runtime import MemoryWeaverLiveLoop, MockTauEnv, RuleAgent
+
+            result = MemoryWeaverLiveLoop(workspace).run(
+                task_id=args.task_id,
+                env=MockTauEnv(),
+                agent=RuleAgent(),
+                max_steps=args.max_steps,
+                arm="mw_marker",
+            )
+            _emit(result.to_dict(), json_output)
+            return 0 if result.success and result.verified_memory_write_count > 0 else 1
+        if args.eval_command == "tau-llm-smoke":
+            from memoryweaver.config import MemoryWeaverConfig
+            from memoryweaver.runtime import (
+                MemoryWeaverLiveLoop,
+                MockTauEnv,
+                OpenAICompatibleAgent,
+            )
+
+            config = MemoryWeaverConfig.from_env(env_file=args.env_file)
+            agent = OpenAICompatibleAgent.from_config(
+                config,
+                provider=args.provider,
+                model=args.model,
+                base_url=args.base_url,
+            )
+            result = MemoryWeaverLiveLoop(workspace).run(
+                task_id=args.task_id,
+                env=MockTauEnv(),
+                agent=agent,
+                max_steps=args.max_steps,
+                arm="mw_marker",
+            )
+            _emit(result.to_dict(), json_output)
+            return 0 if (
+                result.success
+                and result.verified_memory_write_count > 0
+                and result.online_llm_call_count > 0
+            ) else 1
+        if args.eval_command == "live-memory-loop":
+            from memoryweaver.lifecycle import MemoryLifecycle
+
+            result = MemoryLifecycle(workspace).run_codex_subscription_smoke()
+            if args.output:
+                Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+                Path(args.output).write_text(
+                    json.dumps(result, ensure_ascii=False, indent=2) + "\n",
+                    encoding="utf-8",
+                )
+            _emit(result, json_output)
+            return 0 if result["passed"] else 1
+        if args.eval_command == "path-promotion":
+            from benchmarks.layer3_path_promotion_v0_7 import run as run_path_promotion
+
+            output_root = (
+                Path(args.output)
+                if args.output
+                else (workspace.root / "layer3-path-promotion-eval")
+            )
+            result = run_path_promotion(output_root)
+            _emit(result, json_output)
+            return 0 if result["passed"] else 1
+        if args.eval_command == "path-promotion-lme-v2":
+            from benchmarks.layer3_path_promotion_lme_v2 import run as run_lme_v2_path_promotion
+
+            output_root = (
+                Path(args.output)
+                if args.output
+                else (workspace.root / "layer3-path-promotion-lme-v2-eval")
+            )
+            result = run_lme_v2_path_promotion(
+                output_root,
+                input_root=Path(args.input_root) if args.input_root else None,
+                question_limit=args.question_limit,
+                trajectories_per_question=args.trajectories_per_question,
+                states_per_trajectory=args.states_per_trajectory,
+                hf_cache_root=Path(args.hf_cache_root) if args.hf_cache_root else None,
+                allow_download=args.download_if_missing,
+            )
+            _emit(result, json_output)
+            return 0 if result["passed"] else 1
         return 0
 
     raise ValueError(f"unsupported command: {args.command}")

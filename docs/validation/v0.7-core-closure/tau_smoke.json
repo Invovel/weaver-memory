@@ -1,0 +1,66 @@
+{
+  "task_id": "tau_smoke_codex_subscription",
+  "success": true,
+  "step_count": 1,
+  "verified_memory_write_count": 1,
+  "promotion_count": 1,
+  "known_bad_path_write_count": 0,
+  "online_llm_call_count": 0,
+  "steps": [
+    {
+      "step": 1,
+      "observation": {
+        "task_id": "tau_smoke_codex_subscription",
+        "goal": "Resolve Codex subscription load failure without blind reinstall.",
+        "state": {
+          "selected_organization": "correct_org",
+          "subscription_loaded": true
+        },
+        "history": [
+          {
+            "action": {
+              "name": "check_evidence",
+              "target": "selected_organization_and_entitlement",
+              "reasoning": "MemoryWeaver context recommends evidence-first org check."
+            },
+            "result": {
+              "status": "evidence_observed",
+              "signal": "positive",
+              "evidence": "selected organization and entitlement fixed subscription load"
+            }
+          }
+        ],
+        "done": true,
+        "success": true
+      },
+      "memory_context": "\n## Diagnostic Guidance (MemoryWeaver Marker)\nIssue recognized: marker_codex_subscription_org_first\nRecommended route: fast_verify\nKNOWN BAD PATHS (avoid these): reinstall_npm, reset_auth_files\nRECOMMENDED EVIDENCE (check these first): selected_organization, entitlement",
+      "action": {
+        "name": "check_evidence",
+        "target": "selected_organization_and_entitlement",
+        "reasoning": "MemoryWeaver context recommends evidence-first org check."
+      },
+      "result": {
+        "status": "evidence_observed",
+        "signal": "positive",
+        "evidence": "selected organization and entitlement fixed subscription load"
+      },
+      "memory_write_ids": [
+        "mem_tau_smoke_codex_subscription_1_evidence_observed"
+      ],
+      "decision": {
+        "decision_id": "d_1_mw_marker_1780733385519",
+        "marker_activated": true,
+        "marker_id": "marker_codex_subscription_org_first",
+        "required_evidence": [
+          "selected_organization",
+          "entitlement"
+        ],
+        "suppressed_actions": [
+          "reinstall_npm",
+          "reset_auth_files"
+        ],
+        "allowed_memory_count": 0
+      }
+    }
+  ]
+}

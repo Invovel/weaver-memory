@@ -1,0 +1,2043 @@
+{
+  "version": "0.2.0",
+  "checkpoints": {
+    "trace-seed-1": [
+      {
+        "checkpoint_id": "ckpt_trace-seed-1_0001",
+        "thread_id": "trace-seed-1",
+        "step": 1,
+        "state": {
+          "last_tool_status": "missing_handler",
+          "last_tool_target": "__invalid_action__",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000001",
+        "created_at": "2026-06-10T14:41:24.629292+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-seed-1_0002",
+        "thread_id": "trace-seed-1",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000002",
+        "created_at": "2026-06-10T14:41:24.638470+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-seed-1_0003",
+        "thread_id": "trace-seed-1",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000003",
+        "created_at": "2026-06-10T14:41:24.644532+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-seed-1_0004",
+        "thread_id": "trace-seed-1",
+        "step": 4,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000004",
+        "created_at": "2026-06-10T14:41:24.650061+00:00"
+      }
+    ],
+    "trace-bench-invalid-001": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-001_0001",
+        "thread_id": "trace-bench-invalid-001",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000005",
+        "created_at": "2026-06-10T14:41:24.657078+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-001_0002",
+        "thread_id": "trace-bench-invalid-001",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000006",
+        "created_at": "2026-06-10T14:41:24.662453+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-001_0003",
+        "thread_id": "trace-bench-invalid-001",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000007",
+        "created_at": "2026-06-10T14:41:24.667633+00:00"
+      }
+    ],
+    "trace-bench-invalid-002": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-002_0001",
+        "thread_id": "trace-bench-invalid-002",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000008",
+        "created_at": "2026-06-10T14:41:24.673195+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-002_0002",
+        "thread_id": "trace-bench-invalid-002",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000009",
+        "created_at": "2026-06-10T14:41:24.679784+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-002_0003",
+        "thread_id": "trace-bench-invalid-002",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000010",
+        "created_at": "2026-06-10T14:41:24.685687+00:00"
+      }
+    ],
+    "trace-bench-invalid-003": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-003_0001",
+        "thread_id": "trace-bench-invalid-003",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000011",
+        "created_at": "2026-06-10T14:41:24.691567+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-003_0002",
+        "thread_id": "trace-bench-invalid-003",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000012",
+        "created_at": "2026-06-10T14:41:24.697221+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-003_0003",
+        "thread_id": "trace-bench-invalid-003",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000013",
+        "created_at": "2026-06-10T14:41:24.703161+00:00"
+      }
+    ],
+    "trace-bench-invalid-004": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-004_0001",
+        "thread_id": "trace-bench-invalid-004",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000014",
+        "created_at": "2026-06-10T14:41:24.709036+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-004_0002",
+        "thread_id": "trace-bench-invalid-004",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000015",
+        "created_at": "2026-06-10T14:41:24.713895+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-004_0003",
+        "thread_id": "trace-bench-invalid-004",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000016",
+        "created_at": "2026-06-10T14:41:24.719042+00:00"
+      }
+    ],
+    "trace-bench-invalid-005": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-005_0001",
+        "thread_id": "trace-bench-invalid-005",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000017",
+        "created_at": "2026-06-10T14:41:24.724006+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-005_0002",
+        "thread_id": "trace-bench-invalid-005",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000018",
+        "created_at": "2026-06-10T14:41:24.728234+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-005_0003",
+        "thread_id": "trace-bench-invalid-005",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000019",
+        "created_at": "2026-06-10T14:41:24.733059+00:00"
+      }
+    ],
+    "trace-bench-invalid-006": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-006_0001",
+        "thread_id": "trace-bench-invalid-006",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000020",
+        "created_at": "2026-06-10T14:41:24.738088+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-006_0002",
+        "thread_id": "trace-bench-invalid-006",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000021",
+        "created_at": "2026-06-10T14:41:24.742456+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-006_0003",
+        "thread_id": "trace-bench-invalid-006",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000022",
+        "created_at": "2026-06-10T14:41:24.747200+00:00"
+      }
+    ],
+    "trace-bench-invalid-007": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-007_0001",
+        "thread_id": "trace-bench-invalid-007",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000023",
+        "created_at": "2026-06-10T14:41:24.752331+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-007_0002",
+        "thread_id": "trace-bench-invalid-007",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000024",
+        "created_at": "2026-06-10T14:41:24.757991+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-007_0003",
+        "thread_id": "trace-bench-invalid-007",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000025",
+        "created_at": "2026-06-10T14:41:24.763116+00:00"
+      }
+    ],
+    "trace-bench-invalid-008": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-008_0001",
+        "thread_id": "trace-bench-invalid-008",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000026",
+        "created_at": "2026-06-10T14:41:24.769049+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-008_0002",
+        "thread_id": "trace-bench-invalid-008",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000027",
+        "created_at": "2026-06-10T14:41:24.774214+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-008_0003",
+        "thread_id": "trace-bench-invalid-008",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000028",
+        "created_at": "2026-06-10T14:41:24.779026+00:00"
+      }
+    ],
+    "trace-bench-invalid-009": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-009_0001",
+        "thread_id": "trace-bench-invalid-009",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000029",
+        "created_at": "2026-06-10T14:41:24.784529+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-009_0002",
+        "thread_id": "trace-bench-invalid-009",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000030",
+        "created_at": "2026-06-10T14:41:24.789094+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-009_0003",
+        "thread_id": "trace-bench-invalid-009",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000031",
+        "created_at": "2026-06-10T14:41:24.793895+00:00"
+      }
+    ],
+    "trace-bench-invalid-010": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-010_0001",
+        "thread_id": "trace-bench-invalid-010",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000032",
+        "created_at": "2026-06-10T14:41:24.798979+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-010_0002",
+        "thread_id": "trace-bench-invalid-010",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000033",
+        "created_at": "2026-06-10T14:41:24.804037+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-010_0003",
+        "thread_id": "trace-bench-invalid-010",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000034",
+        "created_at": "2026-06-10T14:41:24.808915+00:00"
+      }
+    ],
+    "trace-bench-invalid-011": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-011_0001",
+        "thread_id": "trace-bench-invalid-011",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000035",
+        "created_at": "2026-06-10T14:41:24.814516+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-011_0002",
+        "thread_id": "trace-bench-invalid-011",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000036",
+        "created_at": "2026-06-10T14:41:24.820398+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-011_0003",
+        "thread_id": "trace-bench-invalid-011",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000037",
+        "created_at": "2026-06-10T14:41:24.825406+00:00"
+      }
+    ],
+    "trace-bench-invalid-012": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-012_0001",
+        "thread_id": "trace-bench-invalid-012",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000038",
+        "created_at": "2026-06-10T14:41:24.830937+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-012_0002",
+        "thread_id": "trace-bench-invalid-012",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000039",
+        "created_at": "2026-06-10T14:41:24.836172+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-012_0003",
+        "thread_id": "trace-bench-invalid-012",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000040",
+        "created_at": "2026-06-10T14:41:24.841257+00:00"
+      }
+    ],
+    "trace-bench-invalid-013": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-013_0001",
+        "thread_id": "trace-bench-invalid-013",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000041",
+        "created_at": "2026-06-10T14:41:24.846742+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-013_0002",
+        "thread_id": "trace-bench-invalid-013",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000042",
+        "created_at": "2026-06-10T14:41:24.851678+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-013_0003",
+        "thread_id": "trace-bench-invalid-013",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000043",
+        "created_at": "2026-06-10T14:41:24.856573+00:00"
+      }
+    ],
+    "trace-bench-invalid-014": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-014_0001",
+        "thread_id": "trace-bench-invalid-014",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000044",
+        "created_at": "2026-06-10T14:41:24.861957+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-014_0002",
+        "thread_id": "trace-bench-invalid-014",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000045",
+        "created_at": "2026-06-10T14:41:24.867713+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-014_0003",
+        "thread_id": "trace-bench-invalid-014",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000046",
+        "created_at": "2026-06-10T14:41:24.872760+00:00"
+      }
+    ],
+    "trace-bench-invalid-015": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-015_0001",
+        "thread_id": "trace-bench-invalid-015",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000047",
+        "created_at": "2026-06-10T14:41:24.880347+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-015_0002",
+        "thread_id": "trace-bench-invalid-015",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000048",
+        "created_at": "2026-06-10T14:41:24.885497+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-015_0003",
+        "thread_id": "trace-bench-invalid-015",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000049",
+        "created_at": "2026-06-10T14:41:24.890472+00:00"
+      }
+    ],
+    "trace-bench-invalid-016": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-016_0001",
+        "thread_id": "trace-bench-invalid-016",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000050",
+        "created_at": "2026-06-10T14:41:24.897013+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-016_0002",
+        "thread_id": "trace-bench-invalid-016",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000051",
+        "created_at": "2026-06-10T14:41:24.902220+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-016_0003",
+        "thread_id": "trace-bench-invalid-016",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000052",
+        "created_at": "2026-06-10T14:41:24.907363+00:00"
+      }
+    ],
+    "trace-bench-invalid-017": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-017_0001",
+        "thread_id": "trace-bench-invalid-017",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000053",
+        "created_at": "2026-06-10T14:41:24.912941+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-017_0002",
+        "thread_id": "trace-bench-invalid-017",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000054",
+        "created_at": "2026-06-10T14:41:24.917946+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-017_0003",
+        "thread_id": "trace-bench-invalid-017",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000055",
+        "created_at": "2026-06-10T14:41:24.923196+00:00"
+      }
+    ],
+    "trace-bench-invalid-018": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-018_0001",
+        "thread_id": "trace-bench-invalid-018",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000056",
+        "created_at": "2026-06-10T14:41:24.929311+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-018_0002",
+        "thread_id": "trace-bench-invalid-018",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000057",
+        "created_at": "2026-06-10T14:41:24.934295+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-018_0003",
+        "thread_id": "trace-bench-invalid-018",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000058",
+        "created_at": "2026-06-10T14:41:24.939290+00:00"
+      }
+    ],
+    "trace-bench-invalid-019": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-019_0001",
+        "thread_id": "trace-bench-invalid-019",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000059",
+        "created_at": "2026-06-10T14:41:24.944919+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-019_0002",
+        "thread_id": "trace-bench-invalid-019",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000060",
+        "created_at": "2026-06-10T14:41:24.950190+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-019_0003",
+        "thread_id": "trace-bench-invalid-019",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000061",
+        "created_at": "2026-06-10T14:41:24.955508+00:00"
+      }
+    ],
+    "trace-bench-invalid-020": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-020_0001",
+        "thread_id": "trace-bench-invalid-020",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000062",
+        "created_at": "2026-06-10T14:41:24.961853+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-020_0002",
+        "thread_id": "trace-bench-invalid-020",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000063",
+        "created_at": "2026-06-10T14:41:24.967846+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-020_0003",
+        "thread_id": "trace-bench-invalid-020",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000064",
+        "created_at": "2026-06-10T14:41:24.973782+00:00"
+      }
+    ],
+    "trace-bench-invalid-021": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-021_0001",
+        "thread_id": "trace-bench-invalid-021",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000065",
+        "created_at": "2026-06-10T14:41:24.980207+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-021_0002",
+        "thread_id": "trace-bench-invalid-021",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000066",
+        "created_at": "2026-06-10T14:41:24.985480+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-021_0003",
+        "thread_id": "trace-bench-invalid-021",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000067",
+        "created_at": "2026-06-10T14:41:24.991004+00:00"
+      }
+    ],
+    "trace-bench-invalid-022": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-022_0001",
+        "thread_id": "trace-bench-invalid-022",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000068",
+        "created_at": "2026-06-10T14:41:24.997414+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-022_0002",
+        "thread_id": "trace-bench-invalid-022",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000069",
+        "created_at": "2026-06-10T14:41:25.002909+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-022_0003",
+        "thread_id": "trace-bench-invalid-022",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000070",
+        "created_at": "2026-06-10T14:41:25.008923+00:00"
+      }
+    ],
+    "trace-bench-invalid-023": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-023_0001",
+        "thread_id": "trace-bench-invalid-023",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000071",
+        "created_at": "2026-06-10T14:41:25.015148+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-023_0002",
+        "thread_id": "trace-bench-invalid-023",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000072",
+        "created_at": "2026-06-10T14:41:25.020882+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-023_0003",
+        "thread_id": "trace-bench-invalid-023",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000073",
+        "created_at": "2026-06-10T14:41:25.026952+00:00"
+      }
+    ],
+    "trace-bench-invalid-024": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-024_0001",
+        "thread_id": "trace-bench-invalid-024",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000074",
+        "created_at": "2026-06-10T14:41:25.034316+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-024_0002",
+        "thread_id": "trace-bench-invalid-024",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000075",
+        "created_at": "2026-06-10T14:41:25.040932+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-024_0003",
+        "thread_id": "trace-bench-invalid-024",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000076",
+        "created_at": "2026-06-10T14:41:25.047448+00:00"
+      }
+    ],
+    "trace-bench-invalid-025": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-025_0001",
+        "thread_id": "trace-bench-invalid-025",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000077",
+        "created_at": "2026-06-10T14:41:25.055683+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-025_0002",
+        "thread_id": "trace-bench-invalid-025",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000078",
+        "created_at": "2026-06-10T14:41:25.062277+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-025_0003",
+        "thread_id": "trace-bench-invalid-025",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000079",
+        "created_at": "2026-06-10T14:41:25.068527+00:00"
+      }
+    ],
+    "trace-bench-invalid-026": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-026_0001",
+        "thread_id": "trace-bench-invalid-026",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000080",
+        "created_at": "2026-06-10T14:41:25.075490+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-026_0002",
+        "thread_id": "trace-bench-invalid-026",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000081",
+        "created_at": "2026-06-10T14:41:25.081488+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-026_0003",
+        "thread_id": "trace-bench-invalid-026",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000082",
+        "created_at": "2026-06-10T14:41:25.087611+00:00"
+      }
+    ],
+    "trace-bench-invalid-027": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-027_0001",
+        "thread_id": "trace-bench-invalid-027",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000083",
+        "created_at": "2026-06-10T14:41:25.094260+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-027_0002",
+        "thread_id": "trace-bench-invalid-027",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000084",
+        "created_at": "2026-06-10T14:41:25.100418+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-027_0003",
+        "thread_id": "trace-bench-invalid-027",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000085",
+        "created_at": "2026-06-10T14:41:25.106169+00:00"
+      }
+    ],
+    "trace-bench-invalid-028": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-028_0001",
+        "thread_id": "trace-bench-invalid-028",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000086",
+        "created_at": "2026-06-10T14:41:25.118748+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-028_0002",
+        "thread_id": "trace-bench-invalid-028",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000087",
+        "created_at": "2026-06-10T14:41:25.127968+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-028_0003",
+        "thread_id": "trace-bench-invalid-028",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000088",
+        "created_at": "2026-06-10T14:41:25.137463+00:00"
+      }
+    ],
+    "trace-bench-invalid-029": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-029_0001",
+        "thread_id": "trace-bench-invalid-029",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000089",
+        "created_at": "2026-06-10T14:41:25.144851+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-029_0002",
+        "thread_id": "trace-bench-invalid-029",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000090",
+        "created_at": "2026-06-10T14:41:25.151796+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-029_0003",
+        "thread_id": "trace-bench-invalid-029",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000091",
+        "created_at": "2026-06-10T14:41:25.158198+00:00"
+      }
+    ],
+    "trace-bench-invalid-030": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-030_0001",
+        "thread_id": "trace-bench-invalid-030",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000092",
+        "created_at": "2026-06-10T14:41:25.165512+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-030_0002",
+        "thread_id": "trace-bench-invalid-030",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000093",
+        "created_at": "2026-06-10T14:41:25.172673+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-030_0003",
+        "thread_id": "trace-bench-invalid-030",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000094",
+        "created_at": "2026-06-10T14:41:25.179351+00:00"
+      }
+    ],
+    "trace-bench-invalid-031": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-031_0001",
+        "thread_id": "trace-bench-invalid-031",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000095",
+        "created_at": "2026-06-10T14:41:25.186725+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-031_0002",
+        "thread_id": "trace-bench-invalid-031",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000096",
+        "created_at": "2026-06-10T14:41:25.194025+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-031_0003",
+        "thread_id": "trace-bench-invalid-031",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000097",
+        "created_at": "2026-06-10T14:41:25.200672+00:00"
+      }
+    ],
+    "trace-bench-invalid-032": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-032_0001",
+        "thread_id": "trace-bench-invalid-032",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000098",
+        "created_at": "2026-06-10T14:41:25.208115+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-032_0002",
+        "thread_id": "trace-bench-invalid-032",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000099",
+        "created_at": "2026-06-10T14:41:25.215295+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-032_0003",
+        "thread_id": "trace-bench-invalid-032",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000100",
+        "created_at": "2026-06-10T14:41:25.221822+00:00"
+      }
+    ],
+    "trace-bench-invalid-033": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-033_0001",
+        "thread_id": "trace-bench-invalid-033",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000101",
+        "created_at": "2026-06-10T14:41:25.229386+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-033_0002",
+        "thread_id": "trace-bench-invalid-033",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000102",
+        "created_at": "2026-06-10T14:41:25.235724+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-033_0003",
+        "thread_id": "trace-bench-invalid-033",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000103",
+        "created_at": "2026-06-10T14:41:25.241926+00:00"
+      }
+    ],
+    "trace-bench-invalid-034": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-034_0001",
+        "thread_id": "trace-bench-invalid-034",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000104",
+        "created_at": "2026-06-10T14:41:25.249034+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-034_0002",
+        "thread_id": "trace-bench-invalid-034",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000105",
+        "created_at": "2026-06-10T14:41:25.255698+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-034_0003",
+        "thread_id": "trace-bench-invalid-034",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000106",
+        "created_at": "2026-06-10T14:41:25.262286+00:00"
+      }
+    ],
+    "trace-bench-invalid-035": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-035_0001",
+        "thread_id": "trace-bench-invalid-035",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000107",
+        "created_at": "2026-06-10T14:41:25.269784+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-035_0002",
+        "thread_id": "trace-bench-invalid-035",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000108",
+        "created_at": "2026-06-10T14:41:25.276395+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-035_0003",
+        "thread_id": "trace-bench-invalid-035",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000109",
+        "created_at": "2026-06-10T14:41:25.282974+00:00"
+      }
+    ],
+    "trace-bench-invalid-036": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-036_0001",
+        "thread_id": "trace-bench-invalid-036",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000110",
+        "created_at": "2026-06-10T14:41:25.291265+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-036_0002",
+        "thread_id": "trace-bench-invalid-036",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000111",
+        "created_at": "2026-06-10T14:41:25.297683+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-036_0003",
+        "thread_id": "trace-bench-invalid-036",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000112",
+        "created_at": "2026-06-10T14:41:25.305432+00:00"
+      }
+    ],
+    "trace-bench-invalid-037": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-037_0001",
+        "thread_id": "trace-bench-invalid-037",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000113",
+        "created_at": "2026-06-10T14:41:25.314093+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-037_0002",
+        "thread_id": "trace-bench-invalid-037",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000114",
+        "created_at": "2026-06-10T14:41:25.322573+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-037_0003",
+        "thread_id": "trace-bench-invalid-037",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000115",
+        "created_at": "2026-06-10T14:41:25.330718+00:00"
+      }
+    ],
+    "trace-bench-invalid-038": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-038_0001",
+        "thread_id": "trace-bench-invalid-038",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000116",
+        "created_at": "2026-06-10T14:41:25.340183+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-038_0002",
+        "thread_id": "trace-bench-invalid-038",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000117",
+        "created_at": "2026-06-10T14:41:25.347051+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-038_0003",
+        "thread_id": "trace-bench-invalid-038",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000118",
+        "created_at": "2026-06-10T14:41:25.353345+00:00"
+      }
+    ],
+    "trace-bench-invalid-039": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-039_0001",
+        "thread_id": "trace-bench-invalid-039",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000119",
+        "created_at": "2026-06-10T14:41:25.360882+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-039_0002",
+        "thread_id": "trace-bench-invalid-039",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000120",
+        "created_at": "2026-06-10T14:41:25.368387+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-039_0003",
+        "thread_id": "trace-bench-invalid-039",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000121",
+        "created_at": "2026-06-10T14:41:25.374721+00:00"
+      }
+    ],
+    "trace-bench-invalid-040": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-040_0001",
+        "thread_id": "trace-bench-invalid-040",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000122",
+        "created_at": "2026-06-10T14:41:25.382247+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-040_0002",
+        "thread_id": "trace-bench-invalid-040",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000123",
+        "created_at": "2026-06-10T14:41:25.388497+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-040_0003",
+        "thread_id": "trace-bench-invalid-040",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000124",
+        "created_at": "2026-06-10T14:41:25.395840+00:00"
+      }
+    ],
+    "trace-bench-invalid-041": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-041_0001",
+        "thread_id": "trace-bench-invalid-041",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000125",
+        "created_at": "2026-06-10T14:41:25.404080+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-041_0002",
+        "thread_id": "trace-bench-invalid-041",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000126",
+        "created_at": "2026-06-10T14:41:25.411364+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-041_0003",
+        "thread_id": "trace-bench-invalid-041",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000127",
+        "created_at": "2026-06-10T14:41:25.418931+00:00"
+      }
+    ],
+    "trace-bench-invalid-042": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-042_0001",
+        "thread_id": "trace-bench-invalid-042",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000128",
+        "created_at": "2026-06-10T14:41:25.427228+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-042_0002",
+        "thread_id": "trace-bench-invalid-042",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000129",
+        "created_at": "2026-06-10T14:41:25.434450+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-042_0003",
+        "thread_id": "trace-bench-invalid-042",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000130",
+        "created_at": "2026-06-10T14:41:25.442016+00:00"
+      }
+    ],
+    "trace-bench-invalid-043": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-043_0001",
+        "thread_id": "trace-bench-invalid-043",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000131",
+        "created_at": "2026-06-10T14:41:25.450838+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-043_0002",
+        "thread_id": "trace-bench-invalid-043",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000132",
+        "created_at": "2026-06-10T14:41:25.458936+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-043_0003",
+        "thread_id": "trace-bench-invalid-043",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000133",
+        "created_at": "2026-06-10T14:41:25.466873+00:00"
+      }
+    ],
+    "trace-bench-invalid-044": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-044_0001",
+        "thread_id": "trace-bench-invalid-044",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000134",
+        "created_at": "2026-06-10T14:41:25.477541+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-044_0002",
+        "thread_id": "trace-bench-invalid-044",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000135",
+        "created_at": "2026-06-10T14:41:25.486852+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-044_0003",
+        "thread_id": "trace-bench-invalid-044",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000136",
+        "created_at": "2026-06-10T14:41:25.495937+00:00"
+      }
+    ],
+    "trace-bench-invalid-045": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-045_0001",
+        "thread_id": "trace-bench-invalid-045",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000137",
+        "created_at": "2026-06-10T14:41:25.506452+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-045_0002",
+        "thread_id": "trace-bench-invalid-045",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000138",
+        "created_at": "2026-06-10T14:41:25.515400+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-045_0003",
+        "thread_id": "trace-bench-invalid-045",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000139",
+        "created_at": "2026-06-10T14:41:25.525813+00:00"
+      }
+    ],
+    "trace-bench-invalid-046": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-046_0001",
+        "thread_id": "trace-bench-invalid-046",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000140",
+        "created_at": "2026-06-10T14:41:25.536206+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-046_0002",
+        "thread_id": "trace-bench-invalid-046",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000141",
+        "created_at": "2026-06-10T14:41:25.544490+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-046_0003",
+        "thread_id": "trace-bench-invalid-046",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000142",
+        "created_at": "2026-06-10T14:41:25.553771+00:00"
+      }
+    ],
+    "trace-bench-invalid-047": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-047_0001",
+        "thread_id": "trace-bench-invalid-047",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000143",
+        "created_at": "2026-06-10T14:41:25.562785+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-047_0002",
+        "thread_id": "trace-bench-invalid-047",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000144",
+        "created_at": "2026-06-10T14:41:25.572694+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-047_0003",
+        "thread_id": "trace-bench-invalid-047",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000145",
+        "created_at": "2026-06-10T14:41:25.583935+00:00"
+      }
+    ],
+    "trace-bench-invalid-048": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-048_0001",
+        "thread_id": "trace-bench-invalid-048",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000146",
+        "created_at": "2026-06-10T14:41:25.594956+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-048_0002",
+        "thread_id": "trace-bench-invalid-048",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000147",
+        "created_at": "2026-06-10T14:41:25.604178+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-048_0003",
+        "thread_id": "trace-bench-invalid-048",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000148",
+        "created_at": "2026-06-10T14:41:25.613889+00:00"
+      }
+    ],
+    "trace-bench-invalid-049": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-049_0001",
+        "thread_id": "trace-bench-invalid-049",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000149",
+        "created_at": "2026-06-10T14:41:25.624858+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-049_0002",
+        "thread_id": "trace-bench-invalid-049",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000150",
+        "created_at": "2026-06-10T14:41:25.633700+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-049_0003",
+        "thread_id": "trace-bench-invalid-049",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000151",
+        "created_at": "2026-06-10T14:41:25.641686+00:00"
+      }
+    ],
+    "trace-bench-invalid-050": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-050_0001",
+        "thread_id": "trace-bench-invalid-050",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000152",
+        "created_at": "2026-06-10T14:41:25.653106+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-050_0002",
+        "thread_id": "trace-bench-invalid-050",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000153",
+        "created_at": "2026-06-10T14:41:25.663945+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-invalid-050_0003",
+        "thread_id": "trace-bench-invalid-050",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000154",
+        "created_at": "2026-06-10T14:41:25.672973+00:00"
+      }
+    ],
+    "trace-replacement-1": [
+      {
+        "checkpoint_id": "ckpt_trace-replacement-1_0001",
+        "thread_id": "trace-replacement-1",
+        "step": 1,
+        "state": {
+          "last_tool_status": "missing_handler",
+          "last_tool_target": "__invalid_action__",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000155",
+        "created_at": "2026-06-10T14:41:25.688959+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-replacement-1_0002",
+        "thread_id": "trace-replacement-1",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema_v2",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000156",
+        "created_at": "2026-06-10T14:41:25.697823+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-replacement-1_0003",
+        "thread_id": "trace-replacement-1",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary_v2",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000157",
+        "created_at": "2026-06-10T14:41:25.706069+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-replacement-1_0004",
+        "thread_id": "trace-replacement-1",
+        "step": 4,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3_v2",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000158",
+        "created_at": "2026-06-10T14:41:25.714495+00:00"
+      }
+    ],
+    "trace-bench-restored": [
+      {
+        "checkpoint_id": "ckpt_trace-bench-restored_0001",
+        "thread_id": "trace-bench-restored",
+        "step": 1,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "action_schema_v2",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000159",
+        "created_at": "2026-06-10T14:41:25.791257+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-restored_0002",
+        "thread_id": "trace-bench-restored",
+        "step": 2,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "marker_only_boundary_v2",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000160",
+        "created_at": "2026-06-10T14:41:25.799281+00:00"
+      },
+      {
+        "checkpoint_id": "ckpt_trace-bench-restored_0003",
+        "thread_id": "trace-bench-restored",
+        "step": 3,
+        "state": {
+          "last_tool_status": "evidence_observed",
+          "last_tool_target": "pass_power_3_v2",
+          "duplicate": false
+        },
+        "last_event_id": "evt_00000161",
+        "created_at": "2026-06-10T14:41:25.808115+00:00"
+      }
+    ]
+  }
+}

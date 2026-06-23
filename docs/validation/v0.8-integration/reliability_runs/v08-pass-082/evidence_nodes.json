@@ -1,0 +1,71 @@
+{
+  "version": "0.2.0",
+  "nodes": [
+    {
+      "id": "ev_f69309659854",
+      "text": "Before closing an incident, inspect the activity stream and latest tool evidence. Closing without evidence is a known bad path.",
+      "source": "file",
+      "source_uri": "fixture://runbook/incident-closure#incident-runbook::chunk-001",
+      "content_hash": "63385a0e649f7e8259136981b22e299b8ae7c4694f57e73e113c1ecf5af4dfee",
+      "document_id": "incident-runbook",
+      "document_version": "v1",
+      "title": "Incident Closure Runbook",
+      "language": "unknown",
+      "created_at": "2026-06-12T05:35:16.300270+00:00",
+      "updated_at": "2026-06-12T05:35:16.300279+00:00",
+      "metadata": {
+        "published_at": "2026-06-12",
+        "source_priority": "runbook",
+        "chunk_id": "incident-runbook::chunk-001",
+        "chunk_index": 1,
+        "source_type": "file",
+        "parser_version": "rule-v08",
+        "cleaner_version": "rule-v08"
+      }
+    },
+    {
+      "id": "ev_94852046df26",
+      "text": "If the activity stream confirms resolution, update the incident state to Closed Complete.",
+      "source": "file",
+      "source_uri": "fixture://runbook/incident-closure#incident-runbook::chunk-002",
+      "content_hash": "660c5c8f88a880a32be47ee6988718584d0138a0e83d51a41ca2d35fab589578",
+      "document_id": "incident-runbook",
+      "document_version": "v1",
+      "title": "Incident Closure Runbook",
+      "language": "unknown",
+      "created_at": "2026-06-12T05:35:16.303827+00:00",
+      "updated_at": "2026-06-12T05:35:16.303837+00:00",
+      "metadata": {
+        "published_at": "2026-06-12",
+        "source_priority": "runbook",
+        "chunk_id": "incident-runbook::chunk-002",
+        "chunk_index": 2,
+        "source_type": "file",
+        "parser_version": "rule-v08",
+        "cleaner_version": "rule-v08"
+      }
+    },
+    {
+      "id": "ev_7b0f4e6a6f7c",
+      "text": "A previous task failed after calling blind_close before checking the activity stream. The safe path was to gather evidence first.",
+      "source": "file",
+      "source_uri": "fixture://cases/blind-close#negative-case::chunk-001",
+      "content_hash": "6bb07054a33eb58124f6443783b47db458a3249b29c61f9446051ced89a25f0a",
+      "document_id": "negative-case",
+      "document_version": "v1",
+      "title": "Blind Close Counterexample",
+      "language": "unknown",
+      "created_at": "2026-06-12T05:35:16.307344+00:00",
+      "updated_at": "2026-06-12T05:35:16.307354+00:00",
+      "metadata": {
+        "published_at": "2026-06-12",
+        "source_priority": "tool_result",
+        "chunk_id": "negative-case::chunk-001",
+        "chunk_index": 1,
+        "source_type": "file",
+        "parser_version": "rule-v08",
+        "cleaner_version": "rule-v08"
+      }
+    }
+  ]
+}

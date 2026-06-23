@@ -1,0 +1,17 @@
+{
+  "validation": "retrieval-comparison-v0.5.4",
+  "query_count": 50,
+  "capsule_count": 341,
+  "baseline_recall_at_10": 1.0,
+  "tag_time_recall_at_10": 1.0,
+  "graph_recall_at_10": 1.0,
+  "baseline_average_candidate_count": 341,
+  "tag_time_average_candidate_count": 6.44,
+  "graph_average_candidate_count": 6.44,
+  "tag_time_candidate_reduction_ratio": 0.9811,
+  "graph_candidate_reduction_ratio": 0.9811,
+  "graph_expansion_precision": 1.0,
+  "online_llm_call_count": 0,
+  "memory_promotion_count": 0,
+  "layer3_mutation_count": 0
+}

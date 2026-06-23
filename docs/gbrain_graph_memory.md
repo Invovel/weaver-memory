@@ -2,12 +2,41 @@
 
 ## 文档状态
 
-本文描述目标 GBrain 架构，不代表当前 Python 原型已经实现。GBrain 负责组织关系，
-RAG 负责检索证据，MemoryWeaver Harness 负责判断是否可信、是否可记、是否晋升。
+本文描述 GBrain 架构和当前 v0.8 可运行边界。GBrain 负责组织关系，RAG 负责检索证据，
+MemoryWeaver Harness 负责判断是否可信、是否可记、是否晋升。
 
-SDK 当前只实现了最小 candidate graph / tag-linking 层，用于一跳 tag expansion、
-候选缩小、evidence lineage 和 Pattern lineage。完整 GBrain 数据库、多跳图谱扩展、
-alias merge、temporal graph 和自动图谱维护仍是后续目标。
+SDK 当前包含两层：
+
+- `GBrain`：workspace graph sync / mind-map projection，用于 tag、memory、evidence
+  和 Pattern lineage。
+- `MemoryWeaverGBrainEngineV08`：authority-limited v0.8 引擎，支持 candidate
+  bundle ingestion、原始 `search`、合成 `think` 和 mind-map payload。
+
+完整生产级图数据库、多跳图谱扩展、alias merge、自动图谱维护和大规模优化属于 v0.9，
+不再是 v0.8 缺失的搭建项。
+
+## v0.8 note
+
+当前项目已经完成 v0.8 最小可运行搭建：
+
+> **GBrain 可以接入 RAG evidence 和 specialist EvidencePacket，但不能获得 verified memory 或 stable Pattern 的写入权。**
+
+当前已落地：
+
+- `candidate` graph nodes / edges
+- “early-link, late-authorize” 的候选图谱写入
+- GBrain `search` 与 `think` 分离
+- mind-map payload
+- v0.8 integration validation：`docs/validation/v0.8-integration/`
+
+当前仍保持：
+
+- graph 只影响候选召回与 lineage 展示
+- graph 不改变 Layer 3 promotion / rollback 主线
+- mind-map 仍是 advisory projection，而不是 runtime authority
+
+v0.9 继续优化 verified/runtime edge 分层、多跳 expansion、wrong-link rate、
+stale suppression 和外部 benchmark。
 
 ## 先拆开三条轴
 
@@ -109,6 +138,134 @@ MEMBER_OF
   "policy_version": "graph-policy-v1"
 }
 ```
+
+v0.8 起建议把图边状态进一步明确成三层：
+
+```text
+candidate_edge
+verified_edge
+runtime_edge
+```
+
+含义：
+
+- `candidate_edge`：LLM、规则或离线流水线提出的候选关系，只能参与候选收缩和审阅。
+- `verified_edge`：经过来源、证据、时效和冲突检查后，允许参与 Layer 2 / Layer 3 的
+  辅助判断，但仍不直接赋予 runtime authority。
+- `runtime_edge`：只有 Layer 3 已确认的 path relation，才允许进入正式 mind-map /
+  runtime path graph，并影响后续动作选择。
+
+这三层状态不会在当前版本提前实现，但应该作为 v0.8 的结构边界固定下来。
+
+## LLM 引入边界
+
+v0.8 的 LLM 接口建议只允许产生 **candidate graph bundle**，而不是直接改图或改
+memory。也就是：
+
+```text
+LLM
+  ↓
+candidate nodes / candidate edges / candidate summaries / branch notes
+  ↓
+Harness review
+  ↓
+candidate_edge or verified_edge
+  ↓
+Layer 3 confirmation
+  ↓
+runtime_edge
+```
+
+LLM 能做：
+
+- 事件抽取后的候选节点补全
+- 候选边关系提议
+- 候选摘要与 branch notes
+- 搜索结果上的二次整理
+
+LLM 不能做：
+
+- 直接写 verified memory
+- 直接写 stable Pattern
+- 直接把图边变成 runtime authority
+- 直接把思维图当成 truth graph
+
+## 参考 garrytan/gbrain 的可直接套用结构
+
+参考 `garrytan/gbrain` 官方仓库，最适合直接吸收的不是“替换本地 graph store”，而是
+它的 **contract shape**：
+
+1. `search` 与 `think` 分离
+
+```text
+search -> 返回原始 graph retrieval hits
+think  -> 返回带 citation 的综合答案
+```
+
+映射到 MemoryWeaver：
+
+- `search` 对应低权限的 graph retrieval / point get / local expansion
+- `think` 对应带 citation、gap、stale warning、contradiction warning 的图谱解释层
+
+2. `BrainEngine` 风格接口
+
+```text
+ingest
+search
+think
+project
+```
+
+映射到 MemoryWeaver：
+
+- ingest candidate bundle
+- search graph context
+- think over cited graph context
+- project layered mind map
+
+3. `brain` / `source` 的作用域拆分
+
+这个适合直接套到 MemoryWeaver 的 `scope` 设计：
+
+- `brain_id` -> workspace / user / tenant 级边界
+- `source_id` -> repo / project / dataset slice
+
+这样可以避免 GBrain 过早变成一个全局混合图。
+
+当前仓库里已经增加了一个只定义未来接口、不接入当前主链路的结构文件：
+
+- [`memoryweaver/gbrain_v08.py`](../memoryweaver/gbrain_v08.py)
+
+它先把以下结构钉住：
+
+- `GBrainScope`
+- `GBrainCandidateBundle`
+- `GBrainSearchResult`
+- `GBrainThinkResult`
+- `GBrainMindMapDocument`
+- `GBrainEngineV08`
+
+这不是在声称 v0.8 已实现，而是在给未来接入 `garrytan/gbrain` 风格结构预留稳定壳层。
+
+## 思维图表接入
+
+v0.8 的思维图表建议分层接入，而不是只给一张混合图：
+
+```text
+candidate nodes / candidate edges
+verified nodes / verified edges
+runtime nodes / runtime edges
+```
+
+其中：
+
+- candidate layer 用于审阅和探索
+- verified layer 用于 evidence-backed relation browsing
+- runtime layer 用于正式 path graph / marker graph
+
+这能保持当前项目最重要的边界：
+
+> **graph 可以早参与候选组织，但只有 Layer 3 确认后的关系才能进入 runtime authority。**
 
 ## Layer 2 tag 如何直接存取
 

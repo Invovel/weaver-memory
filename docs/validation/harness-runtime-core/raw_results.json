@@ -1,0 +1,113 @@
+{
+  "passed": true,
+  "task_count": 50,
+  "metrics": {
+    "no_memory": {
+      "task_count": 50,
+      "success_rate": 0.0,
+      "repeated_failure_rate": 1.0,
+      "invalid_action_rate": 1.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 0.0,
+      "negative_memory_hit_rate": 0.0,
+      "promotion_precision": 0.0
+    },
+    "naive_memory": {
+      "task_count": 50,
+      "success_rate": 0.0,
+      "repeated_failure_rate": 1.0,
+      "invalid_action_rate": 1.0,
+      "memory_induced_regression_rate": 1.0,
+      "rollback_frequency": 0.0,
+      "negative_memory_hit_rate": 0.0,
+      "promotion_precision": 0.0
+    },
+    "summary_memory": {
+      "task_count": 50,
+      "success_rate": 0.32,
+      "repeated_failure_rate": 0.68,
+      "invalid_action_rate": 0.68,
+      "memory_induced_regression_rate": 0.24,
+      "rollback_frequency": 0.0,
+      "negative_memory_hit_rate": 0.0,
+      "promotion_precision": 0.0
+    },
+    "retrieval_memory": {
+      "task_count": 50,
+      "success_rate": 0.5,
+      "repeated_failure_rate": 0.5,
+      "invalid_action_rate": 0.5,
+      "memory_induced_regression_rate": 0.2,
+      "rollback_frequency": 0.0,
+      "negative_memory_hit_rate": 0.5,
+      "promotion_precision": 0.0
+    },
+    "memoryweaver_harness_runtime": {
+      "task_count": 50,
+      "success_rate": 1.0,
+      "repeated_failure_rate": 0.0,
+      "invalid_action_rate": 0.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 0.0,
+      "negative_memory_hit_rate": 1.0,
+      "promotion_precision": 1.0
+    },
+    "rollback_probe": {
+      "task_count": 1,
+      "success_rate": 1.0,
+      "repeated_failure_rate": 0.0,
+      "invalid_action_rate": 0.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 1.0,
+      "negative_memory_hit_rate": 1.0,
+      "promotion_precision": 0.0
+    },
+    "memoryweaver_harness_runtime_recovery": {
+      "task_count": 10,
+      "success_rate": 1.0,
+      "repeated_failure_rate": 0.0,
+      "invalid_action_rate": 0.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 1.0,
+      "negative_memory_hit_rate": 1.0,
+      "promotion_precision": 0.0
+    }
+  },
+  "aggregate_metrics": {
+    "repeated_failure_rate_delta_vs_no_memory": -1.0,
+    "invalid_action_rate_delta_vs_naive_memory": -1.0,
+    "task_success_delta_vs_no_memory": 1.0,
+    "task_success_delta_vs_retrieval_memory": 0.5,
+    "memory_induced_regression_delta_vs_naive_memory": -1.0,
+    "promotion_precision": 1.0,
+    "negative_memory_hit_rate": 1.0,
+    "promoted_after_task_index": 3,
+    "rollback_recovery_success_rate": 1.0,
+    "runtime_path_store_roundtrip": 1.0
+  },
+  "persistence_probe": {
+    "path_count": 1,
+    "evidence_count": 16,
+    "ledger_count": 66,
+    "restored_rollback_recommended": true,
+    "restored_selected_action": {
+      "action_name": "ask_user",
+      "target": "rollback_to_safe_debug",
+      "arguments": {
+        "target": "rollback_to_safe_debug"
+      },
+      "reasoning": "",
+      "working_directory": "",
+      "timeout_seconds": 30,
+      "idempotency_key": "",
+      "user_confirmation": false,
+      "resource_budget": {},
+      "proposed_by": "assistant",
+      "metadata": {},
+      "created_at": "2026-06-11T02:06:20.382967+00:00"
+    },
+    "journal_event_count": 3,
+    "checkpoint_count_for_first_task": 1
+  },
+  "research_question": "Can evidence-gated path promotion reduce repeated agent failures without increasing memory-induced error propagation?"
+}

@@ -1,0 +1,505 @@
+{
+  "schema_version": "runbook-marker-v0.5",
+  "core_issues": [
+    {
+      "id": "codex_subscription_org_mismatch",
+      "title": "Codex subscription failed diagnostic",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "known_bad_path_suppression",
+      "source_dialogue_card_id": "card_001_codex_subscription_failed",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "npm_peer_dependency_range_mismatch",
+      "title": "npm install dependency conflict with two guard markers",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "marker_conflict_shadow",
+      "source_dialogue_card_id": "card_002_npm_install_dependency_conflict",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "docker_platform_warning_partial_signal",
+      "title": "Docker build warning retained as partial weak signal",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "weak_signal_partial",
+      "source_dialogue_card_id": "card_003_docker_build_warning_partial",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "ci_timeout_freshness_conflict",
+      "title": "CI test timeout freshness conflict",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "freshness_conflict",
+      "source_dialogue_card_id": "card_004_ci_test_timeout_freshness_conflict",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "api_key_scope_ambiguous_evidence",
+      "title": "API key exists but request is rejected",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "ambiguous_evidence",
+      "source_dialogue_card_id": "card_005_api_key_exists_but_rejected",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_wsl_auth_environment_split",
+      "title": "Codex works in Windows terminal but fails in WSL.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "negative_avoidance",
+      "source_dialogue_card_id": "card_006_002_codex_wsl_native_mismatch",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_api_key_vs_product_entitlement",
+      "title": "API key is valid but Codex CLI says subscription unavailable.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "route_hint",
+      "source_dialogue_card_id": "card_007_003_codex_api_key_not_subscription",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_provider_model_name_mismatch",
+      "title": "DeepSeek API returns 402 during proposal batch.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "evidence_requirement",
+      "source_dialogue_card_id": "card_008_004_deepseek_model_name_402",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_workspace_root_mismatch",
+      "title": "`mw validate` passes but review sees no proposals.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "scope_mismatch",
+      "source_dialogue_card_id": "card_009_005_cli_root_path_wrong_workspace",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_cli_json_contract_violation",
+      "title": "Benchmark cannot parse CLI output.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "overgeneralized_marker_rejection",
+      "source_dialogue_card_id": "card_010_006_cli_json_parse_error",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_provider_health_gate",
+      "title": "Offline LLM proposals stop running.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "known_bad_path_suppression",
+      "source_dialogue_card_id": "card_011_007_provider_cooldown_after_failures",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_env_file_loading_contract",
+      "title": "API key exists in `.env`, provider unavailable.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "weak_signal_partial",
+      "source_dialogue_card_id": "card_012_008_env_file_not_loaded",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_sandbox_path_permission",
+      "title": "Patching `D:\\Download\\Agent\\MemoryWeaver` times out.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "freshness_conflict",
+      "source_dialogue_card_id": "card_013_009_windows_path_approval_timeout",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_cli_entrypoint_missing",
+      "title": "Installed package cannot run `mw`.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "ambiguous_evidence",
+      "source_dialogue_card_id": "card_014_010_cli_import_entrypoint",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_package_manager_workspace_root",
+      "title": "CI install passes locally but fails in workspace package.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "negative_avoidance",
+      "source_dialogue_card_id": "card_015_012_pnpm_lockfile_workspace",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_python_interpreter_mismatch",
+      "title": "pytest cannot import installed package.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "route_hint",
+      "source_dialogue_card_id": "card_016_013_python_venv_wrong_interpreter",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_dependency_group_not_installed",
+      "title": "Tests fail because optional dev dependency is missing.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "evidence_requirement",
+      "source_dialogue_card_id": "card_017_014_poetry_group_dependency_missing",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_node_engine_mismatch",
+      "title": "Build fails locally but passes on CI.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "scope_mismatch",
+      "source_dialogue_card_id": "card_018_015_node_version_engine_mismatch",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_transitive_dependency_lock_regression",
+      "title": "Tests fail after fresh install.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "overgeneralized_marker_rejection",
+      "source_dialogue_card_id": "card_019_016_transitive_dependency_regression",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_notebook_kernel_env_split",
+      "title": "Import error persists after pip install.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "known_bad_path_suppression",
+      "source_dialogue_card_id": "card_020_017_conda_pip_mixed_env",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_local_module_shadowing",
+      "title": "Installed library imports wrong module.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "weak_signal_partial",
+      "source_dialogue_card_id": "card_021_018_package_name_shadowing",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_ci_secret_fork_boundary",
+      "title": "GitHub Action fails only on external PRs.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "freshness_conflict",
+      "source_dialogue_card_id": "card_022_020_ci_secret_not_available_on_fork",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_ci_cache_stale_dependency",
+      "title": "CI passes with cache but clean run fails.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "ambiguous_evidence",
+      "source_dialogue_card_id": "card_023_021_ci_cache_masks_dependency_change",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_deploy_env_var_contract_mismatch",
+      "title": "App crashes in production despite env var configured.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "negative_avoidance",
+      "source_dialogue_card_id": "card_024_022_deploy_env_var_name_mismatch",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_kube_namespace_context_mismatch",
+      "title": "Service update appears missing after apply.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "route_hint",
+      "source_dialogue_card_id": "card_025_023_kubernetes_wrong_namespace",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_compose_override_precedence",
+      "title": "Local service ignores changed env vars.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "evidence_requirement",
+      "source_dialogue_card_id": "card_026_024_docker_compose_override",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_release_tag_local_not_remote",
+      "title": "Release workflow does not run after tagging.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "scope_mismatch",
+      "source_dialogue_card_id": "card_027_026_release_tag_not_pushed",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_applied_migration_checksum",
+      "title": "Migration checksum mismatch.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "overgeneralized_marker_rejection",
+      "source_dialogue_card_id": "card_028_027_migration_checksum",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_seed_idempotency_missing",
+      "title": "Seed script duplicates rows on rerun.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "known_bad_path_suppression",
+      "source_dialogue_card_id": "card_029_028_seed_data_idempotency",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_api_n_plus_one_regression",
+      "title": "Endpoint times out after feature merge.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "weak_signal_partial",
+      "source_dialogue_card_id": "card_030_029_api_timeout_due_to_n_plus_one",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_db_pool_exhaustion",
+      "title": "Intermittent DB connection errors.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "freshness_conflict",
+      "source_dialogue_card_id": "card_031_030_db_pool_exhaustion",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_schema_cache_stale_after_migration",
+      "title": "App cannot find newly added column.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "ambiguous_evidence",
+      "source_dialogue_card_id": "card_032_031_schema_cache_stale",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_timezone_boundary_filter",
+      "title": "Date filter misses records near midnight.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "negative_avoidance",
+      "source_dialogue_card_id": "card_033_032_timezone_boundary_bug",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_rate_limit_not_auth_failure",
+      "title": "External API returns 429 and agent calls it auth failure.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "route_hint",
+      "source_dialogue_card_id": "card_034_034_rate_limit_misdiagnosed_as_auth",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_flaky_time_dependency",
+      "title": "Test passes locally but fails around midnight in CI.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "evidence_requirement",
+      "source_dialogue_card_id": "card_035_035_flaky_test_time_dependency",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_snapshot_intent_confirmation",
+      "title": "Snapshot test fails after UI copy update.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "scope_mismatch",
+      "source_dialogue_card_id": "card_036_036_snapshot_test_intentional_change",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_test_global_state_leak",
+      "title": "Test only fails in full suite.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "overgeneralized_marker_rejection",
+      "source_dialogue_card_id": "card_037_037_mock_leaks_between_tests",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_async_missing_await",
+      "title": "Async test passes sometimes and fails sometimes.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "known_bad_path_suppression",
+      "source_dialogue_card_id": "card_038_038_async_test_missing_await",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_cross_platform_line_ending",
+      "title": "Golden diff appears only on Windows.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "weak_signal_partial",
+      "source_dialogue_card_id": "card_039_039_golden_file_encoding",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_test_live_network_leak",
+      "title": "Unit tests hang in restricted network.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "freshness_conflict",
+      "source_dialogue_card_id": "card_040_040_timeout_due_to_network_fixture",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_dirty_worktree_preserve_user_changes",
+      "title": "Patch touches a file with existing changes.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "ambiguous_evidence",
+      "source_dialogue_card_id": "card_041_041_dirty_worktree_user_changes",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_validation_claim_scope",
+      "title": "README says benchmark proves task success.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "negative_avoidance",
+      "source_dialogue_card_id": "card_042_042_readme_claim_too_strong",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_reference_license_boundary",
+      "title": "User wants to copy harness-forge code.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "route_hint",
+      "source_dialogue_card_id": "card_043_043_license_reference_gpl",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_release_tag_after_validation",
+      "title": "User asks to tag before tests complete.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "evidence_requirement",
+      "source_dialogue_card_id": "card_044_044_branch_tag_validation_order",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_provider_specific_model_default",
+      "title": "Provider defaults to OpenAI model while DeepSeek selected.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "scope_mismatch",
+      "source_dialogue_card_id": "card_045_045_config_default_wrong_provider",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_validation_artifact_completeness",
+      "title": "Validation README exists but raw results missing.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "overgeneralized_marker_rejection",
+      "source_dialogue_card_id": "card_046_046_docs_missing_raw_results",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_visible_bridge_not_canonical_store",
+      "title": "Agent keeps reading generated summaries recursively.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "known_bad_path_suppression",
+      "source_dialogue_card_id": "card_047_047_agents_visible_summary_loop",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_trace_explainability_gap",
+      "title": "`mw trace` shows marker name but no reason.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "weak_signal_partial",
+      "source_dialogue_card_id": "card_048_048_trace_missing_decision_reason",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_pending_review_queue_aging",
+      "title": "Pending marker proposals accumulate forever.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "freshness_conflict",
+      "source_dialogue_card_id": "card_049_049_pending_marker_stale",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    },
+    {
+      "id": "core_marker_conflict_resolution",
+      "title": "Two markers suggest conflicting evidence orders.",
+      "status": "manual_seed",
+      "scope": "coding/debug/configuration",
+      "card_type": "ambiguous_evidence",
+      "source_dialogue_card_id": "card_050_050_marker_conflict_two_paths",
+      "provenance": "manual_annotation",
+      "truth_authority": false
+    }
+  ]
+}

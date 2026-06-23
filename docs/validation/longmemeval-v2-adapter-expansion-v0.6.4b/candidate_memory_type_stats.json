@@ -1,0 +1,57 @@
+{
+  "validation": "longmemeval-v2-adapter-expansion-v0.6.4b",
+  "reports_by_limit": {
+    "50": {
+      "candidate_memory_count": 1900,
+      "by_memory_type": {
+        "fact": 1900
+      },
+      "by_polarity": {
+        "ambiguous": 600,
+        "neutral": 1300
+      },
+      "by_source": {
+        "assistant": 600,
+        "tool": 500,
+        "user": 150,
+        "web": 650
+      },
+      "by_freshness": {
+        "unknown": 1900
+      },
+      "assistant_candidate_count": 600,
+      "assistant_ambiguous_count": 600,
+      "confidence_buckets": {
+        "0.0-0.3": 600,
+        "0.3-0.6": 1150,
+        "0.6-1.0": 150
+      }
+    },
+    "100": {
+      "candidate_memory_count": 3800,
+      "by_memory_type": {
+        "fact": 3800
+      },
+      "by_polarity": {
+        "ambiguous": 1200,
+        "neutral": 2600
+      },
+      "by_source": {
+        "assistant": 1200,
+        "tool": 1000,
+        "user": 300,
+        "web": 1300
+      },
+      "by_freshness": {
+        "unknown": 3800
+      },
+      "assistant_candidate_count": 1200,
+      "assistant_ambiguous_count": 1200,
+      "confidence_buckets": {
+        "0.0-0.3": 1200,
+        "0.3-0.6": 2300,
+        "0.6-1.0": 300
+      }
+    }
+  }
+}

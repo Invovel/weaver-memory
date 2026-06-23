@@ -1,0 +1,33 @@
+{
+  "mode": "think",
+  "query": "Before closing the incident, which evidence should be checked and which action is unsafe?",
+  "scope": {
+    "brain_id": "workspace",
+    "source_id": "v08-fixture",
+    "workspace_root": "",
+    "owner_scope": "project",
+    "federated": false
+  },
+  "answer": "Evidence-backed candidate: activity stream evidence",
+  "citations": [
+    {
+      "ref_id": "activity_stream",
+      "ref_type": "tag",
+      "layer": "candidate",
+      "authority": "",
+      "freshness": "",
+      "snippet": ""
+    },
+    {
+      "ref_id": "ev_f69309659854",
+      "ref_type": "source_ref",
+      "layer": "",
+      "authority": "",
+      "freshness": "",
+      "snippet": ""
+    }
+  ],
+  "gaps": [],
+  "contradiction_warnings": [],
+  "stale_warnings": []
+}

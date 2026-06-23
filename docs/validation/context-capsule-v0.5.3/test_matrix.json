@@ -1,0 +1,51 @@
+{
+  "validation": "context-capsule-v0.5.3",
+  "status": "full_fixture_validated",
+  "next_status": "v0.5.2_active_marker_binding_or_v0.6_agent_trajectory_cost_validation",
+  "modules": [
+    "context_schema.py",
+    "context_store.py",
+    "content_router.py",
+    "tag_time_index.py",
+    "marker_context.py"
+  ],
+  "metrics": [
+    "compression_ratio",
+    "tag_recall_at_k",
+    "raw_retrieval_success_rate",
+    "time_filter_accuracy",
+    "marker_context_hit_rate",
+    "trust_inheritance_violation_count",
+    "raw_ref_missing_count",
+    "capsule_promoted_memory_count"
+  ],
+  "hard_gates": {
+    "raw_retrieval_success_rate": 1.0,
+    "trust_inheritance_violation_count": 0,
+    "raw_ref_missing_count": 0,
+    "capsule_promoted_memory_count": 0,
+    "marker_context_hit_rate_min": 0.8
+  },
+  "content_types": {
+    "terminal_log": {
+      "fixture_count": 10,
+      "must_preserve": ["command", "exit_code", "stderr_head", "stderr_tail", "timestamp", "source"]
+    },
+    "tool_json": {
+      "fixture_count": 10,
+      "must_preserve": ["status", "error", "id", "code", "timestamp", "source"]
+    },
+    "conversation_turn": {
+      "fixture_count": 10,
+      "must_preserve": ["speaker", "intent", "correction", "decision", "timestamp", "source"]
+    },
+    "code_patch": {
+      "fixture_count": 5,
+      "must_preserve": ["file_path", "symbols", "changed_lines", "timestamp", "source"]
+    },
+    "trace_record": {
+      "fixture_count": 5,
+      "must_preserve": ["marker", "route", "required_evidence", "suppressed_action", "timestamp", "source"]
+    }
+  }
+}

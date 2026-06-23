@@ -1,0 +1,32 @@
+{
+  "fresh_no_memory": {
+    "average_token_estimate": 59.3333,
+    "token_overhead_vs_fresh": 0.0,
+    "token_per_successful_task": 59.3333,
+    "llm_call_count": 0
+  },
+  "random_experience_raw_logs": {
+    "average_token_estimate": 223.5,
+    "token_overhead_vs_fresh": 164.1667,
+    "token_per_successful_task": 223.5,
+    "llm_call_count": 0
+  },
+  "random_experience_naive_memory": {
+    "average_token_estimate": 177.6667,
+    "token_overhead_vs_fresh": 118.3333,
+    "token_per_successful_task": 177.6667,
+    "llm_call_count": 0
+  },
+  "mw_verified_experience": {
+    "average_token_estimate": 95,
+    "token_overhead_vs_fresh": 35.6667,
+    "token_per_successful_task": 95.0,
+    "llm_call_count": 0
+  },
+  "mw_verified_experience_marker": {
+    "average_token_estimate": 152.5,
+    "token_overhead_vs_fresh": 93.1667,
+    "token_per_successful_task": 152.5,
+    "llm_call_count": 0
+  }
+}

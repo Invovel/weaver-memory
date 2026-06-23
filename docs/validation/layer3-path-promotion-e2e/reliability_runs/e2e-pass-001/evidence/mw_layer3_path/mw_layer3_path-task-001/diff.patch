@@ -1,0 +1,7 @@
+--- a/sample_project/calculator.py
++++ b/sample_project/calculator.py
+@@ -1,2 +1,4 @@
+ def safe_divide(numerator, denominator):
++    if denominator == 0:
++        return None
+     return numerator / denominator

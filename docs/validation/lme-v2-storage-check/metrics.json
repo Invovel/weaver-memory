@@ -1,0 +1,9 @@
+{
+  "dataset_cache_root_exists": true,
+  "refs_main_exists": true,
+  "refs_snapshot_complete": false,
+  "complete_cache_snapshot_exists": false,
+  "can_build_external_records": true,
+  "root_resolution_source": "benchmarks",
+  "resolved_root": "D:\\benchmarks\\longmemeval-v2"
+}

@@ -1,0 +1,10 @@
+{
+  "run_count": 3,
+  "pass_at_1": true,
+  "pass_power_3": true,
+  "tests_passed_pass_power_3": true,
+  "diff_matches_expected_pass_power_3": true,
+  "memory_induced_regression_rate_mean": 0.0,
+  "layer3_path_regret_mean": 0,
+  "layer3_path_regret_std": 0.0
+}

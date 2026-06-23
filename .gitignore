@@ -10,12 +10,25 @@ venv/
 # MemoryWeaver data
 *.memory.json
 .memoryweaver/
+memory.json
+.memoryweaver-*/
+.tmp-*/
+.workspace_runs/
+docs/validation/current-stage-check/*.json
+docs/validation/current-stage-check/*.txt
+docs/validation/current-stage-check/report.md
 
 # IDE
 .vscode/
 .idea/
+.claude/
 
 # OS
 .DS_Store
 Thumbs.db
 demo_memory.json
+
+# Local env and caches
+.env
+.env.*
+.pytest_cache/

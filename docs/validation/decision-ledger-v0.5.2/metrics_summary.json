@@ -1,0 +1,13 @@
+{
+  "decision_count": 5,
+  "hash_chain_valid": true,
+  "applied_plan_count": 2,
+  "blocked_or_pending_count": 3,
+  "approved_l2_decision_count": 1,
+  "approved_l2_with_approval_id_count": 1,
+  "blocked_with_reason_count": 3,
+  "conflict_ref_count": 1,
+  "raw_ref_attached_count": 5,
+  "capsule_ref_attached_count": 5,
+  "side_effect_total": 0
+}

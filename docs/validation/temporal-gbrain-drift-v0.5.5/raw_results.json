@@ -1,0 +1,3751 @@
+{
+  "validation": "temporal-gbrain-drift-v0.5.5",
+  "passed": true,
+  "metrics": {
+    "core_issue_count": 50,
+    "marker_count": 50,
+    "graph_node_count": 113,
+    "temporal_edge_count": 76,
+    "temporal_metadata_complete_count": 113,
+    "stale_marker_count": 6,
+    "challenged_marker_count": 7,
+    "supersedes_edge_count": 13,
+    "challenged_by_edge_count": 13,
+    "marker_proposal_count": 13,
+    "review_required_count": 13,
+    "runtime_authority_granted_count": 0,
+    "memory_promotion_count": 0,
+    "layer3_mutation_count": 0,
+    "online_llm_call_count": 0
+  },
+  "hard_gates": {
+    "core_issue_count": true,
+    "marker_count": true,
+    "temporal_metadata_complete": true,
+    "stale_marker_count": true,
+    "challenged_marker_count": true,
+    "supersedes_edge_count": true,
+    "challenged_by_edge_count": true,
+    "marker_proposal_count": true,
+    "all_proposals_require_review": true,
+    "runtime_authority_granted_count": true,
+    "memory_promotion_count": true,
+    "layer3_mutation_count": true,
+    "online_llm_call_count": true
+  },
+  "marker_proposals": [
+    {
+      "proposal_id": "mp_require_recent_ci_log_before_timeout_update",
+      "proposal_type": "marker_drift_review",
+      "marker_id": "require_recent_ci_log_before_timeout_update",
+      "core_issue_id": "ci_timeout_freshness_conflict",
+      "drift_status": "stale",
+      "drift_score": 0.92,
+      "proposed_action": "archive_or_refresh_marker",
+      "requires_review": true,
+      "runtime_authority": false,
+      "layer3_mutation": false,
+      "memory_promotion": false,
+      "reason": "temporal metadata indicates stale/challenged marker; proposal is advisory until reviewed"
+    },
+    {
+      "proposal_id": "mp_marker_surface_stale_pending_review",
+      "proposal_type": "marker_drift_review",
+      "marker_id": "marker_surface_stale_pending_review",
+      "core_issue_id": "core_pending_review_queue_aging",
+      "drift_status": "stale",
+      "drift_score": 0.92,
+      "proposed_action": "archive_or_refresh_marker",
+      "requires_review": true,
+      "runtime_authority": false,
+      "layer3_mutation": false,
+      "memory_promotion": false,
+      "reason": "temporal metadata indicates stale/challenged marker; proposal is advisory until reviewed"
+    },
+    {
+      "proposal_id": "mp_marker_request_scoped_write_approval",
+      "proposal_type": "marker_drift_review",
+      "marker_id": "marker_request_scoped_write_approval",
+      "core_issue_id": "core_sandbox_path_permission",
+      "drift_status": "stale",
+      "drift_score": 0.92,
+      "proposed_action": "archive_or_refresh_marker",
+      "requires_review": true,
+      "runtime_authority": false,
+      "layer3_mutation": false,
+      "memory_promotion": false,
+      "reason": "temporal metadata indicates stale/challenged marker; proposal is advisory until reviewed"
+    },
+    {
+      "proposal_id": "mp_marker_check_pr_origin_before_secret_debug",
+      "proposal_type": "marker_drift_review",
+      "marker_id": "marker_check_pr_origin_before_secret_debug",
+      "core_issue_id": "core_ci_secret_fork_boundary",
+      "drift_status": "stale",
+      "drift_score": 0.92,
+      "proposed_action": "archive_or_refresh_marker",
+      "requires_review": true,
+      "runtime_authority": false,
+      "layer3_mutation": false,
+      "memory_promotion": false,
+      "reason": "temporal metadata indicates stale/challenged marker; proposal is advisory until reviewed"
+    },
+    {
+      "proposal_id": "mp_marker_check_pool_and_transactions_before_retry",
+      "proposal_type": "marker_drift_review",
+      "marker_id": "marker_check_pool_and_transactions_before_retry",
+      "core_issue_id": "core_db_pool_exhaustion",
+      "drift_status": "stale",
+      "drift_score": 0.92,
+      "proposed_action": "archive_or_refresh_marker",
+      "requires_review": true,
+      "runtime_authority": false,
+      "layer3_mutation": false,
+      "memory_promotion": false,
+      "reason": "temporal metadata indicates stale/challenged marker; proposal is advisory until reviewed"
+    },
+    {
+      "proposal_id": "mp_marker_block_live_network_in_unit_tests",
+      "proposal_type": "marker_drift_review",
+      "marker_id": "marker_block_live_network_in_unit_tests",
+      "core_issue_id": "core_test_live_network_leak",
+      "drift_status": "stale",
+      "drift_score": 0.92,
+      "proposed_action": "archive_or_refresh_marker",
+      "requires_review": true,
+      "runtime_authority": false,
+      "layer3_mutation": false,
+      "memory_promotion": false,
+      "reason": "temporal metadata indicates stale/challenged marker; proposal is advisory until reviewed"
+    },
+    {
+      "proposal_id": "mp_marker_verify_schema_cache_after_migration",
+      "proposal_type": "marker_drift_review",
+      "marker_id": "marker_verify_schema_cache_after_migration",
+      "core_issue_id": "core_schema_cache_stale_after_migration",
+      "drift_status": "challenged",
+      "drift_score": 0.6,
+      "proposed_action": "review_marker_scope",
+      "requires_review": true,
+      "runtime_authority": false,
+      "layer3_mutation": false,
+      "memory_promotion": false,
+      "reason": "temporal metadata indicates stale/challenged marker; proposal is advisory until reviewed"
+    },
+    {
+      "proposal_id": "mp_marker_validate_module_and_console_entrypoints",
+      "proposal_type": "marker_drift_review",
+      "marker_id": "marker_validate_module_and_console_entrypoints",
+      "core_issue_id": "core_cli_entrypoint_missing",
+      "drift_status": "challenged",
+      "drift_score": 0.6,
+      "proposed_action": "review_marker_scope",
+      "requires_review": true,
+      "runtime_authority": false,
+      "layer3_mutation": false,
+      "memory_promotion": false,
+      "reason": "temporal metadata indicates stale/challenged marker; proposal is advisory until reviewed"
+    },
+    {
+      "proposal_id": "mp_marker_resolve_scope_and_freshness_before_activation",
+      "proposal_type": "marker_drift_review",
+      "marker_id": "marker_resolve_scope_and_freshness_before_activation",
+      "core_issue_id": "core_marker_conflict_resolution",
+      "drift_status": "challenged",
+      "drift_score": 0.6,
+      "proposed_action": "review_marker_scope",
+      "requires_review": true,
+      "runtime_authority": false,
+      "layer3_mutation": false,
+      "memory_promotion": false,
+      "reason": "temporal metadata indicates stale/challenged marker; proposal is advisory until reviewed"
+    },
+    {
+      "proposal_id": "mp_marker_inspect_diff_before_patch",
+      "proposal_type": "marker_drift_review",
+      "marker_id": "marker_inspect_diff_before_patch",
+      "core_issue_id": "core_dirty_worktree_preserve_user_changes",
+      "drift_status": "challenged",
+      "drift_score": 0.6,
+      "proposed_action": "review_marker_scope",
+      "requires_review": true,
+      "runtime_authority": false,
+      "layer3_mutation": false,
+      "memory_promotion": false,
+      "reason": "temporal metadata indicates stale/challenged marker; proposal is advisory until reviewed"
+    },
+    {
+      "proposal_id": "mp_marker_compare_cached_and_clean_ci",
+      "proposal_type": "marker_drift_review",
+      "marker_id": "marker_compare_cached_and_clean_ci",
+      "core_issue_id": "core_ci_cache_stale_dependency",
+      "drift_status": "challenged",
+      "drift_score": 0.6,
+      "proposed_action": "review_marker_scope",
+      "requires_review": true,
+      "runtime_authority": false,
+      "layer3_mutation": false,
+      "memory_promotion": false,
+      "reason": "temporal metadata indicates stale/challenged marker; proposal is advisory until reviewed"
+    },
+    {
+      "proposal_id": "mp_do_not_treat_key_existence_as_positive_auth",
+      "proposal_type": "marker_drift_review",
+      "marker_id": "do_not_treat_key_existence_as_positive_auth",
+      "core_issue_id": "api_key_scope_ambiguous_evidence",
+      "drift_status": "challenged",
+      "drift_score": 0.6,
+      "proposed_action": "review_marker_scope",
+      "requires_review": true,
+      "runtime_authority": false,
+      "layer3_mutation": false,
+      "memory_promotion": false,
+      "reason": "temporal metadata indicates stale/challenged marker; proposal is advisory until reviewed"
+    },
+    {
+      "proposal_id": "mp_avoid_force_install_before_peer_range_check",
+      "proposal_type": "marker_drift_review",
+      "marker_id": "avoid_force_install_before_peer_range_check",
+      "core_issue_id": "npm_peer_dependency_range_mismatch",
+      "drift_status": "challenged",
+      "drift_score": 0.58,
+      "proposed_action": "review_marker_scope",
+      "requires_review": true,
+      "runtime_authority": false,
+      "layer3_mutation": false,
+      "memory_promotion": false,
+      "reason": "temporal metadata indicates stale/challenged marker; proposal is advisory until reviewed"
+    }
+  ],
+  "temporal_nodes": [
+    {
+      "id": "core_codex_subscription_org_mismatch",
+      "node_type": "tag",
+      "label": "Codex subscription failed diagnostic",
+      "ref_id": "codex_subscription_org_mismatch",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_001_codex_subscription_failed",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.012141+00:00",
+      "updated_at": "2026-06-12T13:18:43.012160+00:00"
+    },
+    {
+      "id": "core_npm_peer_dependency_range_mismatch",
+      "node_type": "tag",
+      "label": "npm install dependency conflict with two guard markers",
+      "ref_id": "npm_peer_dependency_range_mismatch",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_002_npm_install_dependency_conflict",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.025719+00:00",
+      "updated_at": "2026-06-12T13:18:43.025735+00:00"
+    },
+    {
+      "id": "core_docker_platform_warning_partial_signal",
+      "node_type": "tag",
+      "label": "Docker build warning retained as partial weak signal",
+      "ref_id": "docker_platform_warning_partial_signal",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_003_docker_build_warning_partial",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.029880+00:00",
+      "updated_at": "2026-06-12T13:18:43.029893+00:00"
+    },
+    {
+      "id": "core_ci_timeout_freshness_conflict",
+      "node_type": "tag",
+      "label": "CI test timeout freshness conflict",
+      "ref_id": "ci_timeout_freshness_conflict",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_004_ci_test_timeout_freshness_conflict",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.033825+00:00",
+      "updated_at": "2026-06-12T13:18:43.033836+00:00"
+    },
+    {
+      "id": "core_api_key_scope_ambiguous_evidence",
+      "node_type": "tag",
+      "label": "API key exists but request is rejected",
+      "ref_id": "api_key_scope_ambiguous_evidence",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_005_api_key_exists_but_rejected",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.037071+00:00",
+      "updated_at": "2026-06-12T13:18:43.037080+00:00"
+    },
+    {
+      "id": "core_core_wsl_auth_environment_split",
+      "node_type": "tag",
+      "label": "Codex works in Windows terminal but fails in WSL.",
+      "ref_id": "core_wsl_auth_environment_split",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_006_002_codex_wsl_native_mismatch",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.040776+00:00",
+      "updated_at": "2026-06-12T13:18:43.040790+00:00"
+    },
+    {
+      "id": "core_core_api_key_vs_product_entitlement",
+      "node_type": "tag",
+      "label": "API key is valid but Codex CLI says subscription unavailable.",
+      "ref_id": "core_api_key_vs_product_entitlement",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_007_003_codex_api_key_not_subscription",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.044597+00:00",
+      "updated_at": "2026-06-12T13:18:43.044617+00:00"
+    },
+    {
+      "id": "core_core_provider_model_name_mismatch",
+      "node_type": "tag",
+      "label": "DeepSeek API returns 402 during proposal batch.",
+      "ref_id": "core_provider_model_name_mismatch",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_008_004_deepseek_model_name_402",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.048323+00:00",
+      "updated_at": "2026-06-12T13:18:43.048339+00:00"
+    },
+    {
+      "id": "core_core_workspace_root_mismatch",
+      "node_type": "tag",
+      "label": "`mw validate` passes but review sees no proposals.",
+      "ref_id": "core_workspace_root_mismatch",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_009_005_cli_root_path_wrong_workspace",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.052280+00:00",
+      "updated_at": "2026-06-12T13:18:43.052296+00:00"
+    },
+    {
+      "id": "core_core_cli_json_contract_violation",
+      "node_type": "tag",
+      "label": "Benchmark cannot parse CLI output.",
+      "ref_id": "core_cli_json_contract_violation",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_010_006_cli_json_parse_error",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.056018+00:00",
+      "updated_at": "2026-06-12T13:18:43.056033+00:00"
+    },
+    {
+      "id": "core_core_provider_health_gate",
+      "node_type": "tag",
+      "label": "Offline LLM proposals stop running.",
+      "ref_id": "core_provider_health_gate",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_011_007_provider_cooldown_after_failures",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.059798+00:00",
+      "updated_at": "2026-06-12T13:18:43.059812+00:00"
+    },
+    {
+      "id": "core_core_env_file_loading_contract",
+      "node_type": "tag",
+      "label": "API key exists in `.env`, provider unavailable.",
+      "ref_id": "core_env_file_loading_contract",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_012_008_env_file_not_loaded",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.063895+00:00",
+      "updated_at": "2026-06-12T13:18:43.064064+00:00"
+    },
+    {
+      "id": "core_core_sandbox_path_permission",
+      "node_type": "tag",
+      "label": "Patching `D:\\Download\\Agent\\MemoryWeaver` times out.",
+      "ref_id": "core_sandbox_path_permission",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_013_009_windows_path_approval_timeout",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.067896+00:00",
+      "updated_at": "2026-06-12T13:18:43.067908+00:00"
+    },
+    {
+      "id": "core_core_cli_entrypoint_missing",
+      "node_type": "tag",
+      "label": "Installed package cannot run `mw`.",
+      "ref_id": "core_cli_entrypoint_missing",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_014_010_cli_import_entrypoint",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.071946+00:00",
+      "updated_at": "2026-06-12T13:18:43.071968+00:00"
+    },
+    {
+      "id": "core_core_package_manager_workspace_root",
+      "node_type": "tag",
+      "label": "CI install passes locally but fails in workspace package.",
+      "ref_id": "core_package_manager_workspace_root",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_015_012_pnpm_lockfile_workspace",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.075712+00:00",
+      "updated_at": "2026-06-12T13:18:43.075725+00:00"
+    },
+    {
+      "id": "core_core_python_interpreter_mismatch",
+      "node_type": "tag",
+      "label": "pytest cannot import installed package.",
+      "ref_id": "core_python_interpreter_mismatch",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_016_013_python_venv_wrong_interpreter",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.079273+00:00",
+      "updated_at": "2026-06-12T13:18:43.079283+00:00"
+    },
+    {
+      "id": "core_core_dependency_group_not_installed",
+      "node_type": "tag",
+      "label": "Tests fail because optional dev dependency is missing.",
+      "ref_id": "core_dependency_group_not_installed",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_017_014_poetry_group_dependency_missing",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.083861+00:00",
+      "updated_at": "2026-06-12T13:18:43.083875+00:00"
+    },
+    {
+      "id": "core_core_node_engine_mismatch",
+      "node_type": "tag",
+      "label": "Build fails locally but passes on CI.",
+      "ref_id": "core_node_engine_mismatch",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_018_015_node_version_engine_mismatch",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.087999+00:00",
+      "updated_at": "2026-06-12T13:18:43.088012+00:00"
+    },
+    {
+      "id": "core_core_transitive_dependency_lock_regression",
+      "node_type": "tag",
+      "label": "Tests fail after fresh install.",
+      "ref_id": "core_transitive_dependency_lock_regression",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_019_016_transitive_dependency_regression",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.091944+00:00",
+      "updated_at": "2026-06-12T13:18:43.091959+00:00"
+    },
+    {
+      "id": "core_core_notebook_kernel_env_split",
+      "node_type": "tag",
+      "label": "Import error persists after pip install.",
+      "ref_id": "core_notebook_kernel_env_split",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_020_017_conda_pip_mixed_env",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.096734+00:00",
+      "updated_at": "2026-06-12T13:18:43.096748+00:00"
+    },
+    {
+      "id": "core_core_local_module_shadowing",
+      "node_type": "tag",
+      "label": "Installed library imports wrong module.",
+      "ref_id": "core_local_module_shadowing",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_021_018_package_name_shadowing",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.100962+00:00",
+      "updated_at": "2026-06-12T13:18:43.100974+00:00"
+    },
+    {
+      "id": "core_core_ci_secret_fork_boundary",
+      "node_type": "tag",
+      "label": "GitHub Action fails only on external PRs.",
+      "ref_id": "core_ci_secret_fork_boundary",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_022_020_ci_secret_not_available_on_fork",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.105059+00:00",
+      "updated_at": "2026-06-12T13:18:43.105077+00:00"
+    },
+    {
+      "id": "core_core_ci_cache_stale_dependency",
+      "node_type": "tag",
+      "label": "CI passes with cache but clean run fails.",
+      "ref_id": "core_ci_cache_stale_dependency",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_023_021_ci_cache_masks_dependency_change",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.109415+00:00",
+      "updated_at": "2026-06-12T13:18:43.109427+00:00"
+    },
+    {
+      "id": "core_core_deploy_env_var_contract_mismatch",
+      "node_type": "tag",
+      "label": "App crashes in production despite env var configured.",
+      "ref_id": "core_deploy_env_var_contract_mismatch",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_024_022_deploy_env_var_name_mismatch",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.114564+00:00",
+      "updated_at": "2026-06-12T13:18:43.114586+00:00"
+    },
+    {
+      "id": "core_core_kube_namespace_context_mismatch",
+      "node_type": "tag",
+      "label": "Service update appears missing after apply.",
+      "ref_id": "core_kube_namespace_context_mismatch",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_025_023_kubernetes_wrong_namespace",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.119714+00:00",
+      "updated_at": "2026-06-12T13:18:43.119735+00:00"
+    },
+    {
+      "id": "core_core_compose_override_precedence",
+      "node_type": "tag",
+      "label": "Local service ignores changed env vars.",
+      "ref_id": "core_compose_override_precedence",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_026_024_docker_compose_override",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.126036+00:00",
+      "updated_at": "2026-06-12T13:18:43.126054+00:00"
+    },
+    {
+      "id": "core_core_release_tag_local_not_remote",
+      "node_type": "tag",
+      "label": "Release workflow does not run after tagging.",
+      "ref_id": "core_release_tag_local_not_remote",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_027_026_release_tag_not_pushed",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.131695+00:00",
+      "updated_at": "2026-06-12T13:18:43.131722+00:00"
+    },
+    {
+      "id": "core_core_applied_migration_checksum",
+      "node_type": "tag",
+      "label": "Migration checksum mismatch.",
+      "ref_id": "core_applied_migration_checksum",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_028_027_migration_checksum",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.137063+00:00",
+      "updated_at": "2026-06-12T13:18:43.137076+00:00"
+    },
+    {
+      "id": "core_core_seed_idempotency_missing",
+      "node_type": "tag",
+      "label": "Seed script duplicates rows on rerun.",
+      "ref_id": "core_seed_idempotency_missing",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_029_028_seed_data_idempotency",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.141972+00:00",
+      "updated_at": "2026-06-12T13:18:43.141996+00:00"
+    },
+    {
+      "id": "core_core_api_n_plus_one_regression",
+      "node_type": "tag",
+      "label": "Endpoint times out after feature merge.",
+      "ref_id": "core_api_n_plus_one_regression",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_030_029_api_timeout_due_to_n_plus_one",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.148872+00:00",
+      "updated_at": "2026-06-12T13:18:43.148898+00:00"
+    },
+    {
+      "id": "core_core_db_pool_exhaustion",
+      "node_type": "tag",
+      "label": "Intermittent DB connection errors.",
+      "ref_id": "core_db_pool_exhaustion",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_031_030_db_pool_exhaustion",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.154749+00:00",
+      "updated_at": "2026-06-12T13:18:43.154766+00:00"
+    },
+    {
+      "id": "core_core_schema_cache_stale_after_migration",
+      "node_type": "tag",
+      "label": "App cannot find newly added column.",
+      "ref_id": "core_schema_cache_stale_after_migration",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_032_031_schema_cache_stale",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.160131+00:00",
+      "updated_at": "2026-06-12T13:18:43.160145+00:00"
+    },
+    {
+      "id": "core_core_timezone_boundary_filter",
+      "node_type": "tag",
+      "label": "Date filter misses records near midnight.",
+      "ref_id": "core_timezone_boundary_filter",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_033_032_timezone_boundary_bug",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.164970+00:00",
+      "updated_at": "2026-06-12T13:18:43.164985+00:00"
+    },
+    {
+      "id": "core_core_rate_limit_not_auth_failure",
+      "node_type": "tag",
+      "label": "External API returns 429 and agent calls it auth failure.",
+      "ref_id": "core_rate_limit_not_auth_failure",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_034_034_rate_limit_misdiagnosed_as_auth",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.169948+00:00",
+      "updated_at": "2026-06-12T13:18:43.169960+00:00"
+    },
+    {
+      "id": "core_core_flaky_time_dependency",
+      "node_type": "tag",
+      "label": "Test passes locally but fails around midnight in CI.",
+      "ref_id": "core_flaky_time_dependency",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_035_035_flaky_test_time_dependency",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.174717+00:00",
+      "updated_at": "2026-06-12T13:18:43.174729+00:00"
+    },
+    {
+      "id": "core_core_snapshot_intent_confirmation",
+      "node_type": "tag",
+      "label": "Snapshot test fails after UI copy update.",
+      "ref_id": "core_snapshot_intent_confirmation",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_036_036_snapshot_test_intentional_change",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.179347+00:00",
+      "updated_at": "2026-06-12T13:18:43.179360+00:00"
+    },
+    {
+      "id": "core_core_test_global_state_leak",
+      "node_type": "tag",
+      "label": "Test only fails in full suite.",
+      "ref_id": "core_test_global_state_leak",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_037_037_mock_leaks_between_tests",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.184121+00:00",
+      "updated_at": "2026-06-12T13:18:43.184143+00:00"
+    },
+    {
+      "id": "core_core_async_missing_await",
+      "node_type": "tag",
+      "label": "Async test passes sometimes and fails sometimes.",
+      "ref_id": "core_async_missing_await",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_038_038_async_test_missing_await",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.188965+00:00",
+      "updated_at": "2026-06-12T13:18:43.188987+00:00"
+    },
+    {
+      "id": "core_core_cross_platform_line_ending",
+      "node_type": "tag",
+      "label": "Golden diff appears only on Windows.",
+      "ref_id": "core_cross_platform_line_ending",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_039_039_golden_file_encoding",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.193621+00:00",
+      "updated_at": "2026-06-12T13:18:43.193633+00:00"
+    },
+    {
+      "id": "core_core_test_live_network_leak",
+      "node_type": "tag",
+      "label": "Unit tests hang in restricted network.",
+      "ref_id": "core_test_live_network_leak",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_040_040_timeout_due_to_network_fixture",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.198188+00:00",
+      "updated_at": "2026-06-12T13:18:43.198201+00:00"
+    },
+    {
+      "id": "core_core_dirty_worktree_preserve_user_changes",
+      "node_type": "tag",
+      "label": "Patch touches a file with existing changes.",
+      "ref_id": "core_dirty_worktree_preserve_user_changes",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_041_041_dirty_worktree_user_changes",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.202848+00:00",
+      "updated_at": "2026-06-12T13:18:43.202875+00:00"
+    },
+    {
+      "id": "core_core_validation_claim_scope",
+      "node_type": "tag",
+      "label": "README says benchmark proves task success.",
+      "ref_id": "core_validation_claim_scope",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_042_042_readme_claim_too_strong",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.207674+00:00",
+      "updated_at": "2026-06-12T13:18:43.207721+00:00"
+    },
+    {
+      "id": "core_core_reference_license_boundary",
+      "node_type": "tag",
+      "label": "User wants to copy harness-forge code.",
+      "ref_id": "core_reference_license_boundary",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_043_043_license_reference_gpl",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.214303+00:00",
+      "updated_at": "2026-06-12T13:18:43.214323+00:00"
+    },
+    {
+      "id": "core_core_release_tag_after_validation",
+      "node_type": "tag",
+      "label": "User asks to tag before tests complete.",
+      "ref_id": "core_release_tag_after_validation",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_044_044_branch_tag_validation_order",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.219327+00:00",
+      "updated_at": "2026-06-12T13:18:43.219347+00:00"
+    },
+    {
+      "id": "core_core_provider_specific_model_default",
+      "node_type": "tag",
+      "label": "Provider defaults to OpenAI model while DeepSeek selected.",
+      "ref_id": "core_provider_specific_model_default",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_045_045_config_default_wrong_provider",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.225480+00:00",
+      "updated_at": "2026-06-12T13:18:43.225494+00:00"
+    },
+    {
+      "id": "core_core_validation_artifact_completeness",
+      "node_type": "tag",
+      "label": "Validation README exists but raw results missing.",
+      "ref_id": "core_validation_artifact_completeness",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_046_046_docs_missing_raw_results",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.230849+00:00",
+      "updated_at": "2026-06-12T13:18:43.230860+00:00"
+    },
+    {
+      "id": "core_core_visible_bridge_not_canonical_store",
+      "node_type": "tag",
+      "label": "Agent keeps reading generated summaries recursively.",
+      "ref_id": "core_visible_bridge_not_canonical_store",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_047_047_agents_visible_summary_loop",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.236358+00:00",
+      "updated_at": "2026-06-12T13:18:43.236372+00:00"
+    },
+    {
+      "id": "core_core_trace_explainability_gap",
+      "node_type": "tag",
+      "label": "`mw trace` shows marker name but no reason.",
+      "ref_id": "core_trace_explainability_gap",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_048_048_trace_missing_decision_reason",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.241914+00:00",
+      "updated_at": "2026-06-12T13:18:43.241925+00:00"
+    },
+    {
+      "id": "core_core_pending_review_queue_aging",
+      "node_type": "tag",
+      "label": "Pending marker proposals accumulate forever.",
+      "ref_id": "core_pending_review_queue_aging",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_049_049_pending_marker_stale",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.246602+00:00",
+      "updated_at": "2026-06-12T13:18:43.246615+00:00"
+    },
+    {
+      "id": "core_core_marker_conflict_resolution",
+      "node_type": "tag",
+      "label": "Two markers suggest conflicting evidence orders.",
+      "ref_id": "core_marker_conflict_resolution",
+      "metadata": {
+        "node_kind": "core_issue",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "freshness": "stable",
+        "episode_provenance": "card_050_050_marker_conflict_two_paths",
+        "truth_authority": false
+      },
+      "created_at": "2026-06-12T13:18:43.252133+00:00",
+      "updated_at": "2026-06-12T13:18:43.252154+00:00"
+    },
+    {
+      "id": "marker_avoid_npm_reinstall_for_subscription",
+      "node_type": "tag",
+      "label": "avoid_npm_reinstall_for_subscription",
+      "ref_id": "avoid_npm_reinstall_for_subscription",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "codex_subscription_org_mismatch",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L3_guard"
+      },
+      "created_at": "2026-06-12T13:18:43.257337+00:00",
+      "updated_at": "2026-06-12T13:18:43.257345+00:00"
+    },
+    {
+      "id": "marker_avoid_force_install_before_peer_range_check",
+      "node_type": "tag",
+      "label": "avoid_force_install_before_peer_range_check",
+      "ref_id": "avoid_force_install_before_peer_range_check",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "npm_peer_dependency_range_mismatch",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [
+          "dialogue_card:card_002_npm_install_dependency_conflict"
+        ],
+        "challenge_count": 2,
+        "drift_score": 0.58,
+        "drift_status": "challenged",
+        "runtime_authority": false,
+        "intervention_level": "L3_guard"
+      },
+      "created_at": "2026-06-12T13:18:43.261528+00:00",
+      "updated_at": "2026-06-12T13:18:43.261531+00:00"
+    },
+    {
+      "id": "old_marker_avoid_force_install_before_peer_range_check",
+      "node_type": "tag",
+      "label": "old:avoid_force_install_before_peer_range_check",
+      "ref_id": "old_marker_avoid_force_install_before_peer_range_check",
+      "metadata": {
+        "node_kind": "historical_marker",
+        "valid_from": "2026-03-01T00:00:00Z",
+        "valid_to": "2026-06-01T00:00:00Z",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "expired"
+      },
+      "created_at": "2026-06-12T13:18:43.266650+00:00",
+      "updated_at": "2026-06-12T13:18:43.266652+00:00"
+    },
+    {
+      "id": "marker_retain_docker_warning_as_partial_evidence",
+      "node_type": "tag",
+      "label": "retain_docker_warning_as_partial_evidence",
+      "ref_id": "retain_docker_warning_as_partial_evidence",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "docker_platform_warning_partial_signal",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L1_hint"
+      },
+      "created_at": "2026-06-12T13:18:43.272315+00:00",
+      "updated_at": "2026-06-12T13:18:43.272318+00:00"
+    },
+    {
+      "id": "marker_require_recent_ci_log_before_timeout_update",
+      "node_type": "tag",
+      "label": "require_recent_ci_log_before_timeout_update",
+      "ref_id": "require_recent_ci_log_before_timeout_update",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "ci_timeout_freshness_conflict",
+        "valid_from": "2026-04-01T00:00:00Z",
+        "valid_to": "2026-05-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "freshness": "expired",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.92,
+        "drift_status": "stale",
+        "runtime_authority": false,
+        "intervention_level": "L2_route"
+      },
+      "created_at": "2026-06-12T13:18:43.278196+00:00",
+      "updated_at": "2026-06-12T13:18:43.278198+00:00"
+    },
+    {
+      "id": "old_marker_require_recent_ci_log_before_timeout_update",
+      "node_type": "tag",
+      "label": "old:require_recent_ci_log_before_timeout_update",
+      "ref_id": "old_marker_require_recent_ci_log_before_timeout_update",
+      "metadata": {
+        "node_kind": "historical_marker",
+        "valid_from": "2026-03-01T00:00:00Z",
+        "valid_to": "2026-04-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "freshness": "expired"
+      },
+      "created_at": "2026-06-12T13:18:43.284447+00:00",
+      "updated_at": "2026-06-12T13:18:43.284450+00:00"
+    },
+    {
+      "id": "marker_do_not_treat_key_existence_as_positive_auth",
+      "node_type": "tag",
+      "label": "do_not_treat_key_existence_as_positive_auth",
+      "ref_id": "do_not_treat_key_existence_as_positive_auth",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "api_key_scope_ambiguous_evidence",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [
+          "dialogue_card:card_005_api_key_exists_but_rejected"
+        ],
+        "challenge_count": 2,
+        "drift_score": 0.6,
+        "drift_status": "challenged",
+        "runtime_authority": false,
+        "intervention_level": "L2_route"
+      },
+      "created_at": "2026-06-12T13:18:43.292406+00:00",
+      "updated_at": "2026-06-12T13:18:43.292411+00:00"
+    },
+    {
+      "id": "old_marker_do_not_treat_key_existence_as_positive_auth",
+      "node_type": "tag",
+      "label": "old:do_not_treat_key_existence_as_positive_auth",
+      "ref_id": "old_marker_do_not_treat_key_existence_as_positive_auth",
+      "metadata": {
+        "node_kind": "historical_marker",
+        "valid_from": "2026-03-01T00:00:00Z",
+        "valid_to": "2026-06-01T00:00:00Z",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "expired"
+      },
+      "created_at": "2026-06-12T13:18:43.299019+00:00",
+      "updated_at": "2026-06-12T13:18:43.299022+00:00"
+    },
+    {
+      "id": "marker_marker_compare_native_and_wsl_auth_context",
+      "node_type": "tag",
+      "label": "marker_compare_native_and_wsl_auth_context",
+      "ref_id": "marker_compare_native_and_wsl_auth_context",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_wsl_auth_environment_split",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L1_hint"
+      },
+      "created_at": "2026-06-12T13:18:43.303717+00:00",
+      "updated_at": "2026-06-12T13:18:43.303720+00:00"
+    },
+    {
+      "id": "marker_marker_do_not_equate_api_key_with_subscription",
+      "node_type": "tag",
+      "label": "marker_do_not_equate_api_key_with_subscription",
+      "ref_id": "marker_do_not_equate_api_key_with_subscription",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_api_key_vs_product_entitlement",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L1_hint"
+      },
+      "created_at": "2026-06-12T13:18:43.308880+00:00",
+      "updated_at": "2026-06-12T13:18:43.308883+00:00"
+    },
+    {
+      "id": "marker_marker_check_provider_model_before_billing",
+      "node_type": "tag",
+      "label": "marker_check_provider_model_before_billing",
+      "ref_id": "marker_check_provider_model_before_billing",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_provider_model_name_mismatch",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L1_hint"
+      },
+      "created_at": "2026-06-12T13:18:43.314036+00:00",
+      "updated_at": "2026-06-12T13:18:43.314038+00:00"
+    },
+    {
+      "id": "marker_marker_verify_workspace_root_before_data_loss",
+      "node_type": "tag",
+      "label": "marker_verify_workspace_root_before_data_loss",
+      "ref_id": "marker_verify_workspace_root_before_data_loss",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_workspace_root_mismatch",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L1_hint"
+      },
+      "created_at": "2026-06-12T13:18:43.319082+00:00",
+      "updated_at": "2026-06-12T13:18:43.319085+00:00"
+    },
+    {
+      "id": "marker_marker_require_json_mode_for_machine_pipeline",
+      "node_type": "tag",
+      "label": "marker_require_json_mode_for_machine_pipeline",
+      "ref_id": "marker_require_json_mode_for_machine_pipeline",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_cli_json_contract_violation",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.25,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L1_hint"
+      },
+      "created_at": "2026-06-12T13:18:43.323999+00:00",
+      "updated_at": "2026-06-12T13:18:43.324002+00:00"
+    },
+    {
+      "id": "marker_marker_check_provider_cooldown_before_retry",
+      "node_type": "tag",
+      "label": "marker_check_provider_cooldown_before_retry",
+      "ref_id": "marker_check_provider_cooldown_before_retry",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_provider_health_gate",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L1_hint"
+      },
+      "created_at": "2026-06-12T13:18:43.329168+00:00",
+      "updated_at": "2026-06-12T13:18:43.329170+00:00"
+    },
+    {
+      "id": "marker_marker_require_env_file_when_using_provider",
+      "node_type": "tag",
+      "label": "marker_require_env_file_when_using_provider",
+      "ref_id": "marker_require_env_file_when_using_provider",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_env_file_loading_contract",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L1_hint"
+      },
+      "created_at": "2026-06-12T13:18:43.335317+00:00",
+      "updated_at": "2026-06-12T13:18:43.335320+00:00"
+    },
+    {
+      "id": "marker_marker_request_scoped_write_approval",
+      "node_type": "tag",
+      "label": "marker_request_scoped_write_approval",
+      "ref_id": "marker_request_scoped_write_approval",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_sandbox_path_permission",
+        "valid_from": "2026-04-01T00:00:00Z",
+        "valid_to": "2026-05-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "freshness": "expired",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.92,
+        "drift_status": "stale",
+        "runtime_authority": false,
+        "intervention_level": "L1_hint"
+      },
+      "created_at": "2026-06-12T13:18:43.340142+00:00",
+      "updated_at": "2026-06-12T13:18:43.340145+00:00"
+    },
+    {
+      "id": "old_marker_marker_request_scoped_write_approval",
+      "node_type": "tag",
+      "label": "old:marker_request_scoped_write_approval",
+      "ref_id": "old_marker_marker_request_scoped_write_approval",
+      "metadata": {
+        "node_kind": "historical_marker",
+        "valid_from": "2026-03-01T00:00:00Z",
+        "valid_to": "2026-04-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "freshness": "expired"
+      },
+      "created_at": "2026-06-12T13:18:43.346103+00:00",
+      "updated_at": "2026-06-12T13:18:43.346107+00:00"
+    },
+    {
+      "id": "marker_marker_validate_module_and_console_entrypoints",
+      "node_type": "tag",
+      "label": "marker_validate_module_and_console_entrypoints",
+      "ref_id": "marker_validate_module_and_console_entrypoints",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_cli_entrypoint_missing",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [
+          "dialogue_card:card_014_010_cli_import_entrypoint"
+        ],
+        "challenge_count": 2,
+        "drift_score": 0.6,
+        "drift_status": "challenged",
+        "runtime_authority": false,
+        "intervention_level": "L1_hint"
+      },
+      "created_at": "2026-06-12T13:18:43.352530+00:00",
+      "updated_at": "2026-06-12T13:18:43.352533+00:00"
+    },
+    {
+      "id": "old_marker_marker_validate_module_and_console_entrypoints",
+      "node_type": "tag",
+      "label": "old:marker_validate_module_and_console_entrypoints",
+      "ref_id": "old_marker_marker_validate_module_and_console_entrypoints",
+      "metadata": {
+        "node_kind": "historical_marker",
+        "valid_from": "2026-03-01T00:00:00Z",
+        "valid_to": "2026-06-01T00:00:00Z",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "expired"
+      },
+      "created_at": "2026-06-12T13:18:43.358605+00:00",
+      "updated_at": "2026-06-12T13:18:43.358608+00:00"
+    },
+    {
+      "id": "marker_marker_run_workspace_install_from_root",
+      "node_type": "tag",
+      "label": "marker_run_workspace_install_from_root",
+      "ref_id": "marker_run_workspace_install_from_root",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_package_manager_workspace_root",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L1_hint"
+      },
+      "created_at": "2026-06-12T13:18:43.365749+00:00",
+      "updated_at": "2026-06-12T13:18:43.365751+00:00"
+    },
+    {
+      "id": "marker_marker_compare_python_and_pip_before_reinstall",
+      "node_type": "tag",
+      "label": "marker_compare_python_and_pip_before_reinstall",
+      "ref_id": "marker_compare_python_and_pip_before_reinstall",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_python_interpreter_mismatch",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L1_hint"
+      },
+      "created_at": "2026-06-12T13:18:43.371849+00:00",
+      "updated_at": "2026-06-12T13:18:43.371852+00:00"
+    },
+    {
+      "id": "marker_marker_check_dependency_groups_before_code_change",
+      "node_type": "tag",
+      "label": "marker_check_dependency_groups_before_code_change",
+      "ref_id": "marker_check_dependency_groups_before_code_change",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_dependency_group_not_installed",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L1_hint"
+      },
+      "created_at": "2026-06-12T13:18:43.379135+00:00",
+      "updated_at": "2026-06-12T13:18:43.379140+00:00"
+    },
+    {
+      "id": "marker_marker_check_runtime_version_before_dependency_edit",
+      "node_type": "tag",
+      "label": "marker_check_runtime_version_before_dependency_edit",
+      "ref_id": "marker_check_runtime_version_before_dependency_edit",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_node_engine_mismatch",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L1_hint"
+      },
+      "created_at": "2026-06-12T13:18:43.387511+00:00",
+      "updated_at": "2026-06-12T13:18:43.387513+00:00"
+    },
+    {
+      "id": "marker_marker_check_lockfile_diff_before_refactor",
+      "node_type": "tag",
+      "label": "marker_check_lockfile_diff_before_refactor",
+      "ref_id": "marker_check_lockfile_diff_before_refactor",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_transitive_dependency_lock_regression",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.25,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L1_hint"
+      },
+      "created_at": "2026-06-12T13:18:43.394007+00:00",
+      "updated_at": "2026-06-12T13:18:43.394009+00:00"
+    },
+    {
+      "id": "marker_marker_verify_kernel_interpreter_before_install",
+      "node_type": "tag",
+      "label": "marker_verify_kernel_interpreter_before_install",
+      "ref_id": "marker_verify_kernel_interpreter_before_install",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_notebook_kernel_env_split",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L1_hint"
+      },
+      "created_at": "2026-06-12T13:18:43.400630+00:00",
+      "updated_at": "2026-06-12T13:18:43.400633+00:00"
+    },
+    {
+      "id": "marker_marker_check_import_file_before_reinstall",
+      "node_type": "tag",
+      "label": "marker_check_import_file_before_reinstall",
+      "ref_id": "marker_check_import_file_before_reinstall",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_local_module_shadowing",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.406786+00:00",
+      "updated_at": "2026-06-12T13:18:43.406789+00:00"
+    },
+    {
+      "id": "marker_marker_check_pr_origin_before_secret_debug",
+      "node_type": "tag",
+      "label": "marker_check_pr_origin_before_secret_debug",
+      "ref_id": "marker_check_pr_origin_before_secret_debug",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_ci_secret_fork_boundary",
+        "valid_from": "2026-04-01T00:00:00Z",
+        "valid_to": "2026-05-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "freshness": "expired",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.92,
+        "drift_status": "stale",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.414471+00:00",
+      "updated_at": "2026-06-12T13:18:43.414475+00:00"
+    },
+    {
+      "id": "old_marker_marker_check_pr_origin_before_secret_debug",
+      "node_type": "tag",
+      "label": "old:marker_check_pr_origin_before_secret_debug",
+      "ref_id": "old_marker_marker_check_pr_origin_before_secret_debug",
+      "metadata": {
+        "node_kind": "historical_marker",
+        "valid_from": "2026-03-01T00:00:00Z",
+        "valid_to": "2026-04-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "freshness": "expired"
+      },
+      "created_at": "2026-06-12T13:18:43.420999+00:00",
+      "updated_at": "2026-06-12T13:18:43.421001+00:00"
+    },
+    {
+      "id": "marker_marker_compare_cached_and_clean_ci",
+      "node_type": "tag",
+      "label": "marker_compare_cached_and_clean_ci",
+      "ref_id": "marker_compare_cached_and_clean_ci",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_ci_cache_stale_dependency",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [
+          "dialogue_card:card_023_021_ci_cache_masks_dependency_change"
+        ],
+        "challenge_count": 2,
+        "drift_score": 0.6,
+        "drift_status": "challenged",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.427548+00:00",
+      "updated_at": "2026-06-12T13:18:43.427550+00:00"
+    },
+    {
+      "id": "old_marker_marker_compare_cached_and_clean_ci",
+      "node_type": "tag",
+      "label": "old:marker_compare_cached_and_clean_ci",
+      "ref_id": "old_marker_marker_compare_cached_and_clean_ci",
+      "metadata": {
+        "node_kind": "historical_marker",
+        "valid_from": "2026-03-01T00:00:00Z",
+        "valid_to": "2026-06-01T00:00:00Z",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "expired"
+      },
+      "created_at": "2026-06-12T13:18:43.433984+00:00",
+      "updated_at": "2026-06-12T13:18:43.433986+00:00"
+    },
+    {
+      "id": "marker_marker_compare_env_contract_before_code_change",
+      "node_type": "tag",
+      "label": "marker_compare_env_contract_before_code_change",
+      "ref_id": "marker_compare_env_contract_before_code_change",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_deploy_env_var_contract_mismatch",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.440789+00:00",
+      "updated_at": "2026-06-12T13:18:43.440791+00:00"
+    },
+    {
+      "id": "marker_marker_check_kube_context_namespace_first",
+      "node_type": "tag",
+      "label": "marker_check_kube_context_namespace_first",
+      "ref_id": "marker_check_kube_context_namespace_first",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_kube_namespace_context_mismatch",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.448596+00:00",
+      "updated_at": "2026-06-12T13:18:43.448599+00:00"
+    },
+    {
+      "id": "marker_marker_inspect_resolved_compose_config",
+      "node_type": "tag",
+      "label": "marker_inspect_resolved_compose_config",
+      "ref_id": "marker_inspect_resolved_compose_config",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_compose_override_precedence",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.456169+00:00",
+      "updated_at": "2026-06-12T13:18:43.456174+00:00"
+    },
+    {
+      "id": "marker_marker_verify_remote_tag_before_workflow_debug",
+      "node_type": "tag",
+      "label": "marker_verify_remote_tag_before_workflow_debug",
+      "ref_id": "marker_verify_remote_tag_before_workflow_debug",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_release_tag_local_not_remote",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.463896+00:00",
+      "updated_at": "2026-06-12T13:18:43.463901+00:00"
+    },
+    {
+      "id": "marker_marker_no_manual_edit_applied_migration",
+      "node_type": "tag",
+      "label": "marker_no_manual_edit_applied_migration",
+      "ref_id": "marker_no_manual_edit_applied_migration",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_applied_migration_checksum",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.25,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.473399+00:00",
+      "updated_at": "2026-06-12T13:18:43.473402+00:00"
+    },
+    {
+      "id": "marker_marker_prefer_idempotent_seed_over_truncate",
+      "node_type": "tag",
+      "label": "marker_prefer_idempotent_seed_over_truncate",
+      "ref_id": "marker_prefer_idempotent_seed_over_truncate",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_seed_idempotency_missing",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.482299+00:00",
+      "updated_at": "2026-06-12T13:18:43.482302+00:00"
+    },
+    {
+      "id": "marker_marker_check_query_count_before_network_debug",
+      "node_type": "tag",
+      "label": "marker_check_query_count_before_network_debug",
+      "ref_id": "marker_check_query_count_before_network_debug",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_api_n_plus_one_regression",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.489721+00:00",
+      "updated_at": "2026-06-12T13:18:43.489724+00:00"
+    },
+    {
+      "id": "marker_marker_check_pool_and_transactions_before_retry",
+      "node_type": "tag",
+      "label": "marker_check_pool_and_transactions_before_retry",
+      "ref_id": "marker_check_pool_and_transactions_before_retry",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_db_pool_exhaustion",
+        "valid_from": "2026-04-01T00:00:00Z",
+        "valid_to": "2026-05-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "freshness": "expired",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.92,
+        "drift_status": "stale",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.497128+00:00",
+      "updated_at": "2026-06-12T13:18:43.497131+00:00"
+    },
+    {
+      "id": "old_marker_marker_check_pool_and_transactions_before_retry",
+      "node_type": "tag",
+      "label": "old:marker_check_pool_and_transactions_before_retry",
+      "ref_id": "old_marker_marker_check_pool_and_transactions_before_retry",
+      "metadata": {
+        "node_kind": "historical_marker",
+        "valid_from": "2026-03-01T00:00:00Z",
+        "valid_to": "2026-04-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "freshness": "expired"
+      },
+      "created_at": "2026-06-12T13:18:43.504046+00:00",
+      "updated_at": "2026-06-12T13:18:43.504048+00:00"
+    },
+    {
+      "id": "marker_marker_verify_schema_cache_after_migration",
+      "node_type": "tag",
+      "label": "marker_verify_schema_cache_after_migration",
+      "ref_id": "marker_verify_schema_cache_after_migration",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_schema_cache_stale_after_migration",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [
+          "dialogue_card:card_032_031_schema_cache_stale"
+        ],
+        "challenge_count": 2,
+        "drift_score": 0.6,
+        "drift_status": "challenged",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.512694+00:00",
+      "updated_at": "2026-06-12T13:18:43.512696+00:00"
+    },
+    {
+      "id": "old_marker_marker_verify_schema_cache_after_migration",
+      "node_type": "tag",
+      "label": "old:marker_verify_schema_cache_after_migration",
+      "ref_id": "old_marker_marker_verify_schema_cache_after_migration",
+      "metadata": {
+        "node_kind": "historical_marker",
+        "valid_from": "2026-03-01T00:00:00Z",
+        "valid_to": "2026-06-01T00:00:00Z",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "expired"
+      },
+      "created_at": "2026-06-12T13:18:43.520912+00:00",
+      "updated_at": "2026-06-12T13:18:43.520914+00:00"
+    },
+    {
+      "id": "marker_marker_test_boundary_dates_before_logic_rewrite",
+      "node_type": "tag",
+      "label": "marker_test_boundary_dates_before_logic_rewrite",
+      "ref_id": "marker_test_boundary_dates_before_logic_rewrite",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_timezone_boundary_filter",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.528075+00:00",
+      "updated_at": "2026-06-12T13:18:43.528077+00:00"
+    },
+    {
+      "id": "marker_marker_parse_status_and_headers_before_auth_fix",
+      "node_type": "tag",
+      "label": "marker_parse_status_and_headers_before_auth_fix",
+      "ref_id": "marker_parse_status_and_headers_before_auth_fix",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_rate_limit_not_auth_failure",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.535656+00:00",
+      "updated_at": "2026-06-12T13:18:43.535659+00:00"
+    },
+    {
+      "id": "marker_marker_freeze_time_before_assertion_rewrite",
+      "node_type": "tag",
+      "label": "marker_freeze_time_before_assertion_rewrite",
+      "ref_id": "marker_freeze_time_before_assertion_rewrite",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_flaky_time_dependency",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.542649+00:00",
+      "updated_at": "2026-06-12T13:18:43.542654+00:00"
+    },
+    {
+      "id": "marker_marker_require_intent_before_snapshot_update",
+      "node_type": "tag",
+      "label": "marker_require_intent_before_snapshot_update",
+      "ref_id": "marker_require_intent_before_snapshot_update",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_snapshot_intent_confirmation",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.552219+00:00",
+      "updated_at": "2026-06-12T13:18:43.552222+00:00"
+    },
+    {
+      "id": "marker_marker_compare_isolated_and_suite_run",
+      "node_type": "tag",
+      "label": "marker_compare_isolated_and_suite_run",
+      "ref_id": "marker_compare_isolated_and_suite_run",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_test_global_state_leak",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.25,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.558915+00:00",
+      "updated_at": "2026-06-12T13:18:43.558917+00:00"
+    },
+    {
+      "id": "marker_marker_check_async_completion_before_timeout_increase",
+      "node_type": "tag",
+      "label": "marker_check_async_completion_before_timeout_increase",
+      "ref_id": "marker_check_async_completion_before_timeout_increase",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_async_missing_await",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.566922+00:00",
+      "updated_at": "2026-06-12T13:18:43.566925+00:00"
+    },
+    {
+      "id": "marker_marker_check_line_endings_before_logic_change",
+      "node_type": "tag",
+      "label": "marker_check_line_endings_before_logic_change",
+      "ref_id": "marker_check_line_endings_before_logic_change",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_cross_platform_line_ending",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.574135+00:00",
+      "updated_at": "2026-06-12T13:18:43.574137+00:00"
+    },
+    {
+      "id": "marker_marker_block_live_network_in_unit_tests",
+      "node_type": "tag",
+      "label": "marker_block_live_network_in_unit_tests",
+      "ref_id": "marker_block_live_network_in_unit_tests",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_test_live_network_leak",
+        "valid_from": "2026-04-01T00:00:00Z",
+        "valid_to": "2026-05-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "freshness": "expired",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.92,
+        "drift_status": "stale",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.580976+00:00",
+      "updated_at": "2026-06-12T13:18:43.580979+00:00"
+    },
+    {
+      "id": "old_marker_marker_block_live_network_in_unit_tests",
+      "node_type": "tag",
+      "label": "old:marker_block_live_network_in_unit_tests",
+      "ref_id": "old_marker_marker_block_live_network_in_unit_tests",
+      "metadata": {
+        "node_kind": "historical_marker",
+        "valid_from": "2026-03-01T00:00:00Z",
+        "valid_to": "2026-04-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "freshness": "expired"
+      },
+      "created_at": "2026-06-12T13:18:43.587645+00:00",
+      "updated_at": "2026-06-12T13:18:43.587647+00:00"
+    },
+    {
+      "id": "marker_marker_inspect_diff_before_patch",
+      "node_type": "tag",
+      "label": "marker_inspect_diff_before_patch",
+      "ref_id": "marker_inspect_diff_before_patch",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_dirty_worktree_preserve_user_changes",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [
+          "dialogue_card:card_041_041_dirty_worktree_user_changes"
+        ],
+        "challenge_count": 2,
+        "drift_score": 0.6,
+        "drift_status": "challenged",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.594627+00:00",
+      "updated_at": "2026-06-12T13:18:43.594630+00:00"
+    },
+    {
+      "id": "old_marker_marker_inspect_diff_before_patch",
+      "node_type": "tag",
+      "label": "old:marker_inspect_diff_before_patch",
+      "ref_id": "old_marker_marker_inspect_diff_before_patch",
+      "metadata": {
+        "node_kind": "historical_marker",
+        "valid_from": "2026-03-01T00:00:00Z",
+        "valid_to": "2026-06-01T00:00:00Z",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "expired"
+      },
+      "created_at": "2026-06-12T13:18:43.601077+00:00",
+      "updated_at": "2026-06-12T13:18:43.601080+00:00"
+    },
+    {
+      "id": "marker_marker_match_claim_to_metric_boundary",
+      "node_type": "tag",
+      "label": "marker_match_claim_to_metric_boundary",
+      "ref_id": "marker_match_claim_to_metric_boundary",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_validation_claim_scope",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.608380+00:00",
+      "updated_at": "2026-06-12T13:18:43.608382+00:00"
+    },
+    {
+      "id": "marker_marker_learn_design_not_gpl_code",
+      "node_type": "tag",
+      "label": "marker_learn_design_not_gpl_code",
+      "ref_id": "marker_learn_design_not_gpl_code",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_reference_license_boundary",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.615457+00:00",
+      "updated_at": "2026-06-12T13:18:43.615460+00:00"
+    },
+    {
+      "id": "marker_marker_require_validation_before_tag",
+      "node_type": "tag",
+      "label": "marker_require_validation_before_tag",
+      "ref_id": "marker_require_validation_before_tag",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_release_tag_after_validation",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.622104+00:00",
+      "updated_at": "2026-06-12T13:18:43.622107+00:00"
+    },
+    {
+      "id": "marker_marker_check_model_payload_before_api_diagnosis",
+      "node_type": "tag",
+      "label": "marker_check_model_payload_before_api_diagnosis",
+      "ref_id": "marker_check_model_payload_before_api_diagnosis",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_provider_specific_model_default",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.629248+00:00",
+      "updated_at": "2026-06-12T13:18:43.629250+00:00"
+    },
+    {
+      "id": "marker_marker_require_raw_results_for_claim",
+      "node_type": "tag",
+      "label": "marker_require_raw_results_for_claim",
+      "ref_id": "marker_require_raw_results_for_claim",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_validation_artifact_completeness",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.25,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.636784+00:00",
+      "updated_at": "2026-06-12T13:18:43.636787+00:00"
+    },
+    {
+      "id": "marker_marker_prefer_hidden_canonical_memory_store",
+      "node_type": "tag",
+      "label": "marker_prefer_hidden_canonical_memory_store",
+      "ref_id": "marker_prefer_hidden_canonical_memory_store",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_visible_bridge_not_canonical_store",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.644938+00:00",
+      "updated_at": "2026-06-12T13:18:43.644944+00:00"
+    },
+    {
+      "id": "marker_marker_trace_requires_reason_and_evidence",
+      "node_type": "tag",
+      "label": "marker_trace_requires_reason_and_evidence",
+      "ref_id": "marker_trace_requires_reason_and_evidence",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_trace_explainability_gap",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.08,
+        "drift_status": "healthy",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.654436+00:00",
+      "updated_at": "2026-06-12T13:18:43.654439+00:00"
+    },
+    {
+      "id": "marker_marker_surface_stale_pending_review",
+      "node_type": "tag",
+      "label": "marker_surface_stale_pending_review",
+      "ref_id": "marker_surface_stale_pending_review",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_pending_review_queue_aging",
+        "valid_from": "2026-04-01T00:00:00Z",
+        "valid_to": "2026-05-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "freshness": "expired",
+        "challenged_by": [],
+        "challenge_count": 0,
+        "drift_score": 0.92,
+        "drift_status": "stale",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.661863+00:00",
+      "updated_at": "2026-06-12T13:18:43.661867+00:00"
+    },
+    {
+      "id": "old_marker_marker_surface_stale_pending_review",
+      "node_type": "tag",
+      "label": "old:marker_surface_stale_pending_review",
+      "ref_id": "old_marker_marker_surface_stale_pending_review",
+      "metadata": {
+        "node_kind": "historical_marker",
+        "valid_from": "2026-03-01T00:00:00Z",
+        "valid_to": "2026-04-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "freshness": "expired"
+      },
+      "created_at": "2026-06-12T13:18:43.670199+00:00",
+      "updated_at": "2026-06-12T13:18:43.670201+00:00"
+    },
+    {
+      "id": "marker_marker_resolve_scope_and_freshness_before_activation",
+      "node_type": "tag",
+      "label": "marker_resolve_scope_and_freshness_before_activation",
+      "ref_id": "marker_resolve_scope_and_freshness_before_activation",
+      "metadata": {
+        "node_kind": "harness_marker",
+        "core_issue_id": "core_marker_conflict_resolution",
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "stable",
+        "challenged_by": [
+          "dialogue_card:card_050_050_marker_conflict_two_paths"
+        ],
+        "challenge_count": 2,
+        "drift_score": 0.6,
+        "drift_status": "challenged",
+        "runtime_authority": false,
+        "intervention_level": "L0_trace"
+      },
+      "created_at": "2026-06-12T13:18:43.678028+00:00",
+      "updated_at": "2026-06-12T13:18:43.678031+00:00"
+    },
+    {
+      "id": "old_marker_marker_resolve_scope_and_freshness_before_activation",
+      "node_type": "tag",
+      "label": "old:marker_resolve_scope_and_freshness_before_activation",
+      "ref_id": "old_marker_marker_resolve_scope_and_freshness_before_activation",
+      "metadata": {
+        "node_kind": "historical_marker",
+        "valid_from": "2026-03-01T00:00:00Z",
+        "valid_to": "2026-06-01T00:00:00Z",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "freshness": "expired"
+      },
+      "created_at": "2026-06-12T13:18:43.685814+00:00",
+      "updated_at": "2026-06-12T13:18:43.685816+00:00"
+    }
+  ],
+  "temporal_edges": [
+    {
+      "source_id": "core_codex_subscription_org_mismatch",
+      "target_id": "marker_avoid_npm_reinstall_for_subscription",
+      "relation": "supports",
+      "id": "edge_core_codex_subscription_org_mismatch_supports_marker_avoid_npm_reinstall_for_subscription",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.261494+00:00",
+      "updated_at": "2026-06-12T13:18:43.261501+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_001_codex_subscription_failed"
+      }
+    },
+    {
+      "source_id": "core_npm_peer_dependency_range_mismatch",
+      "target_id": "marker_avoid_force_install_before_peer_range_check",
+      "relation": "supports",
+      "id": "edge_core_npm_peer_dependency_range_mismatch_supports_marker_avoid_force_install_before_peer_range_check",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.266624+00:00",
+      "updated_at": "2026-06-12T13:18:43.266635+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_002_npm_install_dependency_conflict"
+      }
+    },
+    {
+      "source_id": "marker_avoid_force_install_before_peer_range_check",
+      "target_id": "old_marker_avoid_force_install_before_peer_range_check",
+      "relation": "supersedes",
+      "id": "edge_marker_avoid_force_install_before_peer_range_check_supersedes_old_marker_avoid_force_install_before_peer_range_check",
+      "confidence": 0.8,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.272261+00:00",
+      "updated_at": "2026-06-12T13:18:43.272274+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "reason": "newer marker context supersedes stale historical marker"
+      }
+    },
+    {
+      "source_id": "marker_avoid_force_install_before_peer_range_check",
+      "target_id": "core_npm_peer_dependency_range_mismatch",
+      "relation": "related_to",
+      "id": "edge_marker_avoid_force_install_before_peer_range_check_challenged_by_core_npm_peer_dependency_range_mismatch",
+      "confidence": 0.7,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.272287+00:00",
+      "updated_at": "2026-06-12T13:18:43.272289+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "relation_semantic": "challenged_by",
+        "challenged_by": [
+          "dialogue_card:card_002_npm_install_dependency_conflict"
+        ],
+        "drift_score": 0.58
+      }
+    },
+    {
+      "source_id": "core_docker_platform_warning_partial_signal",
+      "target_id": "marker_retain_docker_warning_as_partial_evidence",
+      "relation": "supports",
+      "id": "edge_core_docker_platform_warning_partial_signal_supports_marker_retain_docker_warning_as_partial_evidence",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.278154+00:00",
+      "updated_at": "2026-06-12T13:18:43.278166+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_003_docker_build_warning_partial"
+      }
+    },
+    {
+      "source_id": "core_ci_timeout_freshness_conflict",
+      "target_id": "marker_require_recent_ci_log_before_timeout_update",
+      "relation": "supports",
+      "id": "edge_core_ci_timeout_freshness_conflict_supports_marker_require_recent_ci_log_before_timeout_update",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.284414+00:00",
+      "updated_at": "2026-06-12T13:18:43.284430+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-04-01T00:00:00Z",
+        "valid_to": "2026-05-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "episode_provenance": "card_004_ci_test_timeout_freshness_conflict"
+      }
+    },
+    {
+      "source_id": "marker_require_recent_ci_log_before_timeout_update",
+      "target_id": "old_marker_require_recent_ci_log_before_timeout_update",
+      "relation": "supersedes",
+      "id": "edge_marker_require_recent_ci_log_before_timeout_update_supersedes_old_marker_require_recent_ci_log_before_timeout_update",
+      "confidence": 0.8,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.292259+00:00",
+      "updated_at": "2026-06-12T13:18:43.292285+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-04-01T00:00:00Z",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "reason": "newer marker context supersedes stale historical marker"
+      }
+    },
+    {
+      "source_id": "marker_require_recent_ci_log_before_timeout_update",
+      "target_id": "core_ci_timeout_freshness_conflict",
+      "relation": "related_to",
+      "id": "edge_marker_require_recent_ci_log_before_timeout_update_challenged_by_core_ci_timeout_freshness_conflict",
+      "confidence": 0.7,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.292327+00:00",
+      "updated_at": "2026-06-12T13:18:43.292331+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "relation_semantic": "challenged_by",
+        "challenged_by": [
+          "freshness:2026-04-20T00:00:00Z"
+        ],
+        "drift_score": 0.92
+      }
+    },
+    {
+      "source_id": "core_api_key_scope_ambiguous_evidence",
+      "target_id": "marker_do_not_treat_key_existence_as_positive_auth",
+      "relation": "supports",
+      "id": "edge_core_api_key_scope_ambiguous_evidence_supports_marker_do_not_treat_key_existence_as_positive_auth",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.298972+00:00",
+      "updated_at": "2026-06-12T13:18:43.298993+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_005_api_key_exists_but_rejected"
+      }
+    },
+    {
+      "source_id": "marker_do_not_treat_key_existence_as_positive_auth",
+      "target_id": "old_marker_do_not_treat_key_existence_as_positive_auth",
+      "relation": "supersedes",
+      "id": "edge_marker_do_not_treat_key_existence_as_positive_auth_supersedes_old_marker_do_not_treat_key_existence_as_positive_auth",
+      "confidence": 0.8,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.303677+00:00",
+      "updated_at": "2026-06-12T13:18:43.303686+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "reason": "newer marker context supersedes stale historical marker"
+      }
+    },
+    {
+      "source_id": "marker_do_not_treat_key_existence_as_positive_auth",
+      "target_id": "core_api_key_scope_ambiguous_evidence",
+      "relation": "related_to",
+      "id": "edge_marker_do_not_treat_key_existence_as_positive_auth_challenged_by_core_api_key_scope_ambiguous_evidence",
+      "confidence": 0.7,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.303695+00:00",
+      "updated_at": "2026-06-12T13:18:43.303697+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "relation_semantic": "challenged_by",
+        "challenged_by": [
+          "dialogue_card:card_005_api_key_exists_but_rejected"
+        ],
+        "drift_score": 0.6
+      }
+    },
+    {
+      "source_id": "core_core_wsl_auth_environment_split",
+      "target_id": "marker_marker_compare_native_and_wsl_auth_context",
+      "relation": "supports",
+      "id": "edge_core_core_wsl_auth_environment_split_supports_marker_marker_compare_native_and_wsl_auth_context",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.308847+00:00",
+      "updated_at": "2026-06-12T13:18:43.308856+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_006_002_codex_wsl_native_mismatch"
+      }
+    },
+    {
+      "source_id": "core_core_api_key_vs_product_entitlement",
+      "target_id": "marker_marker_do_not_equate_api_key_with_subscription",
+      "relation": "supports",
+      "id": "edge_core_core_api_key_vs_product_entitlement_supports_marker_marker_do_not_equate_api_key_with_subscription",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.313987+00:00",
+      "updated_at": "2026-06-12T13:18:43.314012+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_007_003_codex_api_key_not_subscription"
+      }
+    },
+    {
+      "source_id": "core_core_provider_model_name_mismatch",
+      "target_id": "marker_marker_check_provider_model_before_billing",
+      "relation": "supports",
+      "id": "edge_core_core_provider_model_name_mismatch_supports_marker_marker_check_provider_model_before_billing",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.319026+00:00",
+      "updated_at": "2026-06-12T13:18:43.319056+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_008_004_deepseek_model_name_402"
+      }
+    },
+    {
+      "source_id": "core_core_workspace_root_mismatch",
+      "target_id": "marker_marker_verify_workspace_root_before_data_loss",
+      "relation": "supports",
+      "id": "edge_core_core_workspace_root_mismatch_supports_marker_marker_verify_workspace_root_before_data_loss",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.323944+00:00",
+      "updated_at": "2026-06-12T13:18:43.323960+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_009_005_cli_root_path_wrong_workspace"
+      }
+    },
+    {
+      "source_id": "core_core_cli_json_contract_violation",
+      "target_id": "marker_marker_require_json_mode_for_machine_pipeline",
+      "relation": "supports",
+      "id": "edge_core_core_cli_json_contract_violation_supports_marker_marker_require_json_mode_for_machine_pipeline",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.329126+00:00",
+      "updated_at": "2026-06-12T13:18:43.329140+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_010_006_cli_json_parse_error"
+      }
+    },
+    {
+      "source_id": "core_core_provider_health_gate",
+      "target_id": "marker_marker_check_provider_cooldown_before_retry",
+      "relation": "supports",
+      "id": "edge_core_core_provider_health_gate_supports_marker_marker_check_provider_cooldown_before_retry",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.335249+00:00",
+      "updated_at": "2026-06-12T13:18:43.335262+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_011_007_provider_cooldown_after_failures"
+      }
+    },
+    {
+      "source_id": "core_core_env_file_loading_contract",
+      "target_id": "marker_marker_require_env_file_when_using_provider",
+      "relation": "supports",
+      "id": "edge_core_core_env_file_loading_contract_supports_marker_marker_require_env_file_when_using_provider",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.340113+00:00",
+      "updated_at": "2026-06-12T13:18:43.340121+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_012_008_env_file_not_loaded"
+      }
+    },
+    {
+      "source_id": "core_core_sandbox_path_permission",
+      "target_id": "marker_marker_request_scoped_write_approval",
+      "relation": "supports",
+      "id": "edge_core_core_sandbox_path_permission_supports_marker_marker_request_scoped_write_approval",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.346037+00:00",
+      "updated_at": "2026-06-12T13:18:43.346050+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-04-01T00:00:00Z",
+        "valid_to": "2026-05-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "episode_provenance": "card_013_009_windows_path_approval_timeout"
+      }
+    },
+    {
+      "source_id": "marker_marker_request_scoped_write_approval",
+      "target_id": "old_marker_marker_request_scoped_write_approval",
+      "relation": "supersedes",
+      "id": "edge_marker_marker_request_scoped_write_approval_supersedes_old_marker_marker_request_scoped_write_approval",
+      "confidence": 0.8,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.352480+00:00",
+      "updated_at": "2026-06-12T13:18:43.352493+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-04-01T00:00:00Z",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "reason": "newer marker context supersedes stale historical marker"
+      }
+    },
+    {
+      "source_id": "marker_marker_request_scoped_write_approval",
+      "target_id": "core_core_sandbox_path_permission",
+      "relation": "related_to",
+      "id": "edge_marker_marker_request_scoped_write_approval_challenged_by_core_core_sandbox_path_permission",
+      "confidence": 0.7,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.352503+00:00",
+      "updated_at": "2026-06-12T13:18:43.352505+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "relation_semantic": "challenged_by",
+        "challenged_by": [
+          "freshness:2026-04-20T00:00:00Z"
+        ],
+        "drift_score": 0.92
+      }
+    },
+    {
+      "source_id": "core_core_cli_entrypoint_missing",
+      "target_id": "marker_marker_validate_module_and_console_entrypoints",
+      "relation": "supports",
+      "id": "edge_core_core_cli_entrypoint_missing_supports_marker_marker_validate_module_and_console_entrypoints",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.358552+00:00",
+      "updated_at": "2026-06-12T13:18:43.358564+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_014_010_cli_import_entrypoint"
+      }
+    },
+    {
+      "source_id": "marker_marker_validate_module_and_console_entrypoints",
+      "target_id": "old_marker_marker_validate_module_and_console_entrypoints",
+      "relation": "supersedes",
+      "id": "edge_marker_marker_validate_module_and_console_entrypoints_supersedes_old_marker_marker_validate_module_and_console_entrypoints",
+      "confidence": 0.8,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.365649+00:00",
+      "updated_at": "2026-06-12T13:18:43.365664+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "reason": "newer marker context supersedes stale historical marker"
+      }
+    },
+    {
+      "source_id": "marker_marker_validate_module_and_console_entrypoints",
+      "target_id": "core_core_cli_entrypoint_missing",
+      "relation": "related_to",
+      "id": "edge_marker_marker_validate_module_and_console_entrypoints_challenged_by_core_core_cli_entrypoint_missing",
+      "confidence": 0.7,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.365700+00:00",
+      "updated_at": "2026-06-12T13:18:43.365702+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "relation_semantic": "challenged_by",
+        "challenged_by": [
+          "dialogue_card:card_014_010_cli_import_entrypoint"
+        ],
+        "drift_score": 0.6
+      }
+    },
+    {
+      "source_id": "core_core_package_manager_workspace_root",
+      "target_id": "marker_marker_run_workspace_install_from_root",
+      "relation": "supports",
+      "id": "edge_core_core_package_manager_workspace_root_supports_marker_marker_run_workspace_install_from_root",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.371788+00:00",
+      "updated_at": "2026-06-12T13:18:43.371805+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_015_012_pnpm_lockfile_workspace"
+      }
+    },
+    {
+      "source_id": "core_core_python_interpreter_mismatch",
+      "target_id": "marker_marker_compare_python_and_pip_before_reinstall",
+      "relation": "supports",
+      "id": "edge_core_core_python_interpreter_mismatch_supports_marker_marker_compare_python_and_pip_before_reinstall",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.378989+00:00",
+      "updated_at": "2026-06-12T13:18:43.379036+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_016_013_python_venv_wrong_interpreter"
+      }
+    },
+    {
+      "source_id": "core_core_dependency_group_not_installed",
+      "target_id": "marker_marker_check_dependency_groups_before_code_change",
+      "relation": "supports",
+      "id": "edge_core_core_dependency_group_not_installed_supports_marker_marker_check_dependency_groups_before_code_change",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.387468+00:00",
+      "updated_at": "2026-06-12T13:18:43.387481+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_017_014_poetry_group_dependency_missing"
+      }
+    },
+    {
+      "source_id": "core_core_node_engine_mismatch",
+      "target_id": "marker_marker_check_runtime_version_before_dependency_edit",
+      "relation": "supports",
+      "id": "edge_core_core_node_engine_mismatch_supports_marker_marker_check_runtime_version_before_dependency_edit",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.393968+00:00",
+      "updated_at": "2026-06-12T13:18:43.393980+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_018_015_node_version_engine_mismatch"
+      }
+    },
+    {
+      "source_id": "core_core_transitive_dependency_lock_regression",
+      "target_id": "marker_marker_check_lockfile_diff_before_refactor",
+      "relation": "supports",
+      "id": "edge_core_core_transitive_dependency_lock_regression_supports_marker_marker_check_lockfile_diff_before_refactor",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.400589+00:00",
+      "updated_at": "2026-06-12T13:18:43.400602+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_019_016_transitive_dependency_regression"
+      }
+    },
+    {
+      "source_id": "core_core_notebook_kernel_env_split",
+      "target_id": "marker_marker_verify_kernel_interpreter_before_install",
+      "relation": "supports",
+      "id": "edge_core_core_notebook_kernel_env_split_supports_marker_marker_verify_kernel_interpreter_before_install",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.406748+00:00",
+      "updated_at": "2026-06-12T13:18:43.406761+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_020_017_conda_pip_mixed_env"
+      }
+    },
+    {
+      "source_id": "core_core_local_module_shadowing",
+      "target_id": "marker_marker_check_import_file_before_reinstall",
+      "relation": "supports",
+      "id": "edge_core_core_local_module_shadowing_supports_marker_marker_check_import_file_before_reinstall",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.414396+00:00",
+      "updated_at": "2026-06-12T13:18:43.414415+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_021_018_package_name_shadowing"
+      }
+    },
+    {
+      "source_id": "core_core_ci_secret_fork_boundary",
+      "target_id": "marker_marker_check_pr_origin_before_secret_debug",
+      "relation": "supports",
+      "id": "edge_core_core_ci_secret_fork_boundary_supports_marker_marker_check_pr_origin_before_secret_debug",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.420978+00:00",
+      "updated_at": "2026-06-12T13:18:43.420989+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-04-01T00:00:00Z",
+        "valid_to": "2026-05-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "episode_provenance": "card_022_020_ci_secret_not_available_on_fork"
+      }
+    },
+    {
+      "source_id": "marker_marker_check_pr_origin_before_secret_debug",
+      "target_id": "old_marker_marker_check_pr_origin_before_secret_debug",
+      "relation": "supersedes",
+      "id": "edge_marker_marker_check_pr_origin_before_secret_debug_supersedes_old_marker_marker_check_pr_origin_before_secret_debug",
+      "confidence": 0.8,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.427460+00:00",
+      "updated_at": "2026-06-12T13:18:43.427483+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-04-01T00:00:00Z",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "reason": "newer marker context supersedes stale historical marker"
+      }
+    },
+    {
+      "source_id": "marker_marker_check_pr_origin_before_secret_debug",
+      "target_id": "core_core_ci_secret_fork_boundary",
+      "relation": "related_to",
+      "id": "edge_marker_marker_check_pr_origin_before_secret_debug_challenged_by_core_core_ci_secret_fork_boundary",
+      "confidence": 0.7,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.427501+00:00",
+      "updated_at": "2026-06-12T13:18:43.427503+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "relation_semantic": "challenged_by",
+        "challenged_by": [
+          "freshness:2026-04-20T00:00:00Z"
+        ],
+        "drift_score": 0.92
+      }
+    },
+    {
+      "source_id": "core_core_ci_cache_stale_dependency",
+      "target_id": "marker_marker_compare_cached_and_clean_ci",
+      "relation": "supports",
+      "id": "edge_core_core_ci_cache_stale_dependency_supports_marker_marker_compare_cached_and_clean_ci",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.433960+00:00",
+      "updated_at": "2026-06-12T13:18:43.433972+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_023_021_ci_cache_masks_dependency_change"
+      }
+    },
+    {
+      "source_id": "marker_marker_compare_cached_and_clean_ci",
+      "target_id": "old_marker_marker_compare_cached_and_clean_ci",
+      "relation": "supersedes",
+      "id": "edge_marker_marker_compare_cached_and_clean_ci_supersedes_old_marker_marker_compare_cached_and_clean_ci",
+      "confidence": 0.8,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.440725+00:00",
+      "updated_at": "2026-06-12T13:18:43.440747+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "reason": "newer marker context supersedes stale historical marker"
+      }
+    },
+    {
+      "source_id": "marker_marker_compare_cached_and_clean_ci",
+      "target_id": "core_core_ci_cache_stale_dependency",
+      "relation": "related_to",
+      "id": "edge_marker_marker_compare_cached_and_clean_ci_challenged_by_core_core_ci_cache_stale_dependency",
+      "confidence": 0.7,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.440757+00:00",
+      "updated_at": "2026-06-12T13:18:43.440759+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "relation_semantic": "challenged_by",
+        "challenged_by": [
+          "dialogue_card:card_023_021_ci_cache_masks_dependency_change"
+        ],
+        "drift_score": 0.6
+      }
+    },
+    {
+      "source_id": "core_core_deploy_env_var_contract_mismatch",
+      "target_id": "marker_marker_compare_env_contract_before_code_change",
+      "relation": "supports",
+      "id": "edge_core_core_deploy_env_var_contract_mismatch_supports_marker_marker_compare_env_contract_before_code_change",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.448528+00:00",
+      "updated_at": "2026-06-12T13:18:43.448564+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_024_022_deploy_env_var_name_mismatch"
+      }
+    },
+    {
+      "source_id": "core_core_kube_namespace_context_mismatch",
+      "target_id": "marker_marker_check_kube_context_namespace_first",
+      "relation": "supports",
+      "id": "edge_core_core_kube_namespace_context_mismatch_supports_marker_marker_check_kube_context_namespace_first",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.456059+00:00",
+      "updated_at": "2026-06-12T13:18:43.456086+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_025_023_kubernetes_wrong_namespace"
+      }
+    },
+    {
+      "source_id": "core_core_compose_override_precedence",
+      "target_id": "marker_marker_inspect_resolved_compose_config",
+      "relation": "supports",
+      "id": "edge_core_core_compose_override_precedence_supports_marker_marker_inspect_resolved_compose_config",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.463746+00:00",
+      "updated_at": "2026-06-12T13:18:43.463783+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_026_024_docker_compose_override"
+      }
+    },
+    {
+      "source_id": "core_core_release_tag_local_not_remote",
+      "target_id": "marker_marker_verify_remote_tag_before_workflow_debug",
+      "relation": "supports",
+      "id": "edge_core_core_release_tag_local_not_remote_supports_marker_marker_verify_remote_tag_before_workflow_debug",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.473359+00:00",
+      "updated_at": "2026-06-12T13:18:43.473372+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_027_026_release_tag_not_pushed"
+      }
+    },
+    {
+      "source_id": "core_core_applied_migration_checksum",
+      "target_id": "marker_marker_no_manual_edit_applied_migration",
+      "relation": "supports",
+      "id": "edge_core_core_applied_migration_checksum_supports_marker_marker_no_manual_edit_applied_migration",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.482199+00:00",
+      "updated_at": "2026-06-12T13:18:43.482219+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_028_027_migration_checksum"
+      }
+    },
+    {
+      "source_id": "core_core_seed_idempotency_missing",
+      "target_id": "marker_marker_prefer_idempotent_seed_over_truncate",
+      "relation": "supports",
+      "id": "edge_core_core_seed_idempotency_missing_supports_marker_marker_prefer_idempotent_seed_over_truncate",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.489678+00:00",
+      "updated_at": "2026-06-12T13:18:43.489691+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_029_028_seed_data_idempotency"
+      }
+    },
+    {
+      "source_id": "core_core_api_n_plus_one_regression",
+      "target_id": "marker_marker_check_query_count_before_network_debug",
+      "relation": "supports",
+      "id": "edge_core_core_api_n_plus_one_regression_supports_marker_marker_check_query_count_before_network_debug",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.497070+00:00",
+      "updated_at": "2026-06-12T13:18:43.497099+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_030_029_api_timeout_due_to_n_plus_one"
+      }
+    },
+    {
+      "source_id": "core_core_db_pool_exhaustion",
+      "target_id": "marker_marker_check_pool_and_transactions_before_retry",
+      "relation": "supports",
+      "id": "edge_core_core_db_pool_exhaustion_supports_marker_marker_check_pool_and_transactions_before_retry",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.504001+00:00",
+      "updated_at": "2026-06-12T13:18:43.504035+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-04-01T00:00:00Z",
+        "valid_to": "2026-05-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "episode_provenance": "card_031_030_db_pool_exhaustion"
+      }
+    },
+    {
+      "source_id": "marker_marker_check_pool_and_transactions_before_retry",
+      "target_id": "old_marker_marker_check_pool_and_transactions_before_retry",
+      "relation": "supersedes",
+      "id": "edge_marker_marker_check_pool_and_transactions_before_retry_supersedes_old_marker_marker_check_pool_and_transactions_before_retry",
+      "confidence": 0.8,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.512579+00:00",
+      "updated_at": "2026-06-12T13:18:43.512598+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-04-01T00:00:00Z",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "reason": "newer marker context supersedes stale historical marker"
+      }
+    },
+    {
+      "source_id": "marker_marker_check_pool_and_transactions_before_retry",
+      "target_id": "core_core_db_pool_exhaustion",
+      "relation": "related_to",
+      "id": "edge_marker_marker_check_pool_and_transactions_before_retry_challenged_by_core_core_db_pool_exhaustion",
+      "confidence": 0.7,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.512614+00:00",
+      "updated_at": "2026-06-12T13:18:43.512636+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "relation_semantic": "challenged_by",
+        "challenged_by": [
+          "freshness:2026-04-20T00:00:00Z"
+        ],
+        "drift_score": 0.92
+      }
+    },
+    {
+      "source_id": "core_core_schema_cache_stale_after_migration",
+      "target_id": "marker_marker_verify_schema_cache_after_migration",
+      "relation": "supports",
+      "id": "edge_core_core_schema_cache_stale_after_migration_supports_marker_marker_verify_schema_cache_after_migration",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.520887+00:00",
+      "updated_at": "2026-06-12T13:18:43.520900+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_032_031_schema_cache_stale"
+      }
+    },
+    {
+      "source_id": "marker_marker_verify_schema_cache_after_migration",
+      "target_id": "old_marker_marker_verify_schema_cache_after_migration",
+      "relation": "supersedes",
+      "id": "edge_marker_marker_verify_schema_cache_after_migration_supersedes_old_marker_marker_verify_schema_cache_after_migration",
+      "confidence": 0.8,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.528029+00:00",
+      "updated_at": "2026-06-12T13:18:43.528040+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "reason": "newer marker context supersedes stale historical marker"
+      }
+    },
+    {
+      "source_id": "marker_marker_verify_schema_cache_after_migration",
+      "target_id": "core_core_schema_cache_stale_after_migration",
+      "relation": "related_to",
+      "id": "edge_marker_marker_verify_schema_cache_after_migration_challenged_by_core_core_schema_cache_stale_after_migration",
+      "confidence": 0.7,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.528050+00:00",
+      "updated_at": "2026-06-12T13:18:43.528052+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "relation_semantic": "challenged_by",
+        "challenged_by": [
+          "dialogue_card:card_032_031_schema_cache_stale"
+        ],
+        "drift_score": 0.6
+      }
+    },
+    {
+      "source_id": "core_core_timezone_boundary_filter",
+      "target_id": "marker_marker_test_boundary_dates_before_logic_rewrite",
+      "relation": "supports",
+      "id": "edge_core_core_timezone_boundary_filter_supports_marker_marker_test_boundary_dates_before_logic_rewrite",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.535590+00:00",
+      "updated_at": "2026-06-12T13:18:43.535622+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_033_032_timezone_boundary_bug"
+      }
+    },
+    {
+      "source_id": "core_core_rate_limit_not_auth_failure",
+      "target_id": "marker_marker_parse_status_and_headers_before_auth_fix",
+      "relation": "supports",
+      "id": "edge_core_core_rate_limit_not_auth_failure_supports_marker_marker_parse_status_and_headers_before_auth_fix",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.542558+00:00",
+      "updated_at": "2026-06-12T13:18:43.542588+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_034_034_rate_limit_misdiagnosed_as_auth"
+      }
+    },
+    {
+      "source_id": "core_core_flaky_time_dependency",
+      "target_id": "marker_marker_freeze_time_before_assertion_rewrite",
+      "relation": "supports",
+      "id": "edge_core_core_flaky_time_dependency_supports_marker_marker_freeze_time_before_assertion_rewrite",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.552178+00:00",
+      "updated_at": "2026-06-12T13:18:43.552191+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_035_035_flaky_test_time_dependency"
+      }
+    },
+    {
+      "source_id": "core_core_snapshot_intent_confirmation",
+      "target_id": "marker_marker_require_intent_before_snapshot_update",
+      "relation": "supports",
+      "id": "edge_core_core_snapshot_intent_confirmation_supports_marker_marker_require_intent_before_snapshot_update",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.558857+00:00",
+      "updated_at": "2026-06-12T13:18:43.558873+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_036_036_snapshot_test_intentional_change"
+      }
+    },
+    {
+      "source_id": "core_core_test_global_state_leak",
+      "target_id": "marker_marker_compare_isolated_and_suite_run",
+      "relation": "supports",
+      "id": "edge_core_core_test_global_state_leak_supports_marker_marker_compare_isolated_and_suite_run",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.566852+00:00",
+      "updated_at": "2026-06-12T13:18:43.566876+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_037_037_mock_leaks_between_tests"
+      }
+    },
+    {
+      "source_id": "core_core_async_missing_await",
+      "target_id": "marker_marker_check_async_completion_before_timeout_increase",
+      "relation": "supports",
+      "id": "edge_core_core_async_missing_await_supports_marker_marker_check_async_completion_before_timeout_increase",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.574043+00:00",
+      "updated_at": "2026-06-12T13:18:43.574078+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_038_038_async_test_missing_await"
+      }
+    },
+    {
+      "source_id": "core_core_cross_platform_line_ending",
+      "target_id": "marker_marker_check_line_endings_before_logic_change",
+      "relation": "supports",
+      "id": "edge_core_core_cross_platform_line_ending_supports_marker_marker_check_line_endings_before_logic_change",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.580938+00:00",
+      "updated_at": "2026-06-12T13:18:43.580950+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_039_039_golden_file_encoding"
+      }
+    },
+    {
+      "source_id": "core_core_test_live_network_leak",
+      "target_id": "marker_marker_block_live_network_in_unit_tests",
+      "relation": "supports",
+      "id": "edge_core_core_test_live_network_leak_supports_marker_marker_block_live_network_in_unit_tests",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.587618+00:00",
+      "updated_at": "2026-06-12T13:18:43.587632+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-04-01T00:00:00Z",
+        "valid_to": "2026-05-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "episode_provenance": "card_040_040_timeout_due_to_network_fixture"
+      }
+    },
+    {
+      "source_id": "marker_marker_block_live_network_in_unit_tests",
+      "target_id": "old_marker_marker_block_live_network_in_unit_tests",
+      "relation": "supersedes",
+      "id": "edge_marker_marker_block_live_network_in_unit_tests_supersedes_old_marker_marker_block_live_network_in_unit_tests",
+      "confidence": 0.8,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.594583+00:00",
+      "updated_at": "2026-06-12T13:18:43.594594+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-04-01T00:00:00Z",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "reason": "newer marker context supersedes stale historical marker"
+      }
+    },
+    {
+      "source_id": "marker_marker_block_live_network_in_unit_tests",
+      "target_id": "core_core_test_live_network_leak",
+      "relation": "related_to",
+      "id": "edge_marker_marker_block_live_network_in_unit_tests_challenged_by_core_core_test_live_network_leak",
+      "confidence": 0.7,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.594604+00:00",
+      "updated_at": "2026-06-12T13:18:43.594606+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "relation_semantic": "challenged_by",
+        "challenged_by": [
+          "freshness:2026-04-20T00:00:00Z"
+        ],
+        "drift_score": 0.92
+      }
+    },
+    {
+      "source_id": "core_core_dirty_worktree_preserve_user_changes",
+      "target_id": "marker_marker_inspect_diff_before_patch",
+      "relation": "supports",
+      "id": "edge_core_core_dirty_worktree_preserve_user_changes_supports_marker_marker_inspect_diff_before_patch",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.601052+00:00",
+      "updated_at": "2026-06-12T13:18:43.601066+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_041_041_dirty_worktree_user_changes"
+      }
+    },
+    {
+      "source_id": "marker_marker_inspect_diff_before_patch",
+      "target_id": "old_marker_marker_inspect_diff_before_patch",
+      "relation": "supersedes",
+      "id": "edge_marker_marker_inspect_diff_before_patch_supersedes_old_marker_marker_inspect_diff_before_patch",
+      "confidence": 0.8,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.608288+00:00",
+      "updated_at": "2026-06-12T13:18:43.608308+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "reason": "newer marker context supersedes stale historical marker"
+      }
+    },
+    {
+      "source_id": "marker_marker_inspect_diff_before_patch",
+      "target_id": "core_core_dirty_worktree_preserve_user_changes",
+      "relation": "related_to",
+      "id": "edge_marker_marker_inspect_diff_before_patch_challenged_by_core_core_dirty_worktree_preserve_user_changes",
+      "confidence": 0.7,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.608323+00:00",
+      "updated_at": "2026-06-12T13:18:43.608326+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "relation_semantic": "challenged_by",
+        "challenged_by": [
+          "dialogue_card:card_041_041_dirty_worktree_user_changes"
+        ],
+        "drift_score": 0.6
+      }
+    },
+    {
+      "source_id": "core_core_validation_claim_scope",
+      "target_id": "marker_marker_match_claim_to_metric_boundary",
+      "relation": "supports",
+      "id": "edge_core_core_validation_claim_scope_supports_marker_marker_match_claim_to_metric_boundary",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.615409+00:00",
+      "updated_at": "2026-06-12T13:18:43.615424+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_042_042_readme_claim_too_strong"
+      }
+    },
+    {
+      "source_id": "core_core_reference_license_boundary",
+      "target_id": "marker_marker_learn_design_not_gpl_code",
+      "relation": "supports",
+      "id": "edge_core_core_reference_license_boundary_supports_marker_marker_learn_design_not_gpl_code",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.622066+00:00",
+      "updated_at": "2026-06-12T13:18:43.622078+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_043_043_license_reference_gpl"
+      }
+    },
+    {
+      "source_id": "core_core_release_tag_after_validation",
+      "target_id": "marker_marker_require_validation_before_tag",
+      "relation": "supports",
+      "id": "edge_core_core_release_tag_after_validation_supports_marker_marker_require_validation_before_tag",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.629208+00:00",
+      "updated_at": "2026-06-12T13:18:43.629221+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_044_044_branch_tag_validation_order"
+      }
+    },
+    {
+      "source_id": "core_core_provider_specific_model_default",
+      "target_id": "marker_marker_check_model_payload_before_api_diagnosis",
+      "relation": "supports",
+      "id": "edge_core_core_provider_specific_model_default_supports_marker_marker_check_model_payload_before_api_diagnosis",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.636749+00:00",
+      "updated_at": "2026-06-12T13:18:43.636760+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_045_045_config_default_wrong_provider"
+      }
+    },
+    {
+      "source_id": "core_core_validation_artifact_completeness",
+      "target_id": "marker_marker_require_raw_results_for_claim",
+      "relation": "supports",
+      "id": "edge_core_core_validation_artifact_completeness_supports_marker_marker_require_raw_results_for_claim",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.644786+00:00",
+      "updated_at": "2026-06-12T13:18:43.644831+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_046_046_docs_missing_raw_results"
+      }
+    },
+    {
+      "source_id": "core_core_visible_bridge_not_canonical_store",
+      "target_id": "marker_marker_prefer_hidden_canonical_memory_store",
+      "relation": "supports",
+      "id": "edge_core_core_visible_bridge_not_canonical_store_supports_marker_marker_prefer_hidden_canonical_memory_store",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.654374+00:00",
+      "updated_at": "2026-06-12T13:18:43.654385+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_047_047_agents_visible_summary_loop"
+      }
+    },
+    {
+      "source_id": "core_core_trace_explainability_gap",
+      "target_id": "marker_marker_trace_requires_reason_and_evidence",
+      "relation": "supports",
+      "id": "edge_core_core_trace_explainability_gap_supports_marker_marker_trace_requires_reason_and_evidence",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.661794+00:00",
+      "updated_at": "2026-06-12T13:18:43.661811+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_048_048_trace_missing_decision_reason"
+      }
+    },
+    {
+      "source_id": "core_core_pending_review_queue_aging",
+      "target_id": "marker_marker_surface_stale_pending_review",
+      "relation": "supports",
+      "id": "edge_core_core_pending_review_queue_aging_supports_marker_marker_surface_stale_pending_review",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.670175+00:00",
+      "updated_at": "2026-06-12T13:18:43.670188+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-04-01T00:00:00Z",
+        "valid_to": "2026-05-01T00:00:00Z",
+        "last_seen": "2026-04-20T00:00:00Z",
+        "episode_provenance": "card_049_049_pending_marker_stale"
+      }
+    },
+    {
+      "source_id": "marker_marker_surface_stale_pending_review",
+      "target_id": "old_marker_marker_surface_stale_pending_review",
+      "relation": "supersedes",
+      "id": "edge_marker_marker_surface_stale_pending_review_supersedes_old_marker_marker_surface_stale_pending_review",
+      "confidence": 0.8,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.677975+00:00",
+      "updated_at": "2026-06-12T13:18:43.677990+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-04-01T00:00:00Z",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "reason": "newer marker context supersedes stale historical marker"
+      }
+    },
+    {
+      "source_id": "marker_marker_surface_stale_pending_review",
+      "target_id": "core_core_pending_review_queue_aging",
+      "relation": "related_to",
+      "id": "edge_marker_marker_surface_stale_pending_review_challenged_by_core_core_pending_review_queue_aging",
+      "confidence": 0.7,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.678001+00:00",
+      "updated_at": "2026-06-12T13:18:43.678003+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "relation_semantic": "challenged_by",
+        "challenged_by": [
+          "freshness:2026-04-20T00:00:00Z"
+        ],
+        "drift_score": 0.92
+      }
+    },
+    {
+      "source_id": "core_core_marker_conflict_resolution",
+      "target_id": "marker_marker_resolve_scope_and_freshness_before_activation",
+      "relation": "supports",
+      "id": "edge_core_core_marker_conflict_resolution_supports_marker_marker_resolve_scope_and_freshness_before_activation",
+      "confidence": 0.9,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.685770+00:00",
+      "updated_at": "2026-06-12T13:18:43.685798+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "valid_to": "",
+        "last_seen": "2026-06-05T10:00:00Z",
+        "episode_provenance": "card_050_050_marker_conflict_two_paths"
+      }
+    },
+    {
+      "source_id": "marker_marker_resolve_scope_and_freshness_before_activation",
+      "target_id": "old_marker_marker_resolve_scope_and_freshness_before_activation",
+      "relation": "supersedes",
+      "id": "edge_marker_marker_resolve_scope_and_freshness_before_activation_supersedes_old_marker_marker_resolve_scope_and_freshness_before_activation",
+      "confidence": 0.8,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.693699+00:00",
+      "updated_at": "2026-06-12T13:18:43.693735+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "valid_from": "2026-06-01T00:00:00Z",
+        "last_seen": "2026-06-05T12:00:00Z",
+        "reason": "newer marker context supersedes stale historical marker"
+      }
+    },
+    {
+      "source_id": "marker_marker_resolve_scope_and_freshness_before_activation",
+      "target_id": "core_core_marker_conflict_resolution",
+      "relation": "related_to",
+      "id": "edge_marker_marker_resolve_scope_and_freshness_before_activation_challenged_by_core_core_marker_conflict_resolution",
+      "confidence": 0.7,
+      "source": "temporal_gbrain_projection",
+      "status": "accepted",
+      "created_at": "2026-06-12T13:18:43.693746+00:00",
+      "updated_at": "2026-06-12T13:18:43.693748+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "relation_semantic": "challenged_by",
+        "challenged_by": [
+          "dialogue_card:card_050_050_marker_conflict_two_paths"
+        ],
+        "drift_score": 0.6
+      }
+    }
+  ]
+}

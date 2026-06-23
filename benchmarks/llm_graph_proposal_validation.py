@@ -1,4 +1,4 @@
-"""Run v0.4.1 LLM GraphProposal batch validation.
+"""Run v0.4.2 LLM GraphProposal pressure validation.
 
 This benchmark evaluates whether LLM-generated GraphProposal objects improve
 graph-assisted retrieval without changing the Layer-3 lifecycle. Providers may
@@ -20,6 +20,7 @@ from typing import Any, Callable
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from benchmarks._safety import safe_rmtree_child
 from memoryweaver.config import MemoryWeaverConfig
 from memoryweaver.evidence import EvidenceNode
 from memoryweaver.graph.budget import ProposalBudgetGate
@@ -28,7 +29,7 @@ from memoryweaver.graph.evidence_support import EvidenceSupportCheck
 from memoryweaver.graph.expansion_policy import GraphExpansionPolicy
 from memoryweaver.graph.linker import ReviewedGraphLinker
 from memoryweaver.graph.proposal import LLMGraphProposalService
-from memoryweaver.graph.proposal_eval import evaluate_proposals
+from memoryweaver.graph.proposal_eval import EdgeKey, evaluate_proposals
 from memoryweaver.graph.reviewer import GraphProposalReviewPolicy
 from memoryweaver.graph_linker import GraphLinker
 from memoryweaver.graph_retriever import GraphRetriever
@@ -38,9 +39,9 @@ from memoryweaver.schema import MemoryItem, MemoryType, Polarity
 from memoryweaver.store import MemoryWorkspace
 
 
-VALIDATION_NAME = "llm-graph-proposal-v0.4.1"
-PROMPT_VERSION = "graph_proposal_deepseek_v0.4.1"
-POLICY_VERSION = "graph-proposal-review-v0.4.1"
+VALIDATION_NAME = "llm-graph-proposal-v0.4.2"
+PROMPT_VERSION = "graph_proposal_deepseek_v0.4.2"
+POLICY_VERSION = "graph-proposal-review-v0.4.2"
 
 QUERY_CASES = [
     {
@@ -288,10 +289,12 @@ def generate_llm_proposals(
     workspace: MemoryWorkspace,
     config: MemoryWeaverConfig,
     output_path: Path,
-) -> list[dict[str, Any]]:
+) -> dict[str, Any]:
     service = LLMGraphProposalService(config)
-    budget_gate = ProposalBudgetGate()
+    budget_gate = ProposalBudgetGate(max_batch_proposals=12, max_proposals_per_query=3)
     records: list[dict[str, Any]] = []
+    successful_queries = 0
+    provider_errors: list[str] = []
     for batch in make_batch_records(workspace):
         decision = budget_gate.allow_llm_proposal(
             path="offline",
@@ -299,12 +302,17 @@ def generate_llm_proposals(
         )
         if not decision.allowed:
             break
-        proposals = service.propose(
-            query=batch["query"],
-            tags=batch["tags"],
-            memories=batch["memories"],
-            evidence=batch["evidence"],
-        )[:budget_gate.max_proposals_per_query]
+        try:
+            proposals = service.propose(
+                query=batch["query"],
+                tags=batch["tags"],
+                memories=batch["memories"],
+                evidence=batch["evidence"],
+            )[:budget_gate.max_proposals_per_query]
+            successful_queries += 1
+        except Exception as exc:
+            proposals = []
+            provider_errors.append(f"{batch['id']}: {exc}")
         for proposal in proposals:
             records.append({
                 "input_id": batch["id"],
@@ -312,7 +320,11 @@ def generate_llm_proposals(
                 "proposal": proposal.to_dict(),
             })
     write_jsonl(output_path, records)
-    return records
+    return {
+        "records": records,
+        "json_parse_success_rate": round(successful_queries / len(QUERY_CASES), 4),
+        "provider_errors": provider_errors,
+    }
 
 
 def review_proposals(
@@ -348,6 +360,37 @@ def review_proposals(
         })
     write_jsonl(output_path, reviewed)
     return reviewed
+
+
+def support_audit(reviewed: list[dict[str, Any]]) -> dict[str, Any]:
+    """Approximate manual audit fixture for EvidenceSupportCheck categories."""
+    gold = {EdgeKey.from_record(record) for record in GOLD_EDGES}
+    exact: list[dict[str, Any]] = []
+    partial: list[dict[str, Any]] = []
+    unsupported: list[dict[str, Any]] = []
+    contradicts: list[dict[str, Any]] = []
+    for record in reviewed:
+        status = str(record.get("review", {}).get("evidence_support", ""))
+        if status == "supports_exact":
+            exact.append(record)
+        elif status == "supports_partial":
+            partial.append(record)
+        elif status in {"does_not_support", "insufficient_evidence"}:
+            unsupported.append(record)
+        elif status == "contradicts":
+            contradicts.append(record)
+    exact_correct = sum(
+        1 for record in exact
+        if EdgeKey.from_record(record.get("proposal", record)) in gold
+    )
+    return {
+        "supports_exact_count": len(exact),
+        "supports_exact_correct": exact_correct,
+        "supports_exact_precision": round(exact_correct / len(exact), 4) if exact else 0.0,
+        "supports_partial_count": len(partial),
+        "unsupported_count": len(unsupported),
+        "contradicts_count": len(contradicts),
+    }
 
 
 def evaluate_retrieval_arm(
@@ -423,47 +466,155 @@ def evaluate_arm(
         return evaluate_retrieval_arm(arm, workspace, memories, iterations)
 
 
-def build_config(args: argparse.Namespace) -> MemoryWeaverConfig:
+def evaluate_provider_flow(
+    *,
+    label: str,
+    config: MemoryWeaverConfig,
+    output_dir: Path,
+    iterations: int,
+) -> dict[str, Any]:
+    workspace_root = output_dir / f".graph-proposal-{label}-workspace"
+    safe_rmtree_child(
+        output_dir,
+        workspace_root,
+        allowed_prefixes=(".graph-proposal-",),
+    )
+    workspace, memories = build_workspace(str(workspace_root))
+    proposal_run = generate_llm_proposals(
+        workspace,
+        config,
+        output_dir / f"proposals_{label}.jsonl",
+    )
+    reviewed = review_proposals(
+        workspace,
+        proposal_run["records"],
+        output_dir / f"reviewed_{label}.jsonl",
+    )
+    metrics = evaluate_proposals(GOLD_EDGES, reviewed).to_dict()
+    audit = support_audit(reviewed)
+    doctor_report = workspace.doctor()
+    (output_dir / f"doctor_{label}.json").write_text(
+        json.dumps(doctor_report, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    arm = evaluate_retrieval_arm(
+        f"{label}_offline_proposal_graph",
+        workspace,
+        memories,
+        iterations,
+    )
+    return {
+        "label": label,
+        "provider": config.llm_provider,
+        "model": config.llm_model,
+        "workspace_root": str(workspace_root),
+        "proposal_records": proposal_run["records"],
+        "json_parse_success_rate": proposal_run["json_parse_success_rate"],
+        "provider_errors": proposal_run["provider_errors"],
+        "reviewed": reviewed,
+        "metrics": metrics,
+        "support_audit": audit,
+        "doctor_report": doctor_report,
+        "retrieval_arm": arm,
+        "accepted_edge_count": metrics["accepted"],
+    }
+
+def build_provider_config(
+    *,
+    provider: str,
+    model: str,
+    env_file: str,
+) -> MemoryWeaverConfig:
     env = dict(os.environ)
     env.update({
         "MEMORYWEAVER_ENABLE_LLM_GRAPH_PROPOSAL": "true",
-        "MEMORYWEAVER_LLM_PROVIDER": args.provider,
-        "MEMORYWEAVER_LLM_MODEL": args.model,
+        "MEMORYWEAVER_LLM_PROVIDER": provider,
+        "MEMORYWEAVER_LLM_MODEL": model,
     })
-    return MemoryWeaverConfig.from_env(env=env, env_file=args.env_file)
+    return MemoryWeaverConfig.from_env(env=env, env_file=env_file)
 
 
 def write_readme(
     output_dir: Path,
     *,
-    config: MemoryWeaverConfig,
     raw_results: dict[str, Any],
 ) -> None:
-    metrics = raw_results["proposal_metrics"]
     arms = raw_results["retrieval_arms"]
+    deepseek_metrics = raw_results["provider_metrics"]["deepseek"]
+    deepseek_support = raw_results["support_audits"]["deepseek"]
+    deepseek_doctor = raw_results["doctor_reports"]["deepseek"]
+    criteria = raw_results["success_criteria"]
+    deepseek_errors = raw_results["provider_runs"]["deepseek"]["provider_errors"]
+    provider_note = (
+        "This run does not prove DeepSeek proposal utility because provider errors occurred before usable proposals were generated."
+        if deepseek_errors
+        else "DeepSeek provider returned proposals; accepted-edge utility is judged by the success criteria above."
+    )
     lines = [
-        "# LLM GraphProposal v0.4.1 Validation",
+        "# LLM GraphProposal v0.4.2 Validation",
         "",
-        "This validation treats every LLM-compatible backend strictly as an offline **LLM GraphProposal Provider**. It does not run on the online query path, write verified memory, stable Patterns, RelationEdge records without Harness review, or routing decisions.",
+        "This validation runs a real DeepSeek offline GraphProposal pressure test. DeepSeek never enters the online query path; it only produces offline proposals that pass through EvidenceSupportCheck and Harness review before accepted edges can affect online graph retrieval.",
         "",
         "## Configuration",
         "",
-        f"- Provider: `{config.llm_provider}`",
-        f"- Model: `{config.llm_model}`",
+        f"- Real provider: `{raw_results['providers']['deepseek']['provider']}`",
+        f"- Real model: `{raw_results['providers']['deepseek']['model']}`",
+        f"- Local baseline provider: `{raw_results['providers']['local']['provider']}`",
         f"- Prompt version: `{PROMPT_VERSION}`",
         f"- Review policy version: `{POLICY_VERSION}`",
         f"- Dataset size: `{raw_results['dataset']['memory_count']}` memories, `{raw_results['dataset']['evidence_count']}` evidence nodes, `{raw_results['dataset']['query_count']}` queries",
-        f"- Proposal count: `{metrics['proposal_count']}`",
-        f"- Offline proposal count: `{raw_results['offline_proposal_count']}`",
         f"- Online LLM call count: `{raw_results['online_llm_call_count']}`",
-        f"- Accepted / pending / rejected / quarantined: `{metrics['accepted']}` / `{metrics['pending']}` / `{metrics['rejected']}` / `{metrics['quarantined']}`",
-        f"- Pending / reject / human-review rates: `{metrics['pending_rate']}` / `{metrics['reject_rate']}` / `{metrics['human_review_needed_rate']}`",
-        f"- Wrong link rate: `{metrics['wrong_link_rate']}`",
-        f"- Evidence coverage: `{metrics['evidence_coverage']}`",
-        f"- Exact / partial / unsupported evidence support rates: `{metrics['exact_support_rate']}` / `{metrics['partial_support_rate']}` / `{metrics['unsupported_rate']}`",
-        f"- Accepted wrong link rate: `{metrics['accepted_wrong_link_rate']}`",
-        f"- Review cost per accepted edge: `{metrics['review_cost_per_accepted_edge']}`",
-        f"- Human review needed: `{metrics['human_review_needed']}`",
+        "",
+        "## DeepSeek Proposal Metrics",
+        "",
+        f"- JSON parse success rate: `{raw_results['provider_runs']['deepseek']['json_parse_success_rate']}`",
+        f"- Proposal count: `{deepseek_metrics['proposal_count']}`",
+        f"- Provider errors: `{len(deepseek_errors)}`",
+        *(f"  - {error}" for error in deepseek_errors[:4]),
+        f"- Accepted / pending / rejected / quarantined: `{deepseek_metrics['accepted']}` / `{deepseek_metrics['pending']}` / `{deepseek_metrics['rejected']}` / `{deepseek_metrics['quarantined']}`",
+        f"- Accepted edge count: `{deepseek_metrics['accepted']}`",
+        f"- Accepted wrong link rate: `{deepseek_metrics['accepted_wrong_link_rate']}`",
+        f"- Exact / partial / unsupported support rates: `{deepseek_metrics['exact_support_rate']}` / `{deepseek_metrics['partial_support_rate']}` / `{deepseek_metrics['unsupported_rate']}`",
+        f"- Review cost per accepted edge: `{deepseek_metrics['review_cost_per_accepted_edge']}`",
+        "",
+        "## v0.4 vs v0.4.2 Proposal-Level Comparison",
+        "",
+        "| Metric | v0.4 | v0.4.2 | Target |",
+        "| --- | ---: | ---: | --- |",
+        f"| proposals | 22 | {deepseek_metrics['proposal_count']} | <= 12 |",
+        f"| accepted | 7 | {deepseek_metrics['accepted']} | > 0 |",
+        f"| rejected | 0 | {deepseek_metrics['rejected']} | > 0 |",
+        f"| accepted wrong link rate | n/a | {deepseek_metrics['accepted_wrong_link_rate']} | 0 or close to 0 |",
+        f"| online LLM calls | multiple / online path | {raw_results['online_llm_call_count']} | 0 |",
+        "",
+        "## v0.4 vs v0.4.2 Evidence Support Comparison",
+        "",
+        "| Metric | v0.4 | v0.4.2 | Target |",
+        "| --- | ---: | ---: | --- |",
+        f"| evidence coverage | 1.0 | {deepseek_metrics['evidence_coverage']} | <= 0.6 |",
+        f"| supports_exact precision | n/a | {deepseek_support['supports_exact_precision']} | >= 0.7 |",
+        f"| supports_partial count | n/a | {deepseek_support['supports_partial_count']} | inspect |",
+        f"| unsupported count | n/a | {deepseek_support['unsupported_count']} | > 0 expected in noisy batch |",
+        "",
+        "## Doctor Gate",
+        "",
+        f"- `mw doctor` valid: `{deepseek_doctor['valid']}`",
+        f"- doctor errors: `{len(deepseek_doctor['errors'])}`",
+        f"- doctor warnings: `{len(deepseek_doctor['warnings'])}`",
+        f"- doctor info: `{len(deepseek_doctor['info'])}`",
+        "",
+        "## Success Criteria",
+        "",
+        f"- DeepSeek provider available: `{criteria['deepseek_provider_available']}`",
+        f"- accepted_edge_count > 0: `{criteria['accepted_edge_count_gt_0']}`",
+        f"- accepted_wrong_link_rate near 0: `{criteria['accepted_wrong_link_rate_near_zero']}`",
+        f"- Memory Recall@10 > no_graph: `{criteria['recall_beats_no_graph']}`",
+        f"- online_llm_call_count = 0: `{criteria['online_llm_call_count_zero']}`",
+        f"- proposal budget respected: `{criteria['proposal_budget_respected']}`",
+        f"- supports_exact precision >= 0.7: `{criteria['supports_exact_precision_ok']}`",
+        f"- rejected > 0: `{criteria['rejected_gt_0']}`",
+        f"- evidence coverage <= 0.6: `{criteria['evidence_coverage_ok']}`",
+        f"- v0.4.2 pass: `{criteria['passed']}`",
         "",
         "## Retrieval Comparison",
         "",
@@ -478,9 +629,15 @@ def write_readme(
         "",
         "## Interpretation",
         "",
-        "This is a retrieval/linking validation, not a task-success experiment. v0.4.1 explicitly separates offline LLM proposal generation from online accepted-edge retrieval.",
+        "This is a retrieval/linking pressure validation, not a task-success experiment. v0.4.2 tests whether real offline LLM proposals can produce accepted edges without polluting the online path.",
         "",
         "Layer 3 remains unchanged: provisional Patterns are limited to `fast_verify`, stable Patterns alone can route to `fast`, and evidence links do not auto-promote memory.",
+        "",
+        "Pending proposals still require a lifecycle mechanism in a later release.",
+        "",
+        provider_note,
+        "",
+        "v0.5 should not start unless v0.4.2 passes: accepted edge count > 0, accepted wrong link rate near zero, and EvidenceSupportCheck exact-support precision passes manual audit.",
     ])
     (output_dir / "README.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -488,72 +645,133 @@ def write_readme(
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--iterations", type=int, default=100)
-    parser.add_argument("--provider", default="local")
-    parser.add_argument("--model", default="local-graph-proposer")
+    parser.add_argument("--provider", default="deepseek")
+    parser.add_argument("--model", default="deepseek-v4-pro")
+    parser.add_argument("--local-model", default="local-graph-proposer")
     parser.add_argument("--env-file", default=".env")
-    parser.add_argument("--output-dir", type=Path, default=Path("docs/validation/llm-graph-proposal-v0.4.1"))
+    parser.add_argument("--output-dir", type=Path, default=Path("docs/validation/llm-graph-proposal-v0.4.2"))
     args = parser.parse_args()
 
-    config = build_config(args)
+    local_config = build_provider_config(
+        provider="local",
+        model=args.local_model,
+        env_file=args.env_file,
+    )
+    deepseek_config = build_provider_config(
+        provider=args.provider,
+        model=args.model,
+        env_file=args.env_file,
+    )
     args.output_dir.mkdir(parents=True, exist_ok=True)
-
-    with tempfile.TemporaryDirectory(prefix="memoryweaver-llm-graph-batch-") as root:
-        workspace, memories = build_workspace(root)
-        write_jsonl(args.output_dir / "gold_edges.jsonl", GOLD_EDGES)
-        proposal_records = generate_llm_proposals(
-            workspace,
-            config,
-            args.output_dir / "proposals_deepseek.jsonl",
-        )
-        reviewed = review_proposals(
-            workspace,
-            proposal_records,
-            args.output_dir / "reviewed_proposals.jsonl",
-        )
-        proposal_metrics = evaluate_proposals(GOLD_EDGES, reviewed).to_dict()
-        llm_offline_arm = evaluate_retrieval_arm(
-            "llm_offline_proposal_graph",
-            workspace,
-            memories,
-            args.iterations,
-        )
+    with tempfile.TemporaryDirectory(prefix="memoryweaver-gold-") as root:
+        gold_workspace, _ = build_workspace(root)
         dataset = {
-            "memory_count": workspace.memories.count(),
-            "evidence_count": len(workspace.evidence.list_nodes()),
+            "memory_count": gold_workspace.memories.count(),
+            "evidence_count": len(gold_workspace.evidence.list_nodes()),
             "query_count": len(QUERY_CASES),
         }
+    write_jsonl(args.output_dir / "gold_edges.jsonl", GOLD_EDGES)
+
+    local_run = evaluate_provider_flow(
+        label="local",
+        config=local_config,
+        output_dir=args.output_dir,
+        iterations=args.iterations,
+    )
+    deepseek_run = evaluate_provider_flow(
+        label="deepseek",
+        config=deepseek_config,
+        output_dir=args.output_dir,
+        iterations=args.iterations,
+    )
 
     retrieval_arms = [
         evaluate_arm("no_graph", args.iterations, lambda workspace: None),
         evaluate_arm("manual_graph", args.iterations, add_manual_graph),
         evaluate_arm("rule_graph", args.iterations, add_rule_graph),
-        llm_offline_arm,
+        local_run["retrieval_arm"],
+        deepseek_run["retrieval_arm"],
     ]
+    no_graph_recall = retrieval_arms[0]["memory_recall_at_10"]
+    deepseek_recall = deepseek_run["retrieval_arm"]["memory_recall_at_10"]
+    deepseek_metrics = deepseek_run["metrics"]
+    success_criteria = {
+        "deepseek_provider_available": (
+            deepseek_run["json_parse_success_rate"] > 0
+            and deepseek_metrics["proposal_count"] > 0
+        ),
+        "accepted_edge_count_gt_0": deepseek_metrics["accepted"] > 0,
+        "accepted_wrong_link_rate_near_zero": deepseek_metrics["accepted_wrong_link_rate"] <= 0.05,
+        "recall_beats_no_graph": deepseek_recall > no_graph_recall,
+        "online_llm_call_count_zero": sum(
+            arm["online_llm_call_count"] for arm in retrieval_arms
+        ) == 0,
+        "proposal_budget_respected": deepseek_metrics["proposal_count"] <= 12,
+        "supports_exact_precision_ok": deepseek_run["support_audit"]["supports_exact_precision"] >= 0.7,
+        "rejected_gt_0": deepseek_metrics["rejected"] > 0,
+        "evidence_coverage_ok": deepseek_metrics["evidence_coverage"] <= 0.6,
+    }
+    success_criteria["passed"] = all(success_criteria.values())
 
     raw_results = {
         "benchmark": VALIDATION_NAME,
-        "provider": config.llm_provider,
-        "model": config.llm_model,
+        "providers": {
+            "local": {
+                "provider": local_config.llm_provider,
+                "model": local_config.llm_model,
+            },
+            "deepseek": {
+                "provider": deepseek_config.llm_provider,
+                "model": deepseek_config.llm_model,
+            },
+        },
         "prompt_version": PROMPT_VERSION,
         "review_policy_version": POLICY_VERSION,
         "iterations": args.iterations,
         "dataset": dataset,
-        "offline_proposal_count": len(proposal_records),
         "online_llm_call_count": sum(
             arm["online_llm_call_count"] for arm in retrieval_arms
         ),
-        "proposal_metrics": proposal_metrics,
+        "provider_runs": {
+            "local": {
+                "json_parse_success_rate": local_run["json_parse_success_rate"],
+                "provider_errors": local_run["provider_errors"],
+                "proposal_count": len(local_run["proposal_records"]),
+            },
+            "deepseek": {
+                "json_parse_success_rate": deepseek_run["json_parse_success_rate"],
+                "provider_errors": deepseek_run["provider_errors"],
+                "proposal_count": len(deepseek_run["proposal_records"]),
+            },
+        },
+        "provider_metrics": {
+            "local": local_run["metrics"],
+            "deepseek": deepseek_run["metrics"],
+        },
+        "support_audits": {
+            "local": local_run["support_audit"],
+            "deepseek": deepseek_run["support_audit"],
+        },
+        "doctor_reports": {
+            "local": local_run["doctor_report"],
+            "deepseek": deepseek_run["doctor_report"],
+        },
+        "provider_workspaces": {
+            "local": local_run["workspace_root"],
+            "deepseek": deepseek_run["workspace_root"],
+        },
+        "success_criteria": success_criteria,
         "retrieval_arms": retrieval_arms,
     }
     (args.output_dir / "metrics.json").write_text(
-        json.dumps(proposal_metrics, ensure_ascii=False, indent=2) + "\n",
+        json.dumps(raw_results["provider_metrics"], ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
     (args.output_dir / "raw_results.json").write_text(
         json.dumps(raw_results, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
-    write_readme(args.output_dir, config=config, raw_results=raw_results)
+    write_readme(args.output_dir, raw_results=raw_results)
     print(json.dumps(raw_results, ensure_ascii=False, indent=2))
 
 

@@ -1,0 +1,62 @@
+{
+  "benchmark": "memevobench-style-v0.4.5",
+  "dataset": {
+    "records": 36,
+    "events": 24,
+    "queries": 12
+  },
+  "baselines": {
+    "corrected_strict_verified_only": {
+      "weak_useful_hit_at_10": 0,
+      "negative_avoidance_activation": 0,
+      "known_bad_path_suppression": 0,
+      "partial_evidence_hit_at_10": 2,
+      "multi_source_evidence_count": 2,
+      "strict_false_negative_count": 12,
+      "unsafe_weak_trust_count": 0,
+      "wrong_promotion_count": 0,
+      "pollution_leak_count": 0,
+      "partial_evidence_wrong_promotion_count": 0,
+      "ambiguous_to_positive_wrong_count": 0,
+      "weak_signal_recalled_count": 2,
+      "weak_signal_labeled_unverified_count": 0,
+      "weak_signal_mislabeled_trusted_count": 0,
+      "unverified_context_labeled_count": 0
+    },
+    "memoryweaver_source_gate": {
+      "weak_useful_hit_at_10": 3,
+      "negative_avoidance_activation": 5,
+      "known_bad_path_suppression": 4,
+      "partial_evidence_hit_at_10": 3,
+      "multi_source_evidence_count": 8,
+      "strict_false_negative_count": 0,
+      "unsafe_weak_trust_count": 0,
+      "wrong_promotion_count": 0,
+      "pollution_leak_count": 0,
+      "partial_evidence_wrong_promotion_count": 0,
+      "ambiguous_to_positive_wrong_count": 0,
+      "weak_signal_recalled_count": 14,
+      "weak_signal_labeled_unverified_count": 14,
+      "weak_signal_mislabeled_trusted_count": 0,
+      "unverified_context_labeled_count": 14
+    }
+  },
+  "comparison": {
+    "weak_useful_hit_delta": 3,
+    "negative_avoidance_activation_delta": 5,
+    "known_bad_path_suppression_delta": 4,
+    "partial_evidence_hit_delta": 1,
+    "strict_false_negative_delta": 12
+  },
+  "pass_criteria": {
+    "weak_useful_hit_beats_strict": true,
+    "negative_avoidance_beats_strict": true,
+    "known_bad_path_suppression_beats_strict": true,
+    "partial_evidence_beats_strict": true,
+    "strict_false_negative_reduced": true,
+    "unsafe_weak_trust_zero": true,
+    "wrong_promotion_zero": true,
+    "all_weak_signals_labeled_unverified": true
+  },
+  "passed": true
+}

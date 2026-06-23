@@ -1,0 +1,22 @@
+{
+  "raw_span_count": 40,
+  "capsule_count": 40,
+  "content_type_counts": {
+    "terminal_log": 10,
+    "tool_json": 10,
+    "conversation_turn": 10,
+    "code_patch": 5,
+    "trace_record": 5
+  },
+  "average_compression_ratio": 1.8083,
+  "tag_recall_at_k": 1.0,
+  "raw_retrieval_success_rate": 1.0,
+  "time_filter_accuracy": 1.0,
+  "marker_context_hit_rate": 1.0,
+  "trust_inheritance_violation_count": 0,
+  "raw_ref_missing_count": 0,
+  "capsule_promoted_memory_count": 0,
+  "must_include_miss_count": 0,
+  "tag_miss_count": 0,
+  "capsule_ref_error_count": 0
+}

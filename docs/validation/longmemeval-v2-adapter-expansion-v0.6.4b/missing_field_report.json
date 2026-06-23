@@ -1,0 +1,159 @@
+{
+  "validation": "longmemeval-v2-adapter-expansion-v0.6.4b",
+  "reports_by_limit": {
+    "50": {
+      "required_field_coverage": 1.0,
+      "question_required_fields": [
+        "id",
+        "domain",
+        "environment",
+        "question_type",
+        "question",
+        "answer",
+        "eval_function"
+      ],
+      "trajectory_required_fields": [
+        "id",
+        "domain",
+        "environment",
+        "goal",
+        "outcome",
+        "states"
+      ],
+      "state_required_fields": [
+        "state_index",
+        "step",
+        "url",
+        "action",
+        "thought",
+        "accessibility_tree"
+      ],
+      "question_missing": {
+        "row_count": 50,
+        "total_count": 350,
+        "present_count": 350,
+        "missing_count": 0,
+        "coverage": 1.0,
+        "missing_by_field": {
+          "id": 0,
+          "domain": 0,
+          "environment": 0,
+          "question_type": 0,
+          "question": 0,
+          "answer": 0,
+          "eval_function": 0
+        },
+        "samples": []
+      },
+      "trajectory_missing": {
+        "row_count": 3,
+        "total_count": 18,
+        "present_count": 18,
+        "missing_count": 0,
+        "coverage": 1.0,
+        "missing_by_field": {
+          "id": 0,
+          "domain": 0,
+          "environment": 0,
+          "goal": 0,
+          "outcome": 0,
+          "states": 0
+        },
+        "samples": []
+      },
+      "state_missing": {
+        "row_count": 13,
+        "total_count": 78,
+        "present_count": 78,
+        "missing_count": 0,
+        "coverage": 1.0,
+        "missing_by_field": {
+          "state_index": 0,
+          "step": 0,
+          "url": 0,
+          "action": 0,
+          "thought": 0,
+          "accessibility_tree": 0
+        },
+        "samples": []
+      }
+    },
+    "100": {
+      "required_field_coverage": 1.0,
+      "question_required_fields": [
+        "id",
+        "domain",
+        "environment",
+        "question_type",
+        "question",
+        "answer",
+        "eval_function"
+      ],
+      "trajectory_required_fields": [
+        "id",
+        "domain",
+        "environment",
+        "goal",
+        "outcome",
+        "states"
+      ],
+      "state_required_fields": [
+        "state_index",
+        "step",
+        "url",
+        "action",
+        "thought",
+        "accessibility_tree"
+      ],
+      "question_missing": {
+        "row_count": 100,
+        "total_count": 700,
+        "present_count": 700,
+        "missing_count": 0,
+        "coverage": 1.0,
+        "missing_by_field": {
+          "id": 0,
+          "domain": 0,
+          "environment": 0,
+          "question_type": 0,
+          "question": 0,
+          "answer": 0,
+          "eval_function": 0
+        },
+        "samples": []
+      },
+      "trajectory_missing": {
+        "row_count": 3,
+        "total_count": 18,
+        "present_count": 18,
+        "missing_count": 0,
+        "coverage": 1.0,
+        "missing_by_field": {
+          "id": 0,
+          "domain": 0,
+          "environment": 0,
+          "goal": 0,
+          "outcome": 0,
+          "states": 0
+        },
+        "samples": []
+      },
+      "state_missing": {
+        "row_count": 13,
+        "total_count": 78,
+        "present_count": 78,
+        "missing_count": 0,
+        "coverage": 1.0,
+        "missing_by_field": {
+          "state_index": 0,
+          "step": 0,
+          "url": 0,
+          "action": 0,
+          "thought": 0,
+          "accessibility_tree": 0
+        },
+        "samples": []
+      }
+    }
+  }
+}

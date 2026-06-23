@@ -1,0 +1,82 @@
+{
+  "passed": true,
+  "path_catalog": [
+    {
+      "pattern_id": "pat_7c8ee3b8d104",
+      "label": "stable_candidate",
+      "initial_status": "provisional",
+      "final_status": "stable",
+      "trial_count": 3,
+      "known_bad_avoidance_count": 3,
+      "evidence_first_count": 3,
+      "false_trigger_count": 0,
+      "path_fitness_score": 0.952
+    },
+    {
+      "pattern_id": "pat_7044a78f9b51",
+      "label": "challenged_candidate",
+      "initial_status": "challenged",
+      "final_status": "challenged",
+      "trial_count": 1,
+      "known_bad_avoidance_count": 0,
+      "evidence_first_count": 0,
+      "false_trigger_count": 1,
+      "path_fitness_score": 0.004
+    }
+  ],
+  "task_runs": [
+    {
+      "task_id": "trial-1",
+      "successful": true,
+      "known_bad_avoidance": 1,
+      "evidence_first": true,
+      "false_trigger": false,
+      "selected_cost": 1,
+      "oracle_cost": 1,
+      "path_regret": 0,
+      "status_after_trial": "provisional"
+    },
+    {
+      "task_id": "trial-2",
+      "successful": true,
+      "known_bad_avoidance": 1,
+      "evidence_first": true,
+      "false_trigger": false,
+      "selected_cost": 1,
+      "oracle_cost": 1,
+      "path_regret": 0,
+      "status_after_trial": "provisional"
+    },
+    {
+      "task_id": "trial-3",
+      "successful": true,
+      "known_bad_avoidance": 1,
+      "evidence_first": true,
+      "false_trigger": false,
+      "selected_cost": 1,
+      "oracle_cost": 1,
+      "path_regret": 0,
+      "status_after_trial": "provisional"
+    },
+    {
+      "task_id": "trial-4",
+      "successful": false,
+      "known_bad_avoidance": 0,
+      "evidence_first": false,
+      "false_trigger": true,
+      "selected_cost": 3,
+      "oracle_cost": 1,
+      "path_regret": 2,
+      "status_after_trial": "challenged"
+    }
+  ],
+  "metrics": {
+    "candidate_to_provisional": true,
+    "stable_after_trials": true,
+    "challenged_on_conflict": true,
+    "known_bad_avoidance_count": 3,
+    "evidence_first_count": 3,
+    "false_trigger_count": 1,
+    "average_path_regret": 0.5
+  }
+}

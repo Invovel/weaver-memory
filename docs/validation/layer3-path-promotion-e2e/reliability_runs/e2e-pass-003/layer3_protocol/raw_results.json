@@ -1,0 +1,357 @@
+{
+  "passed": true,
+  "families": [
+    {
+      "family_id": "codex_subscription_org",
+      "title": "Codex subscription entitlement",
+      "tags": [
+        "codex",
+        "subscription",
+        "auth"
+      ],
+      "required_evidence": "selected_organization",
+      "stale_action": "reinstall_npm",
+      "current_best_action": "selected_organization",
+      "overgeneralized_action": "reset_auth_files",
+      "historical_success": "Historical environment once recovered after reinstall_npm.",
+      "current_success": "Current environment succeeds after checking selected_organization first.",
+      "current_failure": "Current environment fails when trying reinstall_npm first.",
+      "overgeneralized_failure": "reset_auth_files overgeneralizes and misses selected_organization.",
+      "target_tasks": [
+        {
+          "task_id": "codex_subscription_org_task_1",
+          "query": "Codex subscription entitlement sibling task 1: should I check selected_organization before reinstall_npm, or still try reinstall_npm first? Do not overgeneralize to reset_auth_files.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        },
+        {
+          "task_id": "codex_subscription_org_task_2",
+          "query": "Codex subscription entitlement sibling task 2: should I check selected_organization before reinstall_npm, or still try reinstall_npm first? Do not overgeneralize to reset_auth_files.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        },
+        {
+          "task_id": "codex_subscription_org_task_3",
+          "query": "Codex subscription entitlement sibling task 3: should I check selected_organization before reinstall_npm, or still try reinstall_npm first? Do not overgeneralize to reset_auth_files.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        }
+      ]
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "title": "npm registry dependency conflict",
+      "tags": [
+        "npm",
+        "registry",
+        "dependency"
+      ],
+      "required_evidence": "npm_registry",
+      "stale_action": "delete_lockfile",
+      "current_best_action": "npm_registry",
+      "overgeneralized_action": "clear_global_cache",
+      "historical_success": "Historical environment once recovered after delete_lockfile.",
+      "current_success": "Current environment succeeds after checking npm_registry first.",
+      "current_failure": "Current environment fails when trying delete_lockfile first.",
+      "overgeneralized_failure": "clear_global_cache overgeneralizes and misses npm_registry.",
+      "target_tasks": [
+        {
+          "task_id": "npm_registry_conflict_task_1",
+          "query": "npm registry dependency conflict sibling task 1: should I check npm_registry before delete_lockfile, or still try delete_lockfile first? Do not overgeneralize to clear_global_cache.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        },
+        {
+          "task_id": "npm_registry_conflict_task_2",
+          "query": "npm registry dependency conflict sibling task 2: should I check npm_registry before delete_lockfile, or still try delete_lockfile first? Do not overgeneralize to clear_global_cache.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        },
+        {
+          "task_id": "npm_registry_conflict_task_3",
+          "query": "npm registry dependency conflict sibling task 3: should I check npm_registry before delete_lockfile, or still try delete_lockfile first? Do not overgeneralize to clear_global_cache.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        }
+      ]
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "title": "API key scope denied",
+      "tags": [
+        "api_key",
+        "scope",
+        "denied"
+      ],
+      "required_evidence": "api_key_scope",
+      "stale_action": "rotate_key_blindly",
+      "current_best_action": "api_key_scope",
+      "overgeneralized_action": "reissue_all_credentials",
+      "historical_success": "Historical environment once recovered after rotate_key_blindly.",
+      "current_success": "Current environment succeeds after checking api_key_scope first.",
+      "current_failure": "Current environment fails when trying rotate_key_blindly first.",
+      "overgeneralized_failure": "reissue_all_credentials overgeneralizes and misses api_key_scope.",
+      "target_tasks": [
+        {
+          "task_id": "api_key_scope_denied_task_1",
+          "query": "API key scope denied sibling task 1: should I check api_key_scope before rotate_key_blindly, or still try rotate_key_blindly first? Do not overgeneralize to reissue_all_credentials.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        },
+        {
+          "task_id": "api_key_scope_denied_task_2",
+          "query": "API key scope denied sibling task 2: should I check api_key_scope before rotate_key_blindly, or still try rotate_key_blindly first? Do not overgeneralize to reissue_all_credentials.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        },
+        {
+          "task_id": "api_key_scope_denied_task_3",
+          "query": "API key scope denied sibling task 3: should I check api_key_scope before rotate_key_blindly, or still try rotate_key_blindly first? Do not overgeneralize to reissue_all_credentials.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        }
+      ]
+    }
+  ],
+  "path_catalog": [
+    {
+      "family_id": "codex_subscription_org",
+      "label": "stale_path",
+      "pattern_id": "pat_85f6e9c7837a",
+      "status": "challenged",
+      "path_fitness_score": 0.3904,
+      "confidence": 0.3333,
+      "cost": 3,
+      "rule": "Try reinstall_npm before checking selected_organization"
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "label": "current_best",
+      "pattern_id": "pat_76bc11884602",
+      "status": "stable",
+      "path_fitness_score": 0.928,
+      "confidence": 1.0,
+      "cost": 1,
+      "rule": "Check selected_organization before trying reinstall_npm"
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "label": "rollback_path",
+      "pattern_id": "pat_76e4664dcb16",
+      "status": "rolled_back",
+      "path_fitness_score": 0.08,
+      "confidence": 0.0,
+      "cost": 4,
+      "rule": "Always use reset_auth_files for Codex subscription entitlement"
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "label": "stale_path",
+      "pattern_id": "pat_d3a9e636383f",
+      "status": "challenged",
+      "path_fitness_score": 0.3904,
+      "confidence": 0.3333,
+      "cost": 3,
+      "rule": "Try delete_lockfile before checking npm_registry"
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "label": "current_best",
+      "pattern_id": "pat_522047c59fd2",
+      "status": "stable",
+      "path_fitness_score": 0.928,
+      "confidence": 1.0,
+      "cost": 1,
+      "rule": "Check npm_registry before trying delete_lockfile"
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "label": "rollback_path",
+      "pattern_id": "pat_4b86e0e08b09",
+      "status": "rolled_back",
+      "path_fitness_score": 0.08,
+      "confidence": 0.0,
+      "cost": 4,
+      "rule": "Always use clear_global_cache for npm registry dependency conflict"
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "label": "stale_path",
+      "pattern_id": "pat_62418353c1f6",
+      "status": "challenged",
+      "path_fitness_score": 0.3904,
+      "confidence": 0.3333,
+      "cost": 3,
+      "rule": "Try rotate_key_blindly before checking api_key_scope"
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "label": "current_best",
+      "pattern_id": "pat_4efa7c9e188f",
+      "status": "stable",
+      "path_fitness_score": 0.928,
+      "confidence": 1.0,
+      "cost": 1,
+      "rule": "Check api_key_scope before trying rotate_key_blindly"
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "label": "rollback_path",
+      "pattern_id": "pat_dc9594ac53ea",
+      "status": "rolled_back",
+      "path_fitness_score": 0.08,
+      "confidence": 0.0,
+      "cost": 4,
+      "rule": "Always use reissue_all_credentials for API key scope denied"
+    }
+  ],
+  "task_runs": [
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_task_1",
+      "query": "Codex subscription entitlement sibling task 1: should I check selected_organization before reinstall_npm, or still try reinstall_npm first? Do not overgeneralize to reset_auth_files.",
+      "expected_best_path_id": "pat_76bc11884602",
+      "composer_selected_path_id": "pat_76bc11884602",
+      "skill_selected_path_id": "pat_76bc11884602",
+      "harness_selected_path_id": "pat_76bc11884602",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_task_2",
+      "query": "Codex subscription entitlement sibling task 2: should I check selected_organization before reinstall_npm, or still try reinstall_npm first? Do not overgeneralize to reset_auth_files.",
+      "expected_best_path_id": "pat_76bc11884602",
+      "composer_selected_path_id": "pat_76bc11884602",
+      "skill_selected_path_id": "pat_76bc11884602",
+      "harness_selected_path_id": "pat_76bc11884602",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_task_3",
+      "query": "Codex subscription entitlement sibling task 3: should I check selected_organization before reinstall_npm, or still try reinstall_npm first? Do not overgeneralize to reset_auth_files.",
+      "expected_best_path_id": "pat_76bc11884602",
+      "composer_selected_path_id": "pat_76bc11884602",
+      "skill_selected_path_id": "pat_76bc11884602",
+      "harness_selected_path_id": "pat_76bc11884602",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_task_1",
+      "query": "npm registry dependency conflict sibling task 1: should I check npm_registry before delete_lockfile, or still try delete_lockfile first? Do not overgeneralize to clear_global_cache.",
+      "expected_best_path_id": "pat_522047c59fd2",
+      "composer_selected_path_id": "pat_522047c59fd2",
+      "skill_selected_path_id": "pat_522047c59fd2",
+      "harness_selected_path_id": "pat_522047c59fd2",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_task_2",
+      "query": "npm registry dependency conflict sibling task 2: should I check npm_registry before delete_lockfile, or still try delete_lockfile first? Do not overgeneralize to clear_global_cache.",
+      "expected_best_path_id": "pat_522047c59fd2",
+      "composer_selected_path_id": "pat_522047c59fd2",
+      "skill_selected_path_id": "pat_522047c59fd2",
+      "harness_selected_path_id": "pat_522047c59fd2",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_task_3",
+      "query": "npm registry dependency conflict sibling task 3: should I check npm_registry before delete_lockfile, or still try delete_lockfile first? Do not overgeneralize to clear_global_cache.",
+      "expected_best_path_id": "pat_522047c59fd2",
+      "composer_selected_path_id": "pat_522047c59fd2",
+      "skill_selected_path_id": "pat_522047c59fd2",
+      "harness_selected_path_id": "pat_522047c59fd2",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_task_1",
+      "query": "API key scope denied sibling task 1: should I check api_key_scope before rotate_key_blindly, or still try rotate_key_blindly first? Do not overgeneralize to reissue_all_credentials.",
+      "expected_best_path_id": "pat_4efa7c9e188f",
+      "composer_selected_path_id": "pat_4efa7c9e188f",
+      "skill_selected_path_id": "pat_4efa7c9e188f",
+      "harness_selected_path_id": "pat_4efa7c9e188f",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_task_2",
+      "query": "API key scope denied sibling task 2: should I check api_key_scope before rotate_key_blindly, or still try rotate_key_blindly first? Do not overgeneralize to reissue_all_credentials.",
+      "expected_best_path_id": "pat_4efa7c9e188f",
+      "composer_selected_path_id": "pat_4efa7c9e188f",
+      "skill_selected_path_id": "pat_4efa7c9e188f",
+      "harness_selected_path_id": "pat_4efa7c9e188f",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_task_3",
+      "query": "API key scope denied sibling task 3: should I check api_key_scope before rotate_key_blindly, or still try rotate_key_blindly first? Do not overgeneralize to reissue_all_credentials.",
+      "expected_best_path_id": "pat_4efa7c9e188f",
+      "composer_selected_path_id": "pat_4efa7c9e188f",
+      "skill_selected_path_id": "pat_4efa7c9e188f",
+      "harness_selected_path_id": "pat_4efa7c9e188f",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    }
+  ],
+  "metrics": {
+    "family_count": 3,
+    "task_count": 9,
+    "stable_promotion_rate": 1.0,
+    "latest_path_selection_accuracy": 1.0,
+    "skill_path_selection_accuracy": 1.0,
+    "harness_path_selection_accuracy": 1.0,
+    "stale_path_suppression_rate": 1.0,
+    "rollback_success_rate": 1.0,
+    "false_stable_promotion_count": 0,
+    "average_path_regret": 0
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-06-15T20:59:07.251754",
+  "backend": "deepseek-v4-pro",
+  "code_changes": [
+    "D:\\Download\\PathoFlow\\llm\\client.py",
+    "D:\\Download\\PathoFlow\\core\\response_parser.py",
+    "D:\\Download\\PathoFlow\\tests\\test_llm_client.py",
+    "D:\\Download\\PathoFlow\\tests\\test_response_parser.py"
+  ],
+  "root_causes": [
+    {
+      "issue": "DeepSeek structured task-planning responses were truncated at max_tokens=2048",
+      "evidence": "raw responses ended with finish_reason=length and incomplete JSON",
+      "fix": "raise DeepSeek structured-output floor to 4096 tokens when prompt explicitly demands strict JSON",
+      "status": "fixed"
+    },
+    {
+      "issue": "OpenAI-compatible response extraction only trusted message.content",
+      "evidence": "raw probe showed content empty while reasoning_content carried the useful text",
+      "fix": "fallback to message.reasoning_content when message.content is empty",
+      "status": "fixed"
+    },
+    {
+      "issue": "parse_json_response could not recover from length-truncated JSON bodies",
+      "evidence": "task-planning replies began with valid JSON but lacked closing delimiters",
+      "fix": "add conservative close_truncated_json repair before final parsing",
+      "status": "fixed"
+    },
+    {
+      "issue": "free-text performance ranges like 0.65-0.75 were misread as tool ids",
+      "evidence": "recommended_toolchain incorrectly contained 65-0 in earlier DeepSeek probe output",
+      "fix": "filter numeric-range patterns from tool-id extraction",
+      "status": "fixed"
+    },
+    {
+      "issue": "general intent still returns free text instead of strict JSON",
+      "evidence": "general probe keeps _parse_error while task_planning parses cleanly",
+      "fix": "none applied by design; this is the current framework contract, not a provider transport failure",
+      "status": "known-limitation"
+    },
+    {
+      "issue": "general/open_reasoning free-text replies were being surfaced as parse failures even when transport and answer generation were normal",
+      "evidence": "intent=general returned valid free text with no LLM error, but downstream carried _parse_error only because JSON parsing was attempted universally",
+      "fix": "mark free-text intents with _free_text_response=true and suppress _parse_error for those branches",
+      "status": "fixed"
+    }
+  ],
+  "validation": {
+    "pytest": "33 passed",
+    "task_probe": {
+      "intent": "task_planning",
+      "parse_error": null,
+      "user_goal": "规划一个针对肺癌H&E全片的TILs/免疫浸润代理分析流程，并给出推荐工具链",
+      "recommended_toolchain": [
+        "40-GrandQC",
+        "29-Summarize-slide-info",
+        "64-TUZI",
+        "53-hover-next-mp",
+        "17-lung-tertiary-lymphoid-structures-segmentation",
+        "59-generate-overlays"
+      ]
+    },
+    "general_probe": {
+      "intent": "general",
+      "free_text_response": true,
+      "parse_error": null,
+      "recommended_toolchain": [],
+      "note": "free-text by contract, no longer surfaced as an error"
+    }
+  }
+}

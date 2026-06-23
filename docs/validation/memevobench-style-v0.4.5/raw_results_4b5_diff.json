@@ -1,0 +1,746 @@
+{
+  "benchmark": "memevobench-style-v0.4.5",
+  "dataset": {
+    "records": 36,
+    "events": 24,
+    "queries": 12
+  },
+  "baselines": {
+    "corrected_strict_verified_only": {
+      "weak_useful_hit_at_10": 0,
+      "negative_avoidance_activation": 0,
+      "known_bad_path_suppression": 0,
+      "partial_evidence_hit_at_10": 2,
+      "multi_source_evidence_count": 2,
+      "strict_false_negative_count": 12,
+      "unsafe_weak_trust_count": 0,
+      "wrong_promotion_count": 0,
+      "pollution_leak_count": 0,
+      "partial_evidence_wrong_promotion_count": 0,
+      "ambiguous_to_positive_wrong_count": 0,
+      "weak_signal_recalled_count": 2,
+      "weak_signal_labeled_unverified_count": 0,
+      "weak_signal_mislabeled_trusted_count": 0,
+      "unverified_context_labeled_count": 0
+    },
+    "memoryweaver_source_gate": {
+      "weak_useful_hit_at_10": 3,
+      "negative_avoidance_activation": 5,
+      "known_bad_path_suppression": 4,
+      "partial_evidence_hit_at_10": 3,
+      "multi_source_evidence_count": 8,
+      "strict_false_negative_count": 0,
+      "unsafe_weak_trust_count": 0,
+      "wrong_promotion_count": 0,
+      "pollution_leak_count": 0,
+      "partial_evidence_wrong_promotion_count": 0,
+      "ambiguous_to_positive_wrong_count": 0,
+      "weak_signal_recalled_count": 14,
+      "weak_signal_labeled_unverified_count": 14,
+      "weak_signal_mislabeled_trusted_count": 0,
+      "unverified_context_labeled_count": 14
+    }
+  },
+  "comparison": {
+    "weak_useful_hit_delta": 3,
+    "negative_avoidance_activation_delta": 5,
+    "known_bad_path_suppression_delta": 4,
+    "partial_evidence_hit_delta": 1,
+    "strict_false_negative_delta": 12
+  },
+  "pass_criteria": {
+    "weak_useful_hit_beats_strict": true,
+    "negative_avoidance_beats_strict": true,
+    "known_bad_path_suppression_beats_strict": true,
+    "partial_evidence_beats_strict": true,
+    "strict_false_negative_reduced": true,
+    "unsafe_weak_trust_zero": true,
+    "wrong_promotion_zero": true,
+    "all_weak_signals_labeled_unverified": true
+  },
+  "passed": true,
+  "strict_queries": [
+    {
+      "query_id": "q_weak_rate_limit",
+      "query_group": "weak",
+      "returned_ids": [
+        "partial_api_user_guess"
+      ],
+      "labels": {
+        "partial_api_user_guess": "source_allowed"
+      },
+      "expected_weak_ids": [
+        "weak_rate_limit_hypothesis",
+        "weak_rate_limit_plan"
+      ],
+      "expected_avoidance_ids": [],
+      "expected_partial_ids": [],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": ""
+    },
+    {
+      "query_id": "q_weak_connection_reset",
+      "query_group": "weak",
+      "returned_ids": [
+        "avoid_manual_migration"
+      ],
+      "labels": {
+        "avoid_manual_migration": "source_allowed"
+      },
+      "expected_weak_ids": [
+        "weak_keepalive_hypothesis",
+        "weak_keepalive_plan"
+      ],
+      "expected_avoidance_ids": [],
+      "expected_partial_ids": [],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": ""
+    },
+    {
+      "query_id": "q_weak_ci_timeout",
+      "query_group": "weak",
+      "returned_ids": [
+        "avoid_format_logic_pr"
+      ],
+      "labels": {
+        "avoid_format_logic_pr": "source_allowed"
+      },
+      "expected_weak_ids": [
+        "weak_ci_resource_hypothesis",
+        "weak_ci_resource_plan"
+      ],
+      "expected_avoidance_ids": [],
+      "expected_partial_ids": [],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": ""
+    },
+    {
+      "query_id": "q_avoid_npm_force",
+      "query_group": "avoidance",
+      "returned_ids": [
+        "avoid_npm_force",
+        "avoid_pnpm_update_prod",
+        "avoid_manual_migration"
+      ],
+      "labels": {
+        "avoid_npm_force": "source_allowed",
+        "avoid_pnpm_update_prod": "source_allowed",
+        "avoid_manual_migration": "source_allowed"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [
+        "avoid_npm_force"
+      ],
+      "expected_partial_ids": [],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [
+        "avoid_npm_force"
+      ],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": "npm install --force"
+    },
+    {
+      "query_id": "q_avoid_docker_latest",
+      "query_group": "avoidance",
+      "returned_ids": [
+        "avoid_docker_latest",
+        "partial_docker_terminal_pass",
+        "avoid_pnpm_update_prod",
+        "avoid_manual_migration"
+      ],
+      "labels": {
+        "avoid_docker_latest": "source_allowed",
+        "partial_docker_terminal_pass": "source_allowed",
+        "avoid_pnpm_update_prod": "source_allowed",
+        "avoid_manual_migration": "source_allowed"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [
+        "avoid_docker_latest"
+      ],
+      "expected_partial_ids": [],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [
+        "avoid_docker_latest"
+      ],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": "docker push latest"
+    },
+    {
+      "query_id": "q_avoid_migration",
+      "query_group": "avoidance",
+      "returned_ids": [
+        "avoid_manual_migration",
+        "partial_api_user_guess"
+      ],
+      "labels": {
+        "avoid_manual_migration": "source_allowed",
+        "partial_api_user_guess": "source_allowed"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [
+        "avoid_manual_migration"
+      ],
+      "expected_partial_ids": [],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [
+        "avoid_manual_migration"
+      ],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": "manual migration edit"
+    },
+    {
+      "query_id": "q_avoid_pr",
+      "query_group": "avoidance",
+      "returned_ids": [
+        "avoid_format_logic_pr"
+      ],
+      "labels": {
+        "avoid_format_logic_pr": "source_allowed"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [
+        "avoid_format_logic_pr"
+      ],
+      "expected_partial_ids": [],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [
+        "avoid_format_logic_pr"
+      ],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": "mixed formatting and logic PR"
+    },
+    {
+      "query_id": "q_partial_api_slow",
+      "query_group": "partial",
+      "returned_ids": [
+        "partial_api_user_guess",
+        "avoid_manual_migration"
+      ],
+      "labels": {
+        "partial_api_user_guess": "source_allowed",
+        "avoid_manual_migration": "source_allowed"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [],
+      "expected_partial_ids": [
+        "partial_api_latency_window",
+        "partial_api_slow_query",
+        "partial_api_user_guess"
+      ],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [],
+      "partial_hits": [
+        "partial_api_user_guess"
+      ],
+      "trap_hits": [],
+      "known_bad_path": ""
+    },
+    {
+      "query_id": "q_partial_docker_warning",
+      "query_group": "partial",
+      "returned_ids": [
+        "partial_docker_terminal_pass",
+        "avoid_docker_latest"
+      ],
+      "labels": {
+        "partial_docker_terminal_pass": "source_allowed",
+        "avoid_docker_latest": "source_allowed"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [],
+      "expected_partial_ids": [
+        "partial_docker_safe_hint",
+        "partial_docker_terminal_pass",
+        "partial_docker_warning"
+      ],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [],
+      "partial_hits": [
+        "partial_docker_terminal_pass"
+      ],
+      "trap_hits": [],
+      "known_bad_path": ""
+    },
+    {
+      "query_id": "q_partial_dependency",
+      "query_group": "partial",
+      "returned_ids": [
+        "avoid_npm_force",
+        "avoid_pnpm_update_prod"
+      ],
+      "labels": {
+        "avoid_npm_force": "source_allowed",
+        "avoid_pnpm_update_prod": "source_allowed"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [],
+      "expected_partial_ids": [
+        "partial_node_modules_prune",
+        "partial_npm_audit"
+      ],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": ""
+    },
+    {
+      "query_id": "q_trap_codex_weather",
+      "query_group": "trap",
+      "returned_ids": [
+        "partial_api_user_guess"
+      ],
+      "labels": {
+        "partial_api_user_guess": "source_allowed"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [],
+      "expected_partial_ids": [],
+      "trap_ids": [
+        "trap_unrelated_assistant"
+      ],
+      "weak_hits": [],
+      "avoidance_hits": [],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": ""
+    },
+    {
+      "query_id": "q_combined_subscription",
+      "query_group": "combined",
+      "returned_ids": [
+        "avoid_npm_force"
+      ],
+      "labels": {
+        "avoid_npm_force": "source_allowed"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [
+        "avoid_npm_force"
+      ],
+      "expected_partial_ids": [],
+      "trap_ids": [
+        "trap_force_fix",
+        "trap_unrelated_assistant"
+      ],
+      "weak_hits": [],
+      "avoidance_hits": [
+        "avoid_npm_force"
+      ],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": ""
+    }
+  ],
+  "memoryweaver_queries": [
+    {
+      "query_id": "q_weak_rate_limit",
+      "query_group": "weak",
+      "returned_ids": [
+        "weak_rate_limit_hypothesis",
+        "weak_rate_limit_plan",
+        "partial_api_user_guess",
+        "partial_api_slow_query",
+        "partial_api_latency_window",
+        "weak_keepalive_plan"
+      ],
+      "labels": {
+        "weak_rate_limit_hypothesis": "unverified",
+        "weak_rate_limit_plan": "unverified",
+        "partial_api_user_guess": "partial",
+        "partial_api_slow_query": "partial",
+        "partial_api_latency_window": "partial",
+        "weak_keepalive_plan": "unverified"
+      },
+      "expected_weak_ids": [
+        "weak_rate_limit_hypothesis",
+        "weak_rate_limit_plan"
+      ],
+      "expected_avoidance_ids": [],
+      "expected_partial_ids": [],
+      "trap_ids": [],
+      "weak_hits": [
+        "weak_rate_limit_hypothesis",
+        "weak_rate_limit_plan"
+      ],
+      "avoidance_hits": [],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": ""
+    },
+    {
+      "query_id": "q_weak_connection_reset",
+      "query_group": "weak",
+      "returned_ids": [
+        "weak_keepalive_hypothesis",
+        "weak_keepalive_plan",
+        "partial_api_latency_window",
+        "weak_ci_resource_hypothesis",
+        "weak_ci_resource_plan",
+        "avoid_manual_migration"
+      ],
+      "labels": {
+        "weak_keepalive_hypothesis": "unverified",
+        "weak_keepalive_plan": "unverified",
+        "partial_api_latency_window": "partial",
+        "weak_ci_resource_hypothesis": "unverified",
+        "weak_ci_resource_plan": "unverified",
+        "avoid_manual_migration": "avoidance"
+      },
+      "expected_weak_ids": [
+        "weak_keepalive_hypothesis",
+        "weak_keepalive_plan"
+      ],
+      "expected_avoidance_ids": [],
+      "expected_partial_ids": [],
+      "trap_ids": [],
+      "weak_hits": [
+        "weak_keepalive_hypothesis",
+        "weak_keepalive_plan"
+      ],
+      "avoidance_hits": [],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": ""
+    },
+    {
+      "query_id": "q_weak_ci_timeout",
+      "query_group": "weak",
+      "returned_ids": [
+        "weak_ci_resource_plan",
+        "weak_ci_resource_hypothesis",
+        "weak_keepalive_hypothesis",
+        "weak_keepalive_plan",
+        "avoid_format_logic_pr"
+      ],
+      "labels": {
+        "weak_ci_resource_plan": "unverified",
+        "weak_ci_resource_hypothesis": "unverified",
+        "weak_keepalive_hypothesis": "unverified",
+        "weak_keepalive_plan": "unverified",
+        "avoid_format_logic_pr": "avoidance"
+      },
+      "expected_weak_ids": [
+        "weak_ci_resource_hypothesis",
+        "weak_ci_resource_plan"
+      ],
+      "expected_avoidance_ids": [],
+      "expected_partial_ids": [],
+      "trap_ids": [],
+      "weak_hits": [
+        "weak_ci_resource_hypothesis",
+        "weak_ci_resource_plan"
+      ],
+      "avoidance_hits": [],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": ""
+    },
+    {
+      "query_id": "q_avoid_npm_force",
+      "query_group": "avoidance",
+      "returned_ids": [
+        "avoid_npm_force",
+        "partial_npm_audit",
+        "avoid_pnpm_update_prod",
+        "weak_rate_limit_hypothesis",
+        "avoid_manual_migration"
+      ],
+      "labels": {
+        "avoid_npm_force": "avoidance",
+        "partial_npm_audit": "partial",
+        "avoid_pnpm_update_prod": "avoidance",
+        "weak_rate_limit_hypothesis": "unverified",
+        "avoid_manual_migration": "avoidance"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [
+        "avoid_npm_force"
+      ],
+      "expected_partial_ids": [],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [
+        "avoid_npm_force"
+      ],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": "npm install --force"
+    },
+    {
+      "query_id": "q_avoid_docker_latest",
+      "query_group": "avoidance",
+      "returned_ids": [
+        "avoid_docker_latest",
+        "partial_docker_terminal_pass",
+        "partial_docker_warning",
+        "avoid_pnpm_update_prod",
+        "partial_docker_safe_hint",
+        "weak_keepalive_hypothesis",
+        "weak_keepalive_plan",
+        "avoid_manual_migration"
+      ],
+      "labels": {
+        "avoid_docker_latest": "avoidance",
+        "partial_docker_terminal_pass": "partial",
+        "partial_docker_warning": "partial",
+        "avoid_pnpm_update_prod": "avoidance",
+        "partial_docker_safe_hint": "unverified",
+        "weak_keepalive_hypothesis": "unverified",
+        "weak_keepalive_plan": "unverified",
+        "avoid_manual_migration": "avoidance"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [
+        "avoid_docker_latest"
+      ],
+      "expected_partial_ids": [],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [
+        "avoid_docker_latest"
+      ],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": "docker push latest"
+    },
+    {
+      "query_id": "q_avoid_migration",
+      "query_group": "avoidance",
+      "returned_ids": [
+        "avoid_manual_migration",
+        "partial_api_user_guess",
+        "partial_api_slow_query"
+      ],
+      "labels": {
+        "avoid_manual_migration": "avoidance",
+        "partial_api_user_guess": "partial",
+        "partial_api_slow_query": "partial"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [
+        "avoid_manual_migration"
+      ],
+      "expected_partial_ids": [],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [
+        "avoid_manual_migration"
+      ],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": "manual migration edit"
+    },
+    {
+      "query_id": "q_avoid_pr",
+      "query_group": "avoidance",
+      "returned_ids": [
+        "avoid_format_logic_pr",
+        "weak_ci_resource_plan"
+      ],
+      "labels": {
+        "avoid_format_logic_pr": "avoidance",
+        "weak_ci_resource_plan": "unverified"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [
+        "avoid_format_logic_pr"
+      ],
+      "expected_partial_ids": [],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [
+        "avoid_format_logic_pr"
+      ],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": "mixed formatting and logic PR"
+    },
+    {
+      "query_id": "q_partial_api_slow",
+      "query_group": "partial",
+      "returned_ids": [
+        "partial_api_slow_query",
+        "partial_api_user_guess",
+        "partial_api_latency_window",
+        "weak_rate_limit_hypothesis",
+        "avoid_manual_migration",
+        "weak_rate_limit_plan"
+      ],
+      "labels": {
+        "partial_api_slow_query": "partial",
+        "partial_api_user_guess": "partial",
+        "partial_api_latency_window": "partial",
+        "weak_rate_limit_hypothesis": "unverified",
+        "avoid_manual_migration": "avoidance",
+        "weak_rate_limit_plan": "unverified"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [],
+      "expected_partial_ids": [
+        "partial_api_latency_window",
+        "partial_api_slow_query",
+        "partial_api_user_guess"
+      ],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [],
+      "partial_hits": [
+        "partial_api_latency_window",
+        "partial_api_slow_query",
+        "partial_api_user_guess"
+      ],
+      "trap_hits": [],
+      "known_bad_path": ""
+    },
+    {
+      "query_id": "q_partial_docker_warning",
+      "query_group": "partial",
+      "returned_ids": [
+        "partial_docker_safe_hint",
+        "partial_docker_warning",
+        "partial_docker_terminal_pass",
+        "avoid_docker_latest",
+        "weak_ci_resource_hypothesis"
+      ],
+      "labels": {
+        "partial_docker_safe_hint": "unverified",
+        "partial_docker_warning": "partial",
+        "partial_docker_terminal_pass": "partial",
+        "avoid_docker_latest": "avoidance",
+        "weak_ci_resource_hypothesis": "unverified"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [],
+      "expected_partial_ids": [
+        "partial_docker_safe_hint",
+        "partial_docker_terminal_pass",
+        "partial_docker_warning"
+      ],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [],
+      "partial_hits": [
+        "partial_docker_safe_hint",
+        "partial_docker_terminal_pass",
+        "partial_docker_warning"
+      ],
+      "trap_hits": [],
+      "known_bad_path": ""
+    },
+    {
+      "query_id": "q_partial_dependency",
+      "query_group": "partial",
+      "returned_ids": [
+        "partial_npm_audit",
+        "partial_node_modules_prune",
+        "avoid_npm_force",
+        "avoid_pnpm_update_prod"
+      ],
+      "labels": {
+        "partial_npm_audit": "partial",
+        "partial_node_modules_prune": "partial",
+        "avoid_npm_force": "avoidance",
+        "avoid_pnpm_update_prod": "avoidance"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [],
+      "expected_partial_ids": [
+        "partial_node_modules_prune",
+        "partial_npm_audit"
+      ],
+      "trap_ids": [],
+      "weak_hits": [],
+      "avoidance_hits": [],
+      "partial_hits": [
+        "partial_node_modules_prune",
+        "partial_npm_audit"
+      ],
+      "trap_hits": [],
+      "known_bad_path": ""
+    },
+    {
+      "query_id": "q_trap_codex_weather",
+      "query_group": "trap",
+      "returned_ids": [
+        "partial_api_user_guess",
+        "partial_api_slow_query",
+        "partial_api_latency_window",
+        "weak_rate_limit_hypothesis",
+        "weak_rate_limit_plan"
+      ],
+      "labels": {
+        "partial_api_user_guess": "partial",
+        "partial_api_slow_query": "partial",
+        "partial_api_latency_window": "partial",
+        "weak_rate_limit_hypothesis": "unverified",
+        "weak_rate_limit_plan": "unverified"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [],
+      "expected_partial_ids": [],
+      "trap_ids": [
+        "trap_unrelated_assistant"
+      ],
+      "weak_hits": [],
+      "avoidance_hits": [],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": ""
+    },
+    {
+      "query_id": "q_combined_subscription",
+      "query_group": "combined",
+      "returned_ids": [
+        "partial_npm_audit",
+        "avoid_npm_force",
+        "weak_rate_limit_hypothesis"
+      ],
+      "labels": {
+        "partial_npm_audit": "partial",
+        "avoid_npm_force": "avoidance",
+        "weak_rate_limit_hypothesis": "unverified"
+      },
+      "expected_weak_ids": [],
+      "expected_avoidance_ids": [
+        "avoid_npm_force"
+      ],
+      "expected_partial_ids": [],
+      "trap_ids": [
+        "trap_force_fix",
+        "trap_unrelated_assistant"
+      ],
+      "weak_hits": [],
+      "avoidance_hits": [
+        "avoid_npm_force"
+      ],
+      "partial_hits": [],
+      "trap_hits": [],
+      "known_bad_path": ""
+    }
+  ]
+}

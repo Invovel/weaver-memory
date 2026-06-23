@@ -1,4 +1,4 @@
-"""MemoryWeaver - Feedback-Calibrated Memory Harness for Long-Lived AI Agents."""
+"""MemoryWeaver - Feedback-Calibrated Path Promotion Harness for Long-Lived AI Agents."""
 
 __version__ = "0.2.0"
 
@@ -18,7 +18,15 @@ from memoryweaver.scorer import MemoryScorer
 from memoryweaver.extractor import EventDetector, Event, EventType, FeedbackClassifier
 from memoryweaver.router import ModeRouter, InferenceMode, RouteDecision
 from memoryweaver.retriever import VerifiedRetriever
-from memoryweaver.policy import MemoryPolicy, RetrievalPolicy
+from memoryweaver.policy import MemoryPolicy, RetrievalPolicy, ActionPolicy
+from memoryweaver.contract import EnvironmentContract, ToolContract, SourceAuthority
+from memoryweaver.action_gate import (
+    ActionProposal,
+    ActionGate,
+    ActionGateDecision,
+    ActionGateStatus,
+)
+from memoryweaver.harness import MemoryWeaverHarness
 from memoryweaver.evidence import EvidenceNode, EvidenceLink, EvidencePacket, EvidenceRelation, EvidenceStore
 from memoryweaver.composer import PatternStore, PatternComposer
 from memoryweaver.config import MemoryWeaverConfig
@@ -37,11 +45,97 @@ from memoryweaver.graph.proposal import LLMGraphProposalService
 from memoryweaver.graph.reviewer import GraphProposalReview, GraphProposalReviewPolicy
 from memoryweaver.graph.linker import ReviewedGraphLinker
 from memoryweaver.providers.base import ProviderRequest
+from memoryweaver.context_schema import (
+    ContentType,
+    ContextCapsule,
+    MarkerEvidenceContext,
+    RawSpan,
+)
+from memoryweaver.context_store import (
+    ContextCapsuleStore,
+    MarkerEvidenceContextStore,
+    RawSpanStore,
+)
+from memoryweaver.content_router import ContentRouter
+from memoryweaver.tag_time_index import TagTimeIndex
+from memoryweaver.marker_context import capsules_for_marker_context
 from memoryweaver.contradiction import (
     ContradictionResolver,
     ConflictResult,
     Severity,
     Relation,
+)
+from memoryweaver.gbrain import GBrain, MindMapProjection, MindMapNode, MindMapEdge
+from memoryweaver.gbrain_v08 import (
+    GBrainCandidateBundle,
+    GBrainCandidateEdge,
+    GBrainCandidateNode,
+    GBrainCitation,
+    GBrainEngineV08,
+    GBrainGap,
+    GBrainMindMapDocument,
+    GBrainScope,
+    GBrainSearchHit,
+    GBrainSearchResult,
+    GBrainThinkResult,
+    MemoryWeaverGBrainEngineV08,
+)
+from memoryweaver.v08_integration import (
+    CollaborativeSpecialistRouterV08,
+    RAGDocument,
+    RAGEvidenceLayerV08,
+    SpecialistRun,
+    V08IntegrationResult,
+    run_v08_integration,
+)
+from memoryweaver.lifecycle import MemoryLifecycle, VerifiedWriteResult
+from memoryweaver.integrations import MemoryWeaverModule
+from memoryweaver.runtime import (
+    CheckpointStore,
+    EventJournal,
+    HardEvidence,
+    HardEvidenceType,
+    HarnessRuntime,
+    MemoryWeaverLiveLoop,
+    MockTauEnv,
+    OpenAICompatibleAgent,
+    RuleAgent,
+    RuntimeCheckpoint,
+    RuntimeCandidateRegistration,
+    RuntimeEvent,
+    RuntimePathAssessment,
+    RuntimePathCondition,
+    RuntimePathDecision,
+    RuntimePathReplayResult,
+    RuntimePathRollbackRule,
+    RuntimePathSpec,
+    RuntimePathStore,
+    RuntimePathTrialResult,
+    RuntimePathValidationGate,
+    RuntimeTask,
+    RuntimeTrace,
+    RuntimeTraceRecorder,
+    RuntimeTraceStep,
+    RuntimeTraceStore,
+    TracePathCandidate,
+    ToolExecutionResult,
+    ToolGateway,
+    extract_candidate_path_from_trace,
+    trace_to_candidate_path,
+)
+from memoryweaver.skill import ProceduralSkill, SkillRetrievalResult, SkillRetriever
+from memoryweaver.trajectory import (
+    TrajectoryDecision,
+    TrajectoryRecord,
+    TrajectoryRegulator,
+    TrajectoryStatus,
+)
+from memoryweaver.evaluation import (
+    PathPromotionFamily,
+    PathPromotionProtocol,
+    PathPromotionResult,
+    PathPromotionTask,
+    run_default_path_promotion,
 )
 
 __all__ = [
@@ -74,6 +168,15 @@ __all__ = [
     "VerifiedRetriever",
     "MemoryPolicy",
     "RetrievalPolicy",
+    "ActionPolicy",
+    "EnvironmentContract",
+    "ToolContract",
+    "SourceAuthority",
+    "ActionProposal",
+    "ActionGate",
+    "ActionGateDecision",
+    "ActionGateStatus",
+    "MemoryWeaverHarness",
     "EvidenceNode",
     "EvidenceLink",
     "EvidencePacket",
@@ -97,9 +200,87 @@ __all__ = [
     "GraphProposalReviewPolicy",
     "ReviewedGraphLinker",
     "ProviderRequest",
+    "ContentType",
+    "RawSpan",
+    "ContextCapsule",
+    "MarkerEvidenceContext",
+    "RawSpanStore",
+    "ContextCapsuleStore",
+    "MarkerEvidenceContextStore",
+    "ContentRouter",
+    "TagTimeIndex",
+    "capsules_for_marker_context",
     # contradiction
     "ContradictionResolver",
     "ConflictResult",
     "Severity",
     "Relation",
+    "GBrain",
+    "GBrainCandidateBundle",
+    "GBrainCandidateEdge",
+    "GBrainCandidateNode",
+    "GBrainCitation",
+    "GBrainEngineV08",
+    "GBrainGap",
+    "GBrainMindMapDocument",
+    "GBrainScope",
+    "GBrainSearchHit",
+    "GBrainSearchResult",
+    "GBrainThinkResult",
+    "MemoryWeaverGBrainEngineV08",
+    "CollaborativeSpecialistRouterV08",
+    "RAGDocument",
+    "RAGEvidenceLayerV08",
+    "SpecialistRun",
+    "V08IntegrationResult",
+    "run_v08_integration",
+    "MindMapProjection",
+    "MindMapNode",
+    "MindMapEdge",
+    "MemoryLifecycle",
+    "VerifiedWriteResult",
+    "MemoryWeaverModule",
+    "CheckpointStore",
+    "EventJournal",
+    "HardEvidence",
+    "HardEvidenceType",
+    "HarnessRuntime",
+    "MemoryWeaverLiveLoop",
+    "MockTauEnv",
+    "OpenAICompatibleAgent",
+    "RuleAgent",
+    "RuntimeCheckpoint",
+    "RuntimeCandidateRegistration",
+    "RuntimeEvent",
+    "RuntimePathAssessment",
+    "RuntimePathCondition",
+    "RuntimePathDecision",
+    "RuntimePathReplayResult",
+    "RuntimePathRollbackRule",
+    "RuntimePathSpec",
+    "RuntimePathStore",
+    "RuntimePathTrialResult",
+    "RuntimePathValidationGate",
+    "RuntimeTask",
+    "RuntimeTrace",
+    "RuntimeTraceRecorder",
+    "RuntimeTraceStep",
+    "RuntimeTraceStore",
+    "TracePathCandidate",
+    "ToolExecutionResult",
+    "ToolGateway",
+    "extract_candidate_path_from_trace",
+    "trace_to_candidate_path",
+    "ProceduralSkill",
+    "SkillRetrievalResult",
+    "SkillRetriever",
+    "PathPromotionFamily",
+    "PathPromotionProtocol",
+    "PathPromotionResult",
+    "PathPromotionTask",
+    "run_default_path_promotion",
+    "TrajectoryDecision",
+    "TrajectoryRecord",
+    "TrajectoryRegulator",
+    "TrajectoryStatus",
 ]

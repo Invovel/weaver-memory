@@ -1,0 +1,47 @@
+{
+  "steps": [
+    {
+      "tool_id": "1-foreground-segmentation",
+      "label": "H&E前景分割",
+      "status": "ok",
+      "outputs": [
+        "foreground_mask"
+      ]
+    },
+    {
+      "tool_id": "4-nucleus-segmentation-hovernet-pannuke",
+      "label": "细胞核分割",
+      "status": "ok",
+      "outputs": [
+        "nucleus_mask"
+      ]
+    },
+    {
+      "tool_id": "5-pancreas-tumor-detection / 6-breast-tumor-detection",
+      "label": "CPU伪检测",
+      "status": "ok",
+      "outputs": [
+        "detection_result",
+        "tumor_mask",
+        "report_json"
+      ]
+    },
+    {
+      "tool_id": "59-generate-overlays",
+      "label": "混叠预览",
+      "status": "gap",
+      "outputs": [
+        "overlay_png"
+      ]
+    },
+    {
+      "tool_id": "52-Global-Macenko",
+      "label": "染色归一化",
+      "status": "gap",
+      "outputs": [
+        "normalized_slide"
+      ]
+    }
+  ],
+  "mermaid": "flowchart LR\n  A[\"H&E前景分割\\n1-foreground-segmentation\\nstatus: ok\"]\n  B[\"细胞核分割\\n4-nucleus-segmentation-hovernet-pannuke\\nstatus: ok\"]\n  C[\"CPU伪检测\\n5/6 detection\\nstatus: ok\"]\n  D[\"混叠预览\\n59-generate-overlays\\nstatus: gap\"]\n  E[\"染色归一化\\n52-Global-Macenko\\nstatus: gap\"]\n  A -->|foreground_mask| D\n  B -->|nucleus_mask| D\n  C -->|tumor_mask + report| D\n  E -->|normalized_slide| C"
+}

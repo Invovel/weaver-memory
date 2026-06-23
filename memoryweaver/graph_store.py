@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import os
 from pathlib import Path
 from typing import Any, Optional
 
@@ -14,7 +13,7 @@ from memoryweaver.graph_schema import (
     GraphProposal,
     GraphStatus,
 )
-from memoryweaver.store import SCHEMA_VERSION
+from memoryweaver.store import SCHEMA_VERSION, atomic_write_json
 
 
 class GraphStore:
@@ -133,23 +132,17 @@ class GraphStore:
         return errors
 
     def _save(self) -> None:
-        self._path.parent.mkdir(parents=True, exist_ok=True)
-        tmp = self._path.with_suffix(".tmp")
-        with open(tmp, "w", encoding="utf-8") as file:
-            json.dump(
-                {
-                    "version": SCHEMA_VERSION,
-                    "nodes": [node.to_dict() for node in self._nodes.values()],
-                    "edges": [edge.to_dict() for edge in self._edges.values()],
-                    "proposals": [
-                        proposal.to_dict() for proposal in self._proposals.values()
-                    ],
-                },
-                file,
-                ensure_ascii=False,
-                indent=2,
-            )
-        os.replace(tmp, self._path)
+        atomic_write_json(
+            self._path,
+            {
+                "version": SCHEMA_VERSION,
+                "nodes": [node.to_dict() for node in self._nodes.values()],
+                "edges": [edge.to_dict() for edge in self._edges.values()],
+                "proposals": [
+                    proposal.to_dict() for proposal in self._proposals.values()
+                ],
+            },
+        )
 
     def _load(self) -> None:
         if not self._path.exists():

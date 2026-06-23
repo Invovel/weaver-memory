@@ -1,0 +1,12 @@
+{
+  "family_count": 3,
+  "task_count": 9,
+  "stable_promotion_rate": 1.0,
+  "latest_path_selection_accuracy": 1.0,
+  "skill_path_selection_accuracy": 1.0,
+  "harness_path_selection_accuracy": 1.0,
+  "stale_path_suppression_rate": 1.0,
+  "rollback_success_rate": 1.0,
+  "false_stable_promotion_count": 0,
+  "average_path_regret": 0
+}

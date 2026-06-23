@@ -1,0 +1,270 @@
+{
+  "rows": [
+    {
+      "tool_id": "29-Summarize-slide-info",
+      "tool_name": "获取切片信息",
+      "expected_count": 1870,
+      "hit_count": 303,
+      "recall_rate": 0.162
+    },
+    {
+      "tool_id": "40-GrandQC",
+      "tool_name": "全景病理切片质量控制(GrandQC)",
+      "expected_count": 1850,
+      "hit_count": 519,
+      "recall_rate": 0.2805
+    },
+    {
+      "tool_id": "53-hover-next-mp",
+      "tool_name": "HoverNeXt细胞核分割",
+      "expected_count": 1072,
+      "hit_count": 115,
+      "recall_rate": 0.1073
+    },
+    {
+      "tool_id": "77-Pathomics-pipeline-from-slides-nucleus",
+      "tool_name": "从细胞核掩膜抽取病理组学特征",
+      "expected_count": 1052,
+      "hit_count": 115,
+      "recall_rate": 0.1093
+    },
+    {
+      "tool_id": "1-foreground-segmentation",
+      "tool_name": "H&E前景分割",
+      "expected_count": 742,
+      "hit_count": 549,
+      "recall_rate": 0.7399
+    },
+    {
+      "tool_id": "41-Deepliif",
+      "tool_name": "免疫组化阳性、阴性细胞检测分割(DeepLIIF)",
+      "expected_count": 260,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "48-foreground-segmentation-beta",
+      "tool_name": "H&E与IHC前景分割",
+      "expected_count": 260,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "3-tissue-segmentation",
+      "tool_name": "多类组织语义分割(私有)",
+      "expected_count": 130,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "61-hooknet-tls",
+      "tool_name": "三级淋巴结构与生发中心分割",
+      "expected_count": 76,
+      "hit_count": 76,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "67-GigaTIME",
+      "tool_name": "GigaTIME-虚拟免疫荧光",
+      "expected_count": 70,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "49-slide-embedding-all-methods",
+      "tool_name": "使用病理基础模型对全切片进行嵌入编码",
+      "expected_count": 40,
+      "hit_count": 20,
+      "recall_rate": 0.5
+    },
+    {
+      "tool_id": "31-Summarize-asap-xml-info",
+      "tool_name": "获取标注信息",
+      "expected_count": 30,
+      "hit_count": 10,
+      "recall_rate": 0.3333
+    },
+    {
+      "tool_id": "32-Transfer-asap-xml-to-tif",
+      "tool_name": "标注XML转掩膜TIF",
+      "expected_count": 30,
+      "hit_count": 10,
+      "recall_rate": 0.3333
+    },
+    {
+      "tool_id": "68-Train-segmentation-pipeline-from-slides-xml",
+      "tool_name": "一键训练语义分割模型(切片+XML标注)",
+      "expected_count": 30,
+      "hit_count": 30,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "74-Infer-MIL-pipeline-for-h5",
+      "tool_name": "应用多示例学习模型至切片(使用预编码的H5)",
+      "expected_count": 30,
+      "hit_count": 20,
+      "recall_rate": 0.6667
+    },
+    {
+      "tool_id": "24-SAM2.1-point-annotation",
+      "tool_name": "SAM 2.1用于点标注自动掩膜",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "25-BiomedParse",
+      "tool_name": "基于文本Prompt的分割",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "30-Get-slide-previews",
+      "tool_name": "获取切片略缩图",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "34-Generate-classification-patches",
+      "tool_name": "生成图像分类训练样本",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "38-Text-Encoding",
+      "tool_name": "使用PLIP、CONCH、MUSK对指定文本编码",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "52-Global-Macenko",
+      "tool_name": "全局Macenko染色归一化",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "54-kfb2svs",
+      "tool_name": "KFB转换为SVS格式",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "70-Infer-segmentation-pipeline",
+      "tool_name": "语义分割模型一键推理",
+      "expected_count": 20,
+      "hit_count": 20,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "72-Train-MIL-pipeline-from-h5",
+      "tool_name": "一键训练多示例学习模型(从H5嵌入+csv标签)",
+      "expected_count": 20,
+      "hit_count": 20,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "73-Infer-MIL-pipeline-for-slides",
+      "tool_name": "应用多示例学习模型至切片(使用原始切片)",
+      "expected_count": 20,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "10-ovarian-tumor-detection",
+      "tool_name": "卵巢癌检测",
+      "expected_count": 10,
+      "hit_count": 10,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "14-intrahepatic-cholangiocarcinoma-cancer-detection",
+      "tool_name": "肝内胆管癌检测",
+      "expected_count": 10,
+      "hit_count": 10,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "16-liver-tissue-segmentation",
+      "tool_name": "肝脏组织分割",
+      "expected_count": 10,
+      "hit_count": 10,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "5-pancreas-tumor-detection",
+      "tool_name": "胰腺癌检测",
+      "expected_count": 10,
+      "hit_count": 10,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "6-breast-tumor-detection",
+      "tool_name": "乳腺癌检测",
+      "expected_count": 10,
+      "hit_count": 10,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "7-gastric-tumor-detection",
+      "tool_name": "胃癌检测",
+      "expected_count": 10,
+      "hit_count": 10,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "76-Pathomics-pipeline-from-slides",
+      "tool_name": "从病理切片抽取病理组学特征",
+      "expected_count": 10,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "9-endometrium-tumor-detection",
+      "tool_name": "子宫内膜癌检测",
+      "expected_count": 10,
+      "hit_count": 10,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "2-lung-cancer-segmentation",
+      "tool_name": "肺癌区域精细分割",
+      "expected_count": 8,
+      "hit_count": 8,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "8-colon-tumor-detection",
+      "tool_name": "结肠癌检测",
+      "expected_count": 8,
+      "hit_count": 0,
+      "recall_rate": 0.0
+    },
+    {
+      "tool_id": "17-lung-tertiary-lymphoid-structures-segmentation",
+      "tool_name": "肺癌三级淋巴结构分割",
+      "expected_count": 6,
+      "hit_count": 6,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "13-intrahepatic-cholangiocarcinoma-tissue-segmentation",
+      "tool_name": "肝内胆管癌组织分割",
+      "expected_count": 4,
+      "hit_count": 4,
+      "recall_rate": 1.0
+    },
+    {
+      "tool_id": "15-Cerberus",
+      "tool_name": "Cerberus结直肠多功能模型",
+      "expected_count": 2,
+      "hit_count": 2,
+      "recall_rate": 1.0
+    }
+  ]
+}

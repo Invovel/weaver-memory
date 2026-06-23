@@ -1,0 +1,41 @@
+{
+  "scenario_count": 4,
+  "scenarios": [
+    {
+      "case_id": "chain_foreground_to_overlay",
+      "upstream_tool_id": "1-foreground-segmentation",
+      "downstream_tool_id": "59-generate-overlays",
+      "preflight_ready": true,
+      "execution_status": "completed",
+      "output_file_count": 1,
+      "preflight_reasons": []
+    },
+    {
+      "case_id": "chain_nucleus_to_overlay",
+      "upstream_tool_id": "4-nucleus-segmentation-hovernet-pannuke",
+      "downstream_tool_id": "59-generate-overlays",
+      "preflight_ready": true,
+      "execution_status": "completed",
+      "output_file_count": 1,
+      "preflight_reasons": []
+    },
+    {
+      "case_id": "chain_detection_to_overlay",
+      "upstream_tool_id": "5-pancreas-tumor-detection",
+      "downstream_tool_id": "59-generate-overlays",
+      "preflight_ready": true,
+      "execution_status": "completed",
+      "output_file_count": 1,
+      "preflight_reasons": []
+    },
+    {
+      "case_id": "chain_macenko_to_detection",
+      "upstream_tool_id": "52-Global-Macenko",
+      "downstream_tool_id": "5-pancreas-tumor-detection",
+      "status": "completed",
+      "upstream_file_count": 1,
+      "execution_status": "completed",
+      "output_file_count": 4
+    }
+  ]
+}

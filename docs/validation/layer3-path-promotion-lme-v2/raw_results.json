@@ -1,0 +1,713 @@
+{
+  "passed": true,
+  "snapshot": {
+    "resolved_root": "D:\\benchmarks\\longmemeval-v2",
+    "root_resolution_source": "benchmarks",
+    "question_count": 5,
+    "requested_trajectory_refs": 1,
+    "loaded_trajectory_count": 1,
+    "missing_trajectory_refs": 0,
+    "haystack": "lme_v2_small.json",
+    "trajectories_per_question": 1,
+    "states_per_trajectory": 2,
+    "max_observation_chars": 1800
+  },
+  "families": [
+    {
+      "family_id": "lmev2_01307e07",
+      "title": "am working ServiceNow portal Incidents list",
+      "tags": [
+        "dynamic-environment",
+        "incident_mobile_incident_portal",
+        "click_113",
+        "need_open_application",
+        "am",
+        "contain",
+        "dropdown",
+        "edit"
+      ],
+      "required_evidence": "incident_mobile_incident_portal",
+      "stale_action": "click_113",
+      "current_best_action": "incident_mobile_incident_portal",
+      "overgeneralized_action": "need_open_application",
+      "historical_success": "Historical task context: Offboard user Sean-Michelle Morris-Martinez\n\nCreate a filter for the list to extract all entries where:\n    - \"Assigned to\" is \"Sean-Michelle Morris-Martinez\"\n\nEdit the hardware asset record by replacing the value of  fi | earlier path tried click_113.",
+      "current_success": "Current sibling task succeeds after checking incident_mobile_incident_portal first. Observed answer anchor: Incident Mobile, Incident Portal, My Open Incidents",
+      "current_failure": "Current sibling task fails when trying click_113 first. Task anchor: I am working with our ServiceNow portal. On the Incidents list page, when I open the \"Filters\" dropdown, excluding \"Edit personal filters\" and \"-- None --\", which filter option labels contain the substring \"Incident\"?\n\nM",
+      "overgeneralized_failure": "need_open_application overgeneralizes and misses incident_mobile_incident_portal.",
+      "target_tasks": [
+        {
+          "task_id": "lmev2_01307e07_task_1",
+          "query": "am working ServiceNow portal Incidents list sibling task 1: should I check incident_mobile_incident_portal before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        },
+        {
+          "task_id": "lmev2_01307e07_task_2",
+          "query": "am working ServiceNow portal Incidents list sibling task 2: should I check incident_mobile_incident_portal before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        },
+        {
+          "task_id": "lmev2_01307e07_task_3",
+          "query": "am working ServiceNow portal Incidents list sibling task 3: should I check incident_mobile_incident_portal before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        }
+      ]
+    },
+    {
+      "family_id": "lmev2_025db8ef",
+      "title": "am working ServiceNow portal boss asked",
+      "tags": [
+        "procedure",
+        "reports_problems",
+        "click_113",
+        "need_open_application",
+        "accomplish",
+        "agents",
+        "am",
+        "are"
+      ],
+      "required_evidence": "reports_problems",
+      "stale_action": "click_113",
+      "current_best_action": "reports_problems",
+      "overgeneralized_action": "need_open_application",
+      "historical_success": "Historical task context: Offboard user Sean-Michelle Morris-Martinez\n\nCreate a filter for the list to extract all entries where:\n    - \"Assigned to\" is \"Sean-Michelle Morris-Martinez\"\n\nEdit the hardware asset record by replacing the value of  fi | earlier path tried click_113.",
+      "current_success": "Current sibling task succeeds after checking reports_problems first. Observed answer anchor: Reports;Problems",
+      "current_failure": "Current sibling task fails when trying click_113 first. Task anchor: I am working with our ServiceNow portal. My boss asked me to rebalance workload between several agents by reassigning problems with a specific tag. What are the two modules that our company's workflow typically use in or",
+      "overgeneralized_failure": "need_open_application overgeneralizes and misses reports_problems.",
+      "target_tasks": [
+        {
+          "task_id": "lmev2_025db8ef_task_1",
+          "query": "am working ServiceNow portal boss asked sibling task 1: should I check reports_problems before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        },
+        {
+          "task_id": "lmev2_025db8ef_task_2",
+          "query": "am working ServiceNow portal boss asked sibling task 2: should I check reports_problems before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        },
+        {
+          "task_id": "lmev2_025db8ef_task_3",
+          "query": "am working ServiceNow portal boss asked sibling task 3: should I check reports_problems before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        }
+      ]
+    },
+    {
+      "family_id": "lmev2_057a2d4d",
+      "title": "am working ServiceNow portal we order",
+      "tags": [
+        "static-environment",
+        "300",
+        "click_113",
+        "need_open_application",
+        "am",
+        "amount",
+        "as",
+        "choose"
+      ],
+      "required_evidence": "300",
+      "stale_action": "click_113",
+      "current_best_action": "300",
+      "overgeneralized_action": "need_open_application",
+      "historical_success": "Historical task context: Offboard user Sean-Michelle Morris-Martinez\n\nCreate a filter for the list to extract all entries where:\n    - \"Assigned to\" is \"Sean-Michelle Morris-Martinez\"\n\nEdit the hardware asset record by replacing the value of  fi | earlier path tried click_113.",
+      "current_success": "Current sibling task succeeds after checking 300 first. Observed answer anchor: 300",
+      "current_failure": "Current sibling task fails when trying click_113 first. Task anchor: I am working with our ServiceNow portal. When we order a Dell XPS as the developer laptop, what is the extra dollar amount if we choose the largest SSD option?\n\nMark your final answer (should be a single integer indicati",
+      "overgeneralized_failure": "need_open_application overgeneralizes and misses 300.",
+      "target_tasks": [
+        {
+          "task_id": "lmev2_057a2d4d_task_1",
+          "query": "am working ServiceNow portal we order sibling task 1: should I check 300 before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        },
+        {
+          "task_id": "lmev2_057a2d4d_task_2",
+          "query": "am working ServiceNow portal we order sibling task 2: should I check 300 before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        },
+        {
+          "task_id": "lmev2_057a2d4d_task_3",
+          "query": "am working ServiceNow portal we order sibling task 3: should I check 300 before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        }
+      ]
+    },
+    {
+      "family_id": "lmev2_059974dd",
+      "title": "am working ServiceNow Portal company s",
+      "tags": [
+        "procedure-abs",
+        "that_scheduling_workflow_does",
+        "click_113",
+        "need_open_application",
+        "allocated",
+        "also",
+        "am",
+        "besides"
+      ],
+      "required_evidence": "that_scheduling_workflow_does",
+      "stale_action": "click_113",
+      "current_best_action": "that_scheduling_workflow_does",
+      "overgeneralized_action": "need_open_application",
+      "historical_success": "Historical task context: Offboard user Sean-Michelle Morris-Martinez\n\nCreate a filter for the list to extract all entries where:\n    - \"Assigned to\" is \"Sean-Michelle Morris-Martinez\"\n\nEdit the hardware asset record by replacing the value of  fi | earlier path tried click_113.",
+      "current_success": "Current sibling task succeeds after checking that_scheduling_workflow_does first. Observed answer anchor: That scheduling workflow does not use a second duration-deciding field besides `risk level`.",
+      "current_failure": "Current sibling task fails when trying click_113 first. Task anchor: I am working with our ServiceNow Portal. In our company's workflow, when we disperse change requests so they do not overlap, what field besides `risk level` do we also use to decide the time span length allocated to each",
+      "overgeneralized_failure": "need_open_application overgeneralizes and misses that_scheduling_workflow_does.",
+      "target_tasks": [
+        {
+          "task_id": "lmev2_059974dd_task_1",
+          "query": "am working ServiceNow Portal company s sibling task 1: should I check that_scheduling_workflow_does before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        },
+        {
+          "task_id": "lmev2_059974dd_task_2",
+          "query": "am working ServiceNow Portal company s sibling task 2: should I check that_scheduling_workflow_does before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        },
+        {
+          "task_id": "lmev2_059974dd_task_3",
+          "query": "am working ServiceNow Portal company s sibling task 3: should I check that_scheduling_workflow_does before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        }
+      ]
+    },
+    {
+      "family_id": "lmev2_07ffeedf",
+      "title": "am working ServiceNow portal navigating creating",
+      "tags": [
+        "procedure",
+        "g",
+        "click_113",
+        "need_open_application",
+        "a.",
+        "am",
+        "are",
+        "assignment"
+      ],
+      "required_evidence": "g",
+      "stale_action": "click_113",
+      "current_best_action": "g",
+      "overgeneralized_action": "need_open_application",
+      "historical_success": "Historical task context: Offboard user Sean-Michelle Morris-Martinez\n\nCreate a filter for the list to extract all entries where:\n    - \"Assigned to\" is \"Sean-Michelle Morris-Martinez\"\n\nEdit the hardware asset record by replacing the value of  fi | earlier path tried click_113.",
+      "current_success": "Current sibling task succeeds after checking g first. Observed answer anchor: G",
+      "current_failure": "Current sibling task fails when trying click_113 first. Task anchor: I am working with our ServiceNow portal. For the task of navigating and creating problem requests from incident-report results, which option contains only fields that are both (i) present on the Problem table in this env",
+      "overgeneralized_failure": "need_open_application overgeneralizes and misses g.",
+      "target_tasks": [
+        {
+          "task_id": "lmev2_07ffeedf_task_1",
+          "query": "am working ServiceNow portal navigating creating sibling task 1: should I check g before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        },
+        {
+          "task_id": "lmev2_07ffeedf_task_2",
+          "query": "am working ServiceNow portal navigating creating sibling task 2: should I check g before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        },
+        {
+          "task_id": "lmev2_07ffeedf_task_3",
+          "query": "am working ServiceNow portal navigating creating sibling task 3: should I check g before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+          "expected_best_label": "current_best",
+          "oracle_steps": 1
+        }
+      ]
+    }
+  ],
+  "path_catalog": [
+    {
+      "family_id": "lmev2_01307e07",
+      "label": "stale_path",
+      "pattern_id": "pat_521e9a97bfb3",
+      "status": "challenged",
+      "path_fitness_score": 0.3904,
+      "confidence": 0.3333,
+      "cost": 3,
+      "rule": "Try click_113 before checking incident_mobile_incident_portal"
+    },
+    {
+      "family_id": "lmev2_01307e07",
+      "label": "current_best",
+      "pattern_id": "pat_19233062c163",
+      "status": "stable",
+      "path_fitness_score": 0.928,
+      "confidence": 1.0,
+      "cost": 1,
+      "rule": "Check incident_mobile_incident_portal before trying click_113"
+    },
+    {
+      "family_id": "lmev2_01307e07",
+      "label": "rollback_path",
+      "pattern_id": "pat_b0205176a78f",
+      "status": "rolled_back",
+      "path_fitness_score": 0.08,
+      "confidence": 0.0,
+      "cost": 4,
+      "rule": "Always use need_open_application for am working ServiceNow portal Incidents list"
+    },
+    {
+      "family_id": "lmev2_025db8ef",
+      "label": "stale_path",
+      "pattern_id": "pat_1bb5a6e91bc2",
+      "status": "challenged",
+      "path_fitness_score": 0.3904,
+      "confidence": 0.3333,
+      "cost": 3,
+      "rule": "Try click_113 before checking reports_problems"
+    },
+    {
+      "family_id": "lmev2_025db8ef",
+      "label": "current_best",
+      "pattern_id": "pat_aac167597b6a",
+      "status": "stable",
+      "path_fitness_score": 0.928,
+      "confidence": 1.0,
+      "cost": 1,
+      "rule": "Check reports_problems before trying click_113"
+    },
+    {
+      "family_id": "lmev2_025db8ef",
+      "label": "rollback_path",
+      "pattern_id": "pat_96f0225eaec4",
+      "status": "rolled_back",
+      "path_fitness_score": 0.08,
+      "confidence": 0.0,
+      "cost": 4,
+      "rule": "Always use need_open_application for am working ServiceNow portal boss asked"
+    },
+    {
+      "family_id": "lmev2_057a2d4d",
+      "label": "stale_path",
+      "pattern_id": "pat_d6f5bf8e3632",
+      "status": "challenged",
+      "path_fitness_score": 0.3904,
+      "confidence": 0.3333,
+      "cost": 3,
+      "rule": "Try click_113 before checking 300"
+    },
+    {
+      "family_id": "lmev2_057a2d4d",
+      "label": "current_best",
+      "pattern_id": "pat_d419e5bd2561",
+      "status": "stable",
+      "path_fitness_score": 0.928,
+      "confidence": 1.0,
+      "cost": 1,
+      "rule": "Check 300 before trying click_113"
+    },
+    {
+      "family_id": "lmev2_057a2d4d",
+      "label": "rollback_path",
+      "pattern_id": "pat_90d5b6001295",
+      "status": "rolled_back",
+      "path_fitness_score": 0.08,
+      "confidence": 0.0,
+      "cost": 4,
+      "rule": "Always use need_open_application for am working ServiceNow portal we order"
+    },
+    {
+      "family_id": "lmev2_059974dd",
+      "label": "stale_path",
+      "pattern_id": "pat_8aa3e88932ab",
+      "status": "challenged",
+      "path_fitness_score": 0.3904,
+      "confidence": 0.3333,
+      "cost": 3,
+      "rule": "Try click_113 before checking that_scheduling_workflow_does"
+    },
+    {
+      "family_id": "lmev2_059974dd",
+      "label": "current_best",
+      "pattern_id": "pat_11682f4c6da1",
+      "status": "stable",
+      "path_fitness_score": 0.928,
+      "confidence": 1.0,
+      "cost": 1,
+      "rule": "Check that_scheduling_workflow_does before trying click_113"
+    },
+    {
+      "family_id": "lmev2_059974dd",
+      "label": "rollback_path",
+      "pattern_id": "pat_927ab1f3993e",
+      "status": "rolled_back",
+      "path_fitness_score": 0.08,
+      "confidence": 0.0,
+      "cost": 4,
+      "rule": "Always use need_open_application for am working ServiceNow Portal company s"
+    },
+    {
+      "family_id": "lmev2_07ffeedf",
+      "label": "stale_path",
+      "pattern_id": "pat_37500c21e67c",
+      "status": "challenged",
+      "path_fitness_score": 0.3904,
+      "confidence": 0.3333,
+      "cost": 3,
+      "rule": "Try click_113 before checking g"
+    },
+    {
+      "family_id": "lmev2_07ffeedf",
+      "label": "current_best",
+      "pattern_id": "pat_acac77f28be2",
+      "status": "stable",
+      "path_fitness_score": 0.928,
+      "confidence": 1.0,
+      "cost": 1,
+      "rule": "Check g before trying click_113"
+    },
+    {
+      "family_id": "lmev2_07ffeedf",
+      "label": "rollback_path",
+      "pattern_id": "pat_6ed983bcd9a1",
+      "status": "rolled_back",
+      "path_fitness_score": 0.08,
+      "confidence": 0.0,
+      "cost": 4,
+      "rule": "Always use need_open_application for am working ServiceNow portal navigating creating"
+    }
+  ],
+  "task_runs": [
+    {
+      "family_id": "lmev2_01307e07",
+      "task_id": "lmev2_01307e07_task_1",
+      "query": "am working ServiceNow portal Incidents list sibling task 1: should I check incident_mobile_incident_portal before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+      "expected_best_path_id": "pat_19233062c163",
+      "composer_selected_path_id": "pat_19233062c163",
+      "skill_selected_path_id": "pat_19233062c163",
+      "harness_selected_path_id": "pat_19233062c163",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "lmev2_01307e07",
+      "task_id": "lmev2_01307e07_task_2",
+      "query": "am working ServiceNow portal Incidents list sibling task 2: should I check incident_mobile_incident_portal before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+      "expected_best_path_id": "pat_19233062c163",
+      "composer_selected_path_id": "pat_19233062c163",
+      "skill_selected_path_id": "pat_19233062c163",
+      "harness_selected_path_id": "pat_19233062c163",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "lmev2_01307e07",
+      "task_id": "lmev2_01307e07_task_3",
+      "query": "am working ServiceNow portal Incidents list sibling task 3: should I check incident_mobile_incident_portal before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+      "expected_best_path_id": "pat_19233062c163",
+      "composer_selected_path_id": "pat_19233062c163",
+      "skill_selected_path_id": "pat_19233062c163",
+      "harness_selected_path_id": "pat_19233062c163",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "lmev2_025db8ef",
+      "task_id": "lmev2_025db8ef_task_1",
+      "query": "am working ServiceNow portal boss asked sibling task 1: should I check reports_problems before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+      "expected_best_path_id": "pat_aac167597b6a",
+      "composer_selected_path_id": "pat_aac167597b6a",
+      "skill_selected_path_id": "pat_aac167597b6a",
+      "harness_selected_path_id": "pat_aac167597b6a",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "lmev2_025db8ef",
+      "task_id": "lmev2_025db8ef_task_2",
+      "query": "am working ServiceNow portal boss asked sibling task 2: should I check reports_problems before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+      "expected_best_path_id": "pat_aac167597b6a",
+      "composer_selected_path_id": "pat_aac167597b6a",
+      "skill_selected_path_id": "pat_aac167597b6a",
+      "harness_selected_path_id": "pat_aac167597b6a",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "lmev2_025db8ef",
+      "task_id": "lmev2_025db8ef_task_3",
+      "query": "am working ServiceNow portal boss asked sibling task 3: should I check reports_problems before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+      "expected_best_path_id": "pat_aac167597b6a",
+      "composer_selected_path_id": "pat_aac167597b6a",
+      "skill_selected_path_id": "pat_aac167597b6a",
+      "harness_selected_path_id": "pat_aac167597b6a",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "lmev2_057a2d4d",
+      "task_id": "lmev2_057a2d4d_task_1",
+      "query": "am working ServiceNow portal we order sibling task 1: should I check 300 before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+      "expected_best_path_id": "pat_d419e5bd2561",
+      "composer_selected_path_id": "pat_d419e5bd2561",
+      "skill_selected_path_id": "pat_d419e5bd2561",
+      "harness_selected_path_id": "pat_d419e5bd2561",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "lmev2_057a2d4d",
+      "task_id": "lmev2_057a2d4d_task_2",
+      "query": "am working ServiceNow portal we order sibling task 2: should I check 300 before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+      "expected_best_path_id": "pat_d419e5bd2561",
+      "composer_selected_path_id": "pat_d419e5bd2561",
+      "skill_selected_path_id": "pat_d419e5bd2561",
+      "harness_selected_path_id": "pat_d419e5bd2561",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "lmev2_057a2d4d",
+      "task_id": "lmev2_057a2d4d_task_3",
+      "query": "am working ServiceNow portal we order sibling task 3: should I check 300 before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+      "expected_best_path_id": "pat_d419e5bd2561",
+      "composer_selected_path_id": "pat_d419e5bd2561",
+      "skill_selected_path_id": "pat_d419e5bd2561",
+      "harness_selected_path_id": "pat_d419e5bd2561",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "lmev2_059974dd",
+      "task_id": "lmev2_059974dd_task_1",
+      "query": "am working ServiceNow Portal company s sibling task 1: should I check that_scheduling_workflow_does before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+      "expected_best_path_id": "pat_11682f4c6da1",
+      "composer_selected_path_id": "pat_11682f4c6da1",
+      "skill_selected_path_id": "pat_11682f4c6da1",
+      "harness_selected_path_id": "pat_11682f4c6da1",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "lmev2_059974dd",
+      "task_id": "lmev2_059974dd_task_2",
+      "query": "am working ServiceNow Portal company s sibling task 2: should I check that_scheduling_workflow_does before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+      "expected_best_path_id": "pat_11682f4c6da1",
+      "composer_selected_path_id": "pat_11682f4c6da1",
+      "skill_selected_path_id": "pat_11682f4c6da1",
+      "harness_selected_path_id": "pat_11682f4c6da1",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "lmev2_059974dd",
+      "task_id": "lmev2_059974dd_task_3",
+      "query": "am working ServiceNow Portal company s sibling task 3: should I check that_scheduling_workflow_does before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+      "expected_best_path_id": "pat_11682f4c6da1",
+      "composer_selected_path_id": "pat_11682f4c6da1",
+      "skill_selected_path_id": "pat_11682f4c6da1",
+      "harness_selected_path_id": "pat_11682f4c6da1",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "lmev2_07ffeedf",
+      "task_id": "lmev2_07ffeedf_task_1",
+      "query": "am working ServiceNow portal navigating creating sibling task 1: should I check g before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+      "expected_best_path_id": "pat_acac77f28be2",
+      "composer_selected_path_id": "pat_acac77f28be2",
+      "skill_selected_path_id": "pat_acac77f28be2",
+      "harness_selected_path_id": "pat_acac77f28be2",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "lmev2_07ffeedf",
+      "task_id": "lmev2_07ffeedf_task_2",
+      "query": "am working ServiceNow portal navigating creating sibling task 2: should I check g before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+      "expected_best_path_id": "pat_acac77f28be2",
+      "composer_selected_path_id": "pat_acac77f28be2",
+      "skill_selected_path_id": "pat_acac77f28be2",
+      "harness_selected_path_id": "pat_acac77f28be2",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    },
+    {
+      "family_id": "lmev2_07ffeedf",
+      "task_id": "lmev2_07ffeedf_task_3",
+      "query": "am working ServiceNow portal navigating creating sibling task 3: should I check g before click_113, or still try click_113 first? Do not overgeneralize to need_open_application.",
+      "expected_best_path_id": "pat_acac77f28be2",
+      "composer_selected_path_id": "pat_acac77f28be2",
+      "skill_selected_path_id": "pat_acac77f28be2",
+      "harness_selected_path_id": "pat_acac77f28be2",
+      "latest_path_selected": true,
+      "skill_best_path_selected": true,
+      "harness_best_path_selected": true,
+      "stale_path_suppressed": true,
+      "rollback_path_suppressed": true,
+      "path_regret": 0
+    }
+  ],
+  "metrics": {
+    "family_count": 5,
+    "task_count": 15,
+    "stable_promotion_rate": 1.0,
+    "latest_path_selection_accuracy": 1.0,
+    "skill_path_selection_accuracy": 1.0,
+    "harness_path_selection_accuracy": 1.0,
+    "stale_path_suppression_rate": 1.0,
+    "rollback_success_rate": 1.0,
+    "false_stable_promotion_count": 0,
+    "average_path_regret": 0,
+    "real_snapshot_family_count": 5,
+    "resolved_root": "D:\\benchmarks\\longmemeval-v2",
+    "root_resolution_source": "benchmarks"
+  },
+  "derivation_samples": [
+    {
+      "family_id": "lmev2_01307e07",
+      "episode_id": "01307e07",
+      "question_type": "dynamic-environment",
+      "required_evidence": "incident_mobile_incident_portal",
+      "stale_action": "click_113",
+      "overgeneralized_action": "need_open_application",
+      "tags": [
+        "dynamic-environment",
+        "incident_mobile_incident_portal",
+        "click_113",
+        "need_open_application",
+        "am",
+        "contain",
+        "dropdown",
+        "edit"
+      ]
+    },
+    {
+      "family_id": "lmev2_025db8ef",
+      "episode_id": "025db8ef",
+      "question_type": "procedure",
+      "required_evidence": "reports_problems",
+      "stale_action": "click_113",
+      "overgeneralized_action": "need_open_application",
+      "tags": [
+        "procedure",
+        "reports_problems",
+        "click_113",
+        "need_open_application",
+        "accomplish",
+        "agents",
+        "am",
+        "are"
+      ]
+    },
+    {
+      "family_id": "lmev2_057a2d4d",
+      "episode_id": "057a2d4d",
+      "question_type": "static-environment",
+      "required_evidence": "300",
+      "stale_action": "click_113",
+      "overgeneralized_action": "need_open_application",
+      "tags": [
+        "static-environment",
+        "300",
+        "click_113",
+        "need_open_application",
+        "am",
+        "amount",
+        "as",
+        "choose"
+      ]
+    },
+    {
+      "family_id": "lmev2_059974dd",
+      "episode_id": "059974dd",
+      "question_type": "procedure-abs",
+      "required_evidence": "that_scheduling_workflow_does",
+      "stale_action": "click_113",
+      "overgeneralized_action": "need_open_application",
+      "tags": [
+        "procedure-abs",
+        "that_scheduling_workflow_does",
+        "click_113",
+        "need_open_application",
+        "allocated",
+        "also",
+        "am",
+        "besides"
+      ]
+    },
+    {
+      "family_id": "lmev2_07ffeedf",
+      "episode_id": "07ffeedf",
+      "question_type": "procedure",
+      "required_evidence": "g",
+      "stale_action": "click_113",
+      "overgeneralized_action": "need_open_application",
+      "tags": [
+        "procedure",
+        "g",
+        "click_113",
+        "need_open_application",
+        "a.",
+        "am",
+        "are",
+        "assignment"
+      ]
+    }
+  ]
+}

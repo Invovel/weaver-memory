@@ -1,0 +1,44 @@
+{
+  "arms": {
+    "memoryweaver_live_candidate_runtime": {
+      "task_count": 5,
+      "success_rate": 1.0,
+      "repeated_failure_rate": 0.0,
+      "invalid_action_rate": 0.0,
+      "known_bad_action_rate": 0.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 0.0,
+      "negative_memory_hit_rate": 1.0,
+      "promotion_precision": 1.0
+    },
+    "rollback_probe": {
+      "task_count": 1,
+      "success_rate": 1.0,
+      "repeated_failure_rate": 0.0,
+      "invalid_action_rate": 0.0,
+      "known_bad_action_rate": 1.0,
+      "memory_induced_regression_rate": 0.0,
+      "rollback_frequency": 1.0,
+      "negative_memory_hit_rate": 1.0,
+      "promotion_precision": 0.0
+    }
+  },
+  "aggregate": {
+    "live_llm_run_complete": 1.0,
+    "online_llm_call_count": 3.0,
+    "live_proposal_count": 3.0,
+    "tool_result_count": 3.0,
+    "canonicalized_bundle_count": 2.0,
+    "tests_passed": 1.0,
+    "file_diff_matches_expected": 1.0,
+    "benchmark_delta": 0.16,
+    "candidate_registration_promotable": 1.0,
+    "candidate_registration_audited": 1.0,
+    "rejected_evidence_audited_count": 0.0,
+    "promotion_external_evidence_only": 1.0,
+    "trace_store_roundtrip": 1.0,
+    "runtime_path_store_roundtrip": 1.0,
+    "rollback_recorded": 1.0,
+    "memory_induced_regression_rate": 0.0
+  }
+}

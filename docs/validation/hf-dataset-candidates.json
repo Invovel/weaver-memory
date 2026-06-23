@@ -1,0 +1,97 @@
+{
+  "checked_at": "2026-06-12",
+  "source": "Hugging Face public dataset API and Hub search",
+  "primary_dataset": {
+    "id": "xiaowu0162/longmemeval-v2",
+    "url": "https://hf.co/datasets/xiaowu0162/longmemeval-v2",
+    "exists_on_hf": true,
+    "license": "apache-2.0",
+    "size_category": "n<1K",
+    "memoryweaver_status": "adapter_exists_local_snapshot_validated",
+    "readable_snapshot_root": "D:\\benchmarks\\longmemeval-v2",
+    "hf_cache_root": "D:\\hf_cache",
+    "storage_artifact": "docs/validation/lme-v2-storage-check/storage_report.json"
+  },
+  "candidates": [
+    {
+      "id": "ai-hyz/MemoryAgentBench",
+      "url": "https://hf.co/datasets/ai-hyz/MemoryAgentBench",
+      "exists_on_hf": true,
+      "license": "mit",
+      "size_category": "n<1K",
+      "proposed_use": "agent-memory benchmark expansion",
+      "memoryweaver_status": "preview_adapter_validated",
+      "validation_artifact": "docs/validation/memoryagentbench-adapter-check/README.md"
+    },
+    {
+      "id": "xiaowu0162/longmemeval-cleaned",
+      "url": "https://hf.co/datasets/xiaowu0162/longmemeval-cleaned",
+      "exists_on_hf": true,
+      "license": "mit",
+      "size_category": "",
+      "proposed_use": "dialogue-style long-term memory baseline",
+      "memoryweaver_status": "not_integrated"
+    },
+    {
+      "id": "Percena/locomo-mc10",
+      "url": "https://hf.co/datasets/Percena/locomo-mc10",
+      "exists_on_hf": true,
+      "license": "cc-by-nc-4.0",
+      "size_category": "1K<n<10K",
+      "proposed_use": "cheap multiple-choice long-conversation memory smoke",
+      "memoryweaver_status": "preview_adapter_validated",
+      "validation_artifact": "docs/validation/locomo-mc10-adapter-check/README.md"
+    },
+    {
+      "id": "mteb/LoCoMo",
+      "url": "https://hf.co/datasets/mteb/LoCoMo",
+      "exists_on_hf": true,
+      "license": "cc-by-nc-4.0",
+      "size_category": "10K<n<100K",
+      "proposed_use": "retrieval-style LoCoMo bridge",
+      "memoryweaver_status": "not_integrated"
+    },
+    {
+      "id": "miracl/miracl",
+      "url": "https://hf.co/datasets/miracl/miracl",
+      "exists_on_hf": true,
+      "license": "apache-2.0",
+      "size_category": "topics/qrels",
+      "proposed_use": "Chinese and multilingual retrieval topics",
+      "memoryweaver_status": "not_integrated"
+    },
+    {
+      "id": "miracl/miracl-corpus",
+      "url": "https://hf.co/datasets/miracl/miracl-corpus",
+      "exists_on_hf": true,
+      "license": "apache-2.0",
+      "size_category": "10M<n<100M",
+      "proposed_use": "large multilingual retrieval corpus",
+      "memoryweaver_status": "not_integrated"
+    },
+    {
+      "id": "BeIR/scifact",
+      "url": "https://hf.co/datasets/BeIR/scifact",
+      "exists_on_hf": true,
+      "license": "cc-by-sa-4.0",
+      "size_category": "1K<n<10K",
+      "proposed_use": "RAG evidence retrieval and fact-checking retrieval",
+      "memoryweaver_status": "not_integrated"
+    },
+    {
+      "id": "miracl/hagrid",
+      "url": "https://hf.co/datasets/miracl/hagrid",
+      "exists_on_hf": true,
+      "license": "apache-2.0",
+      "size_category": "1K<n<10K",
+      "proposed_use": "attribution and citation coverage",
+      "memoryweaver_status": "not_integrated"
+    }
+  ],
+  "boundary": [
+    "Only xiaowu0162/longmemeval-v2 currently has a MemoryWeaver adapter and local validation artifacts.",
+    "D:\\hf_cache is a cache root; the current readable snapshot root is D:\\benchmarks\\longmemeval-v2.",
+    "ai-hyz/MemoryAgentBench and Percena/locomo-mc10 have preview adapter validations only; they are not task-accuracy or Layer-3 path-promotion results.",
+    "Other datasets are candidates until dedicated adapters and validation artifacts exist."
+  ]
+}

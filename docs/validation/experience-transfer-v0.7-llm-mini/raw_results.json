@@ -1,0 +1,4974 @@
+{
+  "passed": true,
+  "families": [
+    {
+      "family_id": "codex_subscription_org",
+      "title": "Codex subscription entitlement",
+      "source_success": "Previous source episode succeeded after checking selected_organization.",
+      "source_failure": "Previous source episode failed when trying reinstall_npm first.",
+      "tags": [
+        "codex",
+        "subscription",
+        "auth"
+      ],
+      "required_evidence": [
+        "selected_organization"
+      ],
+      "known_bad_actions": [
+        "reinstall_npm"
+      ],
+      "target_tasks": [
+        {
+          "task_id": "codex_subscription_org_target_1",
+          "query": "Codex subscription entitlement sibling task 1: the issue recurred under different wording; choose the next diagnostic step.",
+          "required_evidence": [
+            "selected_organization"
+          ],
+          "known_bad_actions": [
+            "reinstall_npm"
+          ],
+          "success_target": "selected_organization",
+          "similarity_bucket": "high"
+        },
+        {
+          "task_id": "codex_subscription_org_target_2",
+          "query": "Codex subscription entitlement sibling task 2: the issue recurred under different wording; choose the next diagnostic step.",
+          "required_evidence": [
+            "selected_organization"
+          ],
+          "known_bad_actions": [
+            "reinstall_npm"
+          ],
+          "success_target": "selected_organization",
+          "similarity_bucket": "high"
+        }
+      ]
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "title": "npm registry dependency conflict",
+      "source_success": "Previous source episode succeeded after checking npm_registry.",
+      "source_failure": "Previous source episode failed when trying delete_lockfile first.",
+      "tags": [
+        "npm",
+        "registry",
+        "dependency"
+      ],
+      "required_evidence": [
+        "npm_registry"
+      ],
+      "known_bad_actions": [
+        "delete_lockfile"
+      ],
+      "target_tasks": [
+        {
+          "task_id": "npm_registry_conflict_target_1",
+          "query": "npm registry dependency conflict sibling task 1: the issue recurred under different wording; choose the next diagnostic step.",
+          "required_evidence": [
+            "npm_registry"
+          ],
+          "known_bad_actions": [
+            "delete_lockfile"
+          ],
+          "success_target": "npm_registry",
+          "similarity_bucket": "high"
+        },
+        {
+          "task_id": "npm_registry_conflict_target_2",
+          "query": "npm registry dependency conflict sibling task 2: the issue recurred under different wording; choose the next diagnostic step.",
+          "required_evidence": [
+            "npm_registry"
+          ],
+          "known_bad_actions": [
+            "delete_lockfile"
+          ],
+          "success_target": "npm_registry",
+          "similarity_bucket": "high"
+        }
+      ]
+    },
+    {
+      "family_id": "docker_build_warning",
+      "title": "Docker build warning triage",
+      "source_success": "Previous source episode succeeded after checking docker_config.",
+      "source_failure": "Previous source episode failed when trying docker_push_latest first.",
+      "tags": [
+        "docker",
+        "build",
+        "warning"
+      ],
+      "required_evidence": [
+        "docker_config"
+      ],
+      "known_bad_actions": [
+        "docker_push_latest"
+      ],
+      "target_tasks": [
+        {
+          "task_id": "docker_build_warning_target_1",
+          "query": "Docker build warning triage sibling task 1: the issue recurred under different wording; choose the next diagnostic step.",
+          "required_evidence": [
+            "docker_config"
+          ],
+          "known_bad_actions": [
+            "docker_push_latest"
+          ],
+          "success_target": "docker_config",
+          "similarity_bucket": "high"
+        },
+        {
+          "task_id": "docker_build_warning_target_2",
+          "query": "Docker build warning triage sibling task 2: the issue recurred under different wording; choose the next diagnostic step.",
+          "required_evidence": [
+            "docker_config"
+          ],
+          "known_bad_actions": [
+            "docker_push_latest"
+          ],
+          "success_target": "docker_config",
+          "similarity_bucket": "high"
+        }
+      ]
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "title": "CI timeout diagnosis",
+      "source_success": "Previous source episode succeeded after checking ci_logs.",
+      "source_failure": "Previous source episode failed when trying rerun_without_logs first.",
+      "tags": [
+        "ci",
+        "timeout",
+        "logs"
+      ],
+      "required_evidence": [
+        "ci_logs"
+      ],
+      "known_bad_actions": [
+        "rerun_without_logs"
+      ],
+      "target_tasks": [
+        {
+          "task_id": "ci_timeout_logs_target_1",
+          "query": "CI timeout diagnosis sibling task 1: the issue recurred under different wording; choose the next diagnostic step.",
+          "required_evidence": [
+            "ci_logs"
+          ],
+          "known_bad_actions": [
+            "rerun_without_logs"
+          ],
+          "success_target": "ci_logs",
+          "similarity_bucket": "high"
+        },
+        {
+          "task_id": "ci_timeout_logs_target_2",
+          "query": "CI timeout diagnosis sibling task 2: the issue recurred under different wording; choose the next diagnostic step.",
+          "required_evidence": [
+            "ci_logs"
+          ],
+          "known_bad_actions": [
+            "rerun_without_logs"
+          ],
+          "success_target": "ci_logs",
+          "similarity_bucket": "high"
+        }
+      ]
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "title": "API key scope denied",
+      "source_success": "Previous source episode succeeded after checking api_key_scope.",
+      "source_failure": "Previous source episode failed when trying rotate_key_blindly first.",
+      "tags": [
+        "api_key",
+        "scope",
+        "denied"
+      ],
+      "required_evidence": [
+        "api_key_scope"
+      ],
+      "known_bad_actions": [
+        "rotate_key_blindly"
+      ],
+      "target_tasks": [
+        {
+          "task_id": "api_key_scope_denied_target_1",
+          "query": "API key scope denied sibling task 1: the issue recurred under different wording; choose the next diagnostic step.",
+          "required_evidence": [
+            "api_key_scope"
+          ],
+          "known_bad_actions": [
+            "rotate_key_blindly"
+          ],
+          "success_target": "api_key_scope",
+          "similarity_bucket": "high"
+        },
+        {
+          "task_id": "api_key_scope_denied_target_2",
+          "query": "API key scope denied sibling task 2: the issue recurred under different wording; choose the next diagnostic step.",
+          "required_evidence": [
+            "api_key_scope"
+          ],
+          "known_bad_actions": [
+            "rotate_key_blindly"
+          ],
+          "success_target": "api_key_scope",
+          "similarity_bucket": "high"
+        }
+      ]
+    }
+  ],
+  "task_runs": [
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_1",
+      "arm": "no_memory",
+      "similarity_bucket": "high",
+      "success": false,
+      "steps_to_success": 6,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 6,
+      "tool_call_count": 6,
+      "first_required_evidence_step": 0,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 6,
+      "prompt_char_count": 738,
+      "token_estimate": 184,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The issue recurred under different wording, so we need to check MemoryWeaver for any existing evidence or patterns before proceeding with other actions."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for codex_subscription_org_target_1"
+          }
+        },
+        {
+          "step": 2,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The previous action was invalid, so we need to check existing evidence to understand the issue before proceeding."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for codex_subscription_org_target_1"
+          }
+        },
+        {
+          "step": 3,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The issue recurred under different wording, so we need to check existing evidence for this target before taking further action."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for codex_subscription_org_target_1"
+          }
+        },
+        {
+          "step": 4,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose a recurring issue with Codex subscription entitlement. Checking evidence will gather relevant data from MemoryWeaver to inform the next step, avoiding blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for codex_subscription_org_target_1"
+          }
+        },
+        {
+          "step": 5,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The issue recurred under different wording, suggesting the root cause may be a missing or misconfigured entitlement. Checking existing evidence can reveal patterns or gaps without repeating invalid actions."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for codex_subscription_org_target_1"
+          }
+        },
+        {
+          "step": 6,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose a recurring issue with Codex subscription entitlement. Checking existing evidence may reveal patterns or known solutions without blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for codex_subscription_org_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "codex_subscription_org",
+        "task_id": "codex_subscription_org_target_1",
+        "arm": "no_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "reinstall_npm",
+        "action_with_context": "__invalid_action__",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "codex_subscription_org",
+        "task_id": "codex_subscription_org_target_1",
+        "arm": "no_memory",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_2",
+      "arm": "no_memory",
+      "similarity_bucket": "high",
+      "success": false,
+      "steps_to_success": 6,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 6,
+      "tool_call_count": 6,
+      "first_required_evidence_step": 0,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 8,
+      "prompt_char_count": 738,
+      "token_estimate": 184,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The issue recurred under different wording, so we should check MemoryWeaver for any existing evidence or patterns before proceeding with other actions."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for codex_subscription_org_target_2"
+          }
+        },
+        {
+          "step": 2,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The previous action was invalid, so we need to check existing evidence for this sibling task to understand the recurrence before choosing a valid action."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for codex_subscription_org_target_2"
+          }
+        },
+        {
+          "step": 3,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The issue recurred under different wording, so we need to check existing evidence for this target before taking further action."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for codex_subscription_org_target_2"
+          }
+        },
+        {
+          "step": 4,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose a recurring issue under different wording. Checking evidence for the target will provide relevant information from MemoryWeaver to guide the next step, avoiding blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for codex_subscription_org_target_2"
+          }
+        },
+        {
+          "step": 5,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The issue recurred under different wording, so we need to check existing evidence to understand the pattern before taking further action."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for codex_subscription_org_target_2"
+          }
+        },
+        {
+          "step": 6,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose a recurring issue with different wording. Checking evidence may reveal patterns or new clues from the recurrence, avoiding blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for codex_subscription_org_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "codex_subscription_org",
+        "task_id": "codex_subscription_org_target_2",
+        "arm": "no_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "reinstall_npm",
+        "action_with_context": "__invalid_action__",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "codex_subscription_org",
+        "task_id": "codex_subscription_org_target_2",
+        "arm": "no_memory",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_1",
+      "arm": "raw_rag_over_logs",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 357,
+      "token_estimate": 89,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "Raw historical log: Previous source episode failed when trying reinstall_npm first.\nRaw historical log: Previous source episode succeeded after checking selected_organization.\nNo source gate, no polarity labels, no marker eligibility.",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "selected_organization",
+            "reasoning": "Previous episode succeeded after checking selected_organization; avoid blind reinstall which failed before."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "selected_organization resolved codex_subscription_org_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "codex_subscription_org",
+        "task_id": "codex_subscription_org_target_1",
+        "arm": "raw_rag_over_logs",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "reinstall_npm",
+        "action_with_context": "selected_organization",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "codex_subscription_org",
+        "task_id": "codex_subscription_org_target_1",
+        "arm": "raw_rag_over_logs",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_2",
+      "arm": "raw_rag_over_logs",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 357,
+      "token_estimate": 89,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "Raw historical log: Previous source episode failed when trying reinstall_npm first.\nRaw historical log: Previous source episode succeeded after checking selected_organization.\nNo source gate, no polarity labels, no marker eligibility.",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "selected_organization",
+            "reasoning": "Previous episode succeeded after checking selected_organization; avoid blind reinstall which failed before."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "selected_organization resolved codex_subscription_org_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "codex_subscription_org",
+        "task_id": "codex_subscription_org_target_2",
+        "arm": "raw_rag_over_logs",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "reinstall_npm",
+        "action_with_context": "selected_organization",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "codex_subscription_org",
+        "task_id": "codex_subscription_org_target_2",
+        "arm": "raw_rag_over_logs",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_1",
+      "arm": "mw_verified_memory",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 389,
+      "token_estimate": 97,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem codex subscription org success) Previous source episode succeeded after checking selected_organization.\n2. [tool] ⚠️ AVOID (mem codex subscription org failure) Previous source episode failed when trying reinstall_npm first.",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [
+              "mem_codex_subscription_org_success",
+              "mem_codex_subscription_org_failure"
+            ],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "selected_organization",
+            "reasoning": "MemoryWeaver context warns that action_1 (reinstall_npm) is a known bad path, and recommends evidence action_2 (selected_organization). Following the safe recommended action."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "selected_organization resolved codex_subscription_org_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "codex_subscription_org",
+        "task_id": "codex_subscription_org_target_1",
+        "arm": "mw_verified_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "reinstall_npm",
+        "action_with_context": "selected_organization",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "codex_subscription_org",
+        "task_id": "codex_subscription_org_target_1",
+        "arm": "mw_verified_memory",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_codex_subscription_org_success",
+          "mem_codex_subscription_org_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_2",
+      "arm": "mw_verified_memory",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 389,
+      "token_estimate": 97,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem codex subscription org success) Previous source episode succeeded after checking selected_organization.\n2. [tool] ⚠️ AVOID (mem codex subscription org failure) Previous source episode failed when trying reinstall_npm first.",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [
+              "mem_codex_subscription_org_success",
+              "mem_codex_subscription_org_failure"
+            ],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "selected_organization",
+            "reasoning": "MemoryWeaver context warns that reinstall_npm (action_1) is a known bad path, and recommends checking selected_organization (action_2) as required evidence. This aligns with the goal of diagnosing the subscription entitlement issue."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "selected_organization resolved codex_subscription_org_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "codex_subscription_org",
+        "task_id": "codex_subscription_org_target_2",
+        "arm": "mw_verified_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "reinstall_npm",
+        "action_with_context": "selected_organization",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "codex_subscription_org",
+        "task_id": "codex_subscription_org_target_2",
+        "arm": "mw_verified_memory",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_codex_subscription_org_success",
+          "mem_codex_subscription_org_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_1",
+      "arm": "mw_verified_memory_marker",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": true,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 2,
+      "prompt_char_count": 623,
+      "token_estimate": 155,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem codex subscription org success) Previous source episode succeeded after checking selected_organization.\n2. [tool] ⚠️ AVOID (mem codex subscription org failure) Previous source episode failed when trying reinstall_npm first.\n\n## Diagnostic Guidance (MemoryWeaver Marker)\nIssue recognized: marker_codex_subscription_org\nRecommended route: fast_verify\nKNOWN BAD PATHS (avoid these): reinstall_npm\nRECOMMENDED EVIDENCE (check these first): selected_organization",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": true,
+            "marker_id": "marker_codex_subscription_org",
+            "allowed_memory_ids": [
+              "mem_codex_subscription_org_success",
+              "mem_codex_subscription_org_failure"
+            ],
+            "suppressed_actions": [
+              "reinstall_npm"
+            ],
+            "required_evidence": [
+              "selected_organization"
+            ]
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "selected_organization",
+            "reasoning": "MemoryWeaver context recommends checking selected_organization evidence first, and action_2 is the recommended evidence. Avoid known bad path action_1 (reinstall_npm)."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "selected_organization resolved codex_subscription_org_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "codex_subscription_org",
+        "task_id": "codex_subscription_org_target_1",
+        "arm": "mw_verified_memory_marker",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "reinstall_npm",
+        "action_with_context": "selected_organization",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "codex_subscription_org",
+        "task_id": "codex_subscription_org_target_1",
+        "arm": "mw_verified_memory_marker",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_codex_subscription_org_success",
+          "mem_codex_subscription_org_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_2",
+      "arm": "mw_verified_memory_marker",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": true,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 623,
+      "token_estimate": 155,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem codex subscription org success) Previous source episode succeeded after checking selected_organization.\n2. [tool] ⚠️ AVOID (mem codex subscription org failure) Previous source episode failed when trying reinstall_npm first.\n\n## Diagnostic Guidance (MemoryWeaver Marker)\nIssue recognized: marker_codex_subscription_org\nRecommended route: fast_verify\nKNOWN BAD PATHS (avoid these): reinstall_npm\nRECOMMENDED EVIDENCE (check these first): selected_organization",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": true,
+            "marker_id": "marker_codex_subscription_org",
+            "allowed_memory_ids": [
+              "mem_codex_subscription_org_success",
+              "mem_codex_subscription_org_failure"
+            ],
+            "suppressed_actions": [
+              "reinstall_npm"
+            ],
+            "required_evidence": [
+              "selected_organization"
+            ]
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "selected_organization",
+            "reasoning": "MemoryWeaver context recommends checking selected_organization evidence first, and action_2 is the recommended evidence. Avoid known bad path action_1 (reinstall_npm)."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "selected_organization resolved codex_subscription_org_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "codex_subscription_org",
+        "task_id": "codex_subscription_org_target_2",
+        "arm": "mw_verified_memory_marker",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "reinstall_npm",
+        "action_with_context": "selected_organization",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "codex_subscription_org",
+        "task_id": "codex_subscription_org_target_2",
+        "arm": "mw_verified_memory_marker",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_codex_subscription_org_success",
+          "mem_codex_subscription_org_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_1",
+      "arm": "no_memory",
+      "similarity_bucket": "high",
+      "success": false,
+      "steps_to_success": 6,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 6,
+      "tool_call_count": 6,
+      "first_required_evidence_step": 0,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 7,
+      "prompt_char_count": 750,
+      "token_estimate": 187,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The issue recurred under different wording, so we should first check existing evidence to avoid blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for npm_registry_conflict_target_1"
+          }
+        },
+        {
+          "step": 2,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The previous action was invalid, so we need to check existing evidence to understand the current state before proceeding."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for npm_registry_conflict_target_1"
+          }
+        },
+        {
+          "step": 3,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose a recurring npm registry dependency conflict. Checking existing evidence may reveal patterns or root causes without repeating invalid actions."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for npm_registry_conflict_target_1"
+          }
+        },
+        {
+          "step": 4,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose a recurring npm registry dependency conflict. The recent history shows repeated invalid actions, indicating a need to gather evidence before proceeding. Checking evidence aligns with MemoryWeaver's principle of preferring evidence over blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for npm_registry_conflict_target_1"
+          }
+        },
+        {
+          "step": 5,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose a recurring npm registry dependency conflict. The recent history shows repeated invalid actions, indicating a need to gather evidence before proceeding. Checking evidence aligns with MemoryWeaver's principle of preferring evidence over blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for npm_registry_conflict_target_1"
+          }
+        },
+        {
+          "step": 6,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose a recurring npm registry dependency conflict. The recent history shows repeated invalid actions, indicating a need to gather evidence before proceeding. Checking evidence aligns with MemoryWeaver's principle of preferring evidence over blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for npm_registry_conflict_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "npm_registry_conflict",
+        "task_id": "npm_registry_conflict_target_1",
+        "arm": "no_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "delete_lockfile",
+        "action_with_context": "__invalid_action__",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "npm_registry_conflict",
+        "task_id": "npm_registry_conflict_target_1",
+        "arm": "no_memory",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_2",
+      "arm": "no_memory",
+      "similarity_bucket": "high",
+      "success": false,
+      "steps_to_success": 6,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 6,
+      "tool_call_count": 6,
+      "first_required_evidence_step": 0,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 6,
+      "prompt_char_count": 750,
+      "token_estimate": 187,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The issue recurred under different wording, so we should first check existing evidence to avoid blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for npm_registry_conflict_target_2"
+          }
+        },
+        {
+          "step": 2,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The previous action was invalid, so we need to check existing evidence for this target before proceeding with any tool calls or other actions."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for npm_registry_conflict_target_2"
+          }
+        },
+        {
+          "step": 3,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The previous actions were invalid, so I need to check what evidence is already available to avoid repeating mistakes and to understand the current state of the issue."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for npm_registry_conflict_target_2"
+          }
+        },
+        {
+          "step": 4,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose a recurring npm registry dependency conflict. Checking existing evidence may reveal patterns or known solutions without blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for npm_registry_conflict_target_2"
+          }
+        },
+        {
+          "step": 5,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose a recurring npm registry dependency conflict. Checking evidence is the logical first step to gather information before taking any action, especially since previous attempts were invalid actions."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for npm_registry_conflict_target_2"
+          }
+        },
+        {
+          "step": 6,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose a recurring npm registry dependency conflict. The recent history shows repeated invalid actions, indicating a need to gather evidence before proceeding. Checking evidence aligns with MemoryWeaver's principle of preferring evidence over blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for npm_registry_conflict_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "npm_registry_conflict",
+        "task_id": "npm_registry_conflict_target_2",
+        "arm": "no_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "delete_lockfile",
+        "action_with_context": "__invalid_action__",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "npm_registry_conflict",
+        "task_id": "npm_registry_conflict_target_2",
+        "arm": "no_memory",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_1",
+      "arm": "raw_rag_over_logs",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 352,
+      "token_estimate": 88,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "Raw historical log: Previous source episode failed when trying delete_lockfile first.\nRaw historical log: Previous source episode succeeded after checking npm_registry.\nNo source gate, no polarity labels, no marker eligibility.",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "npm_registry",
+            "reasoning": "MemoryWeaver context indicates that checking the npm registry led to success in a previous episode, while deleting lockfile first failed. To avoid repeating the failed path, I will check evidence from the npm registry to diagnose the dependency conflict."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "npm_registry resolved npm_registry_conflict_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "npm_registry_conflict",
+        "task_id": "npm_registry_conflict_target_1",
+        "arm": "raw_rag_over_logs",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "delete_lockfile",
+        "action_with_context": "npm_registry",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "npm_registry_conflict",
+        "task_id": "npm_registry_conflict_target_1",
+        "arm": "raw_rag_over_logs",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_2",
+      "arm": "raw_rag_over_logs",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 352,
+      "token_estimate": 88,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "Raw historical log: Previous source episode failed when trying delete_lockfile first.\nRaw historical log: Previous source episode succeeded after checking npm_registry.\nNo source gate, no polarity labels, no marker eligibility.",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "npm_registry",
+            "reasoning": "Historical log indicates checking npm_registry led to success; avoid repeating the failed delete_lockfile path. Check evidence from npm registry to diagnose the dependency conflict."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "npm_registry resolved npm_registry_conflict_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "npm_registry_conflict",
+        "task_id": "npm_registry_conflict_target_2",
+        "arm": "raw_rag_over_logs",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "delete_lockfile",
+        "action_with_context": "npm_registry",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "npm_registry_conflict",
+        "task_id": "npm_registry_conflict_target_2",
+        "arm": "raw_rag_over_logs",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_1",
+      "arm": "mw_verified_memory",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 382,
+      "token_estimate": 95,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem npm registry conflict success) Previous source episode succeeded after checking npm_registry.\n2. [tool] ⚠️ AVOID (mem npm registry conflict failure) Previous source episode failed when trying delete_lockfile first.",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [
+              "mem_npm_registry_conflict_success",
+              "mem_npm_registry_conflict_failure"
+            ],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "npm_registry",
+            "reasoning": "MemoryWeaver context recommends checking npm_registry evidence (action_2) and warns against delete_lockfile (action_1). Following the safe path."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "npm_registry resolved npm_registry_conflict_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "npm_registry_conflict",
+        "task_id": "npm_registry_conflict_target_1",
+        "arm": "mw_verified_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "delete_lockfile",
+        "action_with_context": "npm_registry",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "npm_registry_conflict",
+        "task_id": "npm_registry_conflict_target_1",
+        "arm": "mw_verified_memory",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_npm_registry_conflict_success",
+          "mem_npm_registry_conflict_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_2",
+      "arm": "mw_verified_memory",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 382,
+      "token_estimate": 95,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem npm registry conflict success) Previous source episode succeeded after checking npm_registry.\n2. [tool] ⚠️ AVOID (mem npm registry conflict failure) Previous source episode failed when trying delete_lockfile first.",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [
+              "mem_npm_registry_conflict_success",
+              "mem_npm_registry_conflict_failure"
+            ],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "npm_registry",
+            "reasoning": "MemoryWeaver context recommends checking evidence (npm_registry) via action_2, and warns against action_1 (delete_lockfile)."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "npm_registry resolved npm_registry_conflict_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "npm_registry_conflict",
+        "task_id": "npm_registry_conflict_target_2",
+        "arm": "mw_verified_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "delete_lockfile",
+        "action_with_context": "npm_registry",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "npm_registry_conflict",
+        "task_id": "npm_registry_conflict_target_2",
+        "arm": "mw_verified_memory",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_npm_registry_conflict_success",
+          "mem_npm_registry_conflict_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_1",
+      "arm": "mw_verified_memory_marker",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": true,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 608,
+      "token_estimate": 152,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem npm registry conflict success) Previous source episode succeeded after checking npm_registry.\n2. [tool] ⚠️ AVOID (mem npm registry conflict failure) Previous source episode failed when trying delete_lockfile first.\n\n## Diagnostic Guidance (MemoryWeaver Marker)\nIssue recognized: marker_npm_registry_conflict\nRecommended route: fast_verify\nKNOWN BAD PATHS (avoid these): delete_lockfile\nRECOMMENDED EVIDENCE (check these first): npm_registry",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": true,
+            "marker_id": "marker_npm_registry_conflict",
+            "allowed_memory_ids": [
+              "mem_npm_registry_conflict_success",
+              "mem_npm_registry_conflict_failure"
+            ],
+            "suppressed_actions": [
+              "delete_lockfile"
+            ],
+            "required_evidence": [
+              "npm_registry"
+            ]
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "npm_registry",
+            "reasoning": "MemoryWeaver context identifies this as npm registry conflict, recommends checking npm_registry evidence first, and warns against delete_lockfile. action_2 is the recommended evidence action."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "npm_registry resolved npm_registry_conflict_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "npm_registry_conflict",
+        "task_id": "npm_registry_conflict_target_1",
+        "arm": "mw_verified_memory_marker",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "delete_lockfile",
+        "action_with_context": "npm_registry",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "npm_registry_conflict",
+        "task_id": "npm_registry_conflict_target_1",
+        "arm": "mw_verified_memory_marker",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_npm_registry_conflict_success",
+          "mem_npm_registry_conflict_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_2",
+      "arm": "mw_verified_memory_marker",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": true,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 608,
+      "token_estimate": 152,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem npm registry conflict success) Previous source episode succeeded after checking npm_registry.\n2. [tool] ⚠️ AVOID (mem npm registry conflict failure) Previous source episode failed when trying delete_lockfile first.\n\n## Diagnostic Guidance (MemoryWeaver Marker)\nIssue recognized: marker_npm_registry_conflict\nRecommended route: fast_verify\nKNOWN BAD PATHS (avoid these): delete_lockfile\nRECOMMENDED EVIDENCE (check these first): npm_registry",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": true,
+            "marker_id": "marker_npm_registry_conflict",
+            "allowed_memory_ids": [
+              "mem_npm_registry_conflict_success",
+              "mem_npm_registry_conflict_failure"
+            ],
+            "suppressed_actions": [
+              "delete_lockfile"
+            ],
+            "required_evidence": [
+              "npm_registry"
+            ]
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "npm_registry",
+            "reasoning": "MemoryWeaver context recommends checking npm_registry evidence first, and action_2 is the recommended evidence. Avoid known bad path action_1."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "npm_registry resolved npm_registry_conflict_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "npm_registry_conflict",
+        "task_id": "npm_registry_conflict_target_2",
+        "arm": "mw_verified_memory_marker",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "delete_lockfile",
+        "action_with_context": "npm_registry",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "npm_registry_conflict",
+        "task_id": "npm_registry_conflict_target_2",
+        "arm": "mw_verified_memory_marker",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_npm_registry_conflict_success",
+          "mem_npm_registry_conflict_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_1",
+      "arm": "no_memory",
+      "similarity_bucket": "high",
+      "success": false,
+      "steps_to_success": 6,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 6,
+      "tool_call_count": 6,
+      "first_required_evidence_step": 0,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 6,
+      "prompt_char_count": 720,
+      "token_estimate": 180,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The issue recurred with different wording, so checking MemoryWeaver for prior evidence or patterns is the safest first step before taking any action."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for docker_build_warning_target_1"
+          }
+        },
+        {
+          "step": 2,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The previous action was invalid, so we need to check existing evidence for the target to understand the warning and avoid blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for docker_build_warning_target_1"
+          }
+        },
+        {
+          "step": 3,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to triage a Docker build warning that recurred under different wording. Checking evidence will gather relevant logs or context to understand the issue before taking further action."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for docker_build_warning_target_1"
+          }
+        },
+        {
+          "step": 4,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to triage a Docker build warning that recurred under different wording. Checking evidence will retrieve any previously collected data or logs related to this target, which is a standard diagnostic step before taking further action."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for docker_build_warning_target_1"
+          }
+        },
+        {
+          "step": 5,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The history shows repeated invalid actions. To avoid blind reinstallation, I should check existing evidence for the warning recurrence."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for docker_build_warning_target_1"
+          }
+        },
+        {
+          "step": 6,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to triage a Docker build warning that recurred under different wording. The recent history shows repeated invalid actions, indicating a need to gather evidence before proceeding. Checking evidence aligns with MemoryWeaver's principle of preferring evidence over blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for docker_build_warning_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "docker_build_warning",
+        "task_id": "docker_build_warning_target_1",
+        "arm": "no_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "docker_push_latest",
+        "action_with_context": "__invalid_action__",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "docker_build_warning",
+        "task_id": "docker_build_warning_target_1",
+        "arm": "no_memory",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_2",
+      "arm": "no_memory",
+      "similarity_bucket": "high",
+      "success": false,
+      "steps_to_success": 6,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 6,
+      "tool_call_count": 6,
+      "first_required_evidence_step": 0,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 6,
+      "prompt_char_count": 720,
+      "token_estimate": 180,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The issue recurred with different wording, so checking MemoryWeaver for similar past evidence is the most efficient next step before attempting any tool calls or asking the user."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for docker_build_warning_target_2"
+          }
+        },
+        {
+          "step": 2,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The previous action was invalid. I need to check existing evidence for this target to understand the recurrence and avoid blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for docker_build_warning_target_2"
+          }
+        },
+        {
+          "step": 3,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The previous actions were invalid, so I need to check what evidence is available for this target to determine the correct next step."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for docker_build_warning_target_2"
+          }
+        },
+        {
+          "step": 4,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to triage a Docker build warning that recurred under different wording. Checking evidence will gather diagnostic information without blind reinstallation, aligning with MemoryWeaver's preference for evidence-based actions."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for docker_build_warning_target_2"
+          }
+        },
+        {
+          "step": 5,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The history shows repeated invalid actions. To break the cycle, I should check existing evidence for this target to understand the issue before proceeding."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for docker_build_warning_target_2"
+          }
+        },
+        {
+          "step": 6,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The history shows repeated invalid actions. To avoid blind reinstallation, I should first check existing evidence for this target to understand the warning and guide the next step."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for docker_build_warning_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "docker_build_warning",
+        "task_id": "docker_build_warning_target_2",
+        "arm": "no_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "docker_push_latest",
+        "action_with_context": "__invalid_action__",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "docker_build_warning",
+        "task_id": "docker_build_warning_target_2",
+        "arm": "no_memory",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_1",
+      "arm": "raw_rag_over_logs",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 351,
+      "token_estimate": 87,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "Raw historical log: Previous source episode failed when trying docker_push_latest first.\nRaw historical log: Previous source episode succeeded after checking docker_config.\nNo source gate, no polarity labels, no marker eligibility.",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "docker_config",
+            "reasoning": "Previous episode succeeded after checking docker_config, so verifying evidence for docker_config is the most promising next step."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "docker_config resolved docker_build_warning_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "docker_build_warning",
+        "task_id": "docker_build_warning_target_1",
+        "arm": "raw_rag_over_logs",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "docker_push_latest",
+        "action_with_context": "docker_config",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "docker_build_warning",
+        "task_id": "docker_build_warning_target_1",
+        "arm": "raw_rag_over_logs",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_2",
+      "arm": "raw_rag_over_logs",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 351,
+      "token_estimate": 87,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "Raw historical log: Previous source episode failed when trying docker_push_latest first.\nRaw historical log: Previous source episode succeeded after checking docker_config.\nNo source gate, no polarity labels, no marker eligibility.",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "docker_config",
+            "reasoning": "Previous episode succeeded after checking docker_config; avoid repeating the failed path of docker_push_latest first."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "docker_config resolved docker_build_warning_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "docker_build_warning",
+        "task_id": "docker_build_warning_target_2",
+        "arm": "raw_rag_over_logs",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "docker_push_latest",
+        "action_with_context": "docker_config",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "docker_build_warning",
+        "task_id": "docker_build_warning_target_2",
+        "arm": "raw_rag_over_logs",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_1",
+      "arm": "mw_verified_memory",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 379,
+      "token_estimate": 94,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem docker build warning success) Previous source episode succeeded after checking docker_config.\n2. [tool] ⚠️ AVOID (mem docker build warning failure) Previous source episode failed when trying docker_push_latest first.",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [
+              "mem_docker_build_warning_success",
+              "mem_docker_build_warning_failure"
+            ],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "docker_config",
+            "reasoning": "MemoryWeaver context indicates required evidence is docker_config, and recommended evidence includes action_2. Known bad action is action_1, so avoid it. Checking evidence aligns with the goal of triaging the Docker build warning."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "docker_config resolved docker_build_warning_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "docker_build_warning",
+        "task_id": "docker_build_warning_target_1",
+        "arm": "mw_verified_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "docker_push_latest",
+        "action_with_context": "docker_config",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "docker_build_warning",
+        "task_id": "docker_build_warning_target_1",
+        "arm": "mw_verified_memory",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_docker_build_warning_success",
+          "mem_docker_build_warning_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_2",
+      "arm": "mw_verified_memory",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 379,
+      "token_estimate": 94,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem docker build warning success) Previous source episode succeeded after checking docker_config.\n2. [tool] ⚠️ AVOID (mem docker build warning failure) Previous source episode failed when trying docker_push_latest first.",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [
+              "mem_docker_build_warning_success",
+              "mem_docker_build_warning_failure"
+            ],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "docker_config",
+            "reasoning": "MemoryWeaver context indicates required evidence is docker_config (action_2) and warns against action_1. Recent history is empty, so starting with evidence check is safest."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "docker_config resolved docker_build_warning_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "docker_build_warning",
+        "task_id": "docker_build_warning_target_2",
+        "arm": "mw_verified_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "docker_push_latest",
+        "action_with_context": "docker_config",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "docker_build_warning",
+        "task_id": "docker_build_warning_target_2",
+        "arm": "mw_verified_memory",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_docker_build_warning_success",
+          "mem_docker_build_warning_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_1",
+      "arm": "mw_verified_memory_marker",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": true,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 608,
+      "token_estimate": 152,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem docker build warning success) Previous source episode succeeded after checking docker_config.\n2. [tool] ⚠️ AVOID (mem docker build warning failure) Previous source episode failed when trying docker_push_latest first.\n\n## Diagnostic Guidance (MemoryWeaver Marker)\nIssue recognized: marker_docker_build_warning\nRecommended route: fast_verify\nKNOWN BAD PATHS (avoid these): docker_push_latest\nRECOMMENDED EVIDENCE (check these first): docker_config",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": true,
+            "marker_id": "marker_docker_build_warning",
+            "allowed_memory_ids": [
+              "mem_docker_build_warning_success",
+              "mem_docker_build_warning_failure"
+            ],
+            "suppressed_actions": [
+              "docker_push_latest"
+            ],
+            "required_evidence": [
+              "docker_config"
+            ]
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "docker_config",
+            "reasoning": "MemoryWeaver context recommends checking docker_config evidence first, and action_2 is the recommended evidence. Avoid known bad action action_1."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "docker_config resolved docker_build_warning_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "docker_build_warning",
+        "task_id": "docker_build_warning_target_1",
+        "arm": "mw_verified_memory_marker",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "docker_push_latest",
+        "action_with_context": "docker_config",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "docker_build_warning",
+        "task_id": "docker_build_warning_target_1",
+        "arm": "mw_verified_memory_marker",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_docker_build_warning_success",
+          "mem_docker_build_warning_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_2",
+      "arm": "mw_verified_memory_marker",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": true,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 608,
+      "token_estimate": 152,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem docker build warning success) Previous source episode succeeded after checking docker_config.\n2. [tool] ⚠️ AVOID (mem docker build warning failure) Previous source episode failed when trying docker_push_latest first.\n\n## Diagnostic Guidance (MemoryWeaver Marker)\nIssue recognized: marker_docker_build_warning\nRecommended route: fast_verify\nKNOWN BAD PATHS (avoid these): docker_push_latest\nRECOMMENDED EVIDENCE (check these first): docker_config",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": true,
+            "marker_id": "marker_docker_build_warning",
+            "allowed_memory_ids": [
+              "mem_docker_build_warning_success",
+              "mem_docker_build_warning_failure"
+            ],
+            "suppressed_actions": [
+              "docker_push_latest"
+            ],
+            "required_evidence": [
+              "docker_config"
+            ]
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "docker_config",
+            "reasoning": "MemoryWeaver context recommends checking docker_config evidence first, and action_2 is the recommended evidence. Known bad action action_1 (docker_push_latest) should be avoided."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "docker_config resolved docker_build_warning_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "docker_build_warning",
+        "task_id": "docker_build_warning_target_2",
+        "arm": "mw_verified_memory_marker",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "docker_push_latest",
+        "action_with_context": "docker_config",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "docker_build_warning",
+        "task_id": "docker_build_warning_target_2",
+        "arm": "mw_verified_memory_marker",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_docker_build_warning_success",
+          "mem_docker_build_warning_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_1",
+      "arm": "no_memory",
+      "similarity_bucket": "high",
+      "success": false,
+      "steps_to_success": 6,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 6,
+      "tool_call_count": 6,
+      "first_required_evidence_step": 0,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 6,
+      "prompt_char_count": 678,
+      "token_estimate": 169,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The issue recurred under different wording, suggesting a pattern. Checking MemoryWeaver for prior evidence or known solutions is the most efficient first step before attempting other actions."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for ci_timeout_logs_target_1"
+          }
+        },
+        {
+          "step": 2,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The previous action was invalid, so we need to check what evidence is available for this target before proceeding."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for ci_timeout_logs_target_1"
+          }
+        },
+        {
+          "step": 3,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The previous actions were invalid, so we need to check what evidence is available for this target before proceeding."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for ci_timeout_logs_target_1"
+          }
+        },
+        {
+          "step": 4,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose a CI timeout issue that recurred. Recent history shows repeated invalid actions, so we need to gather evidence from the target to understand the problem before taking further steps."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for ci_timeout_logs_target_1"
+          }
+        },
+        {
+          "step": 5,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The recent history shows repeated invalid actions, indicating a need to gather existing evidence before proceeding. Checking evidence aligns with the goal of diagnosing the CI timeout issue and avoids blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for ci_timeout_logs_target_1"
+          }
+        },
+        {
+          "step": 6,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The recent history shows repeated invalid actions, indicating a need to gather evidence from the target to understand the issue before proceeding."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for ci_timeout_logs_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "ci_timeout_logs",
+        "task_id": "ci_timeout_logs_target_1",
+        "arm": "no_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "rerun_without_logs",
+        "action_with_context": "__invalid_action__",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "ci_timeout_logs",
+        "task_id": "ci_timeout_logs_target_1",
+        "arm": "no_memory",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_2",
+      "arm": "no_memory",
+      "similarity_bucket": "high",
+      "success": false,
+      "steps_to_success": 6,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 6,
+      "tool_call_count": 6,
+      "first_required_evidence_step": 0,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 7,
+      "prompt_char_count": 678,
+      "token_estimate": 169,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose a CI timeout issue that recurred under different wording. Checking MemoryWeaver for existing evidence about this issue is the most efficient next step, as it may contain relevant diagnostic data or past solutions, avoiding blind reinstallation or unnecessary tool calls."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for ci_timeout_logs_target_2"
+          }
+        },
+        {
+          "step": 2,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The previous action was invalid, so we need to check what evidence is available for this target before proceeding."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for ci_timeout_logs_target_2"
+          }
+        },
+        {
+          "step": 3,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The previous actions were invalid, so we need to check what evidence is available for this target before proceeding."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for ci_timeout_logs_target_2"
+          }
+        },
+        {
+          "step": 4,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose a CI timeout issue that recurred under different wording. The available actions are limited, and recent history shows invalid actions. Checking evidence is the safest next step to gather information before proceeding."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for ci_timeout_logs_target_2"
+          }
+        },
+        {
+          "step": 5,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The recent history shows repeated invalid actions, indicating a need to gather evidence from the target to understand the CI timeout issue. Checking evidence will provide necessary context to proceed with diagnosis."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for ci_timeout_logs_target_2"
+          }
+        },
+        {
+          "step": 6,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The recent history shows repeated invalid actions, indicating a need to gather evidence from the target to understand the issue before proceeding."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for ci_timeout_logs_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "ci_timeout_logs",
+        "task_id": "ci_timeout_logs_target_2",
+        "arm": "no_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "rerun_without_logs",
+        "action_with_context": "__invalid_action__",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "ci_timeout_logs",
+        "task_id": "ci_timeout_logs_target_2",
+        "arm": "no_memory",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_1",
+      "arm": "raw_rag_over_logs",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 338,
+      "token_estimate": 84,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "Raw historical log: Previous source episode failed when trying rerun_without_logs first.\nRaw historical log: Previous source episode succeeded after checking ci_logs.\nNo source gate, no polarity labels, no marker eligibility.",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "ci_logs",
+            "reasoning": "Previous episode succeeded after checking ci_logs; avoid blind reinstallation. Check evidence first."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "ci_logs resolved ci_timeout_logs_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "ci_timeout_logs",
+        "task_id": "ci_timeout_logs_target_1",
+        "arm": "raw_rag_over_logs",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "rerun_without_logs",
+        "action_with_context": "ci_logs",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "ci_timeout_logs",
+        "task_id": "ci_timeout_logs_target_1",
+        "arm": "raw_rag_over_logs",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_2",
+      "arm": "raw_rag_over_logs",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 338,
+      "token_estimate": 84,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "Raw historical log: Previous source episode failed when trying rerun_without_logs first.\nRaw historical log: Previous source episode succeeded after checking ci_logs.\nNo source gate, no polarity labels, no marker eligibility.",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "ci_logs",
+            "reasoning": "Previous episode succeeded after checking ci_logs, so this is the most promising next step to gather evidence for the CI timeout diagnosis."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "ci_logs resolved ci_timeout_logs_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "ci_timeout_logs",
+        "task_id": "ci_timeout_logs_target_2",
+        "arm": "raw_rag_over_logs",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "rerun_without_logs",
+        "action_with_context": "ci_logs",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "ci_timeout_logs",
+        "task_id": "ci_timeout_logs_target_2",
+        "arm": "raw_rag_over_logs",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_1",
+      "arm": "mw_verified_memory",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 356,
+      "token_estimate": 89,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem ci timeout logs success) Previous source episode succeeded after checking ci_logs.\n2. [tool] ⚠️ AVOID (mem ci timeout logs failure) Previous source episode failed when trying rerun_without_logs first.",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [
+              "mem_ci_timeout_logs_success",
+              "mem_ci_timeout_logs_failure"
+            ],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "ci_logs",
+            "reasoning": "MemoryWeaver context indicates required evidence is ci_logs, and action_2 is recommended. Known bad action action_1 should be avoided."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "ci_logs resolved ci_timeout_logs_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "ci_timeout_logs",
+        "task_id": "ci_timeout_logs_target_1",
+        "arm": "mw_verified_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "rerun_without_logs",
+        "action_with_context": "ci_logs",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "ci_timeout_logs",
+        "task_id": "ci_timeout_logs_target_1",
+        "arm": "mw_verified_memory",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_ci_timeout_logs_success",
+          "mem_ci_timeout_logs_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_2",
+      "arm": "mw_verified_memory",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 356,
+      "token_estimate": 89,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem ci timeout logs success) Previous source episode succeeded after checking ci_logs.\n2. [tool] ⚠️ AVOID (mem ci timeout logs failure) Previous source episode failed when trying rerun_without_logs first.",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [
+              "mem_ci_timeout_logs_success",
+              "mem_ci_timeout_logs_failure"
+            ],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "ci_logs",
+            "reasoning": "MemoryWeaver context warns against action_1 (rerun_without_logs) and recommends evidence action_2 (ci_logs). Following the safe path."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "ci_logs resolved ci_timeout_logs_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "ci_timeout_logs",
+        "task_id": "ci_timeout_logs_target_2",
+        "arm": "mw_verified_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "rerun_without_logs",
+        "action_with_context": "ci_logs",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "ci_timeout_logs",
+        "task_id": "ci_timeout_logs_target_2",
+        "arm": "mw_verified_memory",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_ci_timeout_logs_success",
+          "mem_ci_timeout_logs_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_1",
+      "arm": "mw_verified_memory_marker",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": true,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 574,
+      "token_estimate": 143,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem ci timeout logs success) Previous source episode succeeded after checking ci_logs.\n2. [tool] ⚠️ AVOID (mem ci timeout logs failure) Previous source episode failed when trying rerun_without_logs first.\n\n## Diagnostic Guidance (MemoryWeaver Marker)\nIssue recognized: marker_ci_timeout_logs\nRecommended route: fast_verify\nKNOWN BAD PATHS (avoid these): rerun_without_logs\nRECOMMENDED EVIDENCE (check these first): ci_logs",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": true,
+            "marker_id": "marker_ci_timeout_logs",
+            "allowed_memory_ids": [
+              "mem_ci_timeout_logs_success",
+              "mem_ci_timeout_logs_failure"
+            ],
+            "suppressed_actions": [
+              "rerun_without_logs"
+            ],
+            "required_evidence": [
+              "ci_logs"
+            ]
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "ci_logs",
+            "reasoning": "MemoryWeaver context recommends checking ci_logs first and warns against rerun_without_logs. action_2 is the recommended evidence action."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "ci_logs resolved ci_timeout_logs_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "ci_timeout_logs",
+        "task_id": "ci_timeout_logs_target_1",
+        "arm": "mw_verified_memory_marker",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "rerun_without_logs",
+        "action_with_context": "ci_logs",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "ci_timeout_logs",
+        "task_id": "ci_timeout_logs_target_1",
+        "arm": "mw_verified_memory_marker",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_ci_timeout_logs_success",
+          "mem_ci_timeout_logs_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_2",
+      "arm": "mw_verified_memory_marker",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": true,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 574,
+      "token_estimate": 143,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem ci timeout logs success) Previous source episode succeeded after checking ci_logs.\n2. [tool] ⚠️ AVOID (mem ci timeout logs failure) Previous source episode failed when trying rerun_without_logs first.\n\n## Diagnostic Guidance (MemoryWeaver Marker)\nIssue recognized: marker_ci_timeout_logs\nRecommended route: fast_verify\nKNOWN BAD PATHS (avoid these): rerun_without_logs\nRECOMMENDED EVIDENCE (check these first): ci_logs",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": true,
+            "marker_id": "marker_ci_timeout_logs",
+            "allowed_memory_ids": [
+              "mem_ci_timeout_logs_success",
+              "mem_ci_timeout_logs_failure"
+            ],
+            "suppressed_actions": [
+              "rerun_without_logs"
+            ],
+            "required_evidence": [
+              "ci_logs"
+            ]
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "ci_logs",
+            "reasoning": "MemoryWeaver context recommends checking ci_logs first and warns against rerun_without_logs. action_2 is the recommended evidence, so I choose check_evidence with target action_2."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "ci_logs resolved ci_timeout_logs_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "ci_timeout_logs",
+        "task_id": "ci_timeout_logs_target_2",
+        "arm": "mw_verified_memory_marker",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "rerun_without_logs",
+        "action_with_context": "ci_logs",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "ci_timeout_logs",
+        "task_id": "ci_timeout_logs_target_2",
+        "arm": "mw_verified_memory_marker",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_ci_timeout_logs_success",
+          "mem_ci_timeout_logs_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_1",
+      "arm": "no_memory",
+      "similarity_bucket": "high",
+      "success": false,
+      "steps_to_success": 6,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 6,
+      "tool_call_count": 6,
+      "first_required_evidence_step": 0,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 6,
+      "prompt_char_count": 678,
+      "token_estimate": 169,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The issue recurred with different wording, suggesting a pattern. Checking MemoryWeaver for prior evidence on API key scope denials can avoid blind reinstallation and guide targeted diagnosis."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for api_key_scope_denied_target_1"
+          }
+        },
+        {
+          "step": 2,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The previous action was invalid; we need to gather evidence about the API key scope denial issue before proceeding."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for api_key_scope_denied_target_1"
+          }
+        },
+        {
+          "step": 3,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal indicates the issue recurred under different wording, suggesting a need to gather more evidence before taking action. Checking evidence aligns with MemoryWeaver's preference for evidence over blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for api_key_scope_denied_target_1"
+          }
+        },
+        {
+          "step": 4,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose the recurring issue. Checking evidence may reveal patterns or root causes from previous attempts, avoiding blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for api_key_scope_denied_target_1"
+          }
+        },
+        {
+          "step": 5,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The issue recurred under different wording, suggesting a persistent scope problem. Checking existing evidence may reveal patterns or known solutions without repeating invalid actions."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for api_key_scope_denied_target_1"
+          }
+        },
+        {
+          "step": 6,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The issue recurred under different wording, suggesting a deeper scope or permission problem. Checking evidence may reveal patterns or constraints from previous attempts."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for api_key_scope_denied_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "api_key_scope_denied",
+        "task_id": "api_key_scope_denied_target_1",
+        "arm": "no_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "rotate_key_blindly",
+        "action_with_context": "__invalid_action__",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "api_key_scope_denied",
+        "task_id": "api_key_scope_denied_target_1",
+        "arm": "no_memory",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_2",
+      "arm": "no_memory",
+      "similarity_bucket": "high",
+      "success": false,
+      "steps_to_success": 6,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 6,
+      "tool_call_count": 6,
+      "first_required_evidence_step": 0,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 7,
+      "prompt_char_count": 678,
+      "token_estimate": 169,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "Check MemoryWeaver for evidence about the recurring API key scope denial issue to avoid blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for api_key_scope_denied_target_2"
+          }
+        },
+        {
+          "step": 2,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The previous action was invalid, so we need to check existing evidence for this sibling task before attempting any tool calls or asking the user."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for api_key_scope_denied_target_2"
+          }
+        },
+        {
+          "step": 3,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose an API key scope denial issue. Recent history shows invalid actions, so we need to gather evidence from MemoryWeaver to understand the context and avoid blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for api_key_scope_denied_target_2"
+          }
+        },
+        {
+          "step": 4,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose the recurring issue under different wording. Checking evidence from MemoryWeaver may reveal patterns or known solutions, avoiding blind reinstallation."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for api_key_scope_denied_target_2"
+          }
+        },
+        {
+          "step": 5,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The issue recurred under different wording, so checking existing evidence may reveal patterns or root causes without repeating invalid actions."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for api_key_scope_denied_target_2"
+          }
+        },
+        {
+          "step": 6,
+          "memory_context": "",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "__invalid_action__",
+            "reasoning": "The goal is to diagnose an API key scope denial issue that recurred under different wording. Checking evidence from MemoryWeaver may reveal prior findings or patterns without repeating invalid actions."
+          },
+          "result": {
+            "status": "invalid_action",
+            "signal": "neutral",
+            "evidence": "__invalid_action__ is not an executable action for api_key_scope_denied_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "api_key_scope_denied",
+        "task_id": "api_key_scope_denied_target_2",
+        "arm": "no_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "rotate_key_blindly",
+        "action_with_context": "__invalid_action__",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "api_key_scope_denied",
+        "task_id": "api_key_scope_denied_target_2",
+        "arm": "no_memory",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_1",
+      "arm": "raw_rag_over_logs",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 344,
+      "token_estimate": 86,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "Raw historical log: Previous source episode failed when trying rotate_key_blindly first.\nRaw historical log: Previous source episode succeeded after checking api_key_scope.\nNo source gate, no polarity labels, no marker eligibility.",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "api_key_scope",
+            "reasoning": "MemoryWeaver context indicates that a previous episode succeeded after checking api_key_scope, and failed when rotating the key blindly. Since the issue recurred under different wording, checking evidence on api_key_scope is the most informed next step."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "api_key_scope resolved api_key_scope_denied_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "api_key_scope_denied",
+        "task_id": "api_key_scope_denied_target_1",
+        "arm": "raw_rag_over_logs",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "rotate_key_blindly",
+        "action_with_context": "api_key_scope",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "api_key_scope_denied",
+        "task_id": "api_key_scope_denied_target_1",
+        "arm": "raw_rag_over_logs",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_2",
+      "arm": "raw_rag_over_logs",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 344,
+      "token_estimate": 86,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "",
+          "raw_context": "Raw historical log: Previous source episode failed when trying rotate_key_blindly first.\nRaw historical log: Previous source episode succeeded after checking api_key_scope.\nNo source gate, no polarity labels, no marker eligibility.",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "api_key_scope",
+            "reasoning": "Historical log shows that checking api_key_scope led to success, while rotating blindly failed. Since the issue recurred, verifying the API key scope is the logical next step to avoid repeating the failed path."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "api_key_scope resolved api_key_scope_denied_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "api_key_scope_denied",
+        "task_id": "api_key_scope_denied_target_2",
+        "arm": "raw_rag_over_logs",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "rotate_key_blindly",
+        "action_with_context": "api_key_scope",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "api_key_scope_denied",
+        "task_id": "api_key_scope_denied_target_2",
+        "arm": "raw_rag_over_logs",
+        "retrieval_hit_before_critical_action": false,
+        "critical_action_changed_by_memory": false,
+        "allowed_memory_ids_first_step": []
+      }
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_1",
+      "arm": "mw_verified_memory",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 372,
+      "token_estimate": 93,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem api key scope denied success) Previous source episode succeeded after checking api_key_scope.\n2. [tool] ⚠️ AVOID (mem api key scope denied failure) Previous source episode failed when trying rotate_key_blindly first.",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [
+              "mem_api_key_scope_denied_success",
+              "mem_api_key_scope_denied_failure"
+            ],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "api_key_scope",
+            "reasoning": "MemoryWeaver context indicates that checking api_key_scope (action_2) is required evidence and that rotate_key_blindly (action_1) is a known bad action. The recommended safe action is check_evidence with target action_2."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "api_key_scope resolved api_key_scope_denied_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "api_key_scope_denied",
+        "task_id": "api_key_scope_denied_target_1",
+        "arm": "mw_verified_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "rotate_key_blindly",
+        "action_with_context": "api_key_scope",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "api_key_scope_denied",
+        "task_id": "api_key_scope_denied_target_1",
+        "arm": "mw_verified_memory",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_api_key_scope_denied_success",
+          "mem_api_key_scope_denied_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_2",
+      "arm": "mw_verified_memory",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": false,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 372,
+      "token_estimate": 93,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem api key scope denied success) Previous source episode succeeded after checking api_key_scope.\n2. [tool] ⚠️ AVOID (mem api key scope denied failure) Previous source episode failed when trying rotate_key_blindly first.",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": false,
+            "marker_id": "",
+            "allowed_memory_ids": [
+              "mem_api_key_scope_denied_success",
+              "mem_api_key_scope_denied_failure"
+            ],
+            "suppressed_actions": [],
+            "required_evidence": []
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "api_key_scope",
+            "reasoning": "MemoryWeaver context indicates that checking api_key_scope (action_2) is required evidence and that rotate_key_blindly (action_1) is a known bad action. The recommended safe action is check_evidence on action_2."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "api_key_scope resolved api_key_scope_denied_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "api_key_scope_denied",
+        "task_id": "api_key_scope_denied_target_2",
+        "arm": "mw_verified_memory",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "rotate_key_blindly",
+        "action_with_context": "api_key_scope",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "api_key_scope_denied",
+        "task_id": "api_key_scope_denied_target_2",
+        "arm": "mw_verified_memory",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_api_key_scope_denied_success",
+          "mem_api_key_scope_denied_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_1",
+      "arm": "mw_verified_memory_marker",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": true,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 1,
+      "prompt_char_count": 601,
+      "token_estimate": 150,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem api key scope denied success) Previous source episode succeeded after checking api_key_scope.\n2. [tool] ⚠️ AVOID (mem api key scope denied failure) Previous source episode failed when trying rotate_key_blindly first.\n\n## Diagnostic Guidance (MemoryWeaver Marker)\nIssue recognized: marker_api_key_scope_denied\nRecommended route: fast_verify\nKNOWN BAD PATHS (avoid these): rotate_key_blindly\nRECOMMENDED EVIDENCE (check these first): api_key_scope",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": true,
+            "marker_id": "marker_api_key_scope_denied",
+            "allowed_memory_ids": [
+              "mem_api_key_scope_denied_success",
+              "mem_api_key_scope_denied_failure"
+            ],
+            "suppressed_actions": [
+              "rotate_key_blindly"
+            ],
+            "required_evidence": [
+              "api_key_scope"
+            ]
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "api_key_scope",
+            "reasoning": "MemoryWeaver context identifies the issue as marker_api_key_scope_denied, recommends fast_verify via api_key_scope evidence, and warns against rotate_key_blindly. action_2 is the recommended evidence action, so checking it first aligns with the diagnostic guidance."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "api_key_scope resolved api_key_scope_denied_target_1"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "api_key_scope_denied",
+        "task_id": "api_key_scope_denied_target_1",
+        "arm": "mw_verified_memory_marker",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "rotate_key_blindly",
+        "action_with_context": "api_key_scope",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "api_key_scope_denied",
+        "task_id": "api_key_scope_denied_target_1",
+        "arm": "mw_verified_memory_marker",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_api_key_scope_denied_success",
+          "mem_api_key_scope_denied_failure"
+        ]
+      }
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_2",
+      "arm": "mw_verified_memory_marker",
+      "similarity_bucket": "high",
+      "success": true,
+      "steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "tool_call_count": 1,
+      "first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "marker_direct_action_change": false,
+      "marker_added_value": true,
+      "user_correction_count": 0,
+      "verified_memory_write_count": 2,
+      "promotion_count": 2,
+      "rollback_count": 0,
+      "online_llm_call_count": 2,
+      "prompt_char_count": 601,
+      "token_estimate": 150,
+      "steps": [
+        {
+          "step": 1,
+          "memory_context": "## Relevant Past Experience\n1. [tool] (mem api key scope denied success) Previous source episode succeeded after checking api_key_scope.\n2. [tool] ⚠️ AVOID (mem api key scope denied failure) Previous source episode failed when trying rotate_key_blindly first.\n\n## Diagnostic Guidance (MemoryWeaver Marker)\nIssue recognized: marker_api_key_scope_denied\nRecommended route: fast_verify\nKNOWN BAD PATHS (avoid these): rotate_key_blindly\nRECOMMENDED EVIDENCE (check these first): api_key_scope",
+          "raw_context": "",
+          "decision": {
+            "marker_activated": true,
+            "marker_id": "marker_api_key_scope_denied",
+            "allowed_memory_ids": [
+              "mem_api_key_scope_denied_success",
+              "mem_api_key_scope_denied_failure"
+            ],
+            "suppressed_actions": [
+              "rotate_key_blindly"
+            ],
+            "required_evidence": [
+              "api_key_scope"
+            ]
+          },
+          "action": {
+            "name": "check_evidence",
+            "target": "api_key_scope",
+            "reasoning": "MemoryWeaver context recommends checking api_key_scope evidence first, and action_2 is the recommended evidence. Avoid known bad path action_1 (rotate_key_blindly)."
+          },
+          "result": {
+            "status": "evidence_observed",
+            "signal": "positive",
+            "evidence": "api_key_scope resolved api_key_scope_denied_target_2"
+          }
+        }
+      ],
+      "decision_probe": {
+        "family_id": "api_key_scope_denied",
+        "task_id": "api_key_scope_denied_target_2",
+        "arm": "mw_verified_memory_marker",
+        "probe_type": "context_action_change",
+        "trap_observation": "POISON_RESULT_SENTINEL",
+        "action_without_memory": "rotate_key_blindly",
+        "action_with_context": "api_key_scope",
+        "decision_changed": true
+      },
+      "memory_use_probe": {
+        "family_id": "api_key_scope_denied",
+        "task_id": "api_key_scope_denied_target_2",
+        "arm": "mw_verified_memory_marker",
+        "retrieval_hit_before_critical_action": true,
+        "critical_action_changed_by_memory": true,
+        "allowed_memory_ids_first_step": [
+          "mem_api_key_scope_denied_success",
+          "mem_api_key_scope_denied_failure"
+        ]
+      }
+    }
+  ],
+  "arm_metrics": {
+    "no_memory": {
+      "task_count": 10,
+      "success_rate": 0.0,
+      "average_steps_to_success": 6,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 60,
+      "average_tool_call_count": 6,
+      "required_evidence_first_hit_rate": 0.0,
+      "average_first_required_evidence_step": 0,
+      "retrieval_hit_before_critical_action_rate": 0.0,
+      "critical_action_changed_by_memory_rate": 0.0,
+      "marker_direct_action_change_count": 0,
+      "marker_added_value_count": 0,
+      "average_token_estimate": 177.8,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "online_llm_call_count": 65
+    },
+    "raw_rag_over_logs": {
+      "task_count": 10,
+      "success_rate": 1.0,
+      "average_steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "average_tool_call_count": 1,
+      "required_evidence_first_hit_rate": 1.0,
+      "average_first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action_rate": 0.0,
+      "critical_action_changed_by_memory_rate": 0.0,
+      "marker_direct_action_change_count": 0,
+      "marker_added_value_count": 0,
+      "average_token_estimate": 86.8,
+      "verified_memory_write_count": 0,
+      "promotion_count": 0,
+      "online_llm_call_count": 10
+    },
+    "mw_verified_memory": {
+      "task_count": 10,
+      "success_rate": 1.0,
+      "average_steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "average_tool_call_count": 1,
+      "required_evidence_first_hit_rate": 1.0,
+      "average_first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action_rate": 1.0,
+      "critical_action_changed_by_memory_rate": 1.0,
+      "marker_direct_action_change_count": 0,
+      "marker_added_value_count": 0,
+      "average_token_estimate": 93.6,
+      "verified_memory_write_count": 20,
+      "promotion_count": 20,
+      "online_llm_call_count": 10
+    },
+    "mw_verified_memory_marker": {
+      "task_count": 10,
+      "success_rate": 1.0,
+      "average_steps_to_success": 1,
+      "known_bad_action_attempts": 0,
+      "invalid_action_count": 0,
+      "average_tool_call_count": 1,
+      "required_evidence_first_hit_rate": 1.0,
+      "average_first_required_evidence_step": 1,
+      "retrieval_hit_before_critical_action_rate": 1.0,
+      "critical_action_changed_by_memory_rate": 1.0,
+      "marker_direct_action_change_count": 0,
+      "marker_added_value_count": 10,
+      "average_token_estimate": 150.4,
+      "verified_memory_write_count": 20,
+      "promotion_count": 20,
+      "online_llm_call_count": 12
+    }
+  },
+  "decision_probe": [
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_1",
+      "arm": "no_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "reinstall_npm",
+      "action_with_context": "__invalid_action__",
+      "decision_changed": true
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_2",
+      "arm": "no_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "reinstall_npm",
+      "action_with_context": "__invalid_action__",
+      "decision_changed": true
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_1",
+      "arm": "raw_rag_over_logs",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "reinstall_npm",
+      "action_with_context": "selected_organization",
+      "decision_changed": true
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_2",
+      "arm": "raw_rag_over_logs",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "reinstall_npm",
+      "action_with_context": "selected_organization",
+      "decision_changed": true
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_1",
+      "arm": "mw_verified_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "reinstall_npm",
+      "action_with_context": "selected_organization",
+      "decision_changed": true
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_2",
+      "arm": "mw_verified_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "reinstall_npm",
+      "action_with_context": "selected_organization",
+      "decision_changed": true
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_1",
+      "arm": "mw_verified_memory_marker",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "reinstall_npm",
+      "action_with_context": "selected_organization",
+      "decision_changed": true
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_2",
+      "arm": "mw_verified_memory_marker",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "reinstall_npm",
+      "action_with_context": "selected_organization",
+      "decision_changed": true
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_1",
+      "arm": "no_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "delete_lockfile",
+      "action_with_context": "__invalid_action__",
+      "decision_changed": true
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_2",
+      "arm": "no_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "delete_lockfile",
+      "action_with_context": "__invalid_action__",
+      "decision_changed": true
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_1",
+      "arm": "raw_rag_over_logs",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "delete_lockfile",
+      "action_with_context": "npm_registry",
+      "decision_changed": true
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_2",
+      "arm": "raw_rag_over_logs",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "delete_lockfile",
+      "action_with_context": "npm_registry",
+      "decision_changed": true
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_1",
+      "arm": "mw_verified_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "delete_lockfile",
+      "action_with_context": "npm_registry",
+      "decision_changed": true
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_2",
+      "arm": "mw_verified_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "delete_lockfile",
+      "action_with_context": "npm_registry",
+      "decision_changed": true
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_1",
+      "arm": "mw_verified_memory_marker",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "delete_lockfile",
+      "action_with_context": "npm_registry",
+      "decision_changed": true
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_2",
+      "arm": "mw_verified_memory_marker",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "delete_lockfile",
+      "action_with_context": "npm_registry",
+      "decision_changed": true
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_1",
+      "arm": "no_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "docker_push_latest",
+      "action_with_context": "__invalid_action__",
+      "decision_changed": true
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_2",
+      "arm": "no_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "docker_push_latest",
+      "action_with_context": "__invalid_action__",
+      "decision_changed": true
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_1",
+      "arm": "raw_rag_over_logs",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "docker_push_latest",
+      "action_with_context": "docker_config",
+      "decision_changed": true
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_2",
+      "arm": "raw_rag_over_logs",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "docker_push_latest",
+      "action_with_context": "docker_config",
+      "decision_changed": true
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_1",
+      "arm": "mw_verified_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "docker_push_latest",
+      "action_with_context": "docker_config",
+      "decision_changed": true
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_2",
+      "arm": "mw_verified_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "docker_push_latest",
+      "action_with_context": "docker_config",
+      "decision_changed": true
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_1",
+      "arm": "mw_verified_memory_marker",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "docker_push_latest",
+      "action_with_context": "docker_config",
+      "decision_changed": true
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_2",
+      "arm": "mw_verified_memory_marker",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "docker_push_latest",
+      "action_with_context": "docker_config",
+      "decision_changed": true
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_1",
+      "arm": "no_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "rerun_without_logs",
+      "action_with_context": "__invalid_action__",
+      "decision_changed": true
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_2",
+      "arm": "no_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "rerun_without_logs",
+      "action_with_context": "__invalid_action__",
+      "decision_changed": true
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_1",
+      "arm": "raw_rag_over_logs",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "rerun_without_logs",
+      "action_with_context": "ci_logs",
+      "decision_changed": true
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_2",
+      "arm": "raw_rag_over_logs",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "rerun_without_logs",
+      "action_with_context": "ci_logs",
+      "decision_changed": true
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_1",
+      "arm": "mw_verified_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "rerun_without_logs",
+      "action_with_context": "ci_logs",
+      "decision_changed": true
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_2",
+      "arm": "mw_verified_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "rerun_without_logs",
+      "action_with_context": "ci_logs",
+      "decision_changed": true
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_1",
+      "arm": "mw_verified_memory_marker",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "rerun_without_logs",
+      "action_with_context": "ci_logs",
+      "decision_changed": true
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_2",
+      "arm": "mw_verified_memory_marker",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "rerun_without_logs",
+      "action_with_context": "ci_logs",
+      "decision_changed": true
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_1",
+      "arm": "no_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "rotate_key_blindly",
+      "action_with_context": "__invalid_action__",
+      "decision_changed": true
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_2",
+      "arm": "no_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "rotate_key_blindly",
+      "action_with_context": "__invalid_action__",
+      "decision_changed": true
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_1",
+      "arm": "raw_rag_over_logs",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "rotate_key_blindly",
+      "action_with_context": "api_key_scope",
+      "decision_changed": true
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_2",
+      "arm": "raw_rag_over_logs",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "rotate_key_blindly",
+      "action_with_context": "api_key_scope",
+      "decision_changed": true
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_1",
+      "arm": "mw_verified_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "rotate_key_blindly",
+      "action_with_context": "api_key_scope",
+      "decision_changed": true
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_2",
+      "arm": "mw_verified_memory",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "rotate_key_blindly",
+      "action_with_context": "api_key_scope",
+      "decision_changed": true
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_1",
+      "arm": "mw_verified_memory_marker",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "rotate_key_blindly",
+      "action_with_context": "api_key_scope",
+      "decision_changed": true
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_2",
+      "arm": "mw_verified_memory_marker",
+      "probe_type": "context_action_change",
+      "trap_observation": "POISON_RESULT_SENTINEL",
+      "action_without_memory": "rotate_key_blindly",
+      "action_with_context": "api_key_scope",
+      "decision_changed": true
+    }
+  ],
+  "memory_use_probe": [
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_1",
+      "arm": "no_memory",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_2",
+      "arm": "no_memory",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_1",
+      "arm": "raw_rag_over_logs",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_2",
+      "arm": "raw_rag_over_logs",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_1",
+      "arm": "mw_verified_memory",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_codex_subscription_org_success",
+        "mem_codex_subscription_org_failure"
+      ]
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_2",
+      "arm": "mw_verified_memory",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_codex_subscription_org_success",
+        "mem_codex_subscription_org_failure"
+      ]
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_1",
+      "arm": "mw_verified_memory_marker",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_codex_subscription_org_success",
+        "mem_codex_subscription_org_failure"
+      ]
+    },
+    {
+      "family_id": "codex_subscription_org",
+      "task_id": "codex_subscription_org_target_2",
+      "arm": "mw_verified_memory_marker",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_codex_subscription_org_success",
+        "mem_codex_subscription_org_failure"
+      ]
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_1",
+      "arm": "no_memory",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_2",
+      "arm": "no_memory",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_1",
+      "arm": "raw_rag_over_logs",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_2",
+      "arm": "raw_rag_over_logs",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_1",
+      "arm": "mw_verified_memory",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_npm_registry_conflict_success",
+        "mem_npm_registry_conflict_failure"
+      ]
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_2",
+      "arm": "mw_verified_memory",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_npm_registry_conflict_success",
+        "mem_npm_registry_conflict_failure"
+      ]
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_1",
+      "arm": "mw_verified_memory_marker",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_npm_registry_conflict_success",
+        "mem_npm_registry_conflict_failure"
+      ]
+    },
+    {
+      "family_id": "npm_registry_conflict",
+      "task_id": "npm_registry_conflict_target_2",
+      "arm": "mw_verified_memory_marker",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_npm_registry_conflict_success",
+        "mem_npm_registry_conflict_failure"
+      ]
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_1",
+      "arm": "no_memory",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_2",
+      "arm": "no_memory",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_1",
+      "arm": "raw_rag_over_logs",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_2",
+      "arm": "raw_rag_over_logs",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_1",
+      "arm": "mw_verified_memory",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_docker_build_warning_success",
+        "mem_docker_build_warning_failure"
+      ]
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_2",
+      "arm": "mw_verified_memory",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_docker_build_warning_success",
+        "mem_docker_build_warning_failure"
+      ]
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_1",
+      "arm": "mw_verified_memory_marker",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_docker_build_warning_success",
+        "mem_docker_build_warning_failure"
+      ]
+    },
+    {
+      "family_id": "docker_build_warning",
+      "task_id": "docker_build_warning_target_2",
+      "arm": "mw_verified_memory_marker",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_docker_build_warning_success",
+        "mem_docker_build_warning_failure"
+      ]
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_1",
+      "arm": "no_memory",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_2",
+      "arm": "no_memory",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_1",
+      "arm": "raw_rag_over_logs",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_2",
+      "arm": "raw_rag_over_logs",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_1",
+      "arm": "mw_verified_memory",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_ci_timeout_logs_success",
+        "mem_ci_timeout_logs_failure"
+      ]
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_2",
+      "arm": "mw_verified_memory",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_ci_timeout_logs_success",
+        "mem_ci_timeout_logs_failure"
+      ]
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_1",
+      "arm": "mw_verified_memory_marker",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_ci_timeout_logs_success",
+        "mem_ci_timeout_logs_failure"
+      ]
+    },
+    {
+      "family_id": "ci_timeout_logs",
+      "task_id": "ci_timeout_logs_target_2",
+      "arm": "mw_verified_memory_marker",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_ci_timeout_logs_success",
+        "mem_ci_timeout_logs_failure"
+      ]
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_1",
+      "arm": "no_memory",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_2",
+      "arm": "no_memory",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_1",
+      "arm": "raw_rag_over_logs",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_2",
+      "arm": "raw_rag_over_logs",
+      "retrieval_hit_before_critical_action": false,
+      "critical_action_changed_by_memory": false,
+      "allowed_memory_ids_first_step": []
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_1",
+      "arm": "mw_verified_memory",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_api_key_scope_denied_success",
+        "mem_api_key_scope_denied_failure"
+      ]
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_2",
+      "arm": "mw_verified_memory",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_api_key_scope_denied_success",
+        "mem_api_key_scope_denied_failure"
+      ]
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_1",
+      "arm": "mw_verified_memory_marker",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_api_key_scope_denied_success",
+        "mem_api_key_scope_denied_failure"
+      ]
+    },
+    {
+      "family_id": "api_key_scope_denied",
+      "task_id": "api_key_scope_denied_target_2",
+      "arm": "mw_verified_memory_marker",
+      "retrieval_hit_before_critical_action": true,
+      "critical_action_changed_by_memory": true,
+      "allowed_memory_ids_first_step": [
+        "mem_api_key_scope_denied_success",
+        "mem_api_key_scope_denied_failure"
+      ]
+    }
+  ],
+  "cost_metrics": {
+    "no_memory": {
+      "average_token_estimate": 177.8,
+      "token_overhead_vs_no_memory": 0.0,
+      "token_per_successful_task": 0.0,
+      "llm_call_count": 65
+    },
+    "raw_rag_over_logs": {
+      "average_token_estimate": 86.8,
+      "token_overhead_vs_no_memory": -91.0,
+      "token_per_successful_task": 86.8,
+      "llm_call_count": 10
+    },
+    "mw_verified_memory": {
+      "average_token_estimate": 93.6,
+      "token_overhead_vs_no_memory": -84.2,
+      "token_per_successful_task": 93.6,
+      "llm_call_count": 10
+    },
+    "mw_verified_memory_marker": {
+      "average_token_estimate": 150.4,
+      "token_overhead_vs_no_memory": -27.4,
+      "token_per_successful_task": 150.4,
+      "llm_call_count": 12
+    }
+  },
+  "run_config": {
+    "llm": true,
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "base_url": "",
+    "family_limit": 5,
+    "target_limit": 2
+  }
+}

@@ -2,34 +2,92 @@
 
 ## 当前判断
 
-截至 2026-06-03，仓库已有 Sprint 0 原型、经过验证的 P0 anti-pollution 增量，
-以及 SDK v0.2.0 provisional-pattern foundation：
+截至 2026-06-09，仓库已经超出最初的 SDK v0.2.0 provisional-pattern foundation。
+当前 worktree 里，主线已经从“安全存记忆”推进到“Layer-3 path promotion”：
 
 - 基础 schema、JSON store、scorer、extractor、router。
-- `VerifiedRetriever`。
-- `ContradictionResolver`。
-- `MemoryPolicy`、`RetrievalPolicy`、`EvidenceNode`、`EvidenceLink`、`EvidencePacket`。
-- `MemoryWorkspace`、`PatternStore`、`PatternComposer`、`memoryweaver.cli:main`。
-- 中文与中英混合 lexical baseline。
-- 最小 candidate graph / tag-linking：Graph node、edge、proposal、tag expansion、candidate narrowing。
-- 可选 API/provider 框架：默认关闭，只生成 `GraphProposal`，不直接写 edge / memory / Pattern。
-- 113 个 pytest 测试通过。
+- `VerifiedRetriever`、`ContradictionResolver`、`MemoryPolicy`、`RetrievalPolicy`。
+- `PatternStore`、`PatternComposer`、`record_path_trial()`、`select_best_path()`。
+- `EnvironmentContract`、`ToolContract`、`SourceAuthority`。
+- `ActionProposal`、`ActionGate`、`TrajectoryRegulator`。
+- `ContextCapsule`、`RawSpan`、`TagTimeIndex`、`ContentRouter`。
+- 最小 candidate graph / tag-linking 与 `GBrain` sync / projection。
+- `SkillRetriever`、`MemoryWeaverHarness`、tau-style `live_loop`。
+- `mw` CLI 已暴露 pattern trial / best-path、skill、harness、contract、action、trajectory、eval path-promotion。
+- 专门的 Layer-3 path-promotion 协议、benchmark 与 validation artifact 已落地。
+- 当前全量 `pytest` 为 340 passing tests。
 - P0 source gate、tag gate、Router gate 与 heat 生命周期拆分已经完成五轮验证。
 
 完整实验记录见
 [P0 trust-boundary report](./validation/p0-trust-boundary-2026-06-02/README.md)。
-下一步先保持 SDK v0.2.0 回归门禁，再进入 ConflictDetector、Graph 和 RAG。
+当前最重要的判断不再是“继续补 marker 或 retrieval speed 对比”，而是：
+
+> **继续把 verified experience 晋升成更好的 Layer-3 execution path，并证明这种路径晋升在 sibling tasks 上可复用、可替换、可回滚。**
 
 当前结论边界：
 
-- v0.2.0 证明系统 correctness 和 trust boundary。
-- v0.2.0 尚未证明 Agent 任务成功率提升。
-- 下一篇主实验必须进入任务级对比：No Memory vs RAG over logs vs MemoryWeaver。
+- 当前仓库已经证明 Layer-3 path promotion 的最小闭环：stable promotion、best-path selection、
+  stale-path suppression、rollback、zero path regret，并且已经有独立 benchmark /
+  validation artifact。
+- 当前 deterministic trace-loop 已经有 `pass^3` artifact；这不能替代 live LLM 路线的
+  `pass^3`。
+- 当前已有一次 live LLM bridge run 与 live `pass^3` artifact：真实模型只能提出动作或候选路径，
+  Harness 记录 tool result、test result、diff validity、benchmark delta、conflict、rollback，
+  再决定是否晋升。
+- 当前仓库仍未证明真实开放环境中的长期任务成功率提升。
+- 下一篇主实验应该围绕 Path Promotion，而不是 marker novelty 或 retrieval speed。
 - LLM 可以维护候选图谱、候选摘要和候选分支；不能直接维护 verified memory 或
   stable Pattern。
-- 当前 graph 只影响候选召回，不影响 Layer 3 生命周期。
+- 当前 graph 仍不直接改变 Layer 3 生命周期；v0.8 已把 GBrain 升级为
+  authority-limited candidate / search / think / mind-map substrate，但 Harness
+  仍然保留晋升和回滚裁决权。
 - API 的作用是低权限地产生候选图谱操作，真正变化必须通过 proposal acceptance、
   recall、candidate reduction 和 wrong link rate 体现。
+- v0.8 已落地为 integrated substrate：RAG evidence layer、GBrain candidate graph、
+  collaborative specialist EvidencePacket、checkpoint/resume substrate 与 pass^3
+  validation 同时存在，且仍保持 `verified_memory_write_count = 0`、
+  `layer3_mutation_count = 0`、`promotion_without_hard_evidence_count = 0`。
+- 0.9 不再负责继续搭建这些基础件；实验冻结窗口内只继续运行已列入
+  validation guide 的 sanity check、evidence reliability 与 claim mapping，不新增
+  benchmark、adapter、agent loop、marker 类型、GBrain 功能或 LLM provider。
+
+当前不实现的原因：
+
+- Layer3 MVP、experience-transfer、live LLM、coding-debug 和 v0.8 integrated
+  substrate 均已有可运行 validation line；剩余工作是把 artifact 口径继续收紧，
+  而不是继续推迟 v0.8 搭建。
+- COLM 2026 截止前，优先级应是把 v0.7 的 path-promotion、safety、reliability 叙事
+  与测试结果收口，而不是叠加一次 GBrain 激活顺序重构。
+- “Early-link, late-authorize”已经以 authority-limited 的 v0.8 方式落地：GBrain
+  可接收 candidate bundle，RAG 可返回 citable evidence，specialist 可输出
+  EvidencePacket，但它们都不能直接写 verified memory 或 stable Pattern。
+
+推荐中的 v0.8 运行时组合见 [langgraph_trace_to_path.md](./langgraph_trace_to_path.md)。
+
+v0.8 集成验证见 [v0.8 Integration Validation](./validation/v0.8-integration/README.md)。
+
+## v0.7 收口新增门槛
+
+这两个门槛已经有最小 live bridge artifact，但仍不能外推到开放任务成功率：
+
+1. **一次 live LLM run（已完成最小 bridge）**：在同一任务族上让真实 LLM 产生动作提案或候选路径，Harness
+   只接受结构化 proposal，并记录外部证据。合格产物至少包括 `raw_results.json`、
+   `task_runs.jsonl`、`decision_probe.jsonl` 或 runtime trace、tool result、测试 /
+   diff / benchmark 证据、冲突证据与 rollback 记录。
+2. **live LLM pass^3（已完成最小 bridge）**：固定 seed 或固定任务切片，重复运行 3 次，输出 `pass@1`、
+   `pass^3`、关键指标均值 / 标准差，尤其是 `known_bad`、`invalid_action_rate`、
+   `memory_induced_regression_rate`、`rollback_frequency` 和
+   `promotion_precision`。
+
+验收规则：
+
+- 不能把 deterministic local policy 的 `pass^3` 当成 live LLM 可靠性证据。
+- 不能把当前 live bridge 的 `pass^3` 外推成开放式长期任务成功率提升。
+- live LLM 输出不能直接写入 verified memory 或 stable runtime path。
+- promotion 依据必须来自工具返回、测试结果、用户显式纠错、diff 检查、benchmark
+  score 改善、重复验证、反例、冲突、时间衰减和 rollback ledger。
+- 如果 live run 引入 memory-induced regression，必须保留 rollback / demotion 记录，并在
+  README 里明确写成失败或待修复结果。
 
 ## 开发规则
 
@@ -52,9 +110,9 @@
 4. 明确 benchmark 是 correctness + local prototype benchmark，不是 production benchmark。
 5. 把 Layer 3 provisional policy 写成硬规则。
 
-### v0.3.0：任务级对比实验
+### v0.3.0：Layer-3 Path Promotion 实验
 
-目标是证明 provisional procedural pattern 是否真的减少重复试错。
+目标是证明 verified experience 是否真的能晋升成更好的可复用执行路径。
 
 新增数据资产：
 
@@ -71,18 +129,20 @@ evidence_links.jsonl
 实验对照：
 
 ```text
-No memory
-RAG over logs
-MemoryWeaver v0.2.0
+no_path_promotion
+retrieval_only
+provisional_path
+stable_path
 ```
 
 核心指标：
 
-- steps-to-success
-- repeated error reduction
-- path reuse rate
-- tool error rate
-- memory activation accuracy
+- latest_path_selection_accuracy
+- stale_path_suppression_rate
+- rollback_success_rate
+- false_stable_promotion_count
+- average_path_regret
+- sibling_task_path_reuse_rate
 
 ### v0.4.0：索引、冲突与最小图谱
 
@@ -93,6 +153,33 @@ MemoryWeaver v0.2.0
 - SQLite / indexed backend
 - simple vector backend
 - minimal GBrain projection beyond the current candidate tag-linking layer
+
+### v0.8：Integrated Substrate（已搭建）
+
+目标不是重写成 orchestration framework，而是把 runtime path 主线与 RAG evidence、
+GBrain candidate graph、specialist routing、checkpoint/resume 接成一个受 Harness
+约束的完整 substrate：
+
+```text
+RAG Evidence -> GBrain Candidate Graph -> Specialist EvidencePacket
+             -> LLM Proposal -> Harness Evidence Gate -> Runtime Path / Rollback
+```
+
+已完成的 v0.8 工作：
+
+- `RAGEvidenceLayerV08`：确定性 evidence refs、chunk metadata、citation hash。
+- `MemoryWeaverGBrainEngineV08`：candidate bundle ingestion、`search`、`think`、
+  mind-map projection。
+- `CollaborativeSpecialistRouterV08`：L0 / L1 specialists 产出 `EvidencePacket`。
+- checkpoint/resume probe：durable runtime store roundtrip。
+- benchmark：`benchmarks/v08_integration_validation.py`。
+- artifact：`docs/validation/v0.8-integration/`，`pass^3 = true`。
+
+明确边界：
+
+- RAG、GBrain、specialist、HyDE 都不能直接写 verified memory 或 stable Pattern。
+- v0.8 是完整搭建完成点；v0.9 只负责优化、外部 benchmark、容量/压力/雪崩测试和
+  production-grade backend。
 
 已先落地的 v0.4 前置边界：
 
@@ -301,6 +388,12 @@ tests/test_conflict_detector.py
 
 ### Step 11：环境与工具合同
 
+当前状态：
+
+- 最小 `contract.py` / `tests/test_contract.py` 已落地。
+- 当前实现提供默认 live-loop `EnvironmentContract`、`ToolContract`、`SourceAuthority`。
+- 仍未覆盖：持久化合同注册表、跨环境版本迁移、assistant 提议的离线合同 review。
+
 新增文件：
 
 ```text
@@ -321,6 +414,12 @@ tests/test_contract.py
 - assistant 提议不能直接修改合同。
 
 ### Step 12：执行前 ActionGate
+
+当前状态：
+
+- 最小 `action_gate.py` / `tests/test_action_gate.py` 已落地。
+- 当前实现提供结构化 `ActionProposal`、`ActionGate`、`ActionPolicy`，并接入 v0.7 live loop。
+- 仍未覆盖：真实 ToolGateway、用户确认持久化、worker 级幂等恢复、审计 bundle。
 
 新增文件：
 
@@ -344,6 +443,12 @@ tests/test_action_gate.py
 
 ### Step 13：执行后 TrajectoryRegulator
 
+当前状态：
+
+- 最小 `trajectory.py` / `tests/test_trajectory.py` 已落地。
+- 当前实现提供重复失败、停滞、step/tool-call budget 与 recovery 建议，并接入 live loop。
+- 仍未覆盖：token / wall-clock 预算、checkpoint 恢复、跨会话 trajectory compact。
+
 新增文件：
 
 ```text
@@ -364,19 +469,30 @@ tests/test_trajectory.py
 - 超出预算时 checkpoint 并显式终止或转后台。
 - recovery 可审计，不偷偷执行高风险动作。
 
-## Sprint 2：GBrain 与 RAG
+## Sprint 2：GBrain 与 RAG（v0.8 已完成搭建，v0.9 优化）
 
-1. 按 [gbrain_graph_memory.md](./gbrain_graph_memory.md) 引入 GBrain adapter，
-   保存实体、关系、Layer 2 tag 投影和 Pattern lineage。
-2. 按 [rag_evidence_layer.md](./rag_evidence_layer.md) 实现证据层。
-3. 接入 sparse + multilingual dense retrieval。
-4. 数据规模需要时加入 HNSW。
-5. 加入 Hybrid Retrieval、rerank 与严格标记为 `SYNTHETIC` 的 HyDE。
+v0.8 已完成最小可运行框架：
 
-协作式 specialist 路由按
-[collaborative_specialist_routing.md](./collaborative_specialist_routing.md)
-逐级落地：先 L0 deterministic specialist，再 L1 RAG / GBrain，最后才允许 L2
-高端模型参与离线维护。所有 specialist 输出先进入结构化 `EvidencePacket`。
+1. `RAGEvidenceLayerV08` 提供 citable evidence refs、chunk metadata、source URI、
+   document version 和 content hash。
+2. `MemoryWeaverGBrainEngineV08` 支持 candidate bundle ingestion、`search`、
+   `think` 和 mind-map projection。
+3. `CollaborativeSpecialistRouterV08` 将 L0 tag/source/scope/time 与 L1
+   RAG/GBrain specialist 合并为结构化 `EvidencePacket`。
+4. durable checkpoint/resume probe 已接入 v0.8 benchmark。
+5. `docs/validation/v0.8-integration/` 记录 pass^3 artifact。
+
+v0.9 的工作是优化和扩展，而不是继续搭建：
+
+- 接入 sparse + multilingual dense retrieval 的 production backend。
+- 数据规模需要时加入 HNSW。
+- 加入 Hybrid Retrieval、rerank 和更完整的 HyDE 评估。
+- 优化 multi-hop graph expansion、wrong-link rate、stale suppression。
+- 扩大外部 benchmark、压力测试、雪崩测试和 provider fallback。
+
+协作式 specialist 路由已经有最小实现；L2 高端模型维护、shadow、canary 与 rollback
+属于 v0.9 优化阶段。所有 specialist 输出仍先进入结构化 `EvidencePacket`，不能直接
+写 verified memory 或 stable Pattern。
 
 ## Sprint 3：ReAct 运行时
 

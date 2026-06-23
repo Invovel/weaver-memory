@@ -1,0 +1,2003 @@
+{
+  "version": "0.2.0",
+  "nodes": [
+    {
+      "id": "memnode_mem_subscription_failed",
+      "node_type": "memory",
+      "label": "Codex CLI subscription load failed in WSL after login.",
+      "ref_id": "mem_subscription_failed",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.707198+00:00",
+      "updated_at": "2026-06-04T06:34:12.707207+00:00"
+    },
+    {
+      "id": "tag_codex_subscription_failed",
+      "node_type": "tag",
+      "label": "codex_subscription_failed",
+      "ref_id": "codex_subscription_failed",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.707880+00:00",
+      "updated_at": "2026-06-04T06:34:12.840306+00:00"
+    },
+    {
+      "id": "tag_codex_cli",
+      "node_type": "tag",
+      "label": "codex_cli",
+      "ref_id": "codex_cli",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.712745+00:00",
+      "updated_at": "2026-06-04T06:34:12.763440+00:00"
+    },
+    {
+      "id": "tag_wsl",
+      "node_type": "tag",
+      "label": "wsl",
+      "ref_id": "wsl",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.714352+00:00",
+      "updated_at": "2026-06-04T06:34:12.729523+00:00"
+    },
+    {
+      "id": "memnode_mem_organization_fix",
+      "node_type": "memory",
+      "label": "Selecting the correct organization resolved Codex subscription loading.",
+      "ref_id": "mem_organization_fix",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.715995+00:00",
+      "updated_at": "2026-06-04T06:34:12.716001+00:00"
+    },
+    {
+      "id": "tag_selected_organization",
+      "node_type": "tag",
+      "label": "selected_organization",
+      "ref_id": "selected_organization",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.716994+00:00",
+      "updated_at": "2026-06-04T06:34:12.836115+00:00"
+    },
+    {
+      "id": "tag_subscription_load_failed",
+      "node_type": "tag",
+      "label": "subscription_load_failed",
+      "ref_id": "subscription_load_failed",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.718899+00:00",
+      "updated_at": "2026-06-04T06:34:12.818419+00:00"
+    },
+    {
+      "id": "memnode_mem_login_refresh",
+      "node_type": "memory",
+      "label": "Refreshing login helped after Codex subscription failed.",
+      "ref_id": "mem_login_refresh",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.722748+00:00",
+      "updated_at": "2026-06-04T06:34:12.722771+00:00"
+    },
+    {
+      "id": "tag_login_refresh_helped",
+      "node_type": "tag",
+      "label": "login_refresh_helped",
+      "ref_id": "login_refresh_helped",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.723908+00:00",
+      "updated_at": "2026-06-04T06:34:12.829234+00:00"
+    },
+    {
+      "id": "memnode_mem_wsl_env",
+      "node_type": "memory",
+      "label": "WSL environment changed Codex CLI auth behavior compared with Windows terminal.",
+      "ref_id": "mem_wsl_env",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.728442+00:00",
+      "updated_at": "2026-06-04T06:34:12.728448+00:00"
+    },
+    {
+      "id": "tag_windows_native_terminal",
+      "node_type": "tag",
+      "label": "windows_native_terminal",
+      "ref_id": "windows_native_terminal",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.731942+00:00",
+      "updated_at": "2026-06-04T06:34:12.777388+00:00"
+    },
+    {
+      "id": "memnode_mem_api_key_not_subscription",
+      "node_type": "memory",
+      "label": "OpenAI API key existed, but Codex subscription still failed because org selectio",
+      "ref_id": "mem_api_key_not_subscription",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.736947+00:00",
+      "updated_at": "2026-06-04T06:34:12.736956+00:00"
+    },
+    {
+      "id": "tag_api_key_exists",
+      "node_type": "tag",
+      "label": "api_key_exists",
+      "ref_id": "api_key_exists",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.738502+00:00",
+      "updated_at": "2026-06-04T06:34:12.808328+00:00"
+    },
+    {
+      "id": "memnode_mem_billing_not_root",
+      "node_type": "memory",
+      "label": "OpenAI API billing was not the root cause of Codex subscription load failure.",
+      "ref_id": "mem_billing_not_root",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.747385+00:00",
+      "updated_at": "2026-06-04T06:34:12.747392+00:00"
+    },
+    {
+      "id": "tag_openai_api_billing",
+      "node_type": "tag",
+      "label": "openai_api_billing",
+      "ref_id": "openai_api_billing",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.749122+00:00",
+      "updated_at": "2026-06-04T06:34:12.749130+00:00"
+    },
+    {
+      "id": "memnode_mem_npm_install_success",
+      "node_type": "memory",
+      "label": "npm install -g codex succeeded and codex --version returned a version.",
+      "ref_id": "mem_npm_install_success",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.754692+00:00",
+      "updated_at": "2026-06-04T06:34:12.754699+00:00"
+    },
+    {
+      "id": "tag_npm_install_success",
+      "node_type": "tag",
+      "label": "npm_install_success",
+      "ref_id": "npm_install_success",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.756393+00:00",
+      "updated_at": "2026-06-04T06:34:12.789465+00:00"
+    },
+    {
+      "id": "tag_codex_version_success",
+      "node_type": "tag",
+      "label": "codex_version_success",
+      "ref_id": "codex_version_success",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.760300+00:00",
+      "updated_at": "2026-06-04T06:34:12.785835+00:00"
+    },
+    {
+      "id": "memnode_mem_npm_reinstall",
+      "node_type": "memory",
+      "label": "Reinstalling npm package did not fix the subscription load failure.",
+      "ref_id": "mem_npm_reinstall",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.766800+00:00",
+      "updated_at": "2026-06-04T06:34:12.766808+00:00"
+    },
+    {
+      "id": "tag_npm_reinstall_failed",
+      "node_type": "tag",
+      "label": "npm_reinstall_failed",
+      "ref_id": "npm_reinstall_failed",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.768368+00:00",
+      "updated_at": "2026-06-04T06:34:12.768376+00:00"
+    },
+    {
+      "id": "memnode_mem_windows_terminal",
+      "node_type": "memory",
+      "label": "Windows native terminal could open Codex CLI after login refresh.",
+      "ref_id": "mem_windows_terminal",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.775572+00:00",
+      "updated_at": "2026-06-04T06:34:12.775580+00:00"
+    },
+    {
+      "id": "memnode_mem_codex_version",
+      "node_type": "memory",
+      "label": "codex --version succeeded, proving the CLI binary was installed.",
+      "ref_id": "mem_codex_version",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.784180+00:00",
+      "updated_at": "2026-06-04T06:34:12.784202+00:00"
+    },
+    {
+      "id": "memnode_mem_github_org_noise",
+      "node_type": "memory",
+      "label": "GitHub organization selection changed repository permissions only.",
+      "ref_id": "mem_github_org_noise",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.793046+00:00",
+      "updated_at": "2026-06-04T06:34:12.793053+00:00"
+    },
+    {
+      "id": "tag_github_organization",
+      "node_type": "tag",
+      "label": "github_organization",
+      "ref_id": "github_organization",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.795041+00:00",
+      "updated_at": "2026-06-04T06:34:13.212010+00:00"
+    },
+    {
+      "id": "memnode_mem_weather_api_noise",
+      "node_type": "memory",
+      "label": "Weather API key was valid but unrelated to Codex CLI auth.",
+      "ref_id": "mem_weather_api_noise",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.802612+00:00",
+      "updated_at": "2026-06-04T06:34:12.802634+00:00"
+    },
+    {
+      "id": "tag_weather_api_key",
+      "node_type": "tag",
+      "label": "weather_api_key",
+      "ref_id": "weather_api_key",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.804514+00:00",
+      "updated_at": "2026-06-04T06:34:13.192240+00:00"
+    },
+    {
+      "id": "memnode_mem_npm_subscription_noise",
+      "node_type": "memory",
+      "label": "npm package subscription warning came from a different package.",
+      "ref_id": "mem_npm_subscription_noise",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.812035+00:00",
+      "updated_at": "2026-06-04T06:34:12.812042+00:00"
+    },
+    {
+      "id": "tag_npm_package_subscription",
+      "node_type": "tag",
+      "label": "npm_package_subscription",
+      "ref_id": "npm_package_subscription",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.813953+00:00",
+      "updated_at": "2026-06-04T06:34:13.174430+00:00"
+    },
+    {
+      "id": "memnode_mem_vscode_extension_noise",
+      "node_type": "memory",
+      "label": "VS Code extension failed to reload because of marketplace cache.",
+      "ref_id": "mem_vscode_extension_noise",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.822650+00:00",
+      "updated_at": "2026-06-04T06:34:12.822657+00:00"
+    },
+    {
+      "id": "tag_vscode_extension_failed",
+      "node_type": "tag",
+      "label": "vscode_extension_failed",
+      "ref_id": "vscode_extension_failed",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.824780+00:00",
+      "updated_at": "2026-06-04T06:34:13.230560+00:00"
+    },
+    {
+      "id": "memnode_mem_old_org_conflict",
+      "node_type": "memory",
+      "label": "Old note claimed organization choice did not matter for Codex subscription.",
+      "ref_id": "mem_old_org_conflict",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.833793+00:00",
+      "updated_at": "2026-06-04T06:34:12.833812+00:00"
+    },
+    {
+      "id": "tag_old_version",
+      "node_type": "tag",
+      "label": "old_version",
+      "ref_id": "old_version",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.844424+00:00",
+      "updated_at": "2026-06-04T06:34:12.844430+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_00",
+      "node_type": "memory",
+      "label": "Noisy memory 0: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_00",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.848614+00:00",
+      "updated_at": "2026-06-04T06:34:12.848621+00:00"
+    },
+    {
+      "id": "tag_docker_cache",
+      "node_type": "tag",
+      "label": "docker_cache",
+      "ref_id": "docker_cache",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.850821+00:00",
+      "updated_at": "2026-06-04T06:34:13.156489+00:00"
+    },
+    {
+      "id": "tag_noise_0",
+      "node_type": "tag",
+      "label": "noise_0",
+      "ref_id": "noise_0",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.855386+00:00",
+      "updated_at": "2026-06-04T06:34:13.181539+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_01",
+      "node_type": "memory",
+      "label": "Noisy memory 1: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_01",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.859867+00:00",
+      "updated_at": "2026-06-04T06:34:12.859874+00:00"
+    },
+    {
+      "id": "tag_noise_1",
+      "node_type": "tag",
+      "label": "noise_1",
+      "ref_id": "noise_1",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.867022+00:00",
+      "updated_at": "2026-06-04T06:34:13.199472+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_02",
+      "node_type": "memory",
+      "label": "Noisy memory 2: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_02",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.872393+00:00",
+      "updated_at": "2026-06-04T06:34:12.872402+00:00"
+    },
+    {
+      "id": "tag_noise_2",
+      "node_type": "tag",
+      "label": "noise_2",
+      "ref_id": "noise_2",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.879919+00:00",
+      "updated_at": "2026-06-04T06:34:13.219544+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_03",
+      "node_type": "memory",
+      "label": "Noisy memory 3: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_03",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.885317+00:00",
+      "updated_at": "2026-06-04T06:34:12.885326+00:00"
+    },
+    {
+      "id": "tag_noise_3",
+      "node_type": "tag",
+      "label": "noise_3",
+      "ref_id": "noise_3",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.893453+00:00",
+      "updated_at": "2026-06-04T06:34:13.240118+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_04",
+      "node_type": "memory",
+      "label": "Noisy memory 4: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_04",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.898552+00:00",
+      "updated_at": "2026-06-04T06:34:12.898559+00:00"
+    },
+    {
+      "id": "tag_noise_4",
+      "node_type": "tag",
+      "label": "noise_4",
+      "ref_id": "noise_4",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.906948+00:00",
+      "updated_at": "2026-06-04T06:34:13.127826+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_05",
+      "node_type": "memory",
+      "label": "Noisy memory 5: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_05",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.912218+00:00",
+      "updated_at": "2026-06-04T06:34:12.912225+00:00"
+    },
+    {
+      "id": "tag_noise_5",
+      "node_type": "tag",
+      "label": "noise_5",
+      "ref_id": "noise_5",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.921270+00:00",
+      "updated_at": "2026-06-04T06:34:13.145817+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_06",
+      "node_type": "memory",
+      "label": "Noisy memory 6: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_06",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.926992+00:00",
+      "updated_at": "2026-06-04T06:34:12.927002+00:00"
+    },
+    {
+      "id": "tag_noise_6",
+      "node_type": "tag",
+      "label": "noise_6",
+      "ref_id": "noise_6",
+      "metadata": {},
+      "created_at": "2026-06-04T06:34:12.935882+00:00",
+      "updated_at": "2026-06-04T06:34:13.163533+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_07",
+      "node_type": "memory",
+      "label": "Noisy memory 7: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_07",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.941356+00:00",
+      "updated_at": "2026-06-04T06:34:12.941365+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_08",
+      "node_type": "memory",
+      "label": "Noisy memory 8: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_08",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.955622+00:00",
+      "updated_at": "2026-06-04T06:34:12.955631+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_09",
+      "node_type": "memory",
+      "label": "Noisy memory 9: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_09",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.969938+00:00",
+      "updated_at": "2026-06-04T06:34:12.969946+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_10",
+      "node_type": "memory",
+      "label": "Noisy memory 10: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_10",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:12.985104+00:00",
+      "updated_at": "2026-06-04T06:34:12.985113+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_11",
+      "node_type": "memory",
+      "label": "Noisy memory 11: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_11",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:13.001349+00:00",
+      "updated_at": "2026-06-04T06:34:13.001360+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_12",
+      "node_type": "memory",
+      "label": "Noisy memory 12: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_12",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:13.018199+00:00",
+      "updated_at": "2026-06-04T06:34:13.018225+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_13",
+      "node_type": "memory",
+      "label": "Noisy memory 13: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_13",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:13.035607+00:00",
+      "updated_at": "2026-06-04T06:34:13.035617+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_14",
+      "node_type": "memory",
+      "label": "Noisy memory 14: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_14",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:13.052222+00:00",
+      "updated_at": "2026-06-04T06:34:13.052229+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_15",
+      "node_type": "memory",
+      "label": "Noisy memory 15: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_15",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:13.068240+00:00",
+      "updated_at": "2026-06-04T06:34:13.068247+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_16",
+      "node_type": "memory",
+      "label": "Noisy memory 16: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_16",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:13.084425+00:00",
+      "updated_at": "2026-06-04T06:34:13.084431+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_17",
+      "node_type": "memory",
+      "label": "Noisy memory 17: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_17",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:13.100784+00:00",
+      "updated_at": "2026-06-04T06:34:13.100790+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_18",
+      "node_type": "memory",
+      "label": "Noisy memory 18: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_18",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:13.117544+00:00",
+      "updated_at": "2026-06-04T06:34:13.117551+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_19",
+      "node_type": "memory",
+      "label": "Noisy memory 19: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_19",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:13.135181+00:00",
+      "updated_at": "2026-06-04T06:34:13.135190+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_20",
+      "node_type": "memory",
+      "label": "Noisy memory 20: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_20",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:13.152942+00:00",
+      "updated_at": "2026-06-04T06:34:13.152950+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_21",
+      "node_type": "memory",
+      "label": "Noisy memory 21: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_21",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:13.170888+00:00",
+      "updated_at": "2026-06-04T06:34:13.170894+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_22",
+      "node_type": "memory",
+      "label": "Noisy memory 22: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_22",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:13.188726+00:00",
+      "updated_at": "2026-06-04T06:34:13.188733+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_23",
+      "node_type": "memory",
+      "label": "Noisy memory 23: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_23",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:13.207838+00:00",
+      "updated_at": "2026-06-04T06:34:13.207848+00:00"
+    },
+    {
+      "id": "memnode_mem_noise_24",
+      "node_type": "memory",
+      "label": "Noisy memory 24: unrelated cache, package, API, or extension note.",
+      "ref_id": "mem_noise_24",
+      "metadata": {
+        "source": "terminal",
+        "layer": 2
+      },
+      "created_at": "2026-06-04T06:34:13.226840+00:00",
+      "updated_at": "2026-06-04T06:34:13.226847+00:00"
+    }
+  ],
+  "edges": [
+    {
+      "source_id": "memnode_mem_subscription_failed",
+      "target_id": "tag_codex_subscription_failed",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_subscription_failed_related_to_tag_codex_subscription_failed",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.709829+00:00",
+      "updated_at": "2026-06-04T06:34:12.710594+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "codex_subscription_failed"
+      }
+    },
+    {
+      "source_id": "memnode_mem_subscription_failed",
+      "target_id": "tag_codex_cli",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_subscription_failed_related_to_tag_codex_cli",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.713491+00:00",
+      "updated_at": "2026-06-04T06:34:12.713497+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "codex_cli"
+      }
+    },
+    {
+      "source_id": "memnode_mem_subscription_failed",
+      "target_id": "tag_wsl",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_subscription_failed_related_to_tag_wsl",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.715134+00:00",
+      "updated_at": "2026-06-04T06:34:12.715140+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "wsl"
+      }
+    },
+    {
+      "source_id": "memnode_mem_organization_fix",
+      "target_id": "tag_selected_organization",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_organization_fix_related_to_tag_selected_organization",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.717899+00:00",
+      "updated_at": "2026-06-04T06:34:12.717905+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "selected_organization"
+      }
+    },
+    {
+      "source_id": "memnode_mem_organization_fix",
+      "target_id": "tag_subscription_load_failed",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_organization_fix_related_to_tag_subscription_load_failed",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.719803+00:00",
+      "updated_at": "2026-06-04T06:34:12.719809+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "subscription_load_failed"
+      }
+    },
+    {
+      "source_id": "memnode_mem_organization_fix",
+      "target_id": "tag_codex_cli",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_organization_fix_related_to_tag_codex_cli",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.721687+00:00",
+      "updated_at": "2026-06-04T06:34:12.721694+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "codex_cli"
+      }
+    },
+    {
+      "source_id": "memnode_mem_login_refresh",
+      "target_id": "tag_login_refresh_helped",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_login_refresh_related_to_tag_login_refresh_helped",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.725175+00:00",
+      "updated_at": "2026-06-04T06:34:12.725184+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "login_refresh_helped"
+      }
+    },
+    {
+      "source_id": "memnode_mem_login_refresh",
+      "target_id": "tag_codex_subscription_failed",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_login_refresh_related_to_tag_codex_subscription_failed",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.727352+00:00",
+      "updated_at": "2026-06-04T06:34:12.727358+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "codex_subscription_failed"
+      }
+    },
+    {
+      "source_id": "memnode_mem_wsl_env",
+      "target_id": "tag_wsl",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_wsl_env_related_to_tag_wsl",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.730670+00:00",
+      "updated_at": "2026-06-04T06:34:12.730677+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "wsl"
+      }
+    },
+    {
+      "source_id": "memnode_mem_wsl_env",
+      "target_id": "tag_windows_native_terminal",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_wsl_env_related_to_tag_windows_native_terminal",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.733210+00:00",
+      "updated_at": "2026-06-04T06:34:12.733223+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "windows_native_terminal"
+      }
+    },
+    {
+      "source_id": "memnode_mem_wsl_env",
+      "target_id": "tag_codex_cli",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_wsl_env_related_to_tag_codex_cli",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.735701+00:00",
+      "updated_at": "2026-06-04T06:34:12.735709+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "codex_cli"
+      }
+    },
+    {
+      "source_id": "memnode_mem_api_key_not_subscription",
+      "target_id": "tag_api_key_exists",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_api_key_not_subscription_related_to_tag_api_key_exists",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.739996+00:00",
+      "updated_at": "2026-06-04T06:34:12.740022+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "api_key_exists"
+      }
+    },
+    {
+      "source_id": "memnode_mem_api_key_not_subscription",
+      "target_id": "tag_codex_subscription_failed",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_api_key_not_subscription_related_to_tag_codex_subscription_failed",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.742945+00:00",
+      "updated_at": "2026-06-04T06:34:12.742954+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "codex_subscription_failed"
+      }
+    },
+    {
+      "source_id": "memnode_mem_api_key_not_subscription",
+      "target_id": "tag_selected_organization",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_api_key_not_subscription_related_to_tag_selected_organization",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.745942+00:00",
+      "updated_at": "2026-06-04T06:34:12.745966+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "selected_organization"
+      }
+    },
+    {
+      "source_id": "memnode_mem_billing_not_root",
+      "target_id": "tag_openai_api_billing",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_billing_not_root_related_to_tag_openai_api_billing",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.750440+00:00",
+      "updated_at": "2026-06-04T06:34:12.750447+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "openai_api_billing"
+      }
+    },
+    {
+      "source_id": "memnode_mem_billing_not_root",
+      "target_id": "tag_codex_subscription_failed",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_billing_not_root_related_to_tag_codex_subscription_failed",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.753310+00:00",
+      "updated_at": "2026-06-04T06:34:12.753317+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "codex_subscription_failed"
+      }
+    },
+    {
+      "source_id": "memnode_mem_npm_install_success",
+      "target_id": "tag_npm_install_success",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_npm_install_success_related_to_tag_npm_install_success",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.758334+00:00",
+      "updated_at": "2026-06-04T06:34:12.758347+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "npm_install_success"
+      }
+    },
+    {
+      "source_id": "memnode_mem_npm_install_success",
+      "target_id": "tag_codex_version_success",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_npm_install_success_related_to_tag_codex_version_success",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.761877+00:00",
+      "updated_at": "2026-06-04T06:34:12.761885+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "codex_version_success"
+      }
+    },
+    {
+      "source_id": "memnode_mem_npm_install_success",
+      "target_id": "tag_codex_cli",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_npm_install_success_related_to_tag_codex_cli",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.765110+00:00",
+      "updated_at": "2026-06-04T06:34:12.765118+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "codex_cli"
+      }
+    },
+    {
+      "source_id": "memnode_mem_npm_reinstall",
+      "target_id": "tag_npm_reinstall_failed",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_npm_reinstall_related_to_tag_npm_reinstall_failed",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.769934+00:00",
+      "updated_at": "2026-06-04T06:34:12.769941+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "npm_reinstall_failed"
+      }
+    },
+    {
+      "source_id": "memnode_mem_npm_reinstall",
+      "target_id": "tag_codex_subscription_failed",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_npm_reinstall_related_to_tag_codex_subscription_failed",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.773577+00:00",
+      "updated_at": "2026-06-04T06:34:12.773589+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "codex_subscription_failed"
+      }
+    },
+    {
+      "source_id": "memnode_mem_windows_terminal",
+      "target_id": "tag_windows_native_terminal",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_windows_terminal_related_to_tag_windows_native_terminal",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.779112+00:00",
+      "updated_at": "2026-06-04T06:34:12.779119+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "windows_native_terminal"
+      }
+    },
+    {
+      "source_id": "memnode_mem_windows_terminal",
+      "target_id": "tag_login_refresh_helped",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_windows_terminal_related_to_tag_login_refresh_helped",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.782492+00:00",
+      "updated_at": "2026-06-04T06:34:12.782499+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "login_refresh_helped"
+      }
+    },
+    {
+      "source_id": "memnode_mem_codex_version",
+      "target_id": "tag_codex_version_success",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_codex_version_related_to_tag_codex_version_success",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.787546+00:00",
+      "updated_at": "2026-06-04T06:34:12.787552+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "codex_version_success"
+      }
+    },
+    {
+      "source_id": "memnode_mem_codex_version",
+      "target_id": "tag_npm_install_success",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_codex_version_related_to_tag_npm_install_success",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.791370+00:00",
+      "updated_at": "2026-06-04T06:34:12.791377+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "npm_install_success"
+      }
+    },
+    {
+      "source_id": "memnode_mem_github_org_noise",
+      "target_id": "tag_github_organization",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_github_org_noise_related_to_tag_github_organization",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.796968+00:00",
+      "updated_at": "2026-06-04T06:34:12.796975+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "github_organization"
+      }
+    },
+    {
+      "source_id": "memnode_mem_github_org_noise",
+      "target_id": "tag_selected_organization",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_github_org_noise_related_to_tag_selected_organization",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.800794+00:00",
+      "updated_at": "2026-06-04T06:34:12.800800+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "selected_organization"
+      }
+    },
+    {
+      "source_id": "memnode_mem_weather_api_noise",
+      "target_id": "tag_weather_api_key",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_weather_api_noise_related_to_tag_weather_api_key",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.806420+00:00",
+      "updated_at": "2026-06-04T06:34:12.806427+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "weather_api_key"
+      }
+    },
+    {
+      "source_id": "memnode_mem_weather_api_noise",
+      "target_id": "tag_api_key_exists",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_weather_api_noise_related_to_tag_api_key_exists",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.810192+00:00",
+      "updated_at": "2026-06-04T06:34:12.810198+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "api_key_exists"
+      }
+    },
+    {
+      "source_id": "memnode_mem_npm_subscription_noise",
+      "target_id": "tag_npm_package_subscription",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_npm_subscription_noise_related_to_tag_npm_package_subscription",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.816280+00:00",
+      "updated_at": "2026-06-04T06:34:12.816287+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "npm_package_subscription"
+      }
+    },
+    {
+      "source_id": "memnode_mem_npm_subscription_noise",
+      "target_id": "tag_subscription_load_failed",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_npm_subscription_noise_related_to_tag_subscription_load_failed",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.820478+00:00",
+      "updated_at": "2026-06-04T06:34:12.820484+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "subscription_load_failed"
+      }
+    },
+    {
+      "source_id": "memnode_mem_vscode_extension_noise",
+      "target_id": "tag_vscode_extension_failed",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_vscode_extension_noise_related_to_tag_vscode_extension_failed",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.826982+00:00",
+      "updated_at": "2026-06-04T06:34:12.826992+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "vscode_extension_failed"
+      }
+    },
+    {
+      "source_id": "memnode_mem_vscode_extension_noise",
+      "target_id": "tag_login_refresh_helped",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_vscode_extension_noise_related_to_tag_login_refresh_helped",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.831433+00:00",
+      "updated_at": "2026-06-04T06:34:12.831442+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "login_refresh_helped"
+      }
+    },
+    {
+      "source_id": "memnode_mem_old_org_conflict",
+      "target_id": "tag_selected_organization",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_old_org_conflict_related_to_tag_selected_organization",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.838213+00:00",
+      "updated_at": "2026-06-04T06:34:12.838221+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "selected_organization"
+      }
+    },
+    {
+      "source_id": "memnode_mem_old_org_conflict",
+      "target_id": "tag_codex_subscription_failed",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_old_org_conflict_related_to_tag_codex_subscription_failed",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.842356+00:00",
+      "updated_at": "2026-06-04T06:34:12.842362+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "codex_subscription_failed"
+      }
+    },
+    {
+      "source_id": "memnode_mem_old_org_conflict",
+      "target_id": "tag_old_version",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_old_org_conflict_related_to_tag_old_version",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.846506+00:00",
+      "updated_at": "2026-06-04T06:34:12.846512+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "old_version"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_00",
+      "target_id": "tag_docker_cache",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_00_related_to_tag_docker_cache",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.853102+00:00",
+      "updated_at": "2026-06-04T06:34:12.853109+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "docker_cache"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_00",
+      "target_id": "tag_noise_0",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_00_related_to_tag_noise_0",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.857686+00:00",
+      "updated_at": "2026-06-04T06:34:12.857694+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_0"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_01",
+      "target_id": "tag_npm_package_subscription",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_01_related_to_tag_npm_package_subscription",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.864576+00:00",
+      "updated_at": "2026-06-04T06:34:12.864583+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "npm_package_subscription"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_01",
+      "target_id": "tag_noise_1",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_01_related_to_tag_noise_1",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.869847+00:00",
+      "updated_at": "2026-06-04T06:34:12.869857+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_1"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_02",
+      "target_id": "tag_weather_api_key",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_02_related_to_tag_weather_api_key",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.877406+00:00",
+      "updated_at": "2026-06-04T06:34:12.877415+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "weather_api_key"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_02",
+      "target_id": "tag_noise_2",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_02_related_to_tag_noise_2",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.882561+00:00",
+      "updated_at": "2026-06-04T06:34:12.882572+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_2"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_03",
+      "target_id": "tag_github_organization",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_03_related_to_tag_github_organization",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.890394+00:00",
+      "updated_at": "2026-06-04T06:34:12.890401+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "github_organization"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_03",
+      "target_id": "tag_noise_3",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_03_related_to_tag_noise_3",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.895889+00:00",
+      "updated_at": "2026-06-04T06:34:12.895912+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_3"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_04",
+      "target_id": "tag_vscode_extension_failed",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_04_related_to_tag_vscode_extension_failed",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.904316+00:00",
+      "updated_at": "2026-06-04T06:34:12.904324+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "vscode_extension_failed"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_04",
+      "target_id": "tag_noise_4",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_04_related_to_tag_noise_4",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.909664+00:00",
+      "updated_at": "2026-06-04T06:34:12.909671+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_4"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_05",
+      "target_id": "tag_docker_cache",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_05_related_to_tag_docker_cache",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.918633+00:00",
+      "updated_at": "2026-06-04T06:34:12.918641+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "docker_cache"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_05",
+      "target_id": "tag_noise_5",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_05_related_to_tag_noise_5",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.924161+00:00",
+      "updated_at": "2026-06-04T06:34:12.924171+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_5"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_06",
+      "target_id": "tag_npm_package_subscription",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_06_related_to_tag_npm_package_subscription",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.932947+00:00",
+      "updated_at": "2026-06-04T06:34:12.932956+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "npm_package_subscription"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_06",
+      "target_id": "tag_noise_6",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_06_related_to_tag_noise_6",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.938651+00:00",
+      "updated_at": "2026-06-04T06:34:12.938660+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_6"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_07",
+      "target_id": "tag_weather_api_key",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_07_related_to_tag_weather_api_key",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.947076+00:00",
+      "updated_at": "2026-06-04T06:34:12.947085+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "weather_api_key"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_07",
+      "target_id": "tag_noise_0",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_07_related_to_tag_noise_0",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.952737+00:00",
+      "updated_at": "2026-06-04T06:34:12.952762+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_0"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_08",
+      "target_id": "tag_github_organization",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_08_related_to_tag_github_organization",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.961292+00:00",
+      "updated_at": "2026-06-04T06:34:12.961300+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "github_organization"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_08",
+      "target_id": "tag_noise_1",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_08_related_to_tag_noise_1",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.967067+00:00",
+      "updated_at": "2026-06-04T06:34:12.967075+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_1"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_09",
+      "target_id": "tag_vscode_extension_failed",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_09_related_to_tag_vscode_extension_failed",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.975722+00:00",
+      "updated_at": "2026-06-04T06:34:12.975730+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "vscode_extension_failed"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_09",
+      "target_id": "tag_noise_2",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_09_related_to_tag_noise_2",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.982205+00:00",
+      "updated_at": "2026-06-04T06:34:12.982215+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_2"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_10",
+      "target_id": "tag_docker_cache",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_10_related_to_tag_docker_cache",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.991012+00:00",
+      "updated_at": "2026-06-04T06:34:12.991019+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "docker_cache"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_10",
+      "target_id": "tag_noise_3",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_10_related_to_tag_noise_3",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:12.998115+00:00",
+      "updated_at": "2026-06-04T06:34:12.998125+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_3"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_11",
+      "target_id": "tag_npm_package_subscription",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_11_related_to_tag_npm_package_subscription",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.008402+00:00",
+      "updated_at": "2026-06-04T06:34:13.008410+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "npm_package_subscription"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_11",
+      "target_id": "tag_noise_4",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_11_related_to_tag_noise_4",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.015005+00:00",
+      "updated_at": "2026-06-04T06:34:13.015013+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_4"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_12",
+      "target_id": "tag_weather_api_key",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_12_related_to_tag_weather_api_key",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.024378+00:00",
+      "updated_at": "2026-06-04T06:34:13.024385+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "weather_api_key"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_12",
+      "target_id": "tag_noise_5",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_12_related_to_tag_noise_5",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.031798+00:00",
+      "updated_at": "2026-06-04T06:34:13.031810+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_5"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_13",
+      "target_id": "tag_github_organization",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_13_related_to_tag_github_organization",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.042763+00:00",
+      "updated_at": "2026-06-04T06:34:13.042791+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "github_organization"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_13",
+      "target_id": "tag_noise_6",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_13_related_to_tag_noise_6",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.049148+00:00",
+      "updated_at": "2026-06-04T06:34:13.049170+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_6"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_14",
+      "target_id": "tag_vscode_extension_failed",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_14_related_to_tag_vscode_extension_failed",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.058594+00:00",
+      "updated_at": "2026-06-04T06:34:13.058602+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "vscode_extension_failed"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_14",
+      "target_id": "tag_noise_0",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_14_related_to_tag_noise_0",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.064984+00:00",
+      "updated_at": "2026-06-04T06:34:13.064993+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_0"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_15",
+      "target_id": "tag_docker_cache",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_15_related_to_tag_docker_cache",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.074812+00:00",
+      "updated_at": "2026-06-04T06:34:13.074821+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "docker_cache"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_15",
+      "target_id": "tag_noise_1",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_15_related_to_tag_noise_1",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.081208+00:00",
+      "updated_at": "2026-06-04T06:34:13.081215+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_1"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_16",
+      "target_id": "tag_npm_package_subscription",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_16_related_to_tag_npm_package_subscription",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.091063+00:00",
+      "updated_at": "2026-06-04T06:34:13.091069+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "npm_package_subscription"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_16",
+      "target_id": "tag_noise_2",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_16_related_to_tag_noise_2",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.097545+00:00",
+      "updated_at": "2026-06-04T06:34:13.097552+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_2"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_17",
+      "target_id": "tag_weather_api_key",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_17_related_to_tag_weather_api_key",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.107604+00:00",
+      "updated_at": "2026-06-04T06:34:13.107611+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "weather_api_key"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_17",
+      "target_id": "tag_noise_3",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_17_related_to_tag_noise_3",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.114243+00:00",
+      "updated_at": "2026-06-04T06:34:13.114249+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_3"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_18",
+      "target_id": "tag_github_organization",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_18_related_to_tag_github_organization",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.124344+00:00",
+      "updated_at": "2026-06-04T06:34:13.124351+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "github_organization"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_18",
+      "target_id": "tag_noise_4",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_18_related_to_tag_noise_4",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.131490+00:00",
+      "updated_at": "2026-06-04T06:34:13.131498+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_4"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_19",
+      "target_id": "tag_vscode_extension_failed",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_19_related_to_tag_vscode_extension_failed",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.142269+00:00",
+      "updated_at": "2026-06-04T06:34:13.142276+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "vscode_extension_failed"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_19",
+      "target_id": "tag_noise_5",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_19_related_to_tag_noise_5",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.149267+00:00",
+      "updated_at": "2026-06-04T06:34:13.149273+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_5"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_20",
+      "target_id": "tag_docker_cache",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_20_related_to_tag_docker_cache",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.159969+00:00",
+      "updated_at": "2026-06-04T06:34:13.159975+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "docker_cache"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_20",
+      "target_id": "tag_noise_6",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_20_related_to_tag_noise_6",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.167356+00:00",
+      "updated_at": "2026-06-04T06:34:13.167364+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_6"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_21",
+      "target_id": "tag_npm_package_subscription",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_21_related_to_tag_npm_package_subscription",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.177953+00:00",
+      "updated_at": "2026-06-04T06:34:13.177959+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "npm_package_subscription"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_21",
+      "target_id": "tag_noise_0",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_21_related_to_tag_noise_0",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.185254+00:00",
+      "updated_at": "2026-06-04T06:34:13.185261+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_0"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_22",
+      "target_id": "tag_weather_api_key",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_22_related_to_tag_weather_api_key",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.195698+00:00",
+      "updated_at": "2026-06-04T06:34:13.195705+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "weather_api_key"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_22",
+      "target_id": "tag_noise_1",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_22_related_to_tag_noise_1",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.203198+00:00",
+      "updated_at": "2026-06-04T06:34:13.203206+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_1"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_23",
+      "target_id": "tag_github_organization",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_23_related_to_tag_github_organization",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.215828+00:00",
+      "updated_at": "2026-06-04T06:34:13.215835+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "github_organization"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_23",
+      "target_id": "tag_noise_2",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_23_related_to_tag_noise_2",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.223219+00:00",
+      "updated_at": "2026-06-04T06:34:13.223226+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_2"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_24",
+      "target_id": "tag_vscode_extension_failed",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_24_related_to_tag_vscode_extension_failed",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.235503+00:00",
+      "updated_at": "2026-06-04T06:34:13.235515+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "vscode_extension_failed"
+      }
+    },
+    {
+      "source_id": "memnode_mem_noise_24",
+      "target_id": "tag_noise_3",
+      "relation": "related_to",
+      "id": "edge_memnode_mem_noise_24_related_to_tag_noise_3",
+      "confidence": 1.0,
+      "source": "rule",
+      "status": "candidate",
+      "created_at": "2026-06-04T06:34:13.244246+00:00",
+      "updated_at": "2026-06-04T06:34:13.244254+00:00",
+      "evidence_links": [],
+      "metadata": {
+        "tag": "noise_3"
+      }
+    }
+  ],
+  "proposals": []
+}

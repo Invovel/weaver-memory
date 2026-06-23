@@ -1,0 +1,21 @@
+{
+  "dataset_count": 3,
+  "sample_count": 6,
+  "episode_count": 6,
+  "conversion_success_rate": 1.0,
+  "raw_span_count": 12,
+  "capsule_count": 12,
+  "candidate_memory_count": 12,
+  "raw_ref_coverage": 1.0,
+  "source_mapping_coverage": 1.0,
+  "capsule_build_success_rate": 1.0,
+  "query_answer_pair_coverage": 1.0,
+  "conflict_signal_count": 3,
+  "temporal_signal_count": 6,
+  "tool_signal_count": 5,
+  "policy_gate_leak_count": 0,
+  "source_inheritance_violation_count": 0,
+  "memory_promotion_count": 0,
+  "layer3_mutation_count": 0,
+  "online_llm_call_count": 0
+}

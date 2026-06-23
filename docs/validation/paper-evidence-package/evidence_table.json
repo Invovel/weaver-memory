@@ -1,0 +1,70 @@
+[
+  {
+    "paper_section": "3.1 Runtime Path Governance",
+    "claim": "Evidence-gated runtime paths reduce repeated failures and invalid actions.",
+    "primary_metrics": {
+      "repeated_failure_rate_delta_vs_no_memory": -1.0,
+      "invalid_action_rate_delta_vs_naive_memory": -1.0,
+      "promotion_precision": 1.0
+    },
+    "artifact": "harness-runtime-core/metrics.json",
+    "evidence_level": "main"
+  },
+  {
+    "paper_section": "3.2 Live LLM Bridge",
+    "claim": "The proposal step can be driven by live LLM calls while Harness remains the authority.",
+    "primary_metrics": {
+      "online_llm_call_count": 3.0,
+      "pass_power_3": true,
+      "memory_induced_regression_rate": 0.0
+    },
+    "artifact": "harness-runtime-live-llm/",
+    "evidence_level": "main"
+  },
+  {
+    "paper_section": "3.3 Coding-Debug Hard Evidence",
+    "claim": "Promotion can be gated by real pytest and real diff evidence.",
+    "primary_metrics": {
+      "real_pytest_before_failed": 1.0,
+      "real_pytest_after_passed": 1.0,
+      "real_diff_matches_expected": 1.0
+    },
+    "artifact": "harness-runtime-coding-debug/",
+    "evidence_level": "main"
+  },
+  {
+    "paper_section": "3.4 Layer-3 Path Promotion E2E",
+    "claim": "Layer-3 path promotion improves reusable path selection over retrieval-only memory.",
+    "primary_metrics": {
+      "path_regret_delta_vs_retrieval_memory": -2,
+      "known_bad_action_delta_vs_retrieval_memory": -3,
+      "best_path_selection_accuracy": 1.0,
+      "pass_power_3": true
+    },
+    "artifact": "layer3-path-promotion-e2e/",
+    "evidence_level": "main"
+  },
+  {
+    "paper_section": "3.5 v0.8 Substrate Boundary",
+    "claim": "RAG, GBrain, specialists, and checkpoints can provide evidence without direct memory authority.",
+    "primary_metrics": {
+      "citation_coverage": 1.0,
+      "gbrain_authority_granted": false,
+      "promotion_without_hard_evidence_count": 0,
+      "pass_power_3": true
+    },
+    "artifact": "v0.8-integration/",
+    "evidence_level": "supporting"
+  },
+  {
+    "paper_section": "External Validity Appendix",
+    "claim": "External HF datasets are cataloged and boundary-checked; only LME-V2 is currently integrated.",
+    "primary_metrics": {
+      "integrated_dataset_count": 1,
+      "preview_adapter_validated_count": 2,
+      "boundary_violation_count": 0
+    },
+    "artifact": "hf-dataset-candidates-check/",
+    "evidence_level": "boundary"
+  }
+]

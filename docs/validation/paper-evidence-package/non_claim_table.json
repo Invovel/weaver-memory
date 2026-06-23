@@ -1,0 +1,26 @@
+[
+  {
+    "dataset": "LoCoMo-MC10",
+    "repo": "Percena/locomo-mc10",
+    "status": "adapter boundary only",
+    "source_mode": "hf_first_rows",
+    "sample_count": 3,
+    "query_count": 3,
+    "candidate_count": 638,
+    "boundary_guard": "no promotion, no Layer-3 mutation",
+    "effectiveness_claim": "no",
+    "artifact": "locomo-mc10-adapter-check/metrics.json"
+  },
+  {
+    "dataset": "MemoryAgentBench",
+    "repo": "ai-hyz/MemoryAgentBench",
+    "status": "adapter boundary only",
+    "source_mode": "hf_first_rows",
+    "sample_count": 4,
+    "query_count": 103,
+    "candidate_count": 4,
+    "boundary_guard": "no promotion, no Layer-3 mutation",
+    "effectiveness_claim": "no",
+    "artifact": "memoryagentbench-adapter-check/metrics.json"
+  }
+]

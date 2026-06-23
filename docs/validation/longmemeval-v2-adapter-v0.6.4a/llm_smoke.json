@@ -1,0 +1,6 @@
+{
+  "enabled": false,
+  "attempted": false,
+  "online_llm_call_count": 0,
+  "skipped_reason": "run with --llm-smoke to attempt DeepSeek call"
+}

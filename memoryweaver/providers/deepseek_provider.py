@@ -15,7 +15,7 @@ class DeepSeekGraphProposalProvider(BaseHTTPGraphProposalProvider):
     provider_name = "deepseek"
     api_key_attr = "deepseek_api_key"
     endpoint = "https://api.deepseek.com/chat/completions"
-    prompt_version = "graph_proposal_deepseek_v0.4.1"
+    prompt_version = "graph_proposal_deepseek_v0.4.2"
 
     def propose_graph_links(self, request: ProviderRequest) -> list[GraphProposal]:
         if not self.available():

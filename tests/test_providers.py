@@ -91,7 +91,7 @@ def test_deepseek_provider_parses_graph_proposals_without_writing_edges():
     assert proposal.to_node == "selected_organization"
     assert proposal.confidence == 0.6
     assert proposal.requires_review is True
-    assert proposal.metadata["prompt_version"] == "graph_proposal_deepseek_v0.4.1"
+    assert proposal.metadata["prompt_version"] == "graph_proposal_deepseek_v0.4.2"
 
 
 def test_deepseek_provider_preserves_evidence_grounded_confidence():
@@ -166,8 +166,8 @@ def test_evidence_binder_marks_auto_bound_evidence_candidate(tmp_path):
         GraphStore(tmp_path / "graph.json"),
         evidence_check=EvidenceSupportCheck(evidence),
     ).review(proposal)
-    assert review.decision == "pending"
-    assert "candidate evidence requires review" in review.reasons
+    assert review.decision == "accept"
+    assert "candidate evidence passed exact support check" in review.reasons
 
 
 def test_evidence_support_distinguishes_exact_partial_and_unsupported(tmp_path):
@@ -218,6 +218,25 @@ def test_evidence_support_distinguishes_exact_partial_and_unsupported(tmp_path):
     assert checker.check(exact).status == EvidenceSupport.SUPPORTS_EXACT
     assert checker.check(partial).status == EvidenceSupport.SUPPORTS_PARTIAL
     assert checker.check(unsupported).status == EvidenceSupport.DOES_NOT_SUPPORT
+
+
+def test_evidence_support_does_not_treat_single_shared_token_as_exact(tmp_path):
+    evidence = EvidenceStore(tmp_path / "nodes.json", tmp_path / "links.json")
+    evidence.add_node(EvidenceNode(
+        id="ev_org",
+        text="selected organization fixed codex subscription failed",
+        source="terminal",
+        source_uri="fixture://org",
+    ))
+    proposal = GraphProposal(
+        proposal_type="link_tags",
+        source="llm",
+        from_node="codex_subscription_failed",
+        to_node="codex_cli",
+        relation=GraphRelation.RELATED_TO,
+        evidence_links=["ev_org"],
+    )
+    assert EvidenceSupportCheck(evidence).check(proposal).status != EvidenceSupport.SUPPORTS_EXACT
 
 
 def test_reviewed_linker_writes_edge_only_after_accept(tmp_path):
@@ -271,6 +290,38 @@ def test_reviewer_quarantines_high_risk_relation_even_with_evidence(tmp_path):
     assert "high-risk relation cannot be auto accepted" in review.reasons
 
 
+def test_reviewer_downgrades_exact_resolves_to_related_edge(tmp_path):
+    graph = GraphStore(tmp_path / "graph.json")
+    evidence = EvidenceStore(tmp_path / "nodes.json", tmp_path / "links.json")
+    evidence.add_node(EvidenceNode(
+        id="ev_org",
+        text="selected organization fixed codex subscription failed",
+        source="terminal",
+        source_uri="fixture://org",
+    ))
+    proposal = GraphProposal(
+        proposal_type="link_tags",
+        source="llm",
+        from_node="selected_organization",
+        to_node="codex_subscription_failed",
+        relation=GraphRelation.RESOLVES,
+        reason="Organization fixed subscription failure.",
+        confidence=0.9,
+        evidence_links=["ev_org"],
+    )
+    review, edge_id = ReviewedGraphLinker(
+        graph,
+        GraphProposalReviewPolicy(
+            graph,
+            evidence_check=EvidenceSupportCheck(evidence),
+        ),
+    ).review_and_apply(proposal)
+    assert review.decision == "accept"
+    edge = graph.get_edge(edge_id)
+    assert edge.relation == GraphRelation.RELATED_TO
+    assert proposal.metadata["original_relation"] == "resolves"
+
+
 def test_reviewer_rejects_conflicting_relation(tmp_path):
     graph = GraphStore(tmp_path / "graph.json")
     proposal = GraphProposal(
@@ -287,6 +338,25 @@ def test_reviewer_rejects_conflicting_relation(tmp_path):
     assert review.decision == "reject"
     assert edge_id == ""
     assert graph.list_edges() == []
+
+
+def test_pending_proposal_gets_lifecycle_metadata(tmp_path):
+    graph = GraphStore(tmp_path / "graph.json")
+    proposal = GraphProposal(
+        proposal_type="link_tags",
+        source="llm",
+        from_node="codex_subscription_failed",
+        to_node="selected_organization",
+        relation=GraphRelation.RELATED_TO,
+        reason="No evidence yet.",
+        confidence=0.4,
+    )
+    review, edge_id = ReviewedGraphLinker(graph).review_and_apply(proposal)
+    assert review.decision == "pending"
+    assert edge_id == ""
+    stored = graph.get_proposal(proposal.id)
+    assert stored.metadata["pending_lifecycle"]["state"] == "pending_review"
+    assert stored.metadata["pending_lifecycle"]["on_stale"] == "archive_without_new_evidence"
 
 
 def test_reviewer_quarantines_high_fanout(tmp_path):

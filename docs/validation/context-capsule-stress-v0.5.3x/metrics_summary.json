@@ -1,0 +1,26 @@
+{
+  "raw_span_count": 341,
+  "capsule_count": 341,
+  "content_type_counts": {
+    "terminal_log": 61,
+    "tool_json": 13,
+    "conversation_turn": 207,
+    "code_patch": 5,
+    "trace_record": 55
+  },
+  "average_compression_ratio": 1.4871,
+  "tag_recall_at_k": 1.0,
+  "raw_retrieval_success_rate": 1.0,
+  "time_filter_accuracy": 1.0,
+  "marker_context_hit_rate": 1.0,
+  "trust_inheritance_violation_count": 0,
+  "raw_ref_missing_count": 0,
+  "capsule_promoted_memory_count": 0,
+  "must_include_miss_count": 0,
+  "tag_miss_count": 0,
+  "capsule_ref_error_count": 0,
+  "card_count": 50,
+  "dialogue_raw_span_count": 301,
+  "combined_raw_span_count": 341,
+  "assistant_capsule_count": 51
+}

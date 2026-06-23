@@ -143,3 +143,87 @@ def test_router_allows_fresh_stable_pattern_fast(prepared):
         pattern_store=workspace.patterns,
     ).route(pattern.rule)
     assert decision.mode == InferenceMode.FAST
+
+
+def test_path_trial_updates_fitness_and_supports_stable_promotion(prepared):
+    _, composer, memories, link = prepared
+    pattern = compose(composer, memories, link)
+    pattern.freshness = Freshness.STABLE
+    composer.record_path_trial(
+        pattern.id,
+        task_run_id="run-1",
+        successful=True,
+        steps_saved=3,
+        known_bad_avoided=1,
+        evidence_first=True,
+    )
+    composer.record_path_trial(
+        pattern.id,
+        task_run_id="run-2",
+        successful=True,
+        steps_saved=2,
+        known_bad_avoided=1,
+        evidence_first=True,
+    )
+    promoted = composer.record_path_trial(
+        pattern.id,
+        task_run_id="run-3",
+        successful=True,
+        steps_saved=2,
+        known_bad_avoided=1,
+        evidence_first=True,
+    )
+    assert promoted.path_fitness_score >= composer.STABLE_PATH_FITNESS_THRESHOLD
+    stable = composer.promote_stable(pattern.id)
+    assert stable.status == PatternStatus.STABLE
+    assert stable.path_fitness_score >= composer.STABLE_PATH_FITNESS_THRESHOLD
+
+
+def test_select_best_path_prefers_higher_fitness(prepared):
+    workspace, composer, memories, link = prepared
+    better = compose(composer, memories, link)
+    better.rule = "Check organization auth before reinstall for Codex subscription failures"
+    better.freshness = Freshness.STABLE
+    workspace.patterns.update(better)
+    composer.record_path_trial(
+        better.id,
+        task_run_id="run-1",
+        successful=True,
+        steps_saved=3,
+        known_bad_avoided=1,
+        evidence_first=True,
+    )
+    composer.record_path_trial(
+        better.id,
+        task_run_id="run-2",
+        successful=True,
+        steps_saved=2,
+        known_bad_avoided=1,
+        evidence_first=True,
+    )
+    composer.record_path_trial(
+        better.id,
+        task_run_id="run-3",
+        successful=True,
+        steps_saved=2,
+        known_bad_avoided=1,
+        evidence_first=True,
+    )
+    composer.promote_stable(better.id)
+
+    alternative = compose(composer, memories, link)
+    alternative.rule = "Retry reinstall npm then inspect auth state"
+    alternative.freshness = Freshness.STABLE
+    workspace.patterns.update(alternative)
+    composer.record_path_trial(
+        alternative.id,
+        task_run_id="run-a1",
+        successful=True,
+        steps_saved=0,
+        token_cost=800,
+    )
+    ranked = composer.select_best_path(
+        "Codex subscription failed should I reinstall npm first or check org",
+        scope="project",
+    )
+    assert ranked[0].id == better.id

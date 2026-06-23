@@ -1,0 +1,21 @@
+flowchart LR
+  A["Preprocess block\n40 GrandQC\n57 spacing\n1 foreground"]
+  B["Classification family\n5 / 6 / 62 / 63"]
+  C["Segmentation family\n2 / 11 / 12 / 16 / 17 / 18 / 26"]
+  D["Segmentation multires family\n64 TUZI"]
+  E["External specialized family\n25 / 41 / 15 / 39 / 61 / 67"]
+  F["Visualization block\n59 overlays\ncurrent gap"]
+  G["Nucleus block\n50 or 53\nlegacy local proof: 4"]
+  H["Pathomics block\n77 nucleus pathomics"]
+  I["Graph or survival review\nexternal analysis boundary"]
+
+  A --> B
+  A --> C
+  A --> D
+  A --> E
+  B --> F
+  C --> F
+  D --> F
+  A --> G
+  G --> H
+  H --> I

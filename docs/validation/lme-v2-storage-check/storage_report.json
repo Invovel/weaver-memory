@@ -1,0 +1,35 @@
+{
+  "dataset_repo_id": "xiaowu0162/longmemeval-v2",
+  "hf_cache_root": "D:\\hf_cache",
+  "hf_cache_root_exists": true,
+  "dataset_cache_root": "D:\\hf_cache\\hub\\datasets--xiaowu0162--longmemeval-v2",
+  "dataset_cache_root_exists": true,
+  "refs_main_exists": true,
+  "refs_main_revision": "f152293e235517d504809563c833d7190b8c713b",
+  "refs_snapshot_root": "D:\\hf_cache\\hub\\datasets--xiaowu0162--longmemeval-v2\\snapshots\\f152293e235517d504809563c833d7190b8c713b",
+  "refs_snapshot_exists": false,
+  "refs_snapshot_complete": false,
+  "complete_cache_snapshot_root": "",
+  "complete_cache_snapshot_exists": false,
+  "root_status": {
+    "benchmarks": {
+      "root": "D:\\benchmarks\\longmemeval-v2",
+      "exists": true,
+      "complete": true,
+      "required_files": {
+        "questions.jsonl": true,
+        "trajectories.jsonl": true,
+        "haystacks/lme_v2_small.json": true
+      }
+    }
+  },
+  "resolved_root": "D:\\benchmarks\\longmemeval-v2",
+  "root_resolution_source": "benchmarks",
+  "resolution_error": "",
+  "can_build_external_records": true,
+  "required_snapshot_files": [
+    "questions.jsonl",
+    "trajectories.jsonl",
+    "haystacks/lme_v2_small.json"
+  ]
+}

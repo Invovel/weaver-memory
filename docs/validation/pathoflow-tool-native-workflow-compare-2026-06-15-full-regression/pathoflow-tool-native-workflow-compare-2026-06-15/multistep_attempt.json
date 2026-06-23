@@ -1,0 +1,329 @@
+{
+  "success": true,
+  "foreground_manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\f22e3a0e\\execution_manifest.json",
+  "foreground_mask_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\f22e3a0e\\demo_1-foreground-segmentation_foreground.tif",
+  "staged_slide_path": "d:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-15-full-regression\\pathoflow-tool-native-workflow-compare-2026-06-15\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.svs",
+  "staged_mask_path": "d:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-15-full-regression\\pathoflow-tool-native-workflow-compare-2026-06-15\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.tif",
+  "overlay_invocation": {
+    "executor": "wish",
+    "mode": "manual",
+    "request_id": "manual_overlay_from_foreground",
+    "task_id": "",
+    "steps": [
+      {
+        "step_index": 1,
+        "tool_id": "59-generate-overlays"
+      }
+    ],
+    "input_artifacts": [
+      "input_slide",
+      "input_mask"
+    ],
+    "slot_bindings": [
+      {
+        "tool_id": "59-generate-overlays",
+        "slot": "input_slide",
+        "artifact": "d:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-15-full-regression\\pathoflow-tool-native-workflow-compare-2026-06-15\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.svs",
+        "source": "manual"
+      },
+      {
+        "tool_id": "59-generate-overlays",
+        "slot": "input_mask",
+        "artifact": "d:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-15-full-regression\\pathoflow-tool-native-workflow-compare-2026-06-15\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.tif",
+        "source": "manual"
+      }
+    ],
+    "parameter_bindings": [],
+    "output_policy": "default_backend_run_directory",
+    "output_subdirectory": "",
+    "execution_status": "not_executed"
+  },
+  "overlay_run_requests": [
+    {
+      "request_id": "manual_overlay_from_foreground",
+      "step_index": 1,
+      "tool_id": "59-generate-overlays",
+      "slide_paths": [
+        "d:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-15-full-regression\\pathoflow-tool-native-workflow-compare-2026-06-15\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.svs"
+      ],
+      "model_args": {},
+      "username": "pathoflow_demo",
+      "extra_slots": {
+        "input_mask": [
+          "d:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-15-full-regression\\pathoflow-tool-native-workflow-compare-2026-06-15\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.tif"
+        ]
+      }
+    }
+  ],
+  "overlay_preflight": {
+    "success": true,
+    "ready": true,
+    "status": "ready",
+    "checks": [
+      {
+        "tool_id": "59-generate-overlays",
+        "step_index": 1,
+        "ready": true,
+        "reasons": [],
+        "slide_paths": [
+          "d:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-15-full-regression\\pathoflow-tool-native-workflow-compare-2026-06-15\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.svs"
+        ],
+        "extra_slots": {
+          "input_mask": [
+            "d:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-15-full-regression\\pathoflow-tool-native-workflow-compare-2026-06-15\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.tif"
+          ]
+        }
+      }
+    ],
+    "reasons": []
+  },
+  "overlay_result": {
+    "success": true,
+    "executor": "wish",
+    "mode": "real",
+    "request_id": "manual_overlay_from_foreground",
+    "execution_status": "completed",
+    "step_count": 1,
+    "steps": [
+      {
+        "step_index": 1,
+        "tool_id": "59-generate-overlays",
+        "request": {
+          "request_id": "manual_overlay_from_foreground",
+          "step_index": 1,
+          "tool_id": "59-generate-overlays",
+          "slide_paths": [
+            "d:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-15-full-regression\\pathoflow-tool-native-workflow-compare-2026-06-15\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.svs"
+          ],
+          "model_args": {},
+          "username": "pathoflow_demo",
+          "extra_slots": {
+            "input_mask": [
+              "d:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-15-full-regression\\pathoflow-tool-native-workflow-compare-2026-06-15\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.tif"
+            ]
+          }
+        },
+        "result": {
+          "success": true,
+          "task_id": "55185c56",
+          "result": {
+            "tool": "59-generate-overlays",
+            "task_id": "55185c56",
+            "status": "completed",
+            "summary": "演示模式完成，输出 1 个结果文件",
+            "output_images": [
+              "demo_59_generate_overlays_overlay.png"
+            ],
+            "notes": "本结果为演示模式预设输出，不代表真实推理结果。"
+          },
+          "result_dir": "/tmp/PathoFlow_executions\\pathoflow_demo\\55185c56",
+          "output_files": [
+            "demo_59_generate_overlays_overlay.png"
+          ],
+          "output_file_metadata": [
+            {
+              "filename": "demo_59_generate_overlays_overlay.png",
+              "file_type": "image",
+              "produced_by": "59-generate-overlays"
+            }
+          ],
+          "duration": 4.73,
+          "execution_manifest": {
+            "schema_version": "result-manifest/v1",
+            "tool_id": "59-generate-overlays",
+            "task_id": "55185c56",
+            "username": "pathoflow_demo",
+            "success": true,
+            "execution_state": "completed",
+            "duration": 4.73,
+            "created_at": "2026-06-15T13:12:45Z",
+            "result_dir": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\55185c56",
+            "inputs": {
+              "input_image_path": "d:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-15-full-regression\\pathoflow-tool-native-workflow-compare-2026-06-15\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.svs",
+              "extra_slots": {
+                "input_mask": [
+                  "d:\\Download\\Agent\\MemoryWeaver\\docs\\validation\\pathoflow-tool-native-workflow-compare-2026-06-15-full-regression\\pathoflow-tool-native-workflow-compare-2026-06-15\\staged_overlay_inputs\\demo_1-foreground-segmentation_foreground.tif"
+                ]
+              }
+            },
+            "model_args": {},
+            "file_count": 1,
+            "files_by_kind": {
+              "overlay_or_heatmap": 1
+            },
+            "files": [
+              {
+                "path": "demo_59_generate_overlays_overlay.png",
+                "filename": "demo_59_generate_overlays_overlay.png",
+                "extension": ".png",
+                "kind": "overlay_or_heatmap",
+                "size_bytes": 1101522,
+                "exists": true,
+                "metadata": {
+                  "filename": "demo_59_generate_overlays_overlay.png",
+                  "file_type": "image",
+                  "produced_by": "59-generate-overlays"
+                },
+                "summary": {
+                  "width": 1200,
+                  "height": 800,
+                  "mode": "RGB",
+                  "format": "PNG",
+                  "pixel_values": {
+                    "channels": 3,
+                    "sampled": false,
+                    "total_pixels": 960000,
+                    "sampled_pixels": 960000,
+                    "min_value": 0,
+                    "max_value": 255,
+                    "unique_value_count": 242,
+                    "nonzero_fraction": 0.936268,
+                    "value_histogram_top": [
+                      {
+                        "value": 242,
+                        "count": 109119,
+                        "fraction": 0.113666
+                      },
+                      {
+                        "value": 0,
+                        "count": 61183,
+                        "fraction": 0.063732
+                      },
+                      {
+                        "value": 221,
+                        "count": 28539,
+                        "fraction": 0.029728
+                      },
+                      {
+                        "value": 238,
+                        "count": 28525,
+                        "fraction": 0.029714
+                      },
+                      {
+                        "value": 233,
+                        "count": 28382,
+                        "fraction": 0.029565
+                      },
+                      {
+                        "value": 211,
+                        "count": 28264,
+                        "fraction": 0.029442
+                      },
+                      {
+                        "value": 226,
+                        "count": 28203,
+                        "fraction": 0.029378
+                      },
+                      {
+                        "value": 235,
+                        "count": 28197,
+                        "fraction": 0.029372
+                      },
+                      {
+                        "value": 223,
+                        "count": 28138,
+                        "fraction": 0.02931
+                      },
+                      {
+                        "value": 214,
+                        "count": 27924,
+                        "fraction": 0.029087
+                      },
+                      {
+                        "value": 230,
+                        "count": 27898,
+                        "fraction": 0.02906
+                      },
+                      {
+                        "value": 218,
+                        "count": 27705,
+                        "fraction": 0.028859
+                      },
+                      {
+                        "value": 227,
+                        "count": 25259,
+                        "fraction": 0.026311
+                      },
+                      {
+                        "value": 215,
+                        "count": 24914,
+                        "fraction": 0.025952
+                      },
+                      {
+                        "value": 229,
+                        "count": 24851,
+                        "fraction": 0.025886
+                      },
+                      {
+                        "value": 224,
+                        "count": 24819,
+                        "fraction": 0.025853
+                      },
+                      {
+                        "value": 217,
+                        "count": 24657,
+                        "fraction": 0.025684
+                      },
+                      {
+                        "value": 239,
+                        "count": 24611,
+                        "fraction": 0.025636
+                      },
+                      {
+                        "value": 220,
+                        "count": 24608,
+                        "fraction": 0.025633
+                      },
+                      {
+                        "value": 228,
+                        "count": 24566,
+                        "fraction": 0.02559
+                      }
+                    ]
+                  }
+                },
+                "read_status": "ok"
+              }
+            ],
+            "result_summary": {
+              "tool": "59-generate-overlays",
+              "task_id": "55185c56",
+              "status": "completed",
+              "summary": "演示模式完成，输出 1 个结果文件",
+              "output_images": [
+                "demo_59_generate_overlays_overlay.png"
+              ],
+              "notes": "本结果为演示模式预设输出，不代表真实推理结果。"
+            },
+            "error": null,
+            "warnings": [],
+            "interpretation_boundary": "This manifest summarizes output artifacts and lightweight file metadata. It does not make clinical or diagnostic claims without human/pathologist review.",
+            "manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\55185c56\\execution_manifest.json"
+          },
+          "execution_manifest_path": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\55185c56\\execution_manifest.json"
+        },
+        "success": true
+      }
+    ],
+    "error": null
+  },
+  "overlay_handoff_resolution": {
+    "success": true,
+    "ready": true,
+    "status": "ready",
+    "resolved_count": 1,
+    "reasons": [],
+    "slot_bindings": [
+      {
+        "tool_id": "59-generate-overlays",
+        "slot": "input_mask",
+        "artifact": "\\tmp\\PathoFlow_executions\\pathoflow_demo\\f22e3a0e\\demo_1-foreground-segmentation_foreground.tif",
+        "source": "manifest_handoff",
+        "from_tool_id": "1-foreground-segmentation",
+        "from_step_index": 0,
+        "artifact_kind": "mask_or_labelmap",
+        "resolved_from_manifest": true
+      }
+    ]
+  }
+}

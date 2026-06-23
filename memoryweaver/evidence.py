@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import hashlib
 import json
-import os
 import uuid
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
@@ -13,6 +12,7 @@ from pathlib import Path
 from typing import Any, Optional
 
 from memoryweaver.schema import Source
+from memoryweaver.store import atomic_write_json
 
 SCHEMA_VERSION = "0.2.0"
 
@@ -101,6 +101,8 @@ class EvidencePacket:
     pattern_refs: list[str] = field(default_factory=list)
     conflicts: list[str] = field(default_factory=list)
     degraded_components: list[str] = field(default_factory=list)
+    specialists: list[dict[str, Any]] = field(default_factory=list)
+    citations: list[dict[str, Any]] = field(default_factory=list)
     recommended_mode: str = "thinking"
 
     def to_dict(self) -> dict[str, Any]:
@@ -177,11 +179,7 @@ class EvidenceStore:
 
     @staticmethod
     def _atomic_save(path: Path, data: dict[str, Any]) -> None:
-        path.parent.mkdir(parents=True, exist_ok=True)
-        tmp = path.with_suffix(".tmp")
-        with open(tmp, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-        os.replace(tmp, path)
+        atomic_write_json(path, data)
 
     def _load_nodes(self) -> None:
         for raw in self._load_collection(self._nodes_path, "nodes"):

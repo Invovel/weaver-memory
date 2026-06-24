@@ -1,0 +1,67 @@
+{
+  "no_memory": {
+    "task_family_count": 50,
+    "round_count": 150,
+    "evidence_hit_rate": 1.0,
+    "semantic_transfer_rate": 0.0,
+    "stale_path_reuse_rate": 0.0,
+    "path_invalidation_rate": 0.0,
+    "rollback_success_rate": 0.0,
+    "retrieval_call_count": 150,
+    "average_candidate_count": 341,
+    "total_candidates_inspected": 51150,
+    "average_retrieval_latency_ms": 11.385929
+  },
+  "answer_cache": {
+    "task_family_count": 50,
+    "round_count": 150,
+    "evidence_hit_rate": 0.6667,
+    "semantic_transfer_rate": 0.0,
+    "stale_path_reuse_rate": 1.0,
+    "path_invalidation_rate": 0.0,
+    "rollback_success_rate": 0.0,
+    "retrieval_call_count": 100,
+    "average_candidate_count": 227.3333,
+    "total_candidates_inspected": 34100,
+    "average_retrieval_latency_ms": 7.727789
+  },
+  "rag_only": {
+    "task_family_count": 50,
+    "round_count": 150,
+    "evidence_hit_rate": 1.0,
+    "semantic_transfer_rate": 0.0,
+    "stale_path_reuse_rate": 0.0,
+    "path_invalidation_rate": 0.0,
+    "rollback_success_rate": 0.0,
+    "retrieval_call_count": 150,
+    "average_candidate_count": 341,
+    "total_candidates_inspected": 51150,
+    "average_retrieval_latency_ms": 11.202653
+  },
+  "retrieval_path_memory": {
+    "task_family_count": 50,
+    "round_count": 150,
+    "evidence_hit_rate": 0.6667,
+    "semantic_transfer_rate": 1.0,
+    "stale_path_reuse_rate": 1.0,
+    "path_invalidation_rate": 0.0,
+    "rollback_success_rate": 0.0,
+    "retrieval_call_count": 150,
+    "average_candidate_count": 117.96,
+    "total_candidates_inspected": 17694,
+    "average_retrieval_latency_ms": 3.956184
+  },
+  "memoryweaver": {
+    "task_family_count": 50,
+    "round_count": 150,
+    "evidence_hit_rate": 1.0,
+    "semantic_transfer_rate": 1.0,
+    "stale_path_reuse_rate": 0.0,
+    "path_invalidation_rate": 1.0,
+    "rollback_success_rate": 1.0,
+    "retrieval_call_count": 150,
+    "average_candidate_count": 229.48,
+    "total_candidates_inspected": 34422,
+    "average_retrieval_latency_ms": 7.485935
+  }
+}

@@ -19,6 +19,7 @@ Its purpose is to make the positioning concise:
 
 | Line of work | What it already provides | What it usually does not provide | MemoryWeaver addition |
 | --- | --- | --- | --- |
+| Exact answer cache | Near-zero lookup cost for repeated exact keys | Paraphrase transfer, evidence-version invalidation, challenge and rollback | Reusable path rather than stored answer, with explicit invalidation authority |
 | Workflow / orchestration runtimes | Durable execution, checkpointing, interrupts, resume, thread state | Evidence-governed promotion, contradiction-aware reuse, memory-induced error control | Runtime-path governance above the substrate |
 | Deterministic replay / trajectory skill engines | Successful-trajectory recording, replay templates, token and latency savings on repeated tasks | Evidence gate, negative memory, rollback authority, conflict-triggered revocation | Guarded promotion and replay of reusable runtime paths |
 | Policy engines | Deterministic allow / deny rules, separation of decision and enforcement | Experience lifecycle, path quality, rollback based on empirical conflict | Evidence-linked authority for action and promotion |
@@ -28,6 +29,27 @@ Its purpose is to make the positioning concise:
 | Coding-agent benchmarks | Hard signals such as test pass/fail and valid diffs | A mechanism for deciding when experience should become reusable policy | Promotion evidence and reuse governance |
 
 ## Positioning by Reference Family
+
+### Answer cache
+
+Strong at:
+
+- exact-key lookup
+- avoiding repeated generation for unchanged requests
+
+MemoryWeaver does **not** compete on zero-cost exact cache hits.
+
+MemoryWeaver adds:
+
+- transfer of a retrieval path across semantic paraphrases
+- evidence-version and scope checks before reuse
+- invalidation, fallback, and rollback when the old path becomes stale
+
+The controlled Retrieval Wear experiment makes the trade-off explicit:
+ungoverned cache/path reuse can inspect fewer candidates, but both produce
+stale reuse rate `1.0` after evidence drift. The MemoryWeaver arm keeps
+evidence hit rate `1.0` and stale reuse rate `0.0` while inspecting `32.7%`
+fewer candidates than repeated RAG.
 
 ### LangGraph / durable orchestration
 

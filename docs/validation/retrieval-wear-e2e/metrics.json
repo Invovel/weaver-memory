@@ -1,0 +1,13 @@
+{
+  "research_question": "Can a governed retrieval path transfer across paraphrases, inspect fewer candidates than repeated RAG, and avoid stale reuse after evidence drift?",
+  "task_family_count": 50,
+  "capsule_count": 341,
+  "reliability": {
+    "run_count": 3,
+    "pass_at_1": true,
+    "pass_power_3": true,
+    "memoryweaver_total_candidates_mean": 34422,
+    "memoryweaver_total_candidates_std": 0.0,
+    "memoryweaver_stale_path_reuse_rate_mean": 0.0
+  }
+}

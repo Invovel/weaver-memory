@@ -9,6 +9,7 @@ validation scripts. Use this index to avoid guessing.
 - [layer3_path_promotion_v0_7.py](./layer3_path_promotion_v0_7.py) - main deterministic Layer-3 path-promotion validation
 - [layer3_path_promotion_e2e.py](./layer3_path_promotion_e2e.py) - paper-facing Layer-3 path-promotion E2E benchmark with real pytest/diff evidence
 - [layer3_path_promotion_lme_v2.py](./layer3_path_promotion_lme_v2.py) - real-snapshot LongMemEval-V2 path-promotion bridge
+- [retrieval_wear_e2e.py](./retrieval_wear_e2e.py) - controlled five-arm Retrieval Wear experiment over paraphrase transfer and evidence drift
 - [lme_v2_storage_check.py](./lme_v2_storage_check.py) - local LongMemEval-V2 root/Hugging Face cache inspection
 - [hf_dataset_candidates_check.py](./hf_dataset_candidates_check.py) - Hugging Face dataset candidate metadata and integration-boundary check
 - [memoryagentbench_adapter_check.py](./memoryagentbench_adapter_check.py) - MemoryAgentBench Hugging Face preview adapter dry-run

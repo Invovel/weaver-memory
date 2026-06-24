@@ -10,6 +10,7 @@ artifacts. The most useful entry points are below.
 - [layer3-path-promotion-v0.7/README.md](./layer3-path-promotion-v0.7/README.md) - main deterministic Layer-3 path-promotion validation
 - [layer3-path-promotion-e2e/README.md](./layer3-path-promotion-e2e/README.md) - paper-facing Layer-3 path-promotion E2E benchmark with real pytest/diff evidence and pass^3
 - [layer3-path-promotion-lme-v2/README.md](./layer3-path-promotion-lme-v2/README.md) - real-snapshot LongMemEval-V2 path-promotion bridge
+- [retrieval-wear-e2e/README.md](./retrieval-wear-e2e/README.md) - five-arm Retrieval Wear validation: cache, repeated RAG, ungoverned path reuse, and governed invalidation
 - [lme-v2-storage-check/README.md](./lme-v2-storage-check/README.md) - machine-readable local LongMemEval-V2 root / Hugging Face cache inspection
 - [hf-longmemeval-v2-cache-check.md](./hf-longmemeval-v2-cache-check.md) - local Hugging Face cache/root check for `xiaowu0162/longmemeval-v2`
 - [hf-dataset-candidates.md](./hf-dataset-candidates.md) - Hugging Face dataset candidate status for future external benchmark expansion

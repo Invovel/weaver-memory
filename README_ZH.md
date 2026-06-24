@@ -8,9 +8,32 @@
 
 **核心 claim：** Layer-3 path promotion 会把 verified experience 晋升为可复用的 execution path。
 
+从更上位的角度，当前框架也可以表述为：
+**受证据治理、感知循环过程的路径记忆框架**。Retrieval Wear 是它在检索循环中的
+实例：系统可以跨语义改写复用已验证检索路径，但当 evidence version 改变时必须让
+旧路径失效并重新检索。
+
+当前 50 个任务族的受控 Retrieval Wear 实验已经把这种机制与答案缓存、盲目路径复用
+区分开。相比每轮重新运行 RAG，MemoryWeaver 将候选检查量从 `51,150` 降至
+`34,422`，减少约 `32.7%`，同时保持 evidence hit rate = `1.0`。在受控 evidence
+drift 后，答案缓存和无门控路径复用的 stale reuse rate 都是 `1.0`；MemoryWeaver
+保持 stale reuse rate = `0.0`、path invalidation rate = `1.0`、rollback recovery
+= `1.0`，并通过三次独立运行。详见
+[`docs/validation/retrieval-wear-e2e/README.md`](docs/validation/retrieval-wear-e2e/README.md)。
+
 MemoryWeaver 是一个实验性的 runtime path-evolution harness，用于把对话、终端输出、工具结果、用户纠正、任务结果转化为 verified experience，再通过 Layer 3 晋升为可复用、可试用、可稳定、可挑战、可回滚、可替换的执行路径。
 
 与传统 RAG 不同，MemoryWeaver 使用**来源门控极性**和**矛盾检测**来防止 LLM 编造的内容污染记忆库。但这些治理层本身不是终点；它们的意义在于让 Layer 3 能持续筛出“当前最新、最合适、最可靠的路径”。
+
+它也不是答案缓存：
+
+```text
+答案缓存：精确问题 → 已存答案
+
+MemoryWeaver：
+任务循环 → 检索 / 执行路径 → 证据门控
+        → 受控复用 → 失效 / 回滚
+```
 
 它不是普通 RAG。
 

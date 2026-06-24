@@ -8,6 +8,20 @@
 
 **Core claim:** Layer-3 path promotion turns verified experience into reusable execution paths.
 
+The current framework can also be described as **evidence-governed,
+loop-aware path memory**. Retrieval Wear is the retrieval-loop instance:
+MemoryWeaver reuses a validated retrieval route across paraphrases, but
+invalidates and rebuilds the route when its evidence version changes.
+
+The controlled 50-family Retrieval Wear experiment distinguishes this behavior
+from exact answer caching and blind path reuse. Compared with repeated RAG, the
+MemoryWeaver arm reduced inspected candidates from `51,150` to `34,422`
+(`32.7%`) while keeping evidence hit rate at `1.0`. Exact answer cache and
+ungoverned path reuse both reached stale reuse rate `1.0` after controlled
+evidence drift; MemoryWeaver kept stale reuse at `0.0`, invalidation success at
+`1.0`, rollback recovery at `1.0`, and passed three isolated runs. See
+[`docs/validation/retrieval-wear-e2e/README.md`](docs/validation/retrieval-wear-e2e/README.md).
+
 MemoryWeaver is an experimental runtime path-evolution harness for AI agents. It turns conversations, terminal outputs, tool results, user corrections, and task outcomes into verified experience, then promotes that experience through Layer 3 into reusable execution paths that can be trialed, stabilized, challenged, rolled back, and replaced.
 
 In the current direction, a Layer-3 runtime path is not a prompt fragment. It has the shape:
@@ -19,6 +33,16 @@ condition -> action policy -> validation gate -> fallback -> rollback rule
 Promotion is gated by external evidence: tool results, passing tests, explicit user corrections, expected file diffs, benchmark-score deltas, repeated sibling-task validation, counterexamples, conflicts, time decay, and rollback records. Model confidence is not promotion evidence by default.
 
 Unlike traditional RAG systems, MemoryWeaver uses **source-gated polarity** and **contradiction detection** to prevent LLM fabrications from polluting the memory store. Those governance layers are not the end goal by themselves; they exist so Layer 3 can keep selecting the latest, most suitable, and most reliable path for the next task.
+
+It is also not an answer cache:
+
+```text
+Answer cache: exact query -> stored answer
+
+MemoryWeaver:
+task loop -> retrieval/execution path -> evidence gate
+          -> guarded reuse -> invalidation / rollback
+```
 
 Unlike traditional RAG systems that only retrieve documents, MemoryWeaver focuses on **feedback-aware memory evolution**:
 

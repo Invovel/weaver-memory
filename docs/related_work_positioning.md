@@ -26,6 +26,7 @@ Its purpose is to make the positioning concise:
 | Tool-use safety benchmarks | Tool-risk scenarios, misuse detection, adversarial or unsafe action evaluation | Long-horizon promotion and reuse of corrected execution paths | Failure governance across repeated tasks |
 | Reflection / verbal-memory agents | Iterative self-correction, reflection, episodic summaries | Hard-evidence promotion, provenance-gated reuse, rollback against contamination | External-evidence-first path promotion |
 | Skill-library agents | Reusable procedures or skills discovered from prior success | Strong source gate, contradiction management, negative memory, revocation | Reusable runtime paths with challenge and rollback |
+| Skill-document optimizers such as SkillOpt | Trajectory-driven edits to reusable skill text and validation-gated best-skill selection | Runtime authority, source-gated activation, stale-skill invalidation, rollback after deployment | Treat optimized skills as candidate procedures that still require Harness evidence gates |
 | Coding-agent benchmarks | Hard signals such as test pass/fail and valid diffs | A mechanism for deciding when experience should become reusable policy | Promotion evidence and reuse governance |
 
 ## Positioning by Reference Family
@@ -131,6 +132,28 @@ MemoryWeaver adds:
 - negative memory
 - rollback and revocation
 
+### SkillOpt / skill-document optimization
+
+Strong at:
+
+- optimizing natural-language skill procedures from trajectories
+- bounding edits to reusable skill text
+- selecting deployable skill artifacts through validation
+
+MemoryWeaver should not claim this as its primary contribution. A SkillOpt-style
+procedure can be an excellent candidate input, but it is not runtime authority.
+
+MemoryWeaver adds:
+
+- scope and source checks before activation
+- evidence-linked path promotion rather than text-quality promotion
+- stale-procedure invalidation when evidence versions drift
+- rollback and revocation after a deployed procedure causes conflicts or
+  regressions
+
+In short: SkillOpt trains "how to do it"; MemoryWeaver governs "when this
+procedure may be trusted in the loop."
+
 ### SWE-bench / tau-bench style evaluation
 
 Strong at:
@@ -147,6 +170,7 @@ substitute for governance logic.
 - It is not a generic long-term memory framework.
 - It is not a generic RAG wrapper.
 - It is not an orchestration runtime by itself.
+- It is not a skill-document optimizer.
 - It does not treat model confidence as default promotion evidence.
 - It does not claim benchmark success alone is enough for safe reuse.
 
@@ -156,6 +180,8 @@ substitute for governance logic.
 - Promotion should be evidence-gated rather than confidence-gated.
 - Reuse should remain challengeable and revocable.
 - Rollback is part of the core contribution, not a footnote.
+- Optimized skills and generated procedures should remain candidates until
+  Harness gates grant runtime authority.
 - The main value is reducing repeated failure without increasing
   memory-induced error propagation.
 

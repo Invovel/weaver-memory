@@ -26,6 +26,7 @@ MemoryWeaver's core claim clear:
 | OPA / Rego | Deterministic policy boundary, separating decision from enforcement | Treating static policy as a replacement for experience promotion | `ActionGate`, source gate, authority policy |
 | Temporal / Saga | Compensation, audit trail, replay, rollback-inspired workflow structure | Using workflow rollback as a substitute for evidence-driven path revocation | Durable recovery and rollback engineering |
 | Voyager | Reusable executable skills and environment-validated reuse | Treating generated skills as trustworthy without source gate and contradiction handling | Runtime path / skill reuse intuition |
+| SkillOpt | Trajectory-driven skill text optimization, bounded edits, validation-gated best-skill selection | Treating an optimized skill document as verified runtime authority | Candidate procedure generator feeding Harness-reviewed path promotion |
 | CRITIC | Tool-interactive critique and external feedback as a stronger signal than self-confidence | Letting tool feedback bypass MemoryWeaver policy and provenance checks | Hard evidence and post-action validation |
 | Reflexion | Failure-driven iteration and memory as a useful baseline or ablation | Using model-written reflection as the default promotion authority | Baseline / negative comparison arm |
 | SWE-bench | Test-pass/fail, diff validity, regression surface for coding-agent tasks | Assuming benchmark success alone proves safe path promotion | Coding-agent hard evidence and task family design |
@@ -82,6 +83,8 @@ Use `Voyager` and `Reflexion` as contrast:
 
 - `Voyager` shows reusable skill accumulation.
 - `Reflexion` shows memory through linguistic reflection.
+- `SkillOpt` shows that skill procedures themselves can be optimized from
+  trajectories.
 
 MemoryWeaver's distinction is stricter:
 
@@ -89,6 +92,8 @@ MemoryWeaver's distinction is stricter:
 - contradiction-aware reuse
 - negative memory
 - rollback against contamination
+- optimized procedures remain candidate inputs until Harness review grants
+  runtime authority
 
 ## Canonical Positioning
 

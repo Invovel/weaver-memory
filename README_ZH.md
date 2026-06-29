@@ -13,6 +13,12 @@
 实例：系统可以跨语义改写复用已验证检索路径，但当 evidence version 改变时必须让
 旧路径失效并重新检索。
 
+这个定位刻意窄于 [SkillOpt](https://github.com/microsoft/SkillOpt) 这类
+skill 文档优化系统。SkillOpt 风格的系统可以生成候选 procedure 或改进后的
+skill 文本；MemoryWeaver 不会把这些产物直接当作 runtime authority。生成或优化后的
+skill 仍然只是 candidate，必须由 Harness 绑定外部证据、检查作用域和新鲜度、经过
+runtime trial，并保留 rollback 路径之后，才可能进入可复用路径。
+
 当前 50 个任务族的受控 Retrieval Wear 实验已经把这种机制与答案缓存、盲目路径复用
 区分开。相比每轮重新运行 RAG，MemoryWeaver 将候选检查量从 `51,150` 降至
 `34,422`，减少约 `32.7%`，同时保持 evidence hit rate = `1.0`。在受控 evidence
@@ -165,6 +171,9 @@ Stable Path
 这也是 MemoryWeaver 和普通 memory layer、静态 skill 包、普通 graph 最本质的区别：
 
 > 它不是为了记住更多事实，而是为了不断晋升出更好的路径。
+
+它和 skill optimizer 的区别也在这里：skill optimizer 优化 procedure 的文本或结构；
+MemoryWeaver 判断这个 procedure 何时可以被激活、遵循、挑战、撤销或替换。
 
 ---
 

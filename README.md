@@ -13,6 +13,13 @@ loop-aware path memory**. Retrieval Wear is the retrieval-loop instance:
 MemoryWeaver reuses a validated retrieval route across paraphrases, but
 invalidates and rebuilds the route when its evidence version changes.
 
+This positioning is intentionally narrower than skill-document optimization
+systems such as [SkillOpt](https://github.com/microsoft/SkillOpt). SkillOpt-style
+systems can produce candidate procedures or improved skill text; MemoryWeaver
+does not treat those artifacts as runtime authority. A generated or optimized
+skill remains a candidate until the Harness links it to external evidence,
+checks scope and freshness, trials it, and keeps a rollback path.
+
 The controlled 50-family Retrieval Wear experiment distinguishes this behavior
 from exact answer caching and blind path reuse. Compared with repeated RAG, the
 MemoryWeaver arm reduced inspected candidates from `51,150` to `34,422`
@@ -170,6 +177,11 @@ The current prototype already stores explicit Layer-3 path signals such as:
 This is the main distinction from a generic memory layer, static skill pack, or
 plain graph: MemoryWeaver is trying to evolve better paths, not just remember
 more facts.
+
+It is also the distinction from skill optimizers: a skill optimizer can improve
+the wording or structure of a procedure, while MemoryWeaver decides whether that
+procedure may be activated, followed, challenged, revoked, or replaced in a
+long-running agent loop.
 
 ---
 

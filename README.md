@@ -185,6 +185,32 @@ long-running agent loop.
 
 ---
 
+## Option-Guided Predictive Harness
+
+MemoryWeaver can use option-guided interaction as a safer front door for runtime
+autonomy. Instead of directly acting on ambiguous user intent, the assistant
+proposes a small set of Harness-filtered options. The user may select, reject,
+or correct them. The selected option becomes an `ActionProposal`, not verified
+memory.
+
+MemoryWeaver can also use predictive input compression: likely next intents are
+generated as synthetic candidates, matched against the actual user continuation,
+and either retained as route hints or discarded.
+
+The rule stays the same:
+
+```text
+prediction / option -> candidate only
+user or tool feedback -> evidence
+Harness -> authority
+```
+
+Matched predictions may reduce context noise. Unmatched predictions are
+discarded. Neither can directly promote Layer 2 memory or Layer 3 paths. See
+[`docs/option_guided_predictive_harness.md`](docs/option_guided_predictive_harness.md).
+
+---
+
 ## ContextCapsule / TagTimeIndex (Validated v0.5.3)
 
 MemoryWeaver absorbs the useful parts of context-compression systems such

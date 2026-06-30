@@ -27,6 +27,8 @@ MemoryWeaver's core claim clear:
 | Temporal / Saga | Compensation, audit trail, replay, rollback-inspired workflow structure | Using workflow rollback as a substitute for evidence-driven path revocation | Durable recovery and rollback engineering |
 | Voyager | Reusable executable skills and environment-validated reuse | Treating generated skills as trustworthy without source gate and contradiction handling | Runtime path / skill reuse intuition |
 | SkillOpt | Trajectory-driven skill text optimization, bounded edits, validation-gated best-skill selection | Treating an optimized skill document as verified runtime authority | Candidate procedure generator feeding Harness-reviewed path promotion |
+| Claude Code / Claude Agent SDK option prompts | Bounded option presentation before action, user selection as control signal, permissions and hooks as audit points | Letting selected options bypass ActionGate or evidence gates | Option-guided `ActionProposal` entrypoint |
+| DeepSeek context caching / predictive input completion | Prefix reuse, cache-hit intuition, keep matched continuations and discard misses | Treating synthetic continuations as facts or verified memory | Predictive context compression and route hints only |
 | CRITIC | Tool-interactive critique and external feedback as a stronger signal than self-confidence | Letting tool feedback bypass MemoryWeaver policy and provenance checks | Hard evidence and post-action validation |
 | Reflexion | Failure-driven iteration and memory as a useful baseline or ablation | Using model-written reflection as the default promotion authority | Baseline / negative comparison arm |
 | SWE-bench | Test-pass/fail, diff validity, regression surface for coding-agent tasks | Assuming benchmark success alone proves safe path promotion | Coding-agent hard evidence and task family design |
@@ -85,6 +87,10 @@ Use `Voyager` and `Reflexion` as contrast:
 - `Reflexion` shows memory through linguistic reflection.
 - `SkillOpt` shows that skill procedures themselves can be optimized from
   trajectories.
+- Option-guided assistants show that user-facing choices can reduce ambiguous
+  autonomy before action.
+- Predictive completion shows that matched continuations can be used to reduce
+  context noise.
 
 MemoryWeaver's distinction is stricter:
 
@@ -94,6 +100,8 @@ MemoryWeaver's distinction is stricter:
 - rollback against contamination
 - optimized procedures remain candidate inputs until Harness review grants
   runtime authority
+- options and predictions remain candidate route signals until user feedback or
+  hard evidence supports them
 
 ## Canonical Positioning
 

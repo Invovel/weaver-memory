@@ -27,6 +27,8 @@ Its purpose is to make the positioning concise:
 | Reflection / verbal-memory agents | Iterative self-correction, reflection, episodic summaries | Hard-evidence promotion, provenance-gated reuse, rollback against contamination | External-evidence-first path promotion |
 | Skill-library agents | Reusable procedures or skills discovered from prior success | Strong source gate, contradiction management, negative memory, revocation | Reusable runtime paths with challenge and rollback |
 | Skill-document optimizers such as SkillOpt | Trajectory-driven edits to reusable skill text and validation-gated best-skill selection | Runtime authority, source-gated activation, stale-skill invalidation, rollback after deployment | Treat optimized skills as candidate procedures that still require Harness evidence gates |
+| Claude Code / Claude Agent SDK style option-guided assistants | Present bounded choices before acting; use permissions and hooks as audit points | Treating options as authority or bypassing evidence gates | User-selectable `ActionCandidate` / `ActionProposal` entrypoint under Harness review |
+| DeepSeek-style context caching / predictive input completion | Predict likely continuations, reuse matching prefixes, and reduce interaction friction | Treating synthetic prediction as factual memory | Keep matched predictions as route hints and discard unmatched predictions |
 | Coding-agent benchmarks | Hard signals such as test pass/fail and valid diffs | A mechanism for deciding when experience should become reusable policy | Promotion evidence and reuse governance |
 
 ## Positioning by Reference Family
@@ -154,6 +156,28 @@ MemoryWeaver adds:
 In short: SkillOpt trains "how to do it"; MemoryWeaver governs "when this
 procedure may be trusted in the loop."
 
+### Option-guided and predictive interaction
+
+Strong at:
+
+- presenting bounded choices before acting
+- reducing ambiguity through user selection
+- predicting likely continuation to reduce context and interaction overhead
+
+MemoryWeaver uses these as candidate-generation and routing aids only.
+
+MemoryWeaver adds:
+
+- Harness filtering before options are presented
+- user selection as feedback, not automatic verification
+- matched predictions as `route_hint`, not fact memory
+- discard of unmatched predictions
+- promotion only through external evidence gates
+
+In short: option-guided interaction improves control before action; predictive
+completion improves compression before retrieval; MemoryWeaver adds the
+authority boundary after both.
+
 ### SWE-bench / tau-bench style evaluation
 
 Strong at:
@@ -171,6 +195,7 @@ substitute for governance logic.
 - It is not a generic RAG wrapper.
 - It is not an orchestration runtime by itself.
 - It is not a skill-document optimizer.
+- It is not a predictive-input cache.
 - It does not treat model confidence as default promotion evidence.
 - It does not claim benchmark success alone is enough for safe reuse.
 
